@@ -103,7 +103,7 @@ def is_explicit_yes(message: str) -> bool:
     if "?" in message or "؟" in message:
         return False
     words = fold_text(message).split()
-    if not words or len(words) > 12:
+    if not words or len(words) > 25:
         return False
     if any(w in _BLOCK for w in words):
         return False

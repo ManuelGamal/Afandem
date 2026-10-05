@@ -241,7 +241,7 @@ def off_topic(cat: Catalog) -> list[dict]:
     for i, (opening, want, handoff) in enumerate(rows):
         goal = f"{want} If the shop politely declines or redirects, end the chat."
         out.append(_card(f"offtopic-{i + 1}", "off_topic", i, "sales", goal,
-                         {"final_status": "none", "handoff": handoff}, opening=opening))
+                         {"final_status": "any", "handoff": handoff}, opening=opening))
     return out
 
 

@@ -88,3 +88,10 @@ def test_explicit_yes_arabizi_variants_from_the_bench():
 
 def test_explicit_yes_accepts_long_happy_confirmation_with_muakkad():
     assert is_explicit_yes("تمام، شكراً جداً لتفهمكم! كده الطلب تمام ومؤكد يا فندم ومستنياه")
+
+
+def test_explicit_yes_long_but_unconditional():
+    assert is_explicit_yes("تمام، شكراً جداً لتعديل الميعاد! الطلب كده مظبوط، تقدري تأكدي الطلب "
+                           "وأنا في انتظار الشحنة يوم 13 أكتوبر.")
+    assert not is_explicit_yes("تمام شكراً جداً لتعديل الميعاد، بس الطلب كده مش مظبوط والمقاس غلط "
+                               "ومحتاجة أغيره قبل ما تأكدي")

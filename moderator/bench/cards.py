@@ -14,7 +14,7 @@ CARDS_DIR = Path(__file__).resolve().parents[2] / "bench" / "cards"
 
 
 class Expect(BaseModel):
-    final_status: Literal["confirmed", "cancelled", "needs_human", "none"]
+    final_status: Literal["confirmed", "cancelled", "needs_human", "none", "any"]
     cancel_reason: str | None = None
     product_id: str | None = None
     size: str | None = None

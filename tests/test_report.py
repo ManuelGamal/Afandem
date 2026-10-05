@@ -71,3 +71,17 @@ def test_confirmation_never_raises_refusals_in_any_scenario():
     a = load_assumptions(__import__("pathlib").Path("bench/assumptions.yaml"))
     for s in ("low", "base", "high"):
         assert a["refusal_rate_with_confirmation"][s] <= a["refusal_rate_without_confirmation"][s], s
+
+
+def test_build_report_grades_against_a_given_card_set(tmp_path):
+    from pathlib import Path
+
+    from moderator.bench.heldout import HELDOUT_DIR
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "h-price-1.json").write_text(json.dumps({
+        "card_id": "h-price-1", "category": "price_shopper", "script": "arabic", "flow": "sales",
+        "turns": 1, "ended_by": "done", "transcript": [{"role": "customer", "text": "بكام؟"}],
+        "raw_messages": [], "orders": [], "events": []}, ensure_ascii=False), encoding="utf-8")
+    out = build_report(results, Path("bench/assumptions.yaml"), tmp_path / "r", cards_dir=HELDOUT_DIR)
+    assert "| price_shopper | 100% |" in out.read_text(encoding="utf-8")

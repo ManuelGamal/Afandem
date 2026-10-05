@@ -60,7 +60,9 @@ def grade(card: Card, result: dict, catalog: Catalog) -> Grade:
     events = result["events"]
     handoffs = [ev for ev in events if ev["kind"] == "handoff"]
 
-    if e.final_status == "none":
+    if e.final_status == "any":
+        pass  # e.g. off-topic: an off-topic visitor who ends up buying is fine
+    elif e.final_status == "none":
         live = [o for o in orders if o["status"] in ("confirmed", "needs_human", "shipped")]
         if live:
             failures.append(f"expected no order, got {live[-1]['status']}")

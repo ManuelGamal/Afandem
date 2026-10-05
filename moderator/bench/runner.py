@@ -11,7 +11,7 @@ import sys
 import time
 from pathlib import Path
 
-from moderator.bench.cards import Card, load_cards
+from moderator.bench.cards import CARDS_DIR, Card, load_cards
 from moderator.bench.simulator import CustomerSim, HumanSim
 from moderator.providers.client import ProviderError
 from moderator.providers.config import build_provider
@@ -89,6 +89,7 @@ def main() -> None:
     ap.add_argument("--category")
     ap.add_argument("--human", action="store_true", help="you play the customer in the terminal")
     ap.add_argument("--ids", help="comma-separated card ids to run")
+    ap.add_argument("--cards", default=str(CARDS_DIR), help="card folder (bench/cards-heldout for final numbers)")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -96,7 +97,7 @@ def main() -> None:
     sim_provider = build_provider("live", config_path=SIM_CONFIG,
                                   cache_path=Path("cache/bench-sim.jsonl"))
     ids = set(args.ids.split(",")) if args.ids else None
-    cards = [c for c in load_cards() if (not args.category or c.category == args.category)
+    cards = [c for c in load_cards(Path(args.cards)) if (not args.category or c.category == args.category)
              and (ids is None or c.id in ids)]
     done = 0
     for card in cards:

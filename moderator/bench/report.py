@@ -16,7 +16,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import yaml  # noqa: E402
 
-from moderator.bench.cards import load_cards  # noqa: E402
+from moderator.bench.cards import CARDS_DIR, load_cards  # noqa: E402
 from moderator.bench.grader import Grade, grade, summarize  # noqa: E402
 from moderator.store.catalog import Catalog  # noqa: E402
 
@@ -73,8 +73,8 @@ def impact_model(a: dict, bench: dict, scenario: str) -> dict:
     }
 
 
-def _grade_all(results_dir: Path) -> tuple[list[Grade], list]:
-    cards = {c.id: c for c in load_cards()}
+def _grade_all(results_dir: Path, cards_dir: Path = CARDS_DIR) -> tuple[list[Grade], list]:
+    cards = {c.id: c for c in load_cards(cards_dir)}
     catalog = Catalog.load()
     grades, used = [], []
     for path in sorted(Path(results_dir).glob("*.json")):
@@ -112,10 +112,11 @@ def _charts(summary: dict, models: dict, out_dir: Path) -> None:
     plt.close(fig)
 
 
-def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path) -> Path:
+def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
+                 cards_dir: Path = CARDS_DIR) -> Path:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    grades, cards = _grade_all(results_dir)
+    grades, cards = _grade_all(results_dir, cards_dir)
     pool = [g for g, c in zip(grades, cards) if c.expect.handoff is not True]
     summary = summarize(grades, self_service_pool=pool)
     a = load_assumptions(assumptions_path)
@@ -205,8 +206,9 @@ def main() -> None:
     ap.add_argument("--results", required=True)
     ap.add_argument("--assumptions", default="bench/assumptions.yaml")
     ap.add_argument("--out", default="bench/report")
+    ap.add_argument("--cards", default=str(CARDS_DIR), help="card set the results were run on")
     args = ap.parse_args()
-    print(build_report(Path(args.results), Path(args.assumptions), Path(args.out)))
+    print(build_report(Path(args.results), Path(args.assumptions), Path(args.out), Path(args.cards)))
 
 
 if __name__ == "__main__":

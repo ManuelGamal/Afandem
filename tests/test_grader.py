@@ -76,3 +76,10 @@ def test_summarize():
     s = summarize([good, bad])
     assert s["cards"] == 2 and s["success_rate"] == 0.5 and s["violations"] == 1
     assert s["by_category"]["clear_buyer"] == 0.5 and s["by_script"]["arabic"] == 0.5
+
+
+def test_any_final_status_is_not_checked():
+    card = Card(id="o-1", category="off_topic", script="arabic", flow="sales", persona="p",
+                goal="g", opening="essay?", expect={"final_status": "any"})
+    r = result(["الإجمالي 410 جنيه، أأكد؟"], ["تمام"], [ORDER])
+    assert grade(card, r, CAT).success
