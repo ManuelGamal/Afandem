@@ -1,0 +1,91 @@
+{
+ "bench": {
+  "cards": 60,
+  "success_rate": 0.983,
+  "by_category": {
+   "change_at_confirmation": 1.0,
+   "clear_buyer": 1.0,
+   "complaint": 1.0,
+   "declines": 1.0,
+   "no_reply": 1.0,
+   "off_topic": 1.0,
+   "price_shopper": 1.0,
+   "reschedule": 0.833,
+   "size_unsure": 1.0,
+   "vague_address": 1.0
+  },
+  "by_script": {
+   "arabic": 1.0,
+   "arabizi": 1.0,
+   "mixed": 0.95
+  },
+  "violations": 0,
+  "violation_examples": [],
+  "self_service_rate": 0.962,
+  "median_turns": 2.0,
+  "median_reply_s": 1.88,
+  "mean_tokens_in": 13712,
+  "mean_tokens_out": 243,
+  "mean_llm_calls": 5.1,
+  "upsell_orders": 1,
+  "upsell_egp": 560
+ },
+ "bench_inputs": {
+  "self_service_rate": 0.962,
+  "median_turns": 2.0,
+  "mean_tokens_in": 13712,
+  "mean_tokens_out": 243,
+  "upsell_share": 0.08333333333333333,
+  "mean_upsell_egp": 560.0
+ },
+ "impact": {
+  "low": {
+   "dm_hours": 41.68666666666667,
+   "call_hours": 20.843333333333334,
+   "hours_saved_month": 62.53,
+   "hours_saved_week": 14.441108545034641,
+   "moderator_cost_saved": 1803.75,
+   "refusals_prevented": 19.5,
+   "failed_delivery_cost": 90,
+   "delivery_cost_saved": 1755.0,
+   "conversations_month": 1950.0,
+   "llm_cost_egp": 1135.1983500000001,
+   "net_cost_saved": 2423.55165,
+   "revenue_speed": 9004.319999999998,
+   "revenue_upsell": 9100.0,
+   "revenue_total": 18104.32
+  },
+  "base": {
+   "dm_hours": 93.795,
+   "call_hours": 50.024,
+   "hours_saved_month": 143.81900000000002,
+   "hours_saved_week": 33.21454965357968,
+   "moderator_cost_saved": 4840.062500000001,
+   "refusals_prevented": 130.0,
+   "failed_delivery_cost": 120,
+   "delivery_cost_saved": 15600.0,
+   "conversations_month": 2990.0,
+   "llm_cost_egp": 705.80445,
+   "net_cost_saved": 19734.25805,
+   "revenue_speed": 52525.200000000004,
+   "revenue_upsell": 24266.666666666664,
+   "revenue_total": 76791.86666666667
+  },
+  "high": {
+   "dm_hours": 300.62499999999994,
+   "call_hours": 144.29999999999998,
+   "hours_saved_month": 444.92499999999995,
+   "hours_saved_week": 102.75404157043879,
+   "moderator_cost_saved": 17112.499999999996,
+   "refusals_prevented": 485.99999999999994,
+   "failed_delivery_cost": 170,
+   "delivery_cost_saved": 82619.99999999999,
+   "conversations_month": 5550.0,
+   "llm_cost_egp": 391.18176000000005,
+   "net_cost_saved": 99341.31823999998,
+   "revenue_speed": 324675.0,
+   "revenue_upsell": 58800.0,
+   "revenue_total": 383475.0
+  }
+ }
+}

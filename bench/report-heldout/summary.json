@@ -1,0 +1,91 @@
+{
+ "bench": {
+  "cards": 30,
+  "success_rate": 0.967,
+  "by_category": {
+   "change_at_confirmation": 1.0,
+   "clear_buyer": 1.0,
+   "complaint": 1.0,
+   "declines": 1.0,
+   "no_reply": 1.0,
+   "off_topic": 1.0,
+   "price_shopper": 1.0,
+   "reschedule": 1.0,
+   "size_unsure": 0.667,
+   "vague_address": 1.0
+  },
+  "by_script": {
+   "arabic": 1.0,
+   "arabizi": 0.9,
+   "mixed": 1.0
+  },
+  "violations": 0,
+  "violation_examples": [],
+  "self_service_rate": 0.926,
+  "median_turns": 2.0,
+  "median_reply_s": 2.95,
+  "mean_tokens_in": 12205,
+  "mean_tokens_out": 240,
+  "mean_llm_calls": 4.6,
+  "upsell_orders": 0,
+  "upsell_egp": 0
+ },
+ "bench_inputs": {
+  "self_service_rate": 0.926,
+  "median_turns": 2.0,
+  "mean_tokens_in": 12205,
+  "mean_tokens_out": 240,
+  "upsell_share": 0.0,
+  "mean_upsell_egp": 0.0
+ },
+ "impact": {
+  "low": {
+   "dm_hours": 40.12666666666667,
+   "call_hours": 20.063333333333336,
+   "hours_saved_month": 60.19000000000001,
+   "hours_saved_week": 13.900692840646654,
+   "moderator_cost_saved": 1736.2500000000002,
+   "refusals_prevented": 19.5,
+   "failed_delivery_cost": 90,
+   "delivery_cost_saved": 1755.0,
+   "conversations_month": 1950.0,
+   "llm_cost_egp": 1019.4502500000001,
+   "net_cost_saved": 2471.79975,
+   "revenue_speed": 8667.36,
+   "revenue_upsell": 0.0,
+   "revenue_total": 8667.36
+  },
+  "base": {
+   "dm_hours": 90.285,
+   "call_hours": 48.152,
+   "hours_saved_month": 138.437,
+   "hours_saved_week": 31.9715935334873,
+   "moderator_cost_saved": 4658.937500000001,
+   "refusals_prevented": 130.0,
+   "failed_delivery_cost": 120,
+   "delivery_cost_saved": 15600.0,
+   "conversations_month": 2990.0,
+   "llm_cost_egp": 637.0942499999999,
+   "net_cost_saved": 19621.84325,
+   "revenue_speed": 50559.6,
+   "revenue_upsell": 0.0,
+   "revenue_total": 50559.6
+  },
+  "high": {
+   "dm_hours": 289.375,
+   "call_hours": 138.9,
+   "hours_saved_month": 428.275,
+   "hours_saved_week": 98.90877598152424,
+   "moderator_cost_saved": 16472.115384615383,
+   "refusals_prevented": 485.99999999999994,
+   "failed_delivery_cost": 170,
+   "delivery_cost_saved": 82619.99999999999,
+   "conversations_month": 5550.0,
+   "llm_cost_egp": 350.7156,
+   "net_cost_saved": 98741.39978461538,
+   "revenue_speed": 312525.00000000006,
+   "revenue_upsell": 0.0,
+   "revenue_total": 312525.00000000006
+  }
+ }
+}
