@@ -108,3 +108,13 @@ _MONEY = re.compile(
 def money_mentions(text: str) -> list[Decimal]:
     s = clean_digits(text)
     return [Decimal(m.group(1).replace(",", "")) for m in _MONEY.finditer(s)]
+
+
+_LATIN = re.compile(r"[A-Za-z]")
+_ARABIC = re.compile(r"[\u0621-\u064a]")
+
+
+def is_latin_script(text: str) -> bool:
+    """True when a message is written mainly in Latin letters (Arabizi or English)."""
+    latin = len(_LATIN.findall(text))
+    return latin >= 3 and latin > 2 * len(_ARABIC.findall(text))

@@ -46,3 +46,12 @@ def test_money_mentions():
     assert money_mentions("الإجمالي ١٬٠١٠ جنيه والشحن 60ج") == [Decimal("1010"), Decimal("60")]
     assert money_mentions("سعره 950 EGP") == [Decimal("950")]
     assert money_mentions("مقاس 42 وطولك 175") == []
+
+
+def test_is_latin_script():
+    from moderator.text import is_latin_script
+    assert is_latin_script("elhoodie el khafeef bkam")
+    assert is_latin_script("How much is the denim jacket?")
+    assert not is_latin_script("الهودي بكام؟")
+    assert not is_latin_script("Hi، عايزة ال hoodie لو available")
+    assert not is_latin_script("")

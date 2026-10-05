@@ -13,10 +13,14 @@ from moderator.events import EventBus
 from moderator.providers.client import ProviderError
 from moderator.store.catalog import Catalog
 from moderator.store.orders import OrderBook, summary_ar
+from moderator.text import is_latin_script
 
 INTERNAL_PREFIX = "[حدث داخلي]"
 FALLBACK_TEXT = "معلش عندنا مشكلة تقنية صغيرة دلوقتي 🙏 حد من فريقنا هيرد عليك في أقرب وقت."
 OVERFLOW_TEXT = "ثانية واحدة يا فندم، هحوّلك لحد من الفريق يساعدك أحسن 🙏"
+LATIN_HINT = ("\nREPLY STYLE FOR THIS TURN: the customer wrote in Latin letters. Reply in Latin "
+              "letters too: Arabizi (Egyptian Arabic with 3, 7, 2, 5 for Arabic sounds) if they "
+              "wrote Egyptian words, English if they wrote English.")
 _ASSISTANT_KEYS = ("role", "content", "tool_calls", "extra_content")
 
 
@@ -103,8 +107,10 @@ class Agent:
                           last_agent, customer_message)
         calls = 0
         while True:
-            system = {"role": "system",
-                      "content": build_system_prompt(self.catalog, self.clock.now())}
+            prompt = build_system_prompt(self.catalog, self.clock.now())
+            if is_latin_script(customer_message):
+                prompt += LATIN_HINT
+            system = {"role": "system", "content": prompt}
             t0 = time.perf_counter()
             try:
                 raw = self.provider.complete([system] + conv.messages, TOOL_SCHEMAS)

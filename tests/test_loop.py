@@ -95,3 +95,15 @@ def test_reply_clears_awaiting_and_visible_hides_internal_notes():
     agent.reply(conv, "مين معايا؟")
     assert not conv.awaiting_reply
     assert [m["role"] for m in conv.visible()] == ["agent", "customer", "agent"]
+
+
+def test_latin_customer_message_asks_for_latin_reply():
+    agent, provider = make([text_raw("el hoodie el ta2eel b 890 geneh")])
+    agent.reply(Conversation("c1"), "elhoodie el khafeef bkam")
+    assert "Latin letters" in provider.requests[0][0]["content"]
+
+
+def test_arabic_customer_message_has_no_latin_hint():
+    agent, provider = make([text_raw("الهودي بـ 890 جنيه")])
+    agent.reply(Conversation("c1"), "الهودي بكام؟")
+    assert "Latin letters" not in provider.requests[0][0]["content"]
