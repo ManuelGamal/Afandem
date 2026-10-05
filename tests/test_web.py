@@ -21,3 +21,12 @@ def test_no_key_notice_is_arabic_with_english_detail():
     assert 'id="notice" class="notice" dir="auto"' in c.get("/").text
     js = c.get("/static/app.js").text
     assert "مفيش مفتاح للموديل" in js
+
+
+def test_roi_calculator_panel_is_on_the_page():
+    c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
+    html = c.get("/").text
+    for field in ('id="roi-orders"', 'id="roi-dms"', 'id="roi-salary"', 'id="roi-refusal"',
+                  'id="roi-aov"', 'id="roi-out"'):
+        assert field in html, field
+    assert "/api/roi" in c.get("/static/app.js").text

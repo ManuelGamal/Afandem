@@ -248,6 +248,49 @@ async function playDemo() {
   }
 }
 
+// --- ROI calculator ------------------------------------------------------------
+const ROI_FIELDS = { orders: "#roi-orders", dms: "#roi-dms", salary: "#roi-salary",
+  refusal: "#roi-refusal", aov: "#roi-aov" };
+let roiTimer = null;
+
+async function updateRoi() {
+  const q = new URLSearchParams();
+  for (const [k, sel] of Object.entries(ROI_FIELDS)) {
+    const v = $(sel).value;
+    if (v !== "") q.set(k, k === "refusal" ? String(Number(v) / 100) : v);
+  }
+  let r;
+  try { r = await api(`/api/roi?${q}`); } catch (err) { return; }  // invalid input: keep last result
+  const days = r.payback_days == null ? "—" : r.payback_days < 1 ? "أقل من يوم" : `${r.payback_days} يوم`;
+  const cards = [
+    ["cash", "توفير صافي / شهر", fmt(r.net_cost_saved), "ج.م", true],
+    ["timer", "يغطي تكلفته في", days, "", true],
+    ["clock", "ساعات موفرة / أسبوع", r.hours_saved_week, ""],
+    ["shield", "مرتجعات اتمنعت / شهر", fmt(r.refusals_prevented), ""],
+    ["trend", "مبيعات إضافية / شهر (تقديرية)", fmt(r.revenue_total), "ج.م"],
+  ];
+  $("#roi-out").innerHTML = cards.map(([ic, t, v, unit, hi]) => `
+    <div class="kpi${hi ? " highlight" : ""}">
+      <span class="kpi-label">${icon(ic)}${esc(t)}</span>
+      <span class="kpi-value">${esc(v)}${unit ? `<span class="kpi-unit">${esc(unit)}</span>` : ""}</span>
+    </div>`).join("")
+    + `<p class="roi-note">تكلفة التشغيل (موديل + استضافة) حوالي ${fmt(r.running_cost_egp)} ج.م/شهر.
+       الحسبة: نفس نموذج التقرير بالأرقام اللي فوق، والباقي افتراضات مذكور مصدرها.</p>`;
+}
+
+async function initRoi() {
+  const r = await api("/api/roi");
+  const d = r.defaults;
+  $("#roi-orders").value = d.cod_orders_per_day;
+  $("#roi-dms").value = d.dms_per_day;
+  $("#roi-salary").value = d.moderator_salary_egp_month;
+  $("#roi-refusal").value = Math.round(d.refusal_rate_without_confirmation * 100);
+  $("#roi-aov").value = d.average_order_egp;
+  $("#roi-form").addEventListener("input", () => { clearTimeout(roiTimer); roiTimer = setTimeout(updateRoi, 300); });
+  $("#roi-form").addEventListener("submit", (ev) => ev.preventDefault());
+  updateRoi();
+}
+
 $("#btn-demo").innerHTML = `${icon("play")}شغّل الديمو`;
 $("#btn-checkout").innerHTML = `${icon("cart")}طلب من الموقع`;
 $("#btn-advance").innerHTML = `${icon("clock")}عدّي ساعتين`;
@@ -289,4 +332,5 @@ document.addEventListener("click", (ev) => {
   }
   await refresh();
   connect();
+  initRoi();
 })();

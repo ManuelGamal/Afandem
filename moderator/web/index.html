@@ -56,6 +56,21 @@
     </section>
 
     <div class="side">
+      <section class="panel" aria-labelledby="roi-title">
+        <div class="panel-head">
+          <h2 id="roi-title">احسب العائد لمحلك</h2>
+          <span class="hint">بأرقام محلك — الافتراضات ومصادرها في التقرير</span>
+        </div>
+        <form id="roi-form" class="roi-form">
+          <label>طلبات دفع عند الاستلام / يوم<input id="roi-orders" type="number" min="1" max="5000" inputmode="numeric"></label>
+          <label>رسايل على الصفحة / يوم<input id="roi-dms" type="number" min="0" max="20000" inputmode="numeric"></label>
+          <label>مرتب المودريتور / شهر (ج.م)<input id="roi-salary" type="number" min="500" max="200000" step="500" inputmode="numeric"></label>
+          <label>نسبة الطلبات المرفوضة عند الاستلام (%)<input id="roi-refusal" type="number" min="0" max="90" inputmode="numeric"></label>
+          <label>متوسط قيمة الطلب (ج.م)<input id="roi-aov" type="number" min="20" max="100000" step="10" inputmode="numeric"></label>
+        </form>
+        <div id="roi-out" class="roi-out" aria-live="polite"></div>
+      </section>
+
       <section class="panel" aria-labelledby="orders-title">
         <div class="panel-head">
           <h2 id="orders-title">الطلبات</h2>
