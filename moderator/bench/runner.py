@@ -17,6 +17,9 @@ from moderator.providers.config import build_provider
 from moderator.session import Session
 
 
+SIM_CONFIG = Path(__file__).resolve().parents[2] / "configs" / "providers-sim.yaml"
+
+
 class RunAborted(Exception):
     pass
 
@@ -73,7 +76,8 @@ def main() -> None:
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     agent_provider = build_provider("live", cache_path=Path("cache/bench-agent.jsonl"))
-    sim_provider = build_provider("live", cache_path=Path("cache/bench-sim.jsonl"))
+    sim_provider = build_provider("live", config_path=SIM_CONFIG,
+                                  cache_path=Path("cache/bench-sim.jsonl"))
     cards = [c for c in load_cards() if not args.category or c.category == args.category]
     done = 0
     for card in cards:

@@ -1,0 +1,16 @@
+# Simulated-customer models for the bench: a different model from the agent's primary
+# (gemini-3.5-flash-lite), so the customer and the agent are not the same model.
+# Gemma 4 is a slow fallback (it always thinks; the simulator strips <thought> blocks)
+# with a large free daily quota.
+providers:
+  - name: sim-gemini-3.1-flash-lite
+    model: gemini-3.1-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+    temperature: 0.7
+  - name: sim-gemma-4-26b
+    model: gemma-4-26b-a4b-it
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+    max_tokens: 1500
+    temperature: 0.7

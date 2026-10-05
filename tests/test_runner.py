@@ -53,3 +53,17 @@ def test_provider_failure_aborts_instead_of_saving_a_fake_result():
     agent = ScriptedProvider([text_raw("890 جنيه")])
     with pytest.raises(RunAborted):
         run_card(SALES, agent, ScriptedProvider([ProviderError("quota")]))
+
+
+def test_sim_strips_model_thoughts():
+    sim = CustomerSim(ScriptedProvider([text_raw("<thought>planning...\n- option A</thought>تمام، بكام الشحن؟")]),
+                      SALES)
+    assert sim.next_message([{"role": "customer", "text": "x"}, {"role": "agent", "text": "y"}]) \
+        == "تمام، بكام الشحن؟"
+
+
+def test_runner_uses_its_own_simulator_provider_config():
+    from moderator.bench.runner import SIM_CONFIG
+    from moderator.providers.config import load_specs
+    assert [s.model for s in load_specs(SIM_CONFIG)][:2] == ["gemini-3.1-flash-lite",
+                                                             "gemma-4-26b-a4b-it"]

@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import re
+
 from moderator.bench.cards import Card
+
+_THOUGHT = re.compile(r"<thought>.*?</thought>", re.S)
 
 STYLES = {
     "arabic": "Write only in Egyptian Arabic (Arabic script), casual and short, like WhatsApp.",
@@ -43,7 +47,7 @@ class CustomerSim:
             else:
                 messages.append({"role": role, "content": m["text"]})
         raw = self.provider.complete(messages, [])
-        text = (raw["choices"][0]["message"].get("content") or "").strip()
+        text = _THOUGHT.sub("", raw["choices"][0]["message"].get("content") or "").strip()
         if not text or "[DONE]" in text:
             return None
         return text
