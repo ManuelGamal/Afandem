@@ -1,9 +1,20 @@
+# Order = preference; providers whose key env var is missing are skipped. Each Gemini model has
+# its own free quota, so extra Flash-Lite models multiply capacity. Ids verified with
+# `uv run python -m moderator.providers.list_models` on 2026-10-05.
 providers:
-  - name: gemini-flash-lite
+  - name: gemini-3.5-flash-lite
     model: gemini-3.5-flash-lite
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key_env: GEMINI_API_KEY
-  - name: gemini-flash
+  - name: gemini-3.1-flash-lite
+    model: gemini-3.1-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+  - name: gemini-2.5-flash-lite
+    model: gemini-2.5-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+  - name: gemini-3.8-flash
     model: gemini-3.8-flash
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key_env: GEMINI_API_KEY
