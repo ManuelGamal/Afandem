@@ -77,7 +77,7 @@ def is_valid_eg_mobile(value: Any) -> bool:
 _YES = {
     "تمام", "ماشي", "اه", "ايوه", "ايوا", "اكيد", "موافق", "اوكي", "اوك", "طبعا", "تم", "يب",
     "ok", "okay", "okk", "yes", "yep", "sure", "tmam", "tamam", "mashy", "mashi", "aywa",
-    "aiwa", "ah", "akid", "akeed",
+    "aiwa", "ah", "aah", "akid", "akeed",
     # "confirm it" / "it's right" / "go ahead", Arabic and Arabizi
     "اكد", "اكده", "اكدي", "اكديه", "مظبوط", "مضبوط", "صح", "يلا", "يالا",
     "a2ked", "a2kd", "akked", "akkid", "2aked", "a2kedo", "mazboot", "mazbout", "mazbut",
@@ -92,7 +92,7 @@ _YES_EMOJI = {"👍", "👌", "✅"}
 
 # Prefixes (fold_text form) of confirm-words, so اكدوه / تأكدي / ayooh / mazbota count too.
 _YES_STEMS = ("اكد", "تاكد", "ايو", "مظبوط", "مضبوط",
-              "a2ked", "a2kd", "aked", "akked", "akkid", "2aked", "mazbo", "mazbu",
+              "a2ked", "a2kd", "aked", "akked", "akkid", "2aked", "t2ak", "mazbo", "mazbu",
               "aywa", "ayoo", "aiwa", "confirm")
 
 

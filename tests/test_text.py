@@ -78,3 +78,9 @@ def test_explicit_yes_rejects_questions_and_conditions():
                 "Ayooh, ya ret t2aked el talab! Bas momken el mandoub ykalemny?",
                 "أكد الطلب؟"]:
         assert not is_explicit_yes(msg), msg
+
+
+def test_explicit_yes_arabizi_variants_from_the_bench():
+    assert is_explicit_yes("Aah, ya ret t2aked el talab. Shukran gedan!")
+    assert is_explicit_yes("aiwa t2akedo")
+    assert not is_explicit_yes("t2aked bas mesh delwa2ty")
