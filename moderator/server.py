@@ -14,8 +14,8 @@ import threading
 from collections import OrderedDict
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Query, Request, Response
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Query, Request, Response
+from fastapi.responses import FileResponse, PlainTextResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -26,6 +26,7 @@ from moderator.providers.config import build_provider
 from moderator.roi import ASSUMPTIONS, load_bench, shop_roi
 from moderator.session import Session
 from moderator.store.orders import OrderError
+from moderator.whatsapp import WhatsAppBridge, WhatsAppSender, verify_signature, whatsapp_configured
 
 WEB = Path(__file__).with_name("web")
 MAX_CHARS = 1000
@@ -49,7 +50,7 @@ def sse(event) -> str:
     return f"data: {json.dumps(event.to_dict(), ensure_ascii=False)}\n\n"
 
 
-def create_app(provider_factory=None, mode: str | None = None) -> FastAPI:
+def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=None) -> FastAPI:
     mode = mode or os.environ.get("MODERATOR_MODE", "live")
     max_messages = int(os.environ.get("MODERATOR_MAX_MESSAGES", "60"))
     failed_cost = float(os.environ.get("MODERATOR_FAILED_DELIVERY_COST", "120"))
@@ -76,6 +77,37 @@ def create_app(provider_factory=None, mode: str | None = None) -> FastAPI:
                     sessions.popitem(last=False)
             sessions.move_to_end(sid)
             return sessions[sid]
+
+    bridge = None
+    if whatsapp_configured():
+        sender = whatsapp_sender or WhatsAppSender(os.environ["WHATSAPP_TOKEN"],
+                                                   os.environ["WHATSAPP_PHONE_ID"])
+        bridge = WhatsAppBridge(Session(provider), sender)
+
+    def view_session(request: Request, response: Response) -> Session:
+        if request.query_params.get("view") == "whatsapp" and bridge is not None:
+            return bridge.session
+        return session_for(request, response)
+
+    @app.get("/webhook/whatsapp")
+    def whatsapp_verify(request: Request):
+        if bridge is None:
+            raise HTTPException(404, "WhatsApp is not configured")
+        q = request.query_params
+        if q.get("hub.mode") == "subscribe" and q.get("hub.verify_token") == os.environ["WHATSAPP_VERIFY_TOKEN"]:
+            return PlainTextResponse(q.get("hub.challenge", ""))
+        raise HTTPException(403, "bad verify token")
+
+    @app.post("/webhook/whatsapp")
+    async def whatsapp_receive(request: Request, background: BackgroundTasks):
+        if bridge is None:
+            raise HTTPException(404, "WhatsApp is not configured")
+        body = await request.body()
+        if not verify_signature(os.environ["WHATSAPP_APP_SECRET"], body,
+                                request.headers.get("X-Hub-Signature-256")):
+            raise HTTPException(403, "bad signature")
+        background.add_task(bridge.handle, json.loads(body))
+        return {"ok": True}
 
     def spend(s: Session) -> None:
         if s.message_count >= max_messages:
@@ -111,7 +143,7 @@ def create_app(provider_factory=None, mode: str | None = None) -> FastAPI:
 
     @app.get("/api/state")
     def state(request: Request, response: Response):
-        s = session_for(request, response)
+        s = view_session(request, response)
         with s.lock:
             return s.state(failed_cost) | {"messages_left": max_messages - s.message_count}
 
@@ -161,7 +193,8 @@ def create_app(provider_factory=None, mode: str | None = None) -> FastAPI:
 
     @app.get("/api/events")
     async def events(request: Request):
-        s = sessions.get(request.cookies.get("sid", ""))
+        s = (bridge.session if request.query_params.get("view") == "whatsapp" and bridge
+             else sessions.get(request.cookies.get("sid", "")))
         if s is None:
             raise HTTPException(404, "no session; load /api/state first")
 

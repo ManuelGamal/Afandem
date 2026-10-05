@@ -30,3 +30,9 @@ def test_roi_calculator_panel_is_on_the_page():
                   'id="roi-aov"', 'id="roi-out"'):
         assert field in html, field
     assert "/api/roi" in c.get("/static/app.js").text
+
+
+def test_page_supports_the_whatsapp_view():
+    c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
+    js = c.get("/static/app.js").text
+    assert 'get("view")' in js and "واتساب" in js

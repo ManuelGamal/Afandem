@@ -33,6 +33,9 @@ const TOOL_AR = { search_products: "بحث في المنتجات", get_product: 
   schedule_delivery: "تحديد معاد التوصيل", flag_risk: "ملاحظة مخاطرة", handoff_to_human: "تحويل لموظف" };
 
 let info = null, state = null, current = "chat-1", busy = false, es = null, timer = null;
+// ?view=whatsapp shows the WhatsApp line's conversations (read-only here; chat from the phone).
+const VIEW = new URLSearchParams(location.search).get("view");
+const VIEW_Q = VIEW ? `?view=${encodeURIComponent(VIEW)}` : "";
 const seen = new Set();  // event seq numbers already in the activity log
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g,
@@ -64,7 +67,7 @@ function notice(msg, sticky = false) {
 }
 
 async function refresh() {
-  state = await api("/api/state");
+  state = await api(`/api/state${VIEW_Q}`);
   render();
 }
 function scheduleRefresh() {
@@ -74,8 +77,13 @@ function scheduleRefresh() {
 
 function connect() {
   if (es) es.close();
-  es = new EventSource("/api/events");
-  es.onmessage = (m) => { logEvent(JSON.parse(m.data)); scheduleRefresh(); };
+  es = new EventSource(`/api/events${VIEW_Q}`);
+  es.onmessage = (m) => {
+    const e = JSON.parse(m.data);
+    if (VIEW && e.conversation_id) current = e.conversation_id;  // follow the live phone chat
+    logEvent(e);
+    scheduleRefresh();
+  };
   es.onerror = () => { es.close(); setTimeout(connect, 2000); };
 }
 
@@ -109,7 +117,8 @@ function renderKpis(k) {
 
 function renderChat() {
   const ids = state.conversations.map((c) => c.id);
-  const tabs = ids.includes("chat-1") ? ids : ["chat-1", ...ids];
+  const tabs = VIEW ? ids : (ids.includes("chat-1") ? ids : ["chat-1", ...ids]);
+  if (VIEW && !ids.includes(current) && ids.length) current = ids[ids.length - 1];
   $("#tabs").innerHTML = tabs.map((id) => {
     const c = state.conversations.find((x) => x.id === id);
     const on = id === current;
@@ -163,10 +172,12 @@ function renderOrders() {
 
 function renderControls() {
   const replay = info && info.mode === "replay";
-  $("#text").disabled = busy || replay;
-  $("#btn-send").disabled = busy || replay;
+  const readOnly = replay || VIEW === "whatsapp";
+  $("#text").disabled = busy || readOnly;
+  $("#btn-send").disabled = busy || readOnly;
+  if (VIEW === "whatsapp") $("#text").placeholder = "واتساب: اكتب من الموبايل والمحادثة هتظهر هنا";
   if (replay) $("#text").placeholder = "وضع العرض المسجّل: دوس «شغّل الديمو»";
-  for (const b of document.querySelectorAll(".actions .btn")) b.disabled = busy;
+  for (const b of document.querySelectorAll(".actions .btn")) b.disabled = busy || VIEW === "whatsapp";
 }
 
 function render() {
@@ -323,7 +334,7 @@ document.addEventListener("click", (ev) => {
   info = await api("/api/info");
   const replay = info.mode === "replay";
   const mode = $("#mode");
-  mode.textContent = replay ? "عرض مسجّل" : "مباشر";
+  mode.textContent = VIEW === "whatsapp" ? "واتساب مباشر" : replay ? "عرض مسجّل" : "مباشر";
   mode.classList.add(replay ? "replay" : "live");
   if (info.notice) {
     notice("مفيش مفتاح للموديل، فبنعرض الديمو المسجّل — دوس «شغّل الديمو». "
