@@ -21,6 +21,6 @@ return_shipping_egp: {low: 30, base: 60, high: 85, source: "estimate (return fee
 buying_intent_share_of_dms: {low: 0.3, base: 0.4, high: 0.5, source: estimate}
 conversion_uplift_from_fast_replies: {low: 0.02, base: 0.05, high: 0.10, source: "estimate, far below the cited 40% (reply within 15 min) vs 10% (after 3 h): https://www.lilachbullock.com/facebook-messenger-tricks-business-pages/"}
 
-llm_usd_per_mtok_in: {low: 0.30, base: 0.10, high: 0.10, source: "fill from https://ai.google.dev/gemini-api/docs/pricing for the model in configs/providers.yaml; low = a pricier model"}
-llm_usd_per_mtok_out: {low: 2.50, base: 0.40, high: 0.40, source: "same page as above"}
+llm_usd_per_mtok_in: {low: 0.75, base: 0.30, high: 0.10, source: "https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05)", note: "low: gemini-3.8-flash fallback; base: gemini-3.5-flash-lite; high: gemini-2.5-flash-lite"}
+llm_usd_per_mtok_out: {low: 3.75, base: 2.50, high: 0.40, source: "https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05)", note: "same models as above"}
 usd_to_egp: {low: 52, base: 50, high: 48, source: "estimate; check the rate on the day you build the slides"}
