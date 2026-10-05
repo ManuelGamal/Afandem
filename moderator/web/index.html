@@ -4,48 +4,96 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wasla Moderator</title>
+  <meta name="description" content="AI sales moderator for Egyptian social-commerce shops — live demo">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header>
-    <div class="brand"><strong>وصلة وير</strong> <span>· المودريتور الذكي</span></div>
-    <span id="mode" class="badge"></span>
-    <div class="actions">
-      <button id="btn-demo">▶ شغّل الديمو</button>
-      <button id="btn-checkout">🛒 طلب جديد من الموقع</button>
-      <button id="btn-advance">⏩ عدّي ساعتين</button>
-      <button id="btn-reset" class="ghost">↺ ابدأ من جديد</button>
+  <a class="skip" href="#chat-panel">تخطّى للمحادثة</a>
+
+  <header class="appbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">و</span>
+      <div>
+        <h1>وصلة <span class="brand-sub">مودريتور ذكي لمتاجر السوشيال</span></h1>
+        <p class="brand-note">متجر ملابس تجريبي في القاهرة · كل الأرقام من الجلسة دي</p>
+      </div>
     </div>
+    <span id="mode" class="mode" role="status"></span>
+    <nav class="actions" aria-label="أدوات العرض">
+      <button id="btn-demo" class="btn btn-primary" type="button"></button>
+      <button id="btn-checkout" class="btn" type="button"></button>
+      <button id="btn-advance" class="btn" type="button"></button>
+      <button id="btn-reset" class="btn btn-ghost" type="button"></button>
+    </nav>
   </header>
+
   <p id="notice" class="notice" dir="auto" hidden></p>
-  <main>
-    <section class="phone" aria-label="المحادثات">
-      <div class="tabs" id="tabs"></div>
-      <div class="chat" id="chat" aria-live="polite"></div>
-      <form id="composer">
-        <input id="text" autocomplete="off" maxlength="1000"
-               placeholder="اكتب كعميل… عربي أو فرانكو أو English">
-        <button>إرسال</button>
+
+  <main class="layout">
+    <section class="kpis" aria-labelledby="kpi-title">
+      <div class="section-head">
+        <h2 id="kpi-title">الأثر على المتجر</h2>
+        <span class="hint">بيتحسب لحظياً من أحداث الجلسة</span>
+      </div>
+      <div class="kpi-grid" id="impact" aria-live="polite"></div>
+    </section>
+
+    <section class="panel chat-panel" id="chat-panel" aria-labelledby="chat-title">
+      <div class="panel-head">
+        <h2 id="chat-title">المحادثات</h2>
+        <span class="hint">اكتب كعميل: عربي، فرانكو أو English</span>
+      </div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="المحادثات"></div>
+      <div class="chat" id="chat" role="log" aria-live="polite"></div>
+      <form id="composer" class="composer">
+        <label for="text" class="sr-only">رسالة العميل</label>
+        <input id="text" autocomplete="off" maxlength="1000" placeholder="مثلاً: الهودي التقيل بكام؟">
+        <button class="btn btn-primary btn-icon" type="submit" aria-label="إرسال" id="btn-send"></button>
       </form>
     </section>
-    <section class="dash" aria-label="لوحة صاحب المحل">
-      <div class="cards" id="impact"></div>
-      <h2>الطلبات</h2>
-      <table id="orders">
-        <thead><tr><th>#</th><th>العميل</th><th>المنطقة</th><th>الإجمالي</th><th>الحالة</th>
-          <th>المخاطرة</th><th></th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <h2>محتاج موظف</h2>
-      <ul id="handoffs"></ul>
-      <h2>اللي المودريتور بيعمله دلوقتي</h2>
-      <ol id="log" class="log"></ol>
-    </section>
+
+    <div class="side">
+      <section class="panel" aria-labelledby="orders-title">
+        <div class="panel-head">
+          <h2 id="orders-title">الطلبات</h2>
+          <span class="count" id="orders-count">0</span>
+        </div>
+        <div class="table-wrap">
+          <table id="orders">
+            <thead>
+              <tr><th scope="col">#</th><th scope="col">العميل</th><th scope="col">المنطقة</th>
+                <th scope="col" class="num">الإجمالي</th><th scope="col">الحالة</th>
+                <th scope="col">المخاطرة</th><th scope="col"><span class="sr-only">إجراء</span></th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="split">
+        <section class="panel" aria-labelledby="handoff-title">
+          <div class="panel-head">
+            <h2 id="handoff-title">محتاج موظف</h2>
+            <span class="count" id="handoff-count">0</span>
+          </div>
+          <ul id="handoffs" class="list"></ul>
+        </section>
+        <section class="panel" aria-labelledby="log-title">
+          <div class="panel-head">
+            <h2 id="log-title">نشاط المودريتور</h2>
+            <span class="live-dot" aria-hidden="true"></span>
+          </div>
+          <ol id="log" class="log"></ol>
+        </section>
+      </div>
+    </div>
   </main>
-  <footer>
-    متجر وهمي لأغراض العرض — الأرقام هنا من الجلسة دي بس.
+
+  <footer class="footer">
+    متجر وهمي لأغراض العرض. الأسعار والمخزون والشحن من أدوات المتجر فقط، والتأكيد بيحصل بعد "نعم" صريحة يتحقق منها الكود.
     <a id="repo" href="https://github.com/">الكود على GitHub</a>
   </footer>
   <script src="/static/app.js"></script>

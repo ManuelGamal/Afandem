@@ -1,16 +1,43 @@
 const $ = (s) => document.querySelector(s);
-const STATUS = { draft: "مسودة", pending_confirmation: "مستني تأكيد", confirmed: "متأكد",
-  shipped: "اتشحن", cancelled: "اتلغى", needs_human: "مع موظف" };
-const RISK = { low: "قليلة", medium: "متوسطة", high: "عالية" };
+
+// Lucide icon paths (ISC licence), inlined so the page has no icon dependency.
+const ICONS = {
+  play: '<polygon points="6 3 20 12 6 21 6 3"/>',
+  cart: '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  reset: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+  send: '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
+  message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  timer: '<line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/>',
+  check: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>',
+  cash: '<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+  trend: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  truck: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
+  user: '<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
+  chevron: '<path d="m15 18-6-6 6-6"/>',
+};
+const icon = (name, cls = "") =>
+  `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
+
+const STATUS = {
+  draft: ["مسودة", ""], pending_confirmation: ["مستني تأكيد", "info"], confirmed: ["متأكد", "ok"],
+  shipped: ["اتشحن", "ok"], cancelled: ["اتلغى", "danger"], needs_human: ["مع موظف", "warn"],
+};
+const RISK = { low: ["قليلة", "ok"], medium: ["متوسطة", "warn"], high: ["عالية", "danger"] };
+const CANCEL = { customer_declined: "العميل رفض", unreachable: "مبيردش", duplicate: "مكرر",
+  out_of_stock: "خلص من المخزون", other: "سبب تاني" };
 const TOOL_AR = { search_products: "بحث في المنتجات", get_product: "تفاصيل منتج",
   recommend_size: "ترشيح مقاس", quote_delivery: "سعر الشحن", create_order: "إنشاء طلب",
   update_order: "تعديل طلب", confirm_order: "تأكيد طلب", cancel_order: "إلغاء طلب",
-  schedule_delivery: "تحديد معاد", flag_risk: "ملاحظة مخاطرة", handoff_to_human: "تحويل لموظف" };
+  schedule_delivery: "تحديد معاد التوصيل", flag_risk: "ملاحظة مخاطرة", handoff_to_human: "تحويل لموظف" };
 
 let info = null, state = null, current = "chat-1", busy = false, es = null, timer = null;
+const seen = new Set();  // event seq numbers already in the activity log
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g,
   (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = (n) => (n == null ? "—" : Number(n).toLocaleString("en-US"));
 
 async function api(path, body) {
   const opts = body === undefined ? {} : { method: "POST",
@@ -61,57 +88,121 @@ function optimistic(convId, text) {
   c.messages.push({ role: "customer", text });
 }
 
-function render() {
-  if (!state) return;
+const chip = ([text, tone], title = "") =>
+  `<span class="chip ${tone}"${title ? ` title="${esc(title)}"` : ""}>${esc(text)}</span>`;
+
+function renderKpis(k) {
+  const cards = [
+    ["message", "رسايل اتردّ عليها", fmt(k.messages_handled), ""],
+    ["timer", "متوسط وقت الرد", k.median_reply_s == null ? "—" : k.median_reply_s, "ثانية"],
+    ["check", "طلبات اتأكدت", fmt(k.orders_confirmed), ""],
+    ["shield", "مرتجعات اتمنعت", fmt(k.refusals_prevented), ""],
+    ["cash", "توفير في الشحن", fmt(k.egp_saved), "ج.م", true],
+    ["trend", "مبيعات إضافية", fmt(k.upsell_revenue), "ج.م", true],
+  ];
+  $("#impact").innerHTML = cards.map(([ic, t, v, unit, hi]) => `
+    <div class="kpi${hi ? " highlight" : ""}">
+      <span class="kpi-label">${icon(ic)}${esc(t)}</span>
+      <span class="kpi-value">${esc(v)}${unit ? `<span class="kpi-unit">${esc(unit)}</span>` : ""}</span>
+    </div>`).join("");
+}
+
+function renderChat() {
   const ids = state.conversations.map((c) => c.id);
   const tabs = ids.includes("chat-1") ? ids : ["chat-1", ...ids];
-  $("#tabs").innerHTML = tabs.map((id) =>
-    `<button class="tab ${id === current ? "on" : ""}" data-id="${esc(id)}">${esc(label(id))}</button>`).join("");
+  $("#tabs").innerHTML = tabs.map((id) => {
+    const c = state.conversations.find((x) => x.id === id);
+    const on = id === current;
+    return `<button class="tab" role="tab" type="button" aria-selected="${on}" data-id="${esc(id)}">
+      ${c && c.handed_off ? '<span class="flag" aria-hidden="true"></span>' : ""}${esc(label(id))}</button>`;
+  }).join("");
 
   const conv = state.conversations.find((c) => c.id === current);
-  $("#chat").innerHTML = (conv ? conv.messages : []).map((m) =>
-    `<div class="msg ${m.role}">${esc(m.text).replace(/\n/g, "<br>")}</div>`).join("")
-    + (busy ? `<div class="msg agent typing">بيكتب…</div>` : "")
-    + (conv && conv.handed_off ? `<div class="sys">اتحوّل لموظف</div>` : "");
+  const msgs = conv ? conv.messages : [];
+  if (!msgs.length && !busy) {
+    $("#chat").innerHTML = `<div class="empty"><strong>ابدأ محادثة</strong>
+      اكتب سؤال كعميل، أو دوس «شغّل الديمو» تشوف ٧ سيناريوهات كاملة.</div>`;
+  } else {
+    $("#chat").innerHTML = msgs.map((m) => `
+      <div class="msg ${m.role}">
+        <span class="who">${m.role === "customer" ? "العميل" : "وصلة"}</span>
+        <div class="bubble">${esc(m.text).replace(/\n/g, "<br>")}</div>
+      </div>`).join("")
+      + (busy ? `<div class="msg agent typing" aria-label="بيكتب"><div class="bubble"><span></span><span></span><span></span></div></div>` : "")
+      + (conv && conv.handed_off ? `<div class="sys">${icon("user")}اتحوّلت لموظف من الفريق</div>` : "");
+  }
   $("#chat").scrollTop = 1e9;
+}
 
-  const k = state.impact;
-  const cards = [["رسايل اتردّ عليها", k.messages_handled],
-    ["متوسط وقت الرد", k.median_reply_s == null ? "—" : `${k.median_reply_s} ث`],
-    ["طلبات اتأكدت", k.orders_confirmed], ["مرتجعات اتمنعت", k.refusals_prevented],
-    ["توفير شحن (ج)", k.egp_saved], ["مبيعات إضافية (ج)", k.upsell_revenue]];
-  $("#impact").innerHTML = cards.map(([t, v]) =>
-    `<div class="card"><b>${esc(v)}</b><span>${esc(t)}</span></div>`).join("");
-
-  $("#orders tbody").innerHTML = state.orders.slice().reverse().map((o) => `<tr>
-    <td>${o.id}</td><td>${esc(o.customer_name)}</td><td>${esc(o.area)}</td><td>${o.total}</td>
-    <td><span class="st ${o.status}">${STATUS[o.status]}</span>${o.cancel_reason ? ` <small>(${esc(o.cancel_reason)})</small>` : ""}</td>
-    <td><span class="risk ${o.risk.level}" title="${esc(o.risk.reasons.join(" · "))}">${RISK[o.risk.level]}</span></td>
-    <td>${o.status === "confirmed" ? `<button class="ship" data-ship="${o.id}">شحن</button>` : ""}</td></tr>`).join("");
+function renderOrders() {
+  const orders = state.orders.slice().reverse();
+  $("#orders-count").textContent = orders.length;
+  $("#orders tbody").innerHTML = orders.length ? orders.map((o) => {
+    const status = STATUS[o.status] || [o.status, ""];
+    const reason = o.cancel_reason ? `<span class="sub">${esc(CANCEL[o.cancel_reason] || o.cancel_reason)}</span>` : "";
+    const first = o.items[0] ? `<span class="sub">${esc(o.items[0].name_ar)}${o.items.length > 1 ? ` +${o.items.length - 1}` : ""}</span>` : "";
+    const why = o.risk.reasons.join(" · ");
+    return `<tr>
+      <td class="mono">${o.id}</td>
+      <td>${esc(o.customer_name)}${first}</td>
+      <td>${esc(o.area)}</td>
+      <td class="num">${fmt(o.total)}</td>
+      <td>${chip(status)}${reason}</td>
+      <td>${chip(RISK[o.risk.level], why)}<span class="sr-only">${esc(why)}</span></td>
+      <td>${o.status === "confirmed" ? `<button class="btn btn-sm" type="button" data-ship="${o.id}">${icon("truck")}شحن</button>` : ""}</td>
+    </tr>`;
+  }).join("") : `<tr class="empty-row"><td colspan="7">لسه مفيش طلبات. دوس «طلب من الموقع» أو «شغّل الديمو».</td></tr>`;
 
   const handed = state.conversations.filter((c) => c.handed_off);
+  $("#handoff-count").textContent = handed.length;
   $("#handoffs").innerHTML = handed.length
-    ? handed.map((c) => `<li><button class="link" data-id="${esc(c.id)}">${esc(label(c.id))}</button></li>`).join("")
-    : `<li class="muted">مفيش</li>`;
+    ? handed.map((c) => `<li><button class="item" type="button" data-id="${esc(c.id)}">
+        <span>${icon("user")} ${esc(label(c.id))}</span>${icon("chevron")}</button></li>`).join("")
+    : `<li class="muted">مفيش محادثات مستنية موظف.</li>`;
+}
 
+function renderControls() {
   const replay = info && info.mode === "replay";
   $("#text").disabled = busy || replay;
-  if (replay) $("#text").placeholder = "وضع العرض المسجّل: دوس ▶ شغّل الديمو";
-  for (const b of document.querySelectorAll("header button")) b.disabled = busy;
+  $("#btn-send").disabled = busy || replay;
+  if (replay) $("#text").placeholder = "وضع العرض المسجّل: دوس «شغّل الديمو»";
+  for (const b of document.querySelectorAll(".actions .btn")) b.disabled = busy;
+}
+
+function render() {
+  if (!state) return;
+  renderKpis(state.impact);
+  renderChat();
+  renderOrders();
+  renderControls();
+  state.events.forEach(logEvent);  // catch up on events missed while disconnected
 }
 
 function logEvent(e) {
-  let text = null;
-  if (e.kind === "tool_call") text = `🔧 ${TOOL_AR[e.data.name] || e.data.name} ${e.data.ok ? "✓" : "✗ " + (e.data.error || "")}`;
-  else if (e.kind === "order_status") text = `📦 طلب ${e.data.order_id}: ${STATUS[e.data.old] || "جديد"} ⬅ ${STATUS[e.data.new]}`;
-  else if (e.kind === "handoff") text = `🙋 تحويل لموظف: ${e.data.reason}`;
-  else if (e.kind === "llm_error") {
-    text = `⚠️ ${e.data.error}`;
-    notice("حصة الموديل المجانية خلصت دلوقتي — دوس ▶ شغّل الديمو تشوف العرض المسجّل، أو جرّب بعد شوية.", true);
+  if (seen.has(e.seq)) return;
+  seen.add(e.seq);
+  let kind = "", text = "", tool = "";
+  if (e.kind === "tool_call") {
+    kind = e.data.ok ? "ok" : "bad";
+    text = (TOOL_AR[e.data.name] || e.data.name) + (e.data.ok ? "" : ` — ${e.data.error || "خطأ"}`);
+    tool = e.data.name;
+  } else if (e.kind === "order_status") {
+    kind = "order";
+    const from = STATUS[e.data.old] ? STATUS[e.data.old][0] : "جديد";
+    text = `طلب ${e.data.order_id}: ${from} ← ${STATUS[e.data.new][0]}`;
+  } else if (e.kind === "handoff") {
+    kind = "human";
+    text = `تحويل لموظف (${e.data.reason})`;
+  } else if (e.kind === "llm_error") {
+    kind = "bad";
+    text = "الموديل مش متاح دلوقتي";
+    notice("حصة الموديل المجانية خلصت دلوقتي — دوس «شغّل الديمو» تشوف العرض المسجّل، أو جرّب بعد شوية.", true);
+  } else {
+    return;
   }
-  if (!text) return;
   const li = document.createElement("li");
-  li.textContent = `${e.ts.slice(11)} ${text}`;
+  li.innerHTML = `<time>${esc(e.ts.slice(11))}</time><span class="k ${kind}" aria-hidden="true"></span>
+    <span class="t">${esc(text)}${tool ? `<span class="tool" dir="ltr">${esc(tool)}</span>` : ""}</span>`;
   $("#log").prepend(li);
   while ($("#log").children.length > 40) $("#log").lastChild.remove();
 }
@@ -127,6 +218,7 @@ async function run(fn) {
 async function resetSandbox() {
   await api("/api/reset", {});
   $("#log").innerHTML = "";
+  seen.clear();
   current = "chat-1";
   await refresh();
   connect();
@@ -156,6 +248,12 @@ async function playDemo() {
   }
 }
 
+$("#btn-demo").innerHTML = `${icon("play")}شغّل الديمو`;
+$("#btn-checkout").innerHTML = `${icon("cart")}طلب من الموقع`;
+$("#btn-advance").innerHTML = `${icon("clock")}عدّي ساعتين`;
+$("#btn-reset").innerHTML = `${icon("reset")}ابدأ من جديد`;
+$("#btn-send").innerHTML = icon("send", "flip");
+
 $("#composer").addEventListener("submit", (ev) => {
   ev.preventDefault();
   const text = $("#text").value.trim();
@@ -180,9 +278,12 @@ document.addEventListener("click", (ev) => {
 
 (async () => {
   info = await api("/api/info");
-  $("#mode").textContent = info.mode === "replay" ? "عرض مسجّل (من غير مفتاح)" : "مباشر";
+  const replay = info.mode === "replay";
+  const mode = $("#mode");
+  mode.textContent = replay ? "عرض مسجّل" : "مباشر";
+  mode.classList.add(replay ? "replay" : "live");
   if (info.notice) {
-    notice("مفيش مفتاح للموديل، فبنعرض الديمو المسجّل — دوس ▶ شغّل الديمو. "
+    notice("مفيش مفتاح للموديل، فبنعرض الديمو المسجّل — دوس «شغّل الديمو». "
       + "(Add a free GEMINI_API_KEY to chat live — see README.)", true);
     $("#notice").title = info.notice;
   }
