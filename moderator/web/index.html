@@ -1,1 +1,53 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>Wasla Moderator</title></head><body>loading…</body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wasla Moderator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><strong>وصلة وير</strong> <span>· المودريتور الذكي</span></div>
+    <span id="mode" class="badge"></span>
+    <div class="actions">
+      <button id="btn-demo">▶ شغّل الديمو</button>
+      <button id="btn-checkout">🛒 طلب جديد من الموقع</button>
+      <button id="btn-advance">⏩ عدّي ساعتين</button>
+      <button id="btn-reset" class="ghost">↺ ابدأ من جديد</button>
+    </div>
+  </header>
+  <p id="notice" class="notice" dir="auto" hidden></p>
+  <main>
+    <section class="phone" aria-label="المحادثات">
+      <div class="tabs" id="tabs"></div>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <form id="composer">
+        <input id="text" autocomplete="off" maxlength="1000"
+               placeholder="اكتب كعميل… عربي أو فرانكو أو English">
+        <button>إرسال</button>
+      </form>
+    </section>
+    <section class="dash" aria-label="لوحة صاحب المحل">
+      <div class="cards" id="impact"></div>
+      <h2>الطلبات</h2>
+      <table id="orders">
+        <thead><tr><th>#</th><th>العميل</th><th>المنطقة</th><th>الإجمالي</th><th>الحالة</th>
+          <th>المخاطرة</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <h2>محتاج موظف</h2>
+      <ul id="handoffs"></ul>
+      <h2>اللي المودريتور بيعمله دلوقتي</h2>
+      <ol id="log" class="log"></ol>
+    </section>
+  </main>
+  <footer>
+    متجر وهمي لأغراض العرض — الأرقام هنا من الجلسة دي بس.
+    <a id="repo" href="https://github.com/">الكود على GitHub</a>
+  </footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
