@@ -195,3 +195,9 @@ def test_prompt_requires_cancel_tool_before_replying():
     agent, provider = make([text_raw("أهلاً")])
     agent.reply(Conversation("c1"), "اهلا")
     assert "call cancel_order before you reply" in provider.requests[0][0]["content"]
+
+
+def test_prompt_makes_the_single_suggestion_an_explicit_priced_question():
+    agent, provider = make([text_raw("أهلاً")])
+    agent.reply(Conversation("c1"), "اهلا")
+    assert "as its own short question with its name and price" in provider.requests[0][0]["content"]
