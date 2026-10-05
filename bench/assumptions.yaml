@@ -1,0 +1,26 @@
+# Impact-model parameters. low = least favourable to the agent, high = most favourable.
+# Every line has a source URL or "estimate". The shop is fictional; these describe a typical
+# Egyptian social-commerce fashion SME, not a real business.
+
+cod_orders_per_day: {low: 25, base: 40, high: 60, source: estimate, note: "fictional shop size"}
+chat_order_share: {low: 0.3, base: 0.5, high: 0.7, source: estimate, note: "share of orders that start in DMs"}
+dms_per_day: {low: 100, base: 150, high: 250, source: estimate}
+average_order_egp: {low: 600, base: 700, high: 900, source: "https://data.stateglobe.com/egypt/social-commerce-categories-statistics"}
+working_days_per_month: {low: 26, base: 26, high: 30, source: estimate}
+
+moderator_salary_egp_month: {low: 6000, base: 7000, high: 8000, source: "https://forasna.com/a/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D9%85%D9%88%D8%AF%D8%B1%D9%8A%D8%AA%D9%88%D8%B1-moderator-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1 ; https://employsome.com/blog/minimum-wage-egypt/"}
+moderator_hours_month: {low: 208, base: 208, high: 208, source: "estimate: 8 h x 26 days"}
+minutes_per_dm: {low: 1.0, base: 1.5, high: 2.5, source: estimate}
+minutes_per_confirmation_call: {low: 2, base: 3, high: 5, source: estimate}
+
+refusal_rate_without_confirmation: {low: 0.15, base: 0.25, high: 0.35, source: "https://easysellapp.com/blogs/wiki/egypt-ecommerce-cod-market-entry-shopify-2026 ; https://www.egrow.com/en/blog/the-ultimate-guide-to-cash-on-delivery-e-commerce-operations-in-2026"}
+refusal_rate_with_confirmation: {low: 0.20, base: 0.125, high: 0.08, source: "base: estimate (halved); high: vendor claim 'under 8%', https://www.egrow.com/en/blog/the-ultimate-guide-to-cash-on-delivery-e-commerce-operations-in-2026"}
+outbound_shipping_egp: {low: 60, base: 60, high: 85, source: "https://www.bosta.com/delivery-costs-and-transit-times"}
+return_shipping_egp: {low: 30, base: 60, high: 85, source: "estimate (return fees are not published)"}
+
+buying_intent_share_of_dms: {low: 0.3, base: 0.4, high: 0.5, source: estimate}
+conversion_uplift_from_fast_replies: {low: 0.02, base: 0.05, high: 0.10, source: "estimate, far below the cited 40% (reply within 15 min) vs 10% (after 3 h): https://www.lilachbullock.com/facebook-messenger-tricks-business-pages/"}
+
+llm_usd_per_mtok_in: {low: 0.30, base: 0.10, high: 0.10, source: "fill from https://ai.google.dev/gemini-api/docs/pricing for the model in configs/providers.yaml; low = a pricier model"}
+llm_usd_per_mtok_out: {low: 2.50, base: 0.40, high: 0.40, source: "same page as above"}
+usd_to_egp: {low: 52, base: 50, high: 48, source: "estimate; check the rate on the day you build the slides"}
