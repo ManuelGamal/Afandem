@@ -14,14 +14,16 @@ import threading
 from collections import OrderedDict
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from moderator.demo_scripts import DEMO_SCRIPTS
+from moderator.bench.report import load_assumptions
 from moderator.providers.client import ProviderError
 from moderator.providers.config import build_provider
+from moderator.roi import ASSUMPTIONS, load_bench, shop_roi
 from moderator.session import Session
 from moderator.store.orders import OrderError
 
@@ -85,6 +87,22 @@ def create_app(provider_factory=None, mode: str | None = None) -> FastAPI:
         return FileResponse(WEB / "index.html")
 
     app.mount("/static", StaticFiles(directory=WEB), name="static")
+
+    assumptions = load_assumptions(ASSUMPTIONS)
+    bench = load_bench()
+    base = {k: assumptions[k]["base"] for k in ("cod_orders_per_day", "dms_per_day",
+            "moderator_salary_egp_month", "refusal_rate_without_confirmation", "average_order_egp")}
+
+    @app.get("/api/roi")
+    def roi(orders: float = Query(base["cod_orders_per_day"], ge=1, le=5000),
+            dms: float = Query(base["dms_per_day"], ge=0, le=20000),
+            salary: float = Query(base["moderator_salary_egp_month"], ge=500, le=200000),
+            refusal: float = Query(base["refusal_rate_without_confirmation"], ge=0, le=0.9),
+            aov: float = Query(base["average_order_egp"], ge=20, le=100000)):
+        return shop_roi({"cod_orders_per_day": orders, "dms_per_day": dms,
+                         "moderator_salary_egp_month": salary,
+                         "refusal_rate_without_confirmation": refusal, "average_order_egp": aov},
+                        assumptions, bench) | {"defaults": base}
 
     @app.get("/api/info")
     def info():

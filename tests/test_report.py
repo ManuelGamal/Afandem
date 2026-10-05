@@ -85,3 +85,19 @@ def test_build_report_grades_against_a_given_card_set(tmp_path):
         "raw_messages": [], "orders": [], "events": []}, ensure_ascii=False), encoding="utf-8")
     out = build_report(results, Path("bench/assumptions.yaml"), tmp_path / "r", cards_dir=HELDOUT_DIR)
     assert "| price_shopper | 100% |" in out.read_text(encoding="utf-8")
+
+
+def test_impact_model_running_cost_payback_and_roi():
+    a = {**A, "hosting_egp_month": {"low": 250, "base": 250, "high": 250, "source": "t"}}
+    m = impact_model(a, BENCH, "base")
+    running = 218.4 + 250
+    gross = m["moderator_cost_saved"] + 15600
+    assert m["running_cost_egp"] == pytest.approx(running)
+    assert m["payback_days"] == pytest.approx(running / (gross / 30))
+    assert m["roi_multiple"] == pytest.approx((gross - running) / running)
+    assert m["net_cost_saved"] == pytest.approx(gross - running)
+
+
+def test_real_assumptions_include_hosting():
+    a = load_assumptions(__import__("pathlib").Path("bench/assumptions.yaml"))
+    assert a["hosting_egp_month"]["low"] >= a["hosting_egp_month"]["high"]

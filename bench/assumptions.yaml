@@ -24,3 +24,4 @@ conversion_uplift_from_fast_replies: {low: 0.02, base: 0.05, high: 0.10, source:
 llm_usd_per_mtok_in: {low: 0.75, base: 0.30, high: 0.10, source: "https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05)", note: "low: gemini-3.8-flash fallback; base: gemini-3.5-flash-lite; high: gemini-2.5-flash-lite"}
 llm_usd_per_mtok_out: {low: 3.75, base: 2.50, high: 0.40, source: "https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05)", note: "same models as above"}
 usd_to_egp: {low: 52, base: 50, high: 48, source: "estimate; check the rate on the day you build the slides"}
+hosting_egp_month: {low: 500, base: 250, high: 0, source: "estimate: a small VPS is about $5/month (~250 EGP at ~50 EGP/USD); low assumes $10; high is a free hosting tier"}

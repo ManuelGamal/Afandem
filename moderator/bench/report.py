@@ -61,13 +61,17 @@ def impact_model(a: dict, bench: dict, scenario: str) -> dict:
                      * v["conversion_uplift_from_fast_replies"] * ss * v["average_order_egp"] * days)
     revenue_upsell = (v["cod_orders_per_day"] * days * v["chat_order_share"]
                       * bench["upsell_share"] * bench["mean_upsell_egp"])
+    running = llm_cost + v.get("hosting_egp_month", 0)
+    gross = moderator_saved + refusals * failed_cost
     return {
         "dm_hours": dm_hours, "call_hours": call_hours, "hours_saved_month": hours,
         "hours_saved_week": hours / WEEKS_PER_MONTH, "moderator_cost_saved": moderator_saved,
         "refusals_prevented": refusals, "failed_delivery_cost": failed_cost,
         "delivery_cost_saved": refusals * failed_cost, "conversations_month": conversations,
-        "llm_cost_egp": llm_cost,
-        "net_cost_saved": moderator_saved + refusals * failed_cost - llm_cost,
+        "llm_cost_egp": llm_cost, "running_cost_egp": running,
+        "net_cost_saved": gross - running,
+        "payback_days": running / (gross / 30) if gross > 0 else None,
+        "roi_multiple": (gross - running) / running if running > 0 else None,
         "revenue_speed": revenue_speed, "revenue_upsell": revenue_upsell,
         "revenue_total": revenue_speed + revenue_upsell,
     }
@@ -131,7 +135,8 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
     _charts(summary, models, out_dir)
 
     def row(label, key, fmt="{:,.0f}"):
-        return f"| {label} | " + " | ".join(fmt.format(models[s][key]) for s in SCENARIOS) + " |"
+        cells = ("—" if models[s][key] is None else fmt.format(models[s][key]) for s in SCENARIOS)
+        return f"| {label} | " + " | ".join(cells) + " |"
 
     lines = [
         "# Bench and impact report",
@@ -168,7 +173,10 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
         row("Refused COD deliveries prevented", "refusals_prevented"),
         row("Failed-delivery cost saved (EGP)", "delivery_cost_saved"),
         row("Model cost (EGP)", "llm_cost_egp"),
+        row("Running cost: model + hosting (EGP)", "running_cost_egp"),
         row("**Net cost saved (EGP)**", "net_cost_saved"),
+        row("**Pays for itself in (days)**", "payback_days", "{:,.1f}"),
+        row("Return on running cost (net saved ÷ running cost)", "roi_multiple", "{:,.0f}×"),
         row("Extra sales from faster replies (EGP, gross)", "revenue_speed"),
         row("Extra sales from suggested items (EGP, gross; simulation rate)", "revenue_upsell"),
         row("**Extra sales total (EGP, gross)**", "revenue_total"),
@@ -189,6 +197,7 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
         "each costs outbound + return shipping.",
         "- Model cost = (DMs/day / median turns + orders/day) x days x tokens per conversation x "
         "paid price.",
+        "- Running cost = model cost + hosting. Pays for itself in = running cost / (gross monthly savings / 30). Return = (gross savings - running cost) / running cost.",
         "- Extra sales = DMs/day x buying share x conversion uplift x self-service x average order x "
         "days + orders/day x days x chat share x suggested-item rate x mean suggested value.",
         "",
