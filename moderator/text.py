@@ -78,6 +78,10 @@ _YES = {
     "تمام", "ماشي", "اه", "ايوه", "ايوا", "اكيد", "موافق", "اوكي", "اوك", "طبعا", "تم", "يب",
     "ok", "okay", "okk", "yes", "yep", "sure", "tmam", "tamam", "mashy", "mashi", "aywa",
     "aiwa", "ah", "akid", "akeed",
+    # "confirm it" / "it's right" / "go ahead", Arabic and Arabizi
+    "اكد", "اكده", "اكدي", "اكديه", "مظبوط", "مضبوط", "صح", "يلا", "يالا",
+    "a2ked", "a2kd", "akked", "akkid", "2aked", "a2kedo", "mazboot", "mazbout", "mazbut",
+    "sa7", "yalla", "yala", "confirm", "confirmed", "go",
 }
 _BLOCK = {
     "بس", "لا", "مش", "غير", "غيري", "بدل", "ولا", "لسه", "استني",
@@ -91,7 +95,7 @@ def is_explicit_yes(message: str) -> bool:
     if message.strip() in _YES_EMOJI:
         return True
     words = fold_text(message).split()
-    if not words or len(words) > 6:
+    if not words or len(words) > 8:
         return False
     if any(w in _BLOCK for w in words):
         return False

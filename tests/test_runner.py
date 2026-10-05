@@ -67,3 +67,18 @@ def test_runner_uses_its_own_simulator_provider_config():
     from moderator.providers.config import load_specs
     assert [s.model for s in load_specs(SIM_CONFIG)][:2] == ["gemini-3.1-flash-lite",
                                                              "gemma-4-26b-a4b-it"]
+
+
+def test_sim_is_nudged_once_when_it_quits_on_an_open_question():
+    sim_provider = ScriptedProvider([text_raw("[DONE]"), text_raw("تمام")])
+    sim = CustomerSim(sim_provider, SALES)
+    asked = [{"role": "customer", "text": "x"}, {"role": "agent", "text": "الإجمالي 950 جنيه. أأكد الطلب؟ 😊"}]
+    assert sim.next_message(asked) == "تمام"
+    assert len(sim_provider.requests) == 2
+
+
+def test_sim_may_end_when_the_shop_asked_nothing():
+    sim_provider = ScriptedProvider([text_raw("[DONE]")])
+    sim = CustomerSim(sim_provider, SALES)
+    done = [{"role": "customer", "text": "x"}, {"role": "agent", "text": "تم تأكيد طلبك 🎉"}]
+    assert sim.next_message(done) is None and len(sim_provider.requests) == 1

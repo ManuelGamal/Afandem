@@ -55,3 +55,11 @@ def test_is_latin_script():
     assert not is_latin_script("الهودي بكام؟")
     assert not is_latin_script("Hi، عايزة ال hoodie لو available")
     assert not is_latin_script("")
+
+
+def test_explicit_yes_accepts_natural_arabic_and_arabizi_confirmations():
+    for msg in ["el mel5as mazboot, a2ked el orḍer w shokran", "أكده لو سمحت", "مظبوط يلا",
+                "yes confirm it please", "تمام كده مظبوط اكد الطلب يا فندم"]:
+        assert is_explicit_yes(msg), msg
+    for msg in ["مش مظبوط", "اكد بس غير المقاس", "la2 mesh 3ayez", "a2ked bas ghayar el size"]:
+        assert not is_explicit_yes(msg), msg
