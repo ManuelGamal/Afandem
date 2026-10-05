@@ -131,21 +131,24 @@ def _with_summary(ctx: ToolContext, order) -> dict:
             "risk": score_order(ctx.book, order).to_dict()}
 
 
+def _pairs(ctx, p) -> list[dict]:
+    return [{"id": q.id, "name": q.name_ar, "price": q.price}
+            for q in (ctx.catalog.get(i) for i in p.pairs_with) if q is not None]
+
+
 def _search_products(ctx, a):
     max_price = to_number(a["max_price"]) if a.get("max_price") not in (None, "") else None
     found = ctx.catalog.search(_need(a, "query"), a.get("category"),
                                int(max_price) if max_price is not None else None)
-    return {"ok": True, "products": [p.to_dict() for p in found]}
+    return {"ok": True, "products": [{**p.to_dict(), "pairs_with": _pairs(ctx, p)} for p in found]}
 
 
 def _get_product(ctx, a):
     p = ctx.catalog.get(_need(a, "product_id"))
     if p is None:
         return {"ok": False, "error": "unknown_product", "message": "no such product"}
-    pairs = [{"id": q.id, "name": q.name_ar, "price": q.price}
-             for q in (ctx.catalog.get(i) for i in p.pairs_with) if q is not None]
     return {"ok": True, "product": {**p.to_dict(), "size_chart": ctx.catalog.charts[p.chart],
-                                    "pairs_with": pairs}}
+                                    "pairs_with": _pairs(ctx, p)}}
 
 
 def _recommend_size(ctx, a):

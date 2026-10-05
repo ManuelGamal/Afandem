@@ -43,6 +43,8 @@ def main() -> None:
     play(session, DEMO_SCRIPTS)
     errors = [e for e in session.bus.events if e.kind == "llm_error"]
     print(f"\ncache hits {provider.hits}, misses {provider.misses}, llm errors {len(errors)}")
+    for e in errors:
+        print(f"  [{e.conversation_id}] {e.data.get('error')}")
     for o in session.book.all():
         print(o.id, o.status, o.total, o.cancel_reason)
     if errors or (args.mode == "replay" and provider.misses):

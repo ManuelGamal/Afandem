@@ -123,3 +123,8 @@ def test_cancel_schedule_flag_and_handoff():
 def test_get_product_lists_pairings_with_names_and_prices():
     out = run_tool("get_product", {"product_id": "T06"}, ctx())
     assert out["product"]["pairs_with"] == [{"id": "B05", "name": "جوجر قطن", "price": 560}]
+
+
+def test_search_results_list_pairings():
+    out = run_tool("search_products", {"query": "هودي"}, ctx())
+    assert out["products"][0]["pairs_with"] == [{"id": "B05", "name": "جوجر قطن", "price": 560}]
