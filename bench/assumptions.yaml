@@ -14,7 +14,7 @@ minutes_per_dm: {low: 1.0, base: 1.5, high: 2.5, source: estimate}
 minutes_per_confirmation_call: {low: 2, base: 3, high: 5, source: estimate}
 
 refusal_rate_without_confirmation: {low: 0.15, base: 0.25, high: 0.35, source: "https://easysellapp.com/blogs/wiki/egypt-ecommerce-cod-market-entry-shopify-2026 ; https://www.egrow.com/en/blog/the-ultimate-guide-to-cash-on-delivery-e-commerce-operations-in-2026"}
-refusal_rate_with_confirmation: {low: 0.20, base: 0.125, high: 0.08, source: "base: estimate (halved); high: vendor claim 'under 8%', https://www.egrow.com/en/blog/the-ultimate-guide-to-cash-on-delivery-e-commerce-operations-in-2026"}
+refusal_rate_with_confirmation: {low: 0.12, base: 0.125, high: 0.08, source: "low: estimate (confirmation removes only a fifth of refusals); base: estimate (halved); high: vendor claim 'under 8%', https://www.egrow.com/en/blog/the-ultimate-guide-to-cash-on-delivery-e-commerce-operations-in-2026"}
 outbound_shipping_egp: {low: 60, base: 60, high: 85, source: "https://www.bosta.com/delivery-costs-and-transit-times"}
 return_shipping_egp: {low: 30, base: 60, high: 85, source: "estimate (return fees are not published)"}
 

@@ -65,3 +65,9 @@ def test_build_report_end_to_end(tmp_path):
     assert "price_shopper" in text and "Hours saved" in text and "simulation" in text
     for f in ("summary.json", "grades.jsonl", "success_by_category.png", "impact.png"):
         assert (tmp_path / "report" / f).exists()
+
+
+def test_confirmation_never_raises_refusals_in_any_scenario():
+    a = load_assumptions(__import__("pathlib").Path("bench/assumptions.yaml"))
+    for s in ("low", "base", "high"):
+        assert a["refusal_rate_with_confirmation"][s] <= a["refusal_rate_without_confirmation"][s], s

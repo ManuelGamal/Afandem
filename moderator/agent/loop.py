@@ -15,7 +15,7 @@ from moderator.events import EventBus
 from moderator.providers.client import ProviderError
 from moderator.store.catalog import Catalog
 from moderator.store.orders import OrderBook, summary_ar
-from moderator.text import clean_digits, is_latin_script, money_mentions
+from moderator.text import clean_digits, fold_text, is_latin_script, money_mentions
 
 INTERNAL_PREFIX = "[حدث داخلي]"
 FALLBACK_TEXT = "معلش عندنا مشكلة تقنية صغيرة دلوقتي 🙏 حد من فريقنا هيرد عليك في أقرب وقت."
@@ -29,6 +29,18 @@ AMOUNT_GUARD_NOTE = (f"{INTERNAL_PREFIX} ردك الأخير فيه مبلغ م�
                      "متكتبش أي سعر أو مصاريف شحن أو إجمالي إلا لو رجع من أداة؛ استخدم الأداة المناسبة "
                      "واكتب الرد تاني.")
 MAX_AMOUNT_CORRECTIONS = 2
+CLAIM_NOTES = {
+    "confirmed": (f"{INTERNAL_PREFIX} ردك بيقول إن الطلب اتأكد، لكنه لسه مش متأكد في النظام. "
+                  "متقولش كده؛ لو العميل وافق بوضوح استخدم confirm_order، وإلا ابعت الملخص واسأله يأكد."),
+    "cancelled": (f"{INTERNAL_PREFIX} ردك بيقول إن الطلب اتلغى، لكنه لسه مش ملغي في النظام. "
+                  "لو العميل طلب الإلغاء استخدم cancel_order الأول، وإلا متقولش إنه اتلغى."),
+}
+# Matched on fold_text(reply).
+_CLAIMS = {
+    "confirmed": re.compile(r"تم (ال)?تاكيد|اتاكد|اكدت|اكدنا|confirmed|akadna|a2adna|akkedna|a2kedna|et2aked"),
+    "cancelled": re.compile(r"تم (ال)?الغاء|اتلغ|لغيت|لغينا|cancelled|canceled|lagheena|elghena"),
+}
+_HANDOFF_PROMISE = re.compile(r"هحول|بحول|حولت|هنحول|حولنا|ha7awel|ha7wel|7awelt")
 _TOOL_NAMES = [t["function"]["name"] for t in TOOL_SCHEMAS]
 _LEAKED_CALL = re.compile(r"\[?\s*(" + "|".join(_TOOL_NAMES) + r")\s*\([^)]*\)\s*\]?")
 _NUMBER = re.compile(r"\d+(?:\.\d+)?")
@@ -37,6 +49,17 @@ _NUMBER = re.compile(r"\d+(?:\.\d+)?")
 def _greeting(name: str) -> str:
     first = (name or "").split()[0] if (name or "").strip() else ""
     return f"أهلاً يا {first}!" if len(first) > 1 else "أهلاً بحضرتك!"
+
+
+def _false_claim(text: str, open_order) -> str | None:
+    """'confirmed'/'cancelled' when the reply claims that about an order still open in the system."""
+    if open_order is None:
+        return None
+    folded = fold_text(text)
+    for kind, pattern in _CLAIMS.items():
+        if pattern.search(folded):
+            return kind
+    return None
 
 
 def _strip_leaked_calls(text: str) -> tuple[str, list[str]]:
@@ -188,6 +211,17 @@ class Agent:
                     corrections += 1
                     conv.messages.append({"role": "user", "content": AMOUNT_GUARD_NOTE})
                     continue
+                claim = _false_claim(text, self.book.open_for(conv.id))
+                if claim:
+                    conv.messages.pop()
+                    if corrections >= MAX_AMOUNT_CORRECTIONS:
+                        return self._fallback(conv, ctx, OVERFLOW_TEXT, f"false_{claim}_claim",
+                                              started)
+                    corrections += 1
+                    conv.messages.append({"role": "user", "content": CLAIM_NOTES[claim]})
+                    continue
+                if _HANDOFF_PROMISE.search(fold_text(text)) and not ctx.handed_off:
+                    run_tool("handoff_to_human", {"reason": "agent_promised_handoff"}, ctx)
                 conv.messages[-1]["content"] = text
                 conv.handed_off = conv.handed_off or ctx.handed_off
                 self._sent(conv, text, started)

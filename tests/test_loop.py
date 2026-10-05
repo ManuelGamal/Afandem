@@ -163,3 +163,35 @@ def test_one_empty_model_reply_is_retried():
     conv = Conversation("c1")
     assert agent.reply(conv, "اهلا") == ["أهلاً بيك"]
     assert not conv.handed_off
+
+
+def test_claiming_confirmed_while_the_order_is_not_is_corrected():
+    agent, provider = make([tool_raw(("create_order", ORDER)), text_raw("تم تأكيد طلبك يا فندم"),
+                            text_raw("ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟")])
+    conv = Conversation("c1")
+    out = agent.reply(conv, "عايز 2 تيشيرت اسود M")
+    assert out == ["ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟"]
+    assert provider.requests[2][-1]["content"].startswith("[حدث داخلي]")
+    assert agent.book.get(1).status == "draft"
+
+
+def test_claiming_cancelled_while_the_order_is_not_is_corrected():
+    agent, provider = make([tool_raw(("create_order", ORDER)), text_raw("تم إلغاء الطلب"),
+                            tool_raw(("cancel_order", {"order_id": 1, "reason": "customer_declined"})),
+                            text_raw("تم إلغاء الطلب يا فندم")])
+    conv = Conversation("c1")
+    assert agent.reply(conv, "الغي الطلب") == ["تم إلغاء الطلب يا فندم"]
+    assert agent.book.get(1).status == "cancelled"
+
+
+def test_promised_handoff_is_carried_out():
+    agent, _ = make([text_raw("آسفين جداً، هحولك لزميل من خدمة العملاء حالاً")])
+    conv = Conversation("c1")
+    agent.reply(conv, "الطلب وصل مقطوع")
+    assert conv.handed_off and any(e.kind == "handoff" for e in agent.bus.events)
+
+
+def test_prompt_requires_cancel_tool_before_replying():
+    agent, provider = make([text_raw("أهلاً")])
+    agent.reply(Conversation("c1"), "اهلا")
+    assert "call cancel_order before you reply" in provider.requests[0][0]["content"]
