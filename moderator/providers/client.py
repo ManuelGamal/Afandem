@@ -30,6 +30,7 @@ class ProviderSpec:
     api_key_env: str
     max_tokens: int = 800
     temperature: float | None = 0.3
+    timeout_s: float = 60.0
 
 
 class OpenAICompatProvider:
@@ -38,7 +39,7 @@ class OpenAICompatProvider:
         self.name = spec.name
         self.client = client or openai.OpenAI(base_url=spec.base_url,
                                               api_key=os.environ.get(spec.api_key_env, ""),
-                                              timeout=60.0, max_retries=0)
+                                              timeout=spec.timeout_s, max_retries=0)
 
     def complete(self, messages: list[dict], tools: list[dict]) -> dict:
         req = {"model": self.spec.model, "messages": messages, "max_tokens": self.spec.max_tokens}
@@ -48,7 +49,7 @@ class OpenAICompatProvider:
             req["temperature"] = self.spec.temperature
         try:
             raw = self.client.chat.completions.create(**req).model_dump(exclude_none=True)
-        except openai.RateLimitError as e:
+        except (openai.RateLimitError, openai.APITimeoutError, openai.APIConnectionError) as e:
             raise RateLimited(f"{self.name}: {e}") from e
         except openai.APIStatusError as e:
             if e.status_code in (500, 502, 503, 504):  # overloaded: temporary, like a rate limit

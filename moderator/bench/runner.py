@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from pathlib import Path
 
 from moderator.bench.cards import Card, load_cards
@@ -66,6 +67,20 @@ def run_card(card: Card, agent_provider, sim_provider) -> dict:
             "events": [e.to_dict() for e in s.bus.events]}
 
 
+def run_with_retries(card: Card, agent_provider, sim_provider, attempts: int = 3,
+                     wait_s: float = 60.0, sleep=time.sleep, run=None) -> dict:
+    """Free-tier models hit short spikes of 429/503; wait and retry a card before giving up."""
+    run = run or run_card
+    for attempt in range(1, attempts + 1):
+        try:
+            return run(card, agent_provider, sim_provider)
+        except RunAborted:
+            if attempt == attempts:
+                raise
+            sleep(wait_s)
+    raise AssertionError("unreachable")
+
+
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
@@ -87,7 +102,7 @@ def main() -> None:
         if args.limit is not None and done >= args.limit:
             break
         try:
-            result = run_card(card, agent_provider, sim_provider)
+            result = run_with_retries(card, agent_provider, sim_provider)
         except RunAborted as e:
             print(f"stopped: {e}. Re-run the same command later to resume.")
             sys.exit(2)

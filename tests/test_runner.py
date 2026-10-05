@@ -82,3 +82,21 @@ def test_sim_may_end_when_the_shop_asked_nothing():
     sim = CustomerSim(sim_provider, SALES)
     done = [{"role": "customer", "text": "x"}, {"role": "agent", "text": "تم تأكيد طلبك 🎉"}]
     assert sim.next_message(done) is None and len(sim_provider.requests) == 1
+
+
+def test_run_with_retries_waits_and_retries_aborted_cards():
+    from moderator.bench.runner import run_with_retries
+    calls, slept = [], []
+
+    def flaky(card, agent, sim):
+        calls.append(1)
+        if len(calls) < 3:
+            raise RunAborted("busy")
+        return {"card_id": card.id}
+
+    assert run_with_retries(SALES, None, None, attempts=3, wait_s=60, sleep=slept.append,
+                            run=flaky) == {"card_id": "t-1"}
+    assert slept == [60, 60]
+    with pytest.raises(RunAborted):
+        run_with_retries(SALES, None, None, attempts=2, wait_s=1, sleep=lambda s: None,
+                         run=lambda *a: (_ for _ in ()).throw(RunAborted("down")))

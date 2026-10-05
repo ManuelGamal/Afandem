@@ -133,3 +133,23 @@ def test_service_unavailable_counts_as_temporary():
     p = OpenAICompatProvider(ProviderSpec("p", "m", "http://x", "K"), client=Boom())
     with pytest.raises(RateLimited):
         p.complete(MSGS, [])
+
+
+def test_timeouts_count_as_temporary_and_spec_sets_timeout(monkeypatch):
+    monkeypatch.setenv("K", "test-key")
+    import httpx
+    import openai
+    from moderator.providers.client import OpenAICompatProvider, ProviderSpec
+
+    class Slow:
+        class chat:
+            class completions:
+                @staticmethod
+                def create(**kw):
+                    raise openai.APITimeoutError(request=httpx.Request("POST", "http://x"))
+
+    p = OpenAICompatProvider(ProviderSpec("p", "m", "http://x", "K"), client=Slow())
+    with pytest.raises(RateLimited):
+        p.complete(MSGS, [])
+    q = OpenAICompatProvider(ProviderSpec("q", "m", "http://x", "K", timeout_s=180))
+    assert q.client.timeout == 180
