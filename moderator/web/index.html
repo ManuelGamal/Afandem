@@ -11,106 +11,104 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <a class="skip" href="#chat-panel">تخطّى للمحادثة</a>
-
-  <header class="appbar">
-    <div class="brand">
-      <span class="logo" aria-hidden="true">و</span>
-      <div>
-        <h1>وصلة <span class="brand-sub">مودريتور ذكي لمتاجر السوشيال</span></h1>
-        <p class="brand-note">متجر ملابس تجريبي في القاهرة · كل الأرقام من الجلسة دي</p>
+  <a class="skip" href="#text">تخطّى للكتابة</a>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="القائمة">
+      <div class="side-top">
+        <div class="brand"><span class="logo" aria-hidden="true">و</span><span>وصلة</span></div>
+        <button class="icon-btn only-mobile" type="button" id="btn-close-side" aria-label="اقفل القائمة"></button>
       </div>
-    </div>
-    <span id="mode" class="mode" role="status"></span>
-    <nav class="actions" aria-label="أدوات العرض">
-      <button id="btn-demo" class="btn btn-primary" type="button"></button>
-      <button id="btn-checkout" class="btn" type="button"></button>
-      <button id="btn-advance" class="btn" type="button"></button>
-      <button id="btn-reset" class="btn btn-ghost" type="button"></button>
-    </nav>
-  </header>
+      <button class="new-chat" type="button" id="btn-new"></button>
 
-  <p id="notice" class="notice" dir="auto" hidden></p>
+      <nav class="side-section" aria-label="العرض">
+        <button class="side-item" type="button" id="btn-demo"></button>
+        <button class="side-item" type="button" id="btn-checkout"></button>
+        <button class="side-item" type="button" id="btn-advance"></button>
+        <button class="side-item" type="button" id="btn-reset"></button>
+      </nav>
 
-  <main class="layout">
-    <section class="kpis" aria-labelledby="kpi-title">
-      <div class="section-head">
-        <h2 id="kpi-title">الأثر على المتجر</h2>
-        <span class="hint">بيتحسب لحظياً من أحداث الجلسة</span>
-      </div>
-      <div class="kpi-grid" id="impact" aria-live="polite"></div>
-    </section>
+      <nav class="side-section" aria-label="أدوات صاحب المحل">
+        <p class="side-label">صاحب المحل</p>
+        <button class="side-item" type="button" data-panel="dashboard" id="open-dashboard"></button>
+        <button class="side-item" type="button" data-panel="roi" id="open-roi"></button>
+        <button class="side-item" type="button" data-panel="activity" id="open-activity"></button>
+        <button class="side-item" type="button" data-panel="handoffs" id="open-handoffs"></button>
+      </nav>
 
-    <section class="panel chat-panel" id="chat-panel" aria-labelledby="chat-title">
-      <div class="panel-head">
-        <h2 id="chat-title">المحادثات</h2>
-        <span class="hint">اكتب كعميل: عربي، فرانكو أو English</span>
-      </div>
-      <div class="tabs" id="tabs" role="tablist" aria-label="المحادثات"></div>
-      <div class="chat" id="chat" role="log" aria-live="polite"></div>
+      <nav class="side-section convs" aria-label="المحادثات">
+        <p class="side-label">المحادثات</p>
+        <div id="convs"></div>
+      </nav>
+
+      <p class="side-foot">متجر تجريبي لأغراض العرض · <a id="repo" href="https://github.com/">الكود</a></p>
+    </aside>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn only-mobile" type="button" id="btn-open-side" aria-label="افتح القائمة"></button>
+        <h1 class="topbar-title" id="conv-title">وصلة · مودريتور وصلة وير</h1>
+        <span id="mode" class="mode" role="status"></span>
+      </header>
+      <p id="notice" class="notice" dir="auto" hidden></p>
+
+      <section class="chat" id="chat" role="log" aria-live="polite"></section>
+
       <form id="composer" class="composer">
-        <label for="text" class="sr-only">رسالة العميل</label>
-        <input id="text" autocomplete="off" maxlength="1000" placeholder="مثلاً: الهودي التقيل بكام؟">
-        <button class="btn btn-primary btn-icon" type="submit" aria-label="إرسال" id="btn-send"></button>
+        <div class="composer-box">
+          <label for="text" class="sr-only">اكتب كعميل</label>
+          <input id="text" autocomplete="off" maxlength="1000" placeholder="اكتب كعميل… عربي، فرانكو أو English">
+          <button class="send" type="submit" aria-label="إرسال" id="btn-send"></button>
+        </div>
+        <p class="composer-note">الأسعار والمخزون والشحن من أدوات المتجر بس، والتأكيد بعد "نعم" صريحة يتحقق منها الكود.</p>
       </form>
-    </section>
+    </main>
 
-    <div class="side">
-      <section class="panel" aria-labelledby="roi-title">
-        <div class="panel-head">
-          <h2 id="roi-title">احسب العائد لمحلك</h2>
-          <span class="hint">بأرقام محلك — الافتراضات ومصادرها في التقرير</span>
-        </div>
-        <form id="roi-form" class="roi-form">
-          <label>طلبات دفع عند الاستلام / يوم<input id="roi-orders" type="number" min="1" max="5000" inputmode="numeric"></label>
-          <label>رسايل على الصفحة / يوم<input id="roi-dms" type="number" min="0" max="20000" inputmode="numeric"></label>
-          <label>مرتب المودريتور / شهر (ج.م)<input id="roi-salary" type="number" min="500" max="200000" step="500" inputmode="numeric"></label>
-          <label>نسبة الطلبات المرفوضة عند الاستلام (%)<input id="roi-refusal" type="number" min="0" max="90" inputmode="numeric"></label>
-          <label>متوسط قيمة الطلب (ج.م)<input id="roi-aov" type="number" min="20" max="100000" step="10" inputmode="numeric"></label>
-        </form>
-        <div id="roi-out" class="roi-out" aria-live="polite"></div>
-      </section>
-
-      <section class="panel" aria-labelledby="orders-title">
-        <div class="panel-head">
-          <h2 id="orders-title">الطلبات</h2>
-          <span class="count" id="orders-count">0</span>
-        </div>
-        <div class="table-wrap">
-          <table id="orders">
-            <thead>
-              <tr><th scope="col">#</th><th scope="col">العميل</th><th scope="col">المنطقة</th>
-                <th scope="col" class="num">الإجمالي</th><th scope="col">الحالة</th>
-                <th scope="col">المخاطرة</th><th scope="col"><span class="sr-only">إجراء</span></th></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-
-      <div class="split">
-        <section class="panel" aria-labelledby="handoff-title">
-          <div class="panel-head">
-            <h2 id="handoff-title">محتاج موظف</h2>
-            <span class="count" id="handoff-count">0</span>
+    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+      <div class="drawer-head">
+        <h2 id="drawer-title"></h2>
+        <button class="icon-btn" type="button" id="btn-close-drawer" aria-label="اقفل"></button>
+      </div>
+      <div class="drawer-body">
+        <section class="panel" data-panel="dashboard">
+          <div class="kpi-grid" id="impact" aria-live="polite"></div>
+          <h3>الطلبات <span class="count" id="orders-count">0</span></h3>
+          <div class="table-wrap">
+            <table id="orders">
+              <thead>
+                <tr><th scope="col">#</th><th scope="col">العميل</th><th scope="col">المنطقة</th>
+                  <th scope="col" class="num">الإجمالي</th><th scope="col">الحالة</th>
+                  <th scope="col">المخاطرة</th><th scope="col"><span class="sr-only">إجراء</span></th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-          <ul id="handoffs" class="list"></ul>
         </section>
-        <section class="panel" aria-labelledby="log-title">
-          <div class="panel-head">
-            <h2 id="log-title">نشاط المودريتور</h2>
-            <span class="live-dot" aria-hidden="true"></span>
-          </div>
+
+        <section class="panel" data-panel="roi">
+          <p class="panel-hint">حط أرقام محلك. نفس نموذج التقرير، والافتراضات مذكور مصدرها.</p>
+          <form id="roi-form" class="roi-form">
+            <label>طلبات دفع عند الاستلام / يوم<input id="roi-orders" type="number" min="1" max="5000" inputmode="numeric"></label>
+            <label>رسايل على الصفحة / يوم<input id="roi-dms" type="number" min="0" max="20000" inputmode="numeric"></label>
+            <label>مرتب المودريتور / شهر (ج.م)<input id="roi-salary" type="number" min="500" max="200000" step="500" inputmode="numeric"></label>
+            <label>نسبة الطلبات المرفوضة عند الاستلام (%)<input id="roi-refusal" type="number" min="0" max="90" inputmode="numeric"></label>
+            <label>متوسط قيمة الطلب (ج.م)<input id="roi-aov" type="number" min="20" max="100000" step="10" inputmode="numeric"></label>
+          </form>
+          <div id="roi-out" class="roi-out" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" data-panel="activity">
+          <p class="panel-hint">كل أداة بيستخدمها المودريتور وكل تغيير في حالة الطلبات، لحظة بلحظة.</p>
           <ol id="log" class="log"></ol>
         </section>
-      </div>
-    </div>
-  </main>
 
-  <footer class="footer">
-    متجر وهمي لأغراض العرض. الأسعار والمخزون والشحن من أدوات المتجر فقط، والتأكيد بيحصل بعد "نعم" صريحة يتحقق منها الكود.
-    <a id="repo" href="https://github.com/">الكود على GitHub</a>
-  </footer>
+        <section class="panel" data-panel="handoffs">
+          <p class="panel-hint">المحادثات اللي المودريتور حوّلها لموظف (شكاوى، استرجاع، أو حاجة برّه البيع).</p>
+          <ul id="handoffs" class="list"></ul>
+        </section>
+      </div>
+    </aside>
+  </div>
   <script src="/static/app.js"></script>
 </body>
 </html>
