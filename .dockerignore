@@ -1,0 +1,7 @@
+.git
+.venv
+cache
+bench/results
+**/__pycache__
+.pytest_cache
+.ruff_cache
