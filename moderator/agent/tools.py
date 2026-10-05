@@ -204,8 +204,10 @@ def _confirm_order(ctx, a):
         order, old = ctx.book.set_status(order.id, "needs_human")
         _status_event(ctx, order, old, "high_risk_review")
         return {"ok": True, "status": "needs_human", "risk": risk.to_dict(),
-                "message": "Held for owner review. Tell the customer the team will call shortly "
-                           "to finalise; suggest paying the delivery fee upfront by InstaPay."}
+                "message": "The order is NOT confirmed: it is held for owner review. Do not write "
+                           "'تم تأكيد' or say it is confirmed. Tell the customer the team will call "
+                           "shortly to finish the order, and suggest paying the delivery fee "
+                           "upfront by InstaPay to speed it up."}
     order, old = ctx.book.set_status(order.id, "confirmed")
     _status_event(ctx, order, old)
     return {"ok": True, "status": "confirmed", "order_id": order.id, "risk": risk.to_dict()}

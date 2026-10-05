@@ -128,3 +128,12 @@ def test_get_product_lists_pairings_with_names_and_prices():
 def test_search_results_list_pairings():
     out = run_tool("search_products", {"query": "هودي"}, ctx())
     assert out["products"][0]["pairs_with"] == [{"id": "B05", "name": "جوجر قطن", "price": 560}]
+
+
+def test_high_risk_message_forbids_saying_confirmed():
+    c = ctx()
+    args = {**ORDER_ARGS, "phone": "0123", "address": "جنب الجامع", "area": "فيصل"}
+    created = run_tool("create_order", args, c)
+    c.last_agent_message, c.customer_message = created["summary_ar"], "ماشي"
+    out = run_tool("confirm_order", {"order_id": created["order_id"]}, c)
+    assert "NOT confirmed" in out["message"] and "تم تأكيد" in out["message"]
