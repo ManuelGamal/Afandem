@@ -1,0 +1,48 @@
+from decimal import Decimal
+
+from moderator.text import (
+    fold_text, is_explicit_yes, is_valid_eg_mobile, money_mentions, norm_phone, to_number,
+)
+
+
+def test_fold_text_unifies_letters_and_digits():
+    assert fold_text("أيوة يا فندم!") == "ايوه يا فندم"
+    assert fold_text("مقاس ٤٢") == "مقاس 42"
+
+
+def test_norm_phone_formats():
+    assert norm_phone("٠١٠١٢٣٤٥٦٧٨") == "01012345678"
+    assert norm_phone("+20 101 234 5678") == "01012345678"
+    assert norm_phone("00201012345678") == "01012345678"
+    assert norm_phone("1012345678") == "01012345678"
+
+
+def test_valid_egyptian_mobile():
+    assert is_valid_eg_mobile("01012345678")
+    assert is_valid_eg_mobile("01512345678")
+    assert not is_valid_eg_mobile("01312345678")
+    assert not is_valid_eg_mobile("0101234567")
+    assert not is_valid_eg_mobile("0223456789")
+
+
+def test_to_number():
+    assert to_number("١٧٥") == Decimal("175")
+    assert to_number("1,250 جنيه") == Decimal("1250")
+    assert to_number("abc") is None
+
+
+def test_explicit_yes_accepts_short_confirmations():
+    for msg in ["تمام", "أيوة", "اه تمام يا فندم", "ok", "tmam", "Aywa", "ماشي", "👍"]:
+        assert is_explicit_yes(msg), msg
+
+
+def test_explicit_yes_rejects_changes_and_negations():
+    for msg in ["تمام بس خليه لارج", "لا", "مش دلوقتي", "ok but change the size",
+                "تمام هو ده المقاس المظبوط ولا اللي بعده عشان انا مش متأكد خالص", "", "بكام؟"]:
+        assert not is_explicit_yes(msg), msg
+
+
+def test_money_mentions():
+    assert money_mentions("الإجمالي ١٬٠١٠ جنيه والشحن 60ج") == [Decimal("1010"), Decimal("60")]
+    assert money_mentions("سعره 950 EGP") == [Decimal("950")]
+    assert money_mentions("مقاس 42 وطولك 175") == []
