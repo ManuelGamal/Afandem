@@ -30,7 +30,7 @@ def build_provider(mode: str, config_path: Path = DEFAULT_CONFIG,
         raise ProviderError(
             "No model API key found. Set GEMINI_API_KEY (free at https://aistudio.google.com/apikey)"
             " or GROQ_API_KEY, or run without a key using MODERATOR_MODE=replay.")
-    chain = FallbackChain([OpenAICompatProvider(s) for s in specs])
+    chain = FallbackChain([OpenAICompatProvider(s) for s in specs], cooldown_s=30, max_wait_s=35)
     if mode == "record":
         return CachedProvider(chain, replay_path)
     return CachedProvider(chain, cache_path, seed_paths=(replay_path,))

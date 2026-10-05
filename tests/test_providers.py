@@ -94,3 +94,42 @@ def test_moderator_providers_env_overrides_the_config(monkeypatch, tmp_path):
     monkeypatch.setenv("MODERATOR_PROVIDERS", str(cfg))
     chain = build_provider("live", cache_path=tmp_path / "c.jsonl").inner
     assert [p.name for p in chain.providers] == ["only-one"]
+
+
+def test_chain_waits_for_the_earliest_cooldown_instead_of_failing():
+    clock, slept = [0.0], []
+
+    def sleep(s):
+        slept.append(s)
+        clock[0] += s
+
+    a = Fake("a", [RateLimited("429"), {"id": "a-after-wait"}])
+    chain = FallbackChain([a], cooldown_s=30, max_wait_s=40, now=lambda: clock[0], sleep=sleep)
+    assert chain.complete(MSGS, [])["id"] == "a-after-wait"
+    assert slept == [30]
+
+
+def test_chain_does_not_wait_longer_than_max_wait():
+    a = Fake("a", [RateLimited("429")])
+    chain = FallbackChain([a], cooldown_s=30, max_wait_s=5, sleep=lambda s: None)
+    with pytest.raises(ProviderError, match="all providers failed"):
+        chain.complete(MSGS, [])
+
+
+def test_service_unavailable_counts_as_temporary():
+    import httpx
+    import openai
+    from moderator.providers.client import OpenAICompatProvider, ProviderSpec
+
+    class Boom:
+        class chat:
+            class completions:
+                @staticmethod
+                def create(**kw):
+                    req = httpx.Request("POST", "http://x")
+                    raise openai.InternalServerError("busy", response=httpx.Response(503, request=req),
+                                                     body=None)
+
+    p = OpenAICompatProvider(ProviderSpec("p", "m", "http://x", "K"), client=Boom())
+    with pytest.raises(RateLimited):
+        p.complete(MSGS, [])
