@@ -142,7 +142,10 @@ def _get_product(ctx, a):
     p = ctx.catalog.get(_need(a, "product_id"))
     if p is None:
         return {"ok": False, "error": "unknown_product", "message": "no such product"}
-    return {"ok": True, "product": {**p.to_dict(), "size_chart": ctx.catalog.charts[p.chart]}}
+    pairs = [{"id": q.id, "name": q.name_ar, "price": q.price}
+             for q in (ctx.catalog.get(i) for i in p.pairs_with) if q is not None]
+    return {"ok": True, "product": {**p.to_dict(), "size_chart": ctx.catalog.charts[p.chart],
+                                    "pairs_with": pairs}}
 
 
 def _recommend_size(ctx, a):

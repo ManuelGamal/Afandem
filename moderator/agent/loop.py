@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from dataclasses import dataclass, field
+from decimal import Decimal
 
 from moderator.agent.prompt import build_system_prompt
 from moderator.agent.tools import TOOL_SCHEMAS, ToolContext, run_tool
@@ -13,7 +15,7 @@ from moderator.events import EventBus
 from moderator.providers.client import ProviderError
 from moderator.store.catalog import Catalog
 from moderator.store.orders import OrderBook, summary_ar
-from moderator.text import is_latin_script
+from moderator.text import clean_digits, is_latin_script, money_mentions
 
 INTERNAL_PREFIX = "[حدث داخلي]"
 FALLBACK_TEXT = "معلش عندنا مشكلة تقنية صغيرة دلوقتي 🙏 حد من فريقنا هيرد عليك في أقرب وقت."
@@ -22,6 +24,29 @@ LATIN_HINT = ("\nREPLY STYLE FOR THIS TURN: the customer wrote in Latin letters.
               "letters too: Arabizi (Egyptian Arabic with 3, 7, 2, 5 for Arabic sounds) if they "
               "wrote Egyptian words, English if they wrote English.")
 _ASSISTANT_KEYS = ("role", "content", "tool_calls", "extra_content")
+# Deliberately digit-free, so the correction itself never becomes an "allowed" amount.
+AMOUNT_GUARD_NOTE = (f"{INTERNAL_PREFIX} ردك الأخير فيه مبلغ مش طالع من نتايج الأدوات في المحادثة دي. "
+                     "متكتبش أي سعر أو مصاريف شحن أو إجمالي إلا لو رجع من أداة؛ استخدم الأداة المناسبة "
+                     "واكتب الرد تاني.")
+MAX_AMOUNT_CORRECTIONS = 2
+_TOOL_NAMES = [t["function"]["name"] for t in TOOL_SCHEMAS]
+_LEAKED_CALL = re.compile(r"\[?\s*(" + "|".join(_TOOL_NAMES) + r")\s*\([^)]*\)\s*\]?")
+_NUMBER = re.compile(r"\d+(?:\.\d+)?")
+
+
+def _strip_leaked_calls(text: str) -> tuple[str, list[str]]:
+    """Remove tool calls the model wrote as plain text; return the clean text and their names."""
+    names = _LEAKED_CALL.findall(text)
+    return _LEAKED_CALL.sub("", text).strip(), names
+
+
+def _unsupported_amounts(text: str, messages: list[dict]) -> list[Decimal]:
+    """Amounts next to a currency word that no tool result or customer message contains."""
+    allowed: set[Decimal] = set()
+    for m in messages:
+        if m["role"] in ("tool", "user") and isinstance(m.get("content"), str):
+            allowed |= {Decimal(n) for n in _NUMBER.findall(clean_digits(m["content"]).replace(",", ""))}
+    return [a for a in money_mentions(text) if a not in allowed]
 
 
 @dataclass
@@ -106,6 +131,7 @@ class Agent:
         ctx = ToolContext(self.catalog, self.book, self.bus, self.clock, conv.id,
                           last_agent, customer_message)
         calls = 0
+        corrections = 0
         while True:
             prompt = build_system_prompt(self.catalog, self.clock.now())
             if is_latin_script(customer_message):
@@ -131,10 +157,21 @@ class Agent:
             conv.messages.append({k: msg[k] for k in _ASSISTANT_KEYS if msg.get(k) is not None}
                                  | {"role": "assistant"})
             if not tool_calls:
-                text = (msg.get("content") or "").strip()
+                text, leaked = _strip_leaked_calls(msg.get("content") or "")
+                if "handoff_to_human" in leaked and not ctx.handed_off:
+                    run_tool("handoff_to_human", {"reason": "agent_requested"}, ctx)
                 if not text:
                     conv.messages.pop()
                     return self._fallback(conv, ctx, FALLBACK_TEXT, "empty_response", started)
+                if _unsupported_amounts(text, conv.messages):
+                    conv.messages.pop()
+                    if corrections >= MAX_AMOUNT_CORRECTIONS:
+                        return self._fallback(conv, ctx, OVERFLOW_TEXT, "unsupported_amount",
+                                              started)
+                    corrections += 1
+                    conv.messages.append({"role": "user", "content": AMOUNT_GUARD_NOTE})
+                    continue
+                conv.messages[-1]["content"] = text
                 conv.handed_off = conv.handed_off or ctx.handed_off
                 self._sent(conv, text, started)
                 return [text]

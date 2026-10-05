@@ -107,3 +107,41 @@ def test_arabic_customer_message_has_no_latin_hint():
     agent, provider = make([text_raw("الهودي بـ 890 جنيه")])
     agent.reply(Conversation("c1"), "الهودي بكام؟")
     assert "Latin letters" not in provider.requests[0][0]["content"]
+
+
+def test_made_up_amount_is_corrected_before_sending():
+    agent, provider = make([tool_raw(("quote_delivery", {"area": "المعادي"})),
+                            text_raw("الشحن للمعادي 65 جنيه"),
+                            text_raw("الشحن للمعادي 60 جنيه")])
+    conv = Conversation("c1")
+    assert agent.reply(conv, "الشحن للمعادي بكام؟") == ["الشحن للمعادي 60 جنيه"]
+    assert "65" not in " ".join(m["text"] for m in conv.visible())
+    assert provider.requests[2][-1]["content"].startswith("[حدث داخلي]")
+
+
+def test_persistent_made_up_amount_hands_off():
+    agent, _ = make([text_raw("ده بـ 299 جنيه")] * 3)
+    conv = Conversation("c1")
+    assert agent.reply(conv, "بكام؟") == [OVERFLOW_TEXT]
+    assert conv.handed_off
+
+
+def test_amount_the_customer_wrote_is_allowed():
+    agent, _ = make([text_raw("تمام، الـ 500 جنيه تكفي")])
+    assert agent.reply(Conversation("c1"), "معايا 500 جنيه بس") == ["تمام، الـ 500 جنيه تكفي"]
+
+
+def test_tool_call_written_as_text_is_stripped_and_executed():
+    agent, _ = make([text_raw('هحولك لزميل من الفريق حالاً\n\n[handoff_to_human(reason="refund")]')])
+    conv = Conversation("c1")
+    assert agent.reply(conv, "عايز فلوسي") == ["هحولك لزميل من الفريق حالاً"]
+    assert conv.handed_off
+    assert any(e.kind == "handoff" for e in agent.bus.events)
+
+
+def test_prompt_forbids_internal_ids_and_self_computed_totals():
+    agent, provider = make([text_raw("أهلاً")])
+    agent.reply(Conversation("c1"), "اهلا")
+    system = provider.requests[0][0]["content"]
+    assert "internal product ids" in system and "pairs_with" in system
+    assert "Never add up prices yourself" in system

@@ -118,3 +118,8 @@ def test_cancel_schedule_flag_and_handoff():
     out = run_tool("handoff_to_human", {"reason": "complaint"}, c)
     assert out["ok"] and c.handed_off
     assert any(e.kind == "handoff" for e in c.bus.events)
+
+
+def test_get_product_lists_pairings_with_names_and_prices():
+    out = run_tool("get_product", {"product_id": "T06"}, ctx())
+    assert out["product"]["pairs_with"] == [{"id": "B05", "name": "جوجر قطن", "price": 560}]
