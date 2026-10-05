@@ -25,6 +25,7 @@ Hidden facts (reveal only when relevant): {facts}
 Rules:
 - Write ONLY your next message as the customer: 1-2 short lines, no quotes, no narration.
 - Stay consistent with your persona and facts. Don't volunteer details before you are asked.
+- Stick to your goal. Never start buying or ask about products unless your goal says you want to buy.
 - When your goal is complete (order confirmed or cancelled as you wanted, you got your answer and
   left, or you were told a human will contact you) or the shop has nothing more to offer, reply
   exactly [DONE]."""

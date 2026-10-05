@@ -84,3 +84,7 @@ def test_explicit_yes_arabizi_variants_from_the_bench():
     assert is_explicit_yes("Aah, ya ret t2aked el talab. Shukran gedan!")
     assert is_explicit_yes("aiwa t2akedo")
     assert not is_explicit_yes("t2aked bas mesh delwa2ty")
+
+
+def test_explicit_yes_accepts_long_happy_confirmation_with_muakkad():
+    assert is_explicit_yes("تمام، شكراً جداً لتفهمكم! كده الطلب تمام ومؤكد يا فندم ومستنياه")

@@ -37,7 +37,8 @@ CLAIM_NOTES = {
 }
 # Matched on fold_text(reply).
 _CLAIMS = {
-    "confirmed": re.compile(r"تم (ال)?تاكيد|اتاكد|اكدت|اكدنا|confirmed|akadna|a2adna|akkedna|a2kedna|et2aked"),
+    "confirmed": re.compile(r"تم( \S+){0,2} (ال)?تاكيد|اتاكد|اكدت|اكدنا|الطلب موكد|"
+                            r"confirmed|akadna|a2adna|akkedna|a2kedna|et2aked"),
     "cancelled": re.compile(r"تم (ال)?الغاء|اتلغ|لغيت|لغينا|cancelled|canceled|lagheena|elghena"),
 }
 _HANDOFF_PROMISE = re.compile(r"هحول|بحول|حولت|هنحول|حولنا|تحويل (الشات|المحادثه|حضرتك|طلبك)|ha7awel|ha7wel|7awelt")

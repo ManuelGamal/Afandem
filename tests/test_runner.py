@@ -124,3 +124,8 @@ def test_run_card_accepts_a_given_simulator():
     agent = ScriptedProvider([text_raw("أهلاً بيك يا فندم"), text_raw("ولا يهمك")])
     out = run_card(SALES, agent, None, sim=Scripted())
     assert out["turns"] == 2 and out["ended_by"] == "done"
+
+
+def test_sim_prompt_keeps_the_customer_on_its_goal():
+    from moderator.bench.simulator import PROMPT
+    assert "Never start buying" in PROMPT

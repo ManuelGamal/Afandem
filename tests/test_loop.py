@@ -242,3 +242,11 @@ def test_instapay_transfer_is_not_a_handoff():
     conv = Conversation("c1")
     agent.reply(conv, "ادفع ازاي؟")
     assert not conv.handed_off
+
+
+def test_claim_with_words_in_between_is_still_caught():
+    agent, provider = make([tool_raw(("create_order", ORDER)),
+                            text_raw("تمام يا فندم، تم تسجيل التأكيد والطلب هيوصلك"),
+                            text_raw("ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟")])
+    conv = Conversation("c1")
+    assert agent.reply(conv, "عايز 2 تيشيرت") == ["ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟"]
