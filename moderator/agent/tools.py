@@ -10,7 +10,7 @@ from moderator.agent.risk import score_order
 from moderator.clock import Clock
 from moderator.events import EventBus
 from moderator.store.catalog import Catalog
-from moderator.store.orders import OrderBook, OrderError, summary_ar
+from moderator.store.orders import OrderBook, OrderError, order_fingerprint, summary_ar
 from moderator.text import clean_digits, fold_text, is_explicit_yes, to_number
 
 CANCEL_REASONS = ["customer_declined", "unreachable", "duplicate", "out_of_stock", "other"]
@@ -28,6 +28,7 @@ class ToolContext:
     last_agent_message: str = ""
     customer_message: str = ""
     handed_off: bool = False
+    shown_fingerprint: str | None = None
 
 
 def _fn(name: str, description: str, properties: dict, required: list[str]) -> dict:
@@ -191,7 +192,8 @@ def _update_order(ctx, a):
 
 def _confirm_order(ctx, a):
     order = _order_of(ctx, a)
-    if str(order.total) not in clean_digits(ctx.last_agent_message).replace(",", ""):
+    shown = ctx.shown_fingerprint == order_fingerprint(order)
+    if not shown and str(order.total) not in clean_digits(ctx.last_agent_message).replace(",", ""):
         return {"ok": False, "error": "summary_not_sent",
                 "message": "Send the customer this order's summary_ar (with the total) first, "
                            "then wait for their clear yes."}

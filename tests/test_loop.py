@@ -201,3 +201,30 @@ def test_prompt_makes_the_single_suggestion_an_explicit_priced_question():
     agent, provider = make([text_raw("أهلاً")])
     agent.reply(Conversation("c1"), "اهلا")
     assert "as its own short question with its name and price" in provider.requests[0][0]["content"]
+
+
+def test_yes_after_a_reschedule_confirms_without_resending_the_summary():
+    agent, _ = make([tool_raw(("schedule_delivery", {"order_id": 1, "date": "بعد بكره"})),
+                     text_raw("ولا يهمك، خليته بعد بكره. أأكد الطلب؟"),
+                     tool_raw(("confirm_order", {"order_id": 1})), text_raw("تم تأكيد طلبك")])
+    order = agent.book.create("c1", **ORDER, source="checkout", now=agent.clock.now())
+    agent.book.set_status(order.id, "pending_confirmation")
+    conv = Conversation("c1")
+    agent.start_confirmation(conv, order.id)
+    agent.reply(conv, "بكره مش هكون موجودة، ينفع بعد بكره؟")
+    agent.reply(conv, "تمام")
+    assert agent.book.get(order.id).status == "confirmed"
+
+
+def test_changed_items_need_a_new_summary_even_at_the_same_total():
+    changed = {"items": [{"product_id": "T01", "size": "L", "color": "أسود", "qty": 2}]}
+    agent, _ = make([tool_raw(("update_order", {"order_id": 1, "changes": changed})),
+                     text_raw("غيرتها لـ L. أأكد الطلب؟"),
+                     tool_raw(("confirm_order", {"order_id": 1})), text_raw("لازم أبعتلك الملخص الأول")])
+    order = agent.book.create("c1", **ORDER, source="checkout", now=agent.clock.now())
+    agent.book.set_status(order.id, "pending_confirmation")
+    conv = Conversation("c1")
+    agent.start_confirmation(conv, order.id)
+    agent.reply(conv, "خليه L")
+    agent.reply(conv, "تمام")
+    assert agent.book.get(order.id).status == "pending_confirmation"

@@ -14,7 +14,7 @@ from moderator.clock import Clock
 from moderator.events import EventBus
 from moderator.providers.client import ProviderError
 from moderator.store.catalog import Catalog
-from moderator.store.orders import OrderBook, summary_ar
+from moderator.store.orders import OrderBook, order_fingerprint, summary_ar
 from moderator.text import clean_digits, fold_text, is_latin_script, money_mentions
 
 INTERNAL_PREFIX = "[حدث داخلي]"
@@ -85,6 +85,7 @@ class Conversation:
     order_id: int | None = None
     reminders_sent: int = 0
     awaiting_reply: bool = False
+    shown_fingerprint: str | None = None  # the order as last shown with its total
 
     def last_agent_text(self) -> str:
         for m in reversed(self.messages):
@@ -166,7 +167,7 @@ class Agent:
     def _run(self, conv: Conversation, customer_message: str, last_agent: str,
              started: float) -> list[str]:
         ctx = ToolContext(self.catalog, self.book, self.bus, self.clock, conv.id,
-                          last_agent, customer_message)
+                          last_agent, customer_message, shown_fingerprint=conv.shown_fingerprint)
         calls = 0
         corrections = 0
         while True:
@@ -250,3 +251,6 @@ class Agent:
     def _sent(self, conv: Conversation, text: str, started: float) -> None:
         self.bus.publish("message_out", conv.id, text=text,
                          latency_s=round(time.perf_counter() - started, 2))
+        order = self.book.open_for(conv.id)
+        if order is not None and str(order.total) in clean_digits(text).replace(",", ""):
+            conv.shown_fingerprint = order_fingerprint(order)

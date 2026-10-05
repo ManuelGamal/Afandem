@@ -236,3 +236,10 @@ def summary_ar(order: Order, zone: Zone) -> str:
             else f"خلال {zone.days_min}-{zone.days_max} أيام")
     lines.append(f"التوصيل: {when}")
     return "\n".join(lines)
+
+
+def order_fingerprint(order: Order) -> str:
+    """What the customer must have seen before saying yes: items, address and total (not the
+    delivery date, which the customer may move without changing what they buy)."""
+    return json.dumps([order.items, order.address, order.area, order.total],
+                      ensure_ascii=False, sort_keys=True)
