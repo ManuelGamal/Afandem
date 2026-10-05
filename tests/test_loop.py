@@ -228,3 +228,17 @@ def test_changed_items_need_a_new_summary_even_at_the_same_total():
     agent.reply(conv, "خليه L")
     agent.reply(conv, "تمام")
     assert agent.book.get(order.id).status == "pending_confirmation"
+
+
+def test_promised_handoff_phrased_as_done_is_carried_out():
+    agent, _ = make([text_raw("آسفين جداً، تم تحويل الشات لزميلي في خدمة العملاء")])
+    conv = Conversation("c1")
+    agent.reply(conv, "الطلب وصل مقطوع")
+    assert conv.handed_off
+
+
+def test_instapay_transfer_is_not_a_handoff():
+    agent, _ = make([text_raw("ممكن تحويل مصاريف الشحن على إنستاباي")])
+    conv = Conversation("c1")
+    agent.reply(conv, "ادفع ازاي؟")
+    assert not conv.handed_off

@@ -40,7 +40,7 @@ _CLAIMS = {
     "confirmed": re.compile(r"تم (ال)?تاكيد|اتاكد|اكدت|اكدنا|confirmed|akadna|a2adna|akkedna|a2kedna|et2aked"),
     "cancelled": re.compile(r"تم (ال)?الغاء|اتلغ|لغيت|لغينا|cancelled|canceled|lagheena|elghena"),
 }
-_HANDOFF_PROMISE = re.compile(r"هحول|بحول|حولت|هنحول|حولنا|ha7awel|ha7wel|7awelt")
+_HANDOFF_PROMISE = re.compile(r"هحول|بحول|حولت|هنحول|حولنا|تحويل (الشات|المحادثه|حضرتك|طلبك)|ha7awel|ha7wel|7awelt")
 _TOOL_NAMES = [t["function"]["name"] for t in TOOL_SCHEMAS]
 _LEAKED_CALL = re.compile(r"\[?\s*(" + "|".join(_TOOL_NAMES) + r")\s*\([^)]*\)\s*\]?")
 _NUMBER = re.compile(r"\d+(?:\.\d+)?")
