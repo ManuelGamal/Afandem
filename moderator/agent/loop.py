@@ -162,7 +162,10 @@ class Agent:
                     run_tool("handoff_to_human", {"reason": "agent_requested"}, ctx)
                 if not text:
                     conv.messages.pop()
-                    return self._fallback(conv, ctx, FALLBACK_TEXT, "empty_response", started)
+                    if corrections >= MAX_AMOUNT_CORRECTIONS:
+                        return self._fallback(conv, ctx, FALLBACK_TEXT, "empty_response", started)
+                    corrections += 1
+                    continue
                 if _unsupported_amounts(text, conv.messages):
                     conv.messages.pop()
                     if corrections >= MAX_AMOUNT_CORRECTIONS:

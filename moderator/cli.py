@@ -23,7 +23,7 @@ def main() -> None:
     ap.add_argument("--mode", default="live", choices=["live", "replay", "record"])
     args = ap.parse_args()
     s = Session(build_provider(args.mode))
-    conv, n = "cli-1", 1
+    conv, n, seen = "cli-1", 1, 0
     print("وصلة جاهزة. اكتب رسالتك (أو /quit).")
     while True:
         try:
@@ -57,6 +57,10 @@ def main() -> None:
             replies = s.chat(conv, line)
         for r in replies:
             print(f"وصلة> {r}\n")
+        for e in s.bus.events[seen:]:
+            if e.kind in ("llm_error", "handoff"):
+                print(f"[{e.kind}] {e.data}")
+        seen = len(s.bus.events)
 
 
 if __name__ == "__main__":

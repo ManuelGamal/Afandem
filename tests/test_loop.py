@@ -145,3 +145,10 @@ def test_prompt_forbids_internal_ids_and_self_computed_totals():
     system = provider.requests[0][0]["content"]
     assert "internal product ids" in system and "pairs_with" in system
     assert "Never add up prices yourself" in system
+
+
+def test_one_empty_model_reply_is_retried():
+    agent, _ = make([text_raw(""), text_raw("أهلاً بيك")])
+    conv = Conversation("c1")
+    assert agent.reply(conv, "اهلا") == ["أهلاً بيك"]
+    assert not conv.handed_off
