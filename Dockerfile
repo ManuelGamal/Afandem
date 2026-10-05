@@ -7,4 +7,4 @@ RUN uv sync --frozen --no-dev --no-install-project
 COPY . .
 RUN uv sync --frozen --no-dev
 EXPOSE 7860
-CMD ["sh", "-c", "uv run --no-dev uvicorn --factory moderator.server:create_app --host 0.0.0.0 --port ${PORT}"]
+CMD ["sh", "-c", "/app/.venv/bin/uvicorn --factory moderator.server:create_app --host 0.0.0.0 --port ${PORT}"]
