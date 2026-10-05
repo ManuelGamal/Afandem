@@ -71,23 +71,34 @@ def test_empty_model_reply_falls_back():
     assert agent.reply(conv, "hi") == [FALLBACK_TEXT]
 
 
-def test_confirmation_reminder_then_unreachable():
-    agent, provider = make([text_raw("أهلاً منى! ... الإجمالي: 760 جنيه. أأكد الطلب؟"),
-                            text_raw("فكرتك بطلبك يا منى، الإجمالي 760 جنيه. نأكده؟")])
+def test_confirmation_and_reminder_are_templates_without_model_calls():
+    agent, provider = make([])
+    order = agent.book.create("c1", **ORDER, source="checkout", now=agent.clock.now())
+    agent.book.set_status(order.id, "pending_confirmation")
+    conv = Conversation("c1")
+    [opening] = agent.start_confirmation(conv, order.id)
+    assert "منى" in opening and "760 جنيه" in opening and opening.rstrip().endswith("أأكد الطلب؟")
+    assert conv.awaiting_reply
+    [reminder] = agent.remind(conv)
+    assert "760 جنيه" in reminder and conv.reminders_sent == 1
+    assert agent.remind(conv) == []
+    o = agent.book.get(order.id)
+    assert (o.status, o.cancel_reason) == ("cancelled", "unreachable")
+    assert provider.requests == []
+
+
+def test_yes_after_template_confirms():
+    agent, _ = make([tool_raw(("confirm_order", {"order_id": 1})), text_raw("تم تأكيد طلبك")])
     order = agent.book.create("c1", **ORDER, source="checkout", now=agent.clock.now())
     agent.book.set_status(order.id, "pending_confirmation")
     conv = Conversation("c1")
     agent.start_confirmation(conv, order.id)
-    assert conv.awaiting_reply and "760 جنيه" in provider.requests[0][-1]["content"]
-    assert len(agent.remind(conv)) == 1 and conv.reminders_sent == 1
-    assert agent.remind(conv) == []
-    o = agent.book.get(order.id)
-    assert (o.status, o.cancel_reason) == ("cancelled", "unreachable")
-    assert len(provider.requests) == 2  # the final step makes no model call
+    agent.reply(conv, "تمام")
+    assert agent.book.get(order.id).status == "confirmed"
 
 
 def test_reply_clears_awaiting_and_visible_hides_internal_notes():
-    agent, _ = make([text_raw("أأكد؟ 760 جنيه"), text_raw("تمام، اكدت")])
+    agent, _ = make([text_raw("تمام، اكدت")])
     order = agent.book.create("c1", **ORDER, source="checkout", now=agent.clock.now())
     agent.book.set_status(order.id, "pending_confirmation")
     conv = Conversation("c1")

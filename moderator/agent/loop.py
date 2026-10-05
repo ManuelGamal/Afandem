@@ -34,6 +34,11 @@ _LEAKED_CALL = re.compile(r"\[?\s*(" + "|".join(_TOOL_NAMES) + r")\s*\([^)]*\)\s
 _NUMBER = re.compile(r"\d+(?:\.\d+)?")
 
 
+def _greeting(name: str) -> str:
+    first = (name or "").split()[0] if (name or "").strip() else ""
+    return f"أهلاً يا {first}!" if len(first) > 1 else "أهلاً بحضرتك!"
+
+
 def _strip_leaked_calls(text: str) -> tuple[str, list[str]]:
     """Remove tool calls the model wrote as plain text; return the clean text and their names."""
     names = _LEAKED_CALL.findall(text)
@@ -95,17 +100,22 @@ class Agent:
         conv.awaiting_reply = False
         return self._run(conv, text, last_agent, started)
 
+    # Business-initiated messages are fixed templates (as WhatsApp Business requires), so the
+    # opening always carries the exact summary and costs no model call. Replies use the model.
     def start_confirmation(self, conv: Conversation, order_id: int) -> list[str]:
         conv.order_id = order_id
         order = self.book.get(order_id)
-        zone = self.catalog.find_zone(order.area)
+        summary = summary_ar(order, self.catalog.find_zone(order.area))
+        text = (f"{_greeting(order.customer_name)} شكراً لطلبك من موقع "
+                f"{self.catalog.shop['name_ar']} 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\n"
+                f"{summary}\n\nأأكد الطلب؟")
         conv.messages.append({"role": "user", "content": (
             f"{INTERNAL_PREFIX} طلب جديد من الموقع رقم {order_id} محتاج تأكيد قبل الشحن. "
-            "ابعت للعميل رسالة ترحيب قصيرة باسمه وبعدها ملخص الطلب ده بالنص واسأله يأكد:\n"
-            + summary_ar(order, zone))})
-        out = self._run(conv, "", "", time.perf_counter())
-        conv.awaiting_reply = not conv.handed_off
-        return out
+            "اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\n" + summary)})
+        conv.messages.append({"role": "assistant", "content": text})
+        self._sent(conv, text, time.perf_counter())
+        conv.awaiting_reply = True
+        return [text]
 
     def remind(self, conv: Conversation) -> list[str]:
         if not conv.awaiting_reply or conv.handed_off or conv.order_id is None:
@@ -115,10 +125,14 @@ class Agent:
             return []
         if conv.reminders_sent == 0:
             conv.reminders_sent = 1
+            text = (f"{_greeting(order.customer_name)} بنفكّرك بطلبك رقم {order.id} "
+                    f"(الإجمالي {order.total} جنيه). نأكده ونجهزه للشحن؟ ولو حابب تعدّل حاجة قولّي.")
             conv.messages.append({"role": "user", "content": (
-                f"{INTERNAL_PREFIX} العميل مردش من ساعتين. ابعت تذكير واحد قصير ولطيف بالطلب "
-                f"والإجمالي ({order.total} جنيه) واسأله يأكد.")})
-            return self._run(conv, "", "", time.perf_counter())
+                f"{INTERNAL_PREFIX} العميل مردش من ساعتين؛ اتبعتله تذكير ثابت بالطلب رقم "
+                f"{order.id} والإجمالي {order.total} جنيه.")})
+            conv.messages.append({"role": "assistant", "content": text})
+            self._sent(conv, text, time.perf_counter())
+            return [text]
         order, old = self.book.set_status(order.id, "cancelled", "unreachable")
         self.bus.publish("order_status", conv.id, order_id=order.id, old=old, new="cancelled",
                          reason="unreachable", total=order.total, source=order.source)

@@ -15,18 +15,20 @@ def test_presets_are_valid_orders():
 
 
 def test_checkout_starts_confirmation_conversation():
-    s = Session(ScriptedProvider([text_raw("أهلاً سارة! الإجمالي 1330 جنيه. أأكد؟")]))
+    s = Session(ScriptedProvider([]))
     conv_id, order_id, replies = s.checkout(0)
     assert conv_id == "checkout-1" and order_id == 1 and replies[0].startswith("أهلاً")
+    assert "1330 جنيه" in replies[0]
     assert s.conversations[conv_id].awaiting_reply
     assert ("order_status", "pending_confirmation") in [(e.kind, e.data.get("new"))
                                                          for e in s.bus.events]
 
 
 def test_advance_sends_one_reminder_then_cancels():
-    s = Session(ScriptedProvider([text_raw("أأكد؟ 955 جنيه"), text_raw("تذكير: 955 جنيه")]))
+    s = Session(ScriptedProvider([]))
     conv_id, order_id, _ = s.checkout(4)
-    assert s.advance(2) == {conv_id: ["تذكير: 955 جنيه"]}
+    sent = s.advance(2)
+    assert list(sent) == [conv_id] and "955 جنيه" in sent[conv_id][0]
     assert s.advance(2) == {}
     assert s.book.get(order_id).cancel_reason == "unreachable"
     assert s.state(120)["impact"]["refusals_prevented"] == 1
