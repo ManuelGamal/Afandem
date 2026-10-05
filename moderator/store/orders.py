@@ -9,7 +9,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import date, datetime, timedelta
 
 from moderator.store.catalog import Catalog, Zone
-from moderator.text import norm_phone
+from moderator.text import fold_text, norm_phone
 
 STATUSES = ["draft", "pending_confirmation", "confirmed", "shipped", "cancelled", "needs_human"]
 TRANSITIONS: dict[str, set[str]] = {
@@ -228,7 +228,10 @@ def summary_ar(order: Order, zone: Zone) -> str:
                      f"{i['qty'] * i['unit_price']} جنيه")
     lines.append(f"الشحن ({zone.name_ar}): {order.delivery_fee} جنيه")
     lines.append(f"الإجمالي: {order.total} جنيه (الدفع عند الاستلام)")
-    lines.append(f"العنوان: {order.address}، {order.area}")
+    address = order.address
+    if fold_text(order.area) not in fold_text(order.address):
+        address = f"{order.address}، {order.area}"
+    lines.append(f"العنوان: {address}")
     when = (f"يوم {order.delivery_date}" if order.delivery_date
             else f"خلال {zone.days_min}-{zone.days_max} أيام")
     lines.append(f"التوصيل: {when}")

@@ -83,3 +83,14 @@ def test_build_provider_without_keys_explains(monkeypatch, tmp_path):
     with pytest.raises(ProviderError, match="MODERATOR_MODE=replay"):
         build_provider("live", cache_path=tmp_path / "c.jsonl")
     assert build_provider("replay", replay_path=tmp_path / "r.jsonl").inner is None
+
+
+def test_moderator_providers_env_overrides_the_config(monkeypatch, tmp_path):
+    from moderator.providers.config import build_provider
+    cfg = tmp_path / "p.yaml"
+    cfg.write_text("providers:\n  - name: only-one\n    model: m\n    base_url: http://x\n"
+                   "    api_key_env: FAKE_KEY\n", encoding="utf-8")
+    monkeypatch.setenv("FAKE_KEY", "k")
+    monkeypatch.setenv("MODERATOR_PROVIDERS", str(cfg))
+    chain = build_provider("live", cache_path=tmp_path / "c.jsonl").inner
+    assert [p.name for p in chain.providers] == ["only-one"]

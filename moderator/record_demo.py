@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from collections import Counter
 
 from moderator.demo_scripts import DEMO_SCRIPTS
 from moderator.providers.config import build_provider
@@ -43,6 +44,8 @@ def main() -> None:
     play(session, DEMO_SCRIPTS)
     errors = [e for e in session.bus.events if e.kind == "llm_error"]
     print(f"\ncache hits {provider.hits}, misses {provider.misses}, llm errors {len(errors)}")
+    used = Counter(e.data.get("provider") for e in session.bus.events if e.kind == "llm_call")
+    print("models used:", dict(used))
     for e in errors:
         print(f"  [{e.conversation_id}] {e.data.get('error')}")
     for o in session.book.all():

@@ -24,6 +24,7 @@ def build_provider(mode: str, config_path: Path = DEFAULT_CONFIG,
                    replay_path: Path = Path("replay/demo.jsonl")) -> CachedProvider:
     if mode == "replay":
         return CachedProvider(None, replay_path)
+    config_path = Path(os.environ.get("MODERATOR_PROVIDERS") or config_path)
     specs = [s for s in load_specs(config_path) if os.environ.get(s.api_key_env)]
     if not specs:
         raise ProviderError(

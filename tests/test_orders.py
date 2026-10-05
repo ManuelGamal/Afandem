@@ -98,3 +98,10 @@ def test_by_phone_and_open_for():
     assert b.open_for("c1").id == o.id
     b.set_status(o.id, "cancelled", "customer_declined")
     assert b.open_for("c1") is None
+
+
+def test_summary_does_not_repeat_an_area_already_in_the_address():
+    cat, b = book()
+    o = make(b, address="14 شارع الطيران الدور 4، مدينة نصر")
+    text = summary_ar(o, cat.find_zone("مدينة نصر"))
+    assert text.count("مدينة نصر") == 1
