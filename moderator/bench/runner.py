@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 
 from moderator.bench.cards import Card, load_cards
-from moderator.bench.simulator import CustomerSim
+from moderator.bench.simulator import CustomerSim, HumanSim
 from moderator.providers.client import ProviderError
 from moderator.providers.config import build_provider
 from moderator.session import Session
@@ -25,7 +25,7 @@ class RunAborted(Exception):
     pass
 
 
-def run_card(card: Card, agent_provider, sim_provider) -> dict:
+def run_card(card: Card, agent_provider, sim_provider, sim=None) -> dict:
     s = Session(agent_provider)
     ended = None
     if card.flow == "checkout":
@@ -38,7 +38,7 @@ def run_card(card: Card, agent_provider, sim_provider) -> dict:
         conv_id = f"bench-{card.id}"
         s.chat(conv_id, card.opening)
     turns = 0 if card.flow == "checkout" else 1
-    sim = CustomerSim(sim_provider, card)
+    sim = sim or CustomerSim(sim_provider, card)
     while ended is None:
         conv = s.conversations[conv_id]
         if any(e.kind == "llm_error" for e in s.bus.events):
@@ -87,13 +87,17 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--limit", type=int)
     ap.add_argument("--category")
+    ap.add_argument("--human", action="store_true", help="you play the customer in the terminal")
+    ap.add_argument("--ids", help="comma-separated card ids to run")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     agent_provider = build_provider("live", cache_path=Path("cache/bench-agent.jsonl"))
     sim_provider = build_provider("live", config_path=SIM_CONFIG,
                                   cache_path=Path("cache/bench-sim.jsonl"))
-    cards = [c for c in load_cards() if not args.category or c.category == args.category]
+    ids = set(args.ids.split(",")) if args.ids else None
+    cards = [c for c in load_cards() if (not args.category or c.category == args.category)
+             and (ids is None or c.id in ids)]
     done = 0
     for card in cards:
         path = out / f"{card.id}.json"
@@ -102,7 +106,10 @@ def main() -> None:
         if args.limit is not None and done >= args.limit:
             break
         try:
-            result = run_with_retries(card, agent_provider, sim_provider)
+            if args.human:
+                result = run_card(card, agent_provider, None, sim=HumanSim(card))
+            else:
+                result = run_with_retries(card, agent_provider, sim_provider)
         except RunAborted as e:
             print(f"stopped: {e}. Re-run the same command later to resume.")
             sys.exit(2)

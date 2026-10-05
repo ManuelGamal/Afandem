@@ -70,3 +70,31 @@ def _asks_question(text: str) -> bool:
     """A question mark near the end, allowing for a trailing emoji or two."""
     tail = text.strip()[-15:]
     return "?" in tail or "؟" in tail
+
+
+class HumanSim:
+    """A person plays the card's customer in the terminal (bench --human), for checking the
+    simulator against a native speaker."""
+
+    def __init__(self, card: Card, input_fn=input, output=print):
+        self.card = card
+        self.input = input_fn
+        self.output = output
+        self.shown = 0
+        output(f"\n=== card {card.id} ({card.category}, write in: {card.script})")
+        output(f"Who you are: {card.persona}")
+        output(f"Your goal: {card.goal}")
+        if card.hidden_facts:
+            output(f"Facts to reveal only when asked: {'; '.join(card.hidden_facts)}")
+        output("Type your messages; /done when the chat is over.\n")
+
+    def next_message(self, transcript: list[dict]) -> str | None:
+        for m in transcript[self.shown:]:
+            who = "you" if m["role"] == "customer" else "shop"
+            self.output(f"{who}> {m['text']}")
+        self.shown = len(transcript)
+        text = self.input("you> ").strip()
+        if not text or text == "/done":
+            return None
+        self.shown += 1
+        return text

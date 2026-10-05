@@ -100,3 +100,27 @@ def test_run_with_retries_waits_and_retries_aborted_cards():
     with pytest.raises(RunAborted):
         run_with_retries(SALES, None, None, attempts=2, wait_s=1, sleep=lambda s: None,
                          run=lambda *a: (_ for _ in ()).throw(RunAborted("down")))
+
+
+def test_human_sim_shows_the_card_and_reads_replies():
+    from moderator.bench.simulator import HumanSim
+    shown = []
+    replies = iter(["تمام، أكده", "/done"])
+    sim = HumanSim(SALES, input_fn=lambda prompt="": next(replies), output=shown.append)
+    transcript = [{"role": "customer", "text": "بكام الهودي؟"}, {"role": "agent", "text": "890 جنيه"}]
+    assert sim.next_message(transcript) == "تمام، أكده"
+    assert sim.next_message(transcript) is None
+    assert any("goal" in s.lower() for s in shown) and any("890 جنيه" in s for s in shown)
+
+
+def test_run_card_accepts_a_given_simulator():
+    class Scripted:
+        def __init__(self):
+            self.lines = iter(["غالي شوية، شكراً"])
+
+        def next_message(self, transcript):
+            return next(self.lines, None)
+
+    agent = ScriptedProvider([text_raw("أهلاً بيك يا فندم"), text_raw("ولا يهمك")])
+    out = run_card(SALES, agent, None, sim=Scripted())
+    assert out["turns"] == 2 and out["ended_by"] == "done"
