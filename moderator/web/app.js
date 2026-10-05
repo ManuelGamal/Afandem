@@ -27,23 +27,25 @@ const icon = (name, cls = "") =>
   `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
 
 const STATUS = {
-  draft: ["مسودة", ""], pending_confirmation: ["مستني تأكيد", "info"], confirmed: ["متأكد", "ok"],
-  shipped: ["اتشحن", "ok"], cancelled: ["اتلغى", "danger"], needs_human: ["مع موظف", "warn"],
+  draft: ["Draft", ""], pending_confirmation: ["Awaiting confirmation", "info"],
+  confirmed: ["Confirmed", "ok"], shipped: ["Shipped", "ok"], cancelled: ["Cancelled", "danger"],
+  needs_human: ["With a person", "warn"],
 };
-const RISK = { low: ["قليلة", "ok"], medium: ["متوسطة", "warn"], high: ["عالية", "danger"] };
-const CANCEL = { customer_declined: "العميل رفض", unreachable: "مبيردش", duplicate: "مكرر",
-  out_of_stock: "خلص من المخزون", other: "سبب تاني" };
-const TOOL_AR = { search_products: "بحث في المنتجات", get_product: "تفاصيل منتج",
-  recommend_size: "ترشيح مقاس", quote_delivery: "سعر الشحن", create_order: "إنشاء طلب",
-  update_order: "تعديل طلب", confirm_order: "تأكيد طلب", cancel_order: "إلغاء طلب",
-  schedule_delivery: "تحديد معاد التوصيل", flag_risk: "ملاحظة مخاطرة", handoff_to_human: "تحويل لموظف" };
-const PANELS = { dashboard: "لوحة التحكم", roi: "احسب العائد لمحلك", activity: "نشاط المودريتور",
-  handoffs: "محتاج موظف" };
+const RISK = { low: ["Low", "ok"], medium: ["Medium", "warn"], high: ["High", "danger"] };
+const CANCEL = { customer_declined: "customer declined", unreachable: "no reply", duplicate: "duplicate",
+  out_of_stock: "out of stock", other: "other" };
+const TOOL_LABEL = { search_products: "Search products", get_product: "Product details",
+  recommend_size: "Size recommendation", quote_delivery: "Delivery quote", create_order: "Create order",
+  update_order: "Update order", confirm_order: "Confirm order", cancel_order: "Cancel order",
+  schedule_delivery: "Schedule delivery", flag_risk: "Flag risk", handoff_to_human: "Hand off to a person" };
+const PANELS = { dashboard: "Dashboard", roi: "ROI calculator", activity: "Agent activity",
+  handoffs: "Needs a person" };
+// What a customer would actually type (Egyptian Arabic / Arabizi), with an English caption.
 const SUGGESTIONS = [
-  ["الهودي التقيل بكام؟", "سعر ومقاسات وألوان من الكتالوج"],
-  ["طولي 178 ووزني 80، آخد مقاس ايه في الهودي؟", "ترشيح مقاس من جدول المقاسات"],
-  ["3ayez jeans slim 32 eswed, delivery le el maadi kam?", "فرانكو: سعر وشحن"],
-  ["التيشيرت اللي جالي مقطوع وعايز فلوسي", "شكوى ← تحويل لموظف"],
+  ["الهودي التقيل بكام؟", "Price, sizes and colours from the catalog"],
+  ["طولي 178 ووزني 80، آخد مقاس ايه في الهودي؟", "Size from the product's size chart"],
+  ["3ayez jeans slim 32 eswed, delivery le el maadi kam?", "Arabizi: price and delivery fee"],
+  ["التيشيرت اللي جالي مقطوع وعايز فلوسي", "Complaint → handed to a person"],
 ];
 
 let info = null, state = null, current = "chat-1", busy = false, es = null, timer = null;
@@ -107,11 +109,11 @@ function optimistic(convId, text) {
 
 // --- naming ---------------------------------------------------------------------
 function convTitle(c) {
-  if (c.id.startsWith("checkout-")) return `طلب من الموقع ${c.id.split("-")[1]}`;
-  if (c.id.startsWith("wa-")) return `واتساب +${c.id.slice(3)}`;
+  if (c.id.startsWith("checkout-")) return `Website order ${c.id.split("-")[1]}`;
+  if (c.id.startsWith("wa-")) return `WhatsApp +${c.id.slice(3)}`;
   const first = c.messages.find((m) => m.role === "customer");
   if (first) return first.text.length > 32 ? first.text.slice(0, 32) + "…" : first.text;
-  return "محادثة جديدة";
+  return "New chat";
 }
 
 // --- render ---------------------------------------------------------------------
@@ -132,12 +134,12 @@ function renderSidebar() {
   $("#convs").innerHTML = convs.slice().reverse().map((c) => `
     <button class="side-item" type="button" data-conv="${esc(c.id)}" aria-current="${c.id === current}">
       ${icon(c.id.startsWith("checkout-") ? "cart" : "message")}<span>${esc(convTitle(c))}</span>
-      ${c.handed_off ? '<span class="dot" aria-label="مع موظف"></span>' : ""}
+      ${c.handed_off ? '<span class="dot" aria-label="With a person"></span>' : ""}
     </button>`).join("");
   const handed = state.conversations.filter((c) => c.handed_off).length;
-  $("#open-handoffs").innerHTML = `${icon("user")}<span>محتاج موظف</span>${handed ? `<span class="badge">${handed}</span>` : ""}`;
+  $("#open-handoffs").innerHTML = `${icon("user")}<span>Needs a person</span>${handed ? `<span class="badge">${handed}</span>` : ""}`;
   const conv = state.conversations.find((c) => c.id === current);
-  $("#conv-title").textContent = conv && conv.messages.length ? convTitle(conv) : "وصلة · مودريتور وصلة وير";
+  $("#conv-title").textContent = conv && conv.messages.length ? convTitle(conv) : "Wasla · AI moderator for Wasla Wear";
 }
 
 function renderChat() {
@@ -145,31 +147,31 @@ function renderChat() {
   const msgs = conv ? conv.messages : [];
   if (!msgs.length && !busy) {
     $("#chat").innerHTML = `<div class="empty">
-      <h2>إزاي أقدر أساعدك؟</h2>
-      <p>اكتب كعميل لمحل ملابس على الواتساب أو الفيسبوك، أو جرّب واحد من دول:</p>
+      <h2>How can I help?</h2>
+      <p>Write as a customer of a clothing shop on WhatsApp or Facebook, in Egyptian Arabic, Arabizi or English, or try one of these:</p>
       <div class="suggestions">${SUGGESTIONS.map(([t, s]) =>
-        `<button class="suggestion" type="button" data-say="${esc(t)}">${esc(t)}<small>${esc(s)}</small></button>`).join("")}</div>
-      ${VIEW ? "" : `<button class="start-demo" type="button" data-demo>${icon("play")}شغّل الديمو كامل (7 سيناريوهات)</button>`}
+        `<button class="suggestion" type="button" data-say="${esc(t)}"><span dir="auto">${esc(t)}</span><small>${esc(s)}</small></button>`).join("")}</div>
+      ${VIEW ? "" : `<button class="start-demo" type="button" data-demo>${icon("play")}Play the full demo (7 scenarios)</button>`}
     </div>`;
     return;
   }
   $("#chat").innerHTML = msgs.map((m) => m.role === "customer"
-    ? `<div class="turn customer"><div class="bubble">${esc(m.text)}</div></div>`
-    : `<div class="turn agent"><span class="avatar" aria-hidden="true">و</span><div class="text">${esc(m.text)}</div></div>`).join("")
-    + (busy ? `<div class="turn agent"><span class="avatar" aria-hidden="true">و</span><div class="typing" aria-label="بيكتب"><span></span><span></span><span></span></div></div>` : "")
-    + (conv && conv.handed_off ? `<div class="sys"><span>${icon("user")}اتحوّلت لموظف من الفريق</span></div>` : "");
+    ? `<div class="turn customer"><div class="bubble" dir="auto">${esc(m.text)}</div></div>`
+    : `<div class="turn agent"><span class="avatar" aria-hidden="true">W</span><div class="text" dir="auto">${esc(m.text)}</div></div>`).join("")
+    + (busy ? `<div class="turn agent"><span class="avatar" aria-hidden="true">W</span><div class="typing" aria-label="Typing"><span></span><span></span><span></span></div></div>` : "")
+    + (conv && conv.handed_off ? `<div class="sys"><span>${icon("user")}Handed to a person on the team</span></div>` : "");
   $("#chat").scrollTop = 1e9;
 }
 
 function renderDashboard() {
   const k = state.impact;
   $("#impact").innerHTML = [
-    kpiCard("message", "رسايل اتردّ عليها", fmt(k.messages_handled), ""),
-    kpiCard("timer", "متوسط وقت الرد", k.median_reply_s == null ? "—" : k.median_reply_s, "ثانية"),
-    kpiCard("check", "طلبات اتأكدت", fmt(k.orders_confirmed), ""),
-    kpiCard("shield", "مرتجعات اتمنعت", fmt(k.refusals_prevented), ""),
-    kpiCard("cash", "توفير في الشحن", fmt(k.egp_saved), "ج.م", true),
-    kpiCard("trend", "مبيعات إضافية", fmt(k.upsell_revenue), "ج.م", true),
+    kpiCard("message", "Messages answered", fmt(k.messages_handled), ""),
+    kpiCard("timer", "Median reply time", k.median_reply_s == null ? "—" : k.median_reply_s, "s"),
+    kpiCard("check", "Orders confirmed", fmt(k.orders_confirmed), ""),
+    kpiCard("shield", "Refusals prevented", fmt(k.refusals_prevented), ""),
+    kpiCard("cash", "Delivery cost saved", fmt(k.egp_saved), "EGP", true),
+    kpiCard("trend", "Extra sales", fmt(k.upsell_revenue), "EGP", true),
   ].join("");
   const orders = state.orders.slice().reverse();
   $("#orders-count").textContent = orders.length;
@@ -180,20 +182,20 @@ function renderDashboard() {
     const why = o.risk.reasons.join(" · ");
     return `<tr>
       <td class="mono">${o.id}</td>
-      <td>${esc(o.customer_name)}${first}</td>
-      <td>${esc(o.area)}</td>
+      <td dir="auto">${esc(o.customer_name)}${first}</td>
+      <td dir="auto">${esc(o.area)}</td>
       <td class="num">${fmt(o.total)}</td>
       <td>${chip(status)}${reason}</td>
       <td>${chip(RISK[o.risk.level], why)}<span class="sr-only">${esc(why)}</span></td>
-      <td>${o.status === "confirmed" ? `<button class="btn-sm" type="button" data-ship="${o.id}">${icon("truck")}شحن</button>` : ""}</td>
+      <td>${o.status === "confirmed" ? `<button class="btn-sm" type="button" data-ship="${o.id}">${icon("truck")}Ship</button>` : ""}</td>
     </tr>`;
-  }).join("") : `<tr class="empty-row"><td colspan="7">لسه مفيش طلبات. جرّب «طلب جديد من الموقع» أو «شغّل الديمو».</td></tr>`;
+  }).join("") : `<tr class="empty-row"><td colspan="7">No orders yet. Try “New website order” or “Play demo”.</td></tr>`;
 
   const handed = state.conversations.filter((c) => c.handed_off);
   $("#handoffs").innerHTML = handed.length
     ? handed.map((c) => `<li><button class="item" type="button" data-conv="${esc(c.id)}">
         <span>${icon("user")} ${esc(convTitle(c))}</span>${icon("chevron")}</button></li>`).join("")
-    : `<li class="muted">مفيش محادثات مستنية موظف.</li>`;
+    : `<li class="muted">No conversations are waiting for a person.</li>`;
 }
 
 function renderControls() {
@@ -201,8 +203,8 @@ function renderControls() {
   const readOnly = replay || VIEW === "whatsapp";
   $("#text").disabled = busy || readOnly;
   $("#btn-send").disabled = busy || readOnly;
-  if (replay) $("#text").placeholder = "وضع العرض المسجّل: دوس «شغّل الديمو»";
-  if (VIEW === "whatsapp") $("#text").placeholder = "واتساب: اكتب من الموبايل والمحادثة هتظهر هنا";
+  if (replay) $("#text").placeholder = "Recorded demo mode — press “Play demo”";
+  if (VIEW === "whatsapp") $("#text").placeholder = "WhatsApp view — write from the phone; the chat appears here";
   for (const id of ["#btn-demo", "#btn-checkout", "#btn-advance", "#btn-reset", "#btn-new"]) {
     $(id).disabled = busy || VIEW === "whatsapp";
   }
@@ -223,19 +225,19 @@ function logEvent(e) {
   let kind = "", text = "", tool = "";
   if (e.kind === "tool_call") {
     kind = e.data.ok ? "ok" : "bad";
-    text = (TOOL_AR[e.data.name] || e.data.name) + (e.data.ok ? "" : ` — ${e.data.error || "خطأ"}`);
+    text = (TOOL_LABEL[e.data.name] || e.data.name) + (e.data.ok ? "" : ` — ${e.data.error || "error"}`);
     tool = e.data.name;
   } else if (e.kind === "order_status") {
     kind = "order";
-    const from = STATUS[e.data.old] ? STATUS[e.data.old][0] : "جديد";
-    text = `طلب ${e.data.order_id}: ${from} ← ${STATUS[e.data.new][0]}`;
+    const from = STATUS[e.data.old] ? STATUS[e.data.old][0] : "New";
+    text = `Order ${e.data.order_id}: ${from} → ${STATUS[e.data.new][0]}`;
   } else if (e.kind === "handoff") {
     kind = "human";
-    text = `تحويل لموظف (${e.data.reason})`;
+    text = `Handed to a person (${e.data.reason})`;
   } else if (e.kind === "llm_error") {
     kind = "bad";
-    text = "الموديل مش متاح دلوقتي";
-    notice("حصة الموديل المجانية خلصت دلوقتي — دوس «شغّل الديمو» تشوف العرض المسجّل، أو جرّب بعد شوية.", true);
+    text = "Model unavailable right now";
+    notice("The free model quota is used up for now. Press “Play demo” to watch the recorded run, or try again later.", true);
   } else {
     return;
   }
@@ -334,15 +336,15 @@ async function updateRoi() {
   }
   let r;
   try { r = await api(`/api/roi?${q}`); } catch (err) { return; }  // invalid input: keep last result
-  const days = r.payback_days == null ? "—" : r.payback_days < 1 ? "أقل من يوم" : `${r.payback_days} يوم`;
+  const days = r.payback_days == null ? "—" : r.payback_days < 1 ? "< 1 day" : `${r.payback_days} days`;
   $("#roi-out").innerHTML = [
-    kpiCard("cash", "توفير صافي / شهر", fmt(r.net_cost_saved), "ج.م", true),
-    kpiCard("timer", "يغطي تكلفته في", days, "", true),
-    kpiCard("clock", "ساعات موفرة / أسبوع", r.hours_saved_week, ""),
-    kpiCard("shield", "مرتجعات اتمنعت / شهر", fmt(r.refusals_prevented), ""),
-    kpiCard("trend", "مبيعات إضافية / شهر (تقديرية)", fmt(r.revenue_total), "ج.م"),
-  ].join("") + `<p class="roi-note">تكلفة التشغيل (موديل + استضافة) حوالي ${fmt(r.running_cost_egp)} ج.م/شهر.
-       الحسبة: نفس نموذج التقرير بالأرقام دي، والباقي افتراضات مذكور مصدرها.</p>`;
+    kpiCard("cash", "Net saved / month", fmt(r.net_cost_saved), "EGP", true),
+    kpiCard("timer", "Pays for itself in", days, "", true),
+    kpiCard("clock", "Hours saved / week", r.hours_saved_week, ""),
+    kpiCard("shield", "Refusals prevented / month", fmt(r.refusals_prevented), ""),
+    kpiCard("trend", "Extra sales / month (estimate)", fmt(r.revenue_total), "EGP"),
+  ].join("") + `<p class="roi-note">Running cost (model + hosting) is about ${fmt(r.running_cost_egp)} EGP/month.
+       Same model as the bench report, with your numbers; the other assumptions are cited there.</p>`;
 }
 
 async function initRoi() {
@@ -359,15 +361,15 @@ async function initRoi() {
 }
 
 // --- wiring -----------------------------------------------------------------------
-$("#btn-new").innerHTML = `${icon("pen")}<span>محادثة جديدة</span>`;
-$("#btn-demo").innerHTML = `${icon("play")}<span>شغّل الديمو</span>`;
-$("#btn-checkout").innerHTML = `${icon("cart")}<span>طلب جديد من الموقع</span>`;
-$("#btn-advance").innerHTML = `${icon("clock")}<span>عدّي ساعتين</span>`;
-$("#btn-reset").innerHTML = `${icon("reset")}<span>ابدأ من جديد</span>`;
-$("#open-dashboard").innerHTML = `${icon("chart")}<span>لوحة التحكم</span>`;
-$("#open-roi").innerHTML = `${icon("calc")}<span>احسب العائد لمحلك</span>`;
-$("#open-activity").innerHTML = `${icon("activity")}<span>نشاط المودريتور</span>`;
-$("#btn-send").innerHTML = icon("send", "flip");
+$("#btn-new").innerHTML = `${icon("pen")}<span>New chat</span>`;
+$("#btn-demo").innerHTML = `${icon("play")}<span>Play demo</span>`;
+$("#btn-checkout").innerHTML = `${icon("cart")}<span>New website order</span>`;
+$("#btn-advance").innerHTML = `${icon("clock")}<span>Skip ahead 2 hours</span>`;
+$("#btn-reset").innerHTML = `${icon("reset")}<span>Start over</span>`;
+$("#open-dashboard").innerHTML = `${icon("chart")}<span>Dashboard</span>`;
+$("#open-roi").innerHTML = `${icon("calc")}<span>ROI calculator</span>`;
+$("#open-activity").innerHTML = `${icon("activity")}<span>Agent activity</span>`;
+$("#btn-send").innerHTML = icon("send");
 $("#btn-open-side").innerHTML = icon("menu");
 $("#btn-close-side").innerHTML = icon("x");
 $("#btn-close-drawer").innerHTML = icon("x");
@@ -410,11 +412,11 @@ document.addEventListener("click", (ev) => {
   info = await api("/api/info");
   const replay = info.mode === "replay";
   const mode = $("#mode");
-  mode.textContent = VIEW === "whatsapp" ? "واتساب مباشر" : replay ? "عرض مسجّل" : "مباشر";
+  mode.textContent = VIEW === "whatsapp" ? "WhatsApp · live" : replay ? "Recorded demo" : "Live";
   mode.classList.add(replay ? "replay" : "live");
   if (info.notice) {
-    notice("مفيش مفتاح للموديل، فبنعرض الديمو المسجّل — دوس «شغّل الديمو». "
-      + "(Add a free GEMINI_API_KEY to chat live — see README.)", true);
+    notice("No model API key found, so this is the recorded demo: press “Play demo”. "
+      + "Add a free GEMINI_API_KEY to chat live (see the README).", true);
     $("#notice").title = info.notice;
   }
   await refresh();

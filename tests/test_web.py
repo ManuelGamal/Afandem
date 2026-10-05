@@ -7,7 +7,7 @@ from tests.fakes import ScriptedProvider
 def test_page_and_assets_are_served():
     c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
     html = c.get("/").text
-    assert 'dir="rtl"' in html and "/static/app.js" in html and "/static/style.css" in html
+    assert 'lang="en" dir="ltr"' in html and "/static/app.js" in html and "/static/style.css" in html
     for asset in ("/static/app.js", "/static/style.css"):
         assert c.get(asset).status_code == 200
     js = c.get("/static/app.js").text
@@ -16,11 +16,12 @@ def test_page_and_assets_are_served():
         assert endpoint in js
 
 
-def test_no_key_notice_is_arabic_with_english_detail():
+def test_no_key_notice_and_messages_handle_both_directions():
     c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
     assert 'id="notice" class="notice" dir="auto"' in c.get("/").text
     js = c.get("/static/app.js").text
-    assert "مفيش مفتاح للموديل" in js
+    assert "No model API key" in js
+    assert 'class="bubble" dir="auto"' in js and 'class="text" dir="auto"' in js
 
 
 def test_roi_calculator_panel_is_on_the_page():
@@ -35,4 +36,4 @@ def test_roi_calculator_panel_is_on_the_page():
 def test_page_supports_the_whatsapp_view():
     c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
     js = c.get("/static/app.js").text
-    assert 'get("view")' in js and "واتساب" in js
+    assert 'get("view")' in js and "WhatsApp" in js
