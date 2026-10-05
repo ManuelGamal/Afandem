@@ -63,3 +63,18 @@ def test_explicit_yes_accepts_natural_arabic_and_arabizi_confirmations():
         assert is_explicit_yes(msg), msg
     for msg in ["مش مظبوط", "اكد بس غير المقاس", "la2 mesh 3ayez", "a2ked bas ghayar el size"]:
         assert not is_explicit_yes(msg), msg
+
+
+def test_explicit_yes_handles_polite_real_confirmations_from_the_bench():
+    for msg in ["تمام، كده العنوان مظبوط جداً. يا ريت تأكدي الطلب، وشكراً ليكي!",
+                "أيوة يا فندم، أكد الطلب وشكراً جداً على المتابعة!",
+                "Ayooh, aked el talab, el tafaseel kolha mazbota! Shukran gedan :)",
+                "aywah a2kedo law sama7t"]:
+        assert is_explicit_yes(msg), msg
+
+
+def test_explicit_yes_rejects_questions_and_conditions():
+    for msg in ["ممكن اتأكد من المقاس الأول؟", "تمام يا فندم، بس أنا مسافر ممكن يوصل الحد؟",
+                "Ayooh, ya ret t2aked el talab! Bas momken el mandoub ykalemny?",
+                "أكد الطلب؟"]:
+        assert not is_explicit_yes(msg), msg

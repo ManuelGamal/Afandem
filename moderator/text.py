@@ -90,16 +90,24 @@ _BLOCK = {
 _YES_EMOJI = {"👍", "👌", "✅"}
 
 
+# Prefixes (fold_text form) of confirm-words, so اكدوه / تأكدي / ayooh / mazbota count too.
+_YES_STEMS = ("اكد", "تاكد", "ايو", "مظبوط", "مضبوط",
+              "a2ked", "a2kd", "aked", "akked", "akkid", "2aked", "mazbo", "mazbu",
+              "aywa", "ayoo", "aiwa", "confirm")
+
+
 def is_explicit_yes(message: str) -> bool:
-    """A short, unconditional yes. Anything with a change or a negation is not a yes."""
+    """A short, unconditional yes. A change, a negation or a question is not a yes."""
     if message.strip() in _YES_EMOJI:
         return True
+    if "?" in message or "؟" in message:
+        return False
     words = fold_text(message).split()
-    if not words or len(words) > 8:
+    if not words or len(words) > 12:
         return False
     if any(w in _BLOCK for w in words):
         return False
-    return any(w in _YES for w in words)
+    return any(w in _YES or w.startswith(_YES_STEMS) for w in words)
 
 
 _MONEY = re.compile(
