@@ -2,6 +2,7 @@ const $ = (s) => document.querySelector(s);
 
 // Lucide icon paths (ISC licence), inlined so the page has no icon dependency.
 const ICONS = {
+  db: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
   play: '<polygon points="6 3 20 12 6 21 6 3"/>',
   cart: '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
   clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
@@ -54,6 +55,7 @@ const SUGGESTIONS = [
 let info = null, state = null, current = "chat-1", busy = false, es = null, timer = null;
 let chatCount = 1, openPanelName = null;
 const seen = new Set();  // event seq numbers already in the activity log
+let liveNotes = [];  // database reads/writes of the reply being written, shown as they happen
 // ?view=whatsapp&key=… shows the WhatsApp line's conversations to the shop owner
 // (read-only here; chat from the phone). The key keeps real customers' details private.
 const PARAMS = new URLSearchParams(location.search);
@@ -97,6 +99,10 @@ function connect() {
   es.onmessage = (m) => {
     const e = JSON.parse(m.data);
     if (VIEW && e.conversation_id) current = e.conversation_id;  // follow the live phone chat
+    if (busy && e.conversation_id === current && e.kind === "tool_call" && e.data.db && !seen.has(e.seq)) {
+      liveNotes.push(e.data.db);
+      renderChat();
+    }
     logEvent(e);
     scheduleRefresh();
   };
@@ -147,6 +153,15 @@ function renderSidebar() {
   $("#conv-title").textContent = conv && conv.messages.length ? convTitle(conv) : "Afandem · AI sales assistant for Hodoom";
 }
 
+// What a reply read from or wrote to the shop's database, shown above the reply.
+function dbNotes(notes) {
+  if (!notes || !notes.length) return "";
+  return `<div class="db-notes" role="note" aria-label="Shop database">${notes.map((n) => `
+    <div class="db-note ${n.kind === "write" ? "write" : "read"}">${icon("db")}
+      <span class="db-label">${n.kind === "write" ? "Database updated" : "Read from database"}</span>
+      <span class="db-text" dir="auto">${esc(n.text)}</span></div>`).join("")}</div>`;
+}
+
 function renderChat() {
   const conv = state.conversations.find((c) => c.id === current);
   const msgs = conv ? conv.messages : [];
@@ -162,8 +177,8 @@ function renderChat() {
   }
   $("#chat").innerHTML = msgs.map((m) => m.role === "customer"
     ? `<div class="turn customer"><div class="bubble" dir="auto">${esc(m.text)}</div></div>`
-    : `<div class="turn agent"><span class="avatar" aria-hidden="true">A</span><div class="text" dir="auto">${esc(m.text)}</div></div>`).join("")
-    + (busy ? `<div class="turn agent"><span class="avatar" aria-hidden="true">A</span><div class="typing" aria-label="Typing"><span></span><span></span><span></span></div></div>` : "")
+    : dbNotes(m.notes) + `<div class="turn agent"><span class="avatar" aria-hidden="true">A</span><div class="text" dir="auto">${esc(m.text)}</div></div>`).join("")
+    + (busy ? dbNotes(liveNotes) + `<div class="turn agent"><span class="avatar" aria-hidden="true">A</span><div class="typing" aria-label="Typing"><span></span><span></span><span></span></div></div>` : "")
     + (conv && conv.handed_off ? `<div class="sys"><span>${icon("user")}Handed to a person on the team</span></div>` : "");
   $("#chat").scrollTop = 1e9;
 }
@@ -287,9 +302,10 @@ function closeSidebar() {
 async function run(fn) {
   if (busy) return;
   busy = true;
+  liveNotes = [];
   render();
   try { await fn(); } catch (err) { notice(err.message); }
-  finally { busy = false; await refresh(); }
+  finally { busy = false; liveNotes = []; await refresh(); }
 }
 
 async function say(text) {
@@ -325,7 +341,9 @@ async function playDemo() {
         optimistic(conv, step.say);
         render();
         await sleep(600);
+        liveNotes = [];
         await api("/api/chat", { conversation_id: conv, text: step.say });
+        liveNotes = [];
       }
       await refresh();
       await sleep(1200);

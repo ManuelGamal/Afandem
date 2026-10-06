@@ -106,6 +106,14 @@ svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none;
 .turn.agent .avatar { width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 14px; font-weight: 700; margin-top: 2px; }
 .turn.agent .text { flex: 1; min-width: 0; }
 .bubble, .turn .text { overflow-wrap: anywhere; white-space: pre-wrap; }
+.db-notes { display: flex; flex-direction: column; gap: 4px; margin: 10px 0 -6px 40px; }
+.db-note { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; font-size: 12.5px; line-height: 1.45; color: var(--muted); animation: db-in .25s ease-out; }
+.db-note .i { width: 13px; height: 13px; flex: none; align-self: center; }
+.db-note .db-label { font-weight: 600; white-space: nowrap; }
+.db-note .db-text { min-width: 0; overflow-wrap: anywhere; }
+.db-note.write { color: var(--accent); }
+@keyframes db-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .db-note { animation: none; } }
 .typing { display: inline-flex; gap: 5px; padding-top: 10px; }
 .typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite var(--ease); }
 .typing span:nth-child(2) { animation-delay: .15s; }

@@ -157,3 +157,19 @@ def test_confirm_reports_sold_out_sizes_to_the_agent():
     c.last_agent_message, c.customer_message = created["summary_ar"], "تمام"
     out = run_tool("confirm_order", {"order_id": created["order_id"]}, c)
     assert out["error"] == "out_of_stock" and "M" not in out["available"]
+
+
+def test_database_reads_and_writes_are_described_on_the_tool_event():
+    c = ctx()
+    run_tool("get_product", {"product_id": "T06"}, c)
+    run_tool("quote_delivery", {"area": "مدينة نصر"}, c)
+    notes = [e.data["db"] for e in c.bus.events if e.kind == "tool_call"]
+    assert notes[0]["kind"] == "read" and "T06" not in notes[0]["text"]  # names, never internal ids
+    name = c.catalog.get("T06").name_ar
+    assert name in notes[0]["text"] and f"{c.catalog.get('T06').price} EGP" in notes[0]["text"]
+    assert "L 12" in notes[0]["text"]  # live stock per size
+    zone = c.catalog.find_zone("مدينة نصر")
+    assert notes[1] == {"kind": "read", "text": f"delivery to {zone.name_ar}: {zone.fee} EGP, "
+                                                f"{zone.days_min}–{zone.days_max} days"}
+    run_tool("search_products", {"query": "zzzz"}, c)
+    assert c.bus.events[-1].data["db"]["text"] == "search “zzzz”: nothing found"

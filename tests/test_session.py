@@ -48,3 +48,32 @@ def test_state_shape():
     assert set(st) == {"now", "orders", "conversations", "impact", "events"}
     assert st["conversations"][0]["messages"] == [
         {"role": "customer", "text": "السلام عليكم"}, {"role": "agent", "text": "أهلاً"}]
+
+
+def test_chat_shows_what_each_reply_read_from_and_wrote_to_the_database():
+    from tests.fakes import tool_raw
+    order = {"customer_name": "منى", "phone": "01012345678", "address": "12 شارع مكرم عبيد الدور 3",
+             "area": "مدينة نصر", "items": [{"product_id": "T06", "size": "L", "color": "كحلي", "qty": 1}]}
+    s = Session(ScriptedProvider([
+        tool_raw(("get_product", {"product_id": "T06"})), text_raw("متوفر يا فندم"),
+        tool_raw(("create_order", order)), text_raw("ده ملخص طلبك. أأكد الطلب؟"),
+    ]))
+    s.chat("c1", "عندكم قميص؟")
+    s.chat("c1", "منى 01012345678 ...")
+    msgs = s.state(120)["conversations"][0]["messages"]
+    agent = [m for m in msgs if m["role"] == "agent"]
+    assert [n["kind"] for n in agent[0]["notes"]] == ["read"]
+    assert agent[1]["notes"][0]["kind"] == "write" and "order #1 saved" in agent[1]["notes"][0]["text"]
+    assert all("notes" not in m for m in msgs if m["role"] == "customer")
+
+
+def test_a_confirmed_order_shows_the_stock_change_in_the_chat():
+    from tests.fakes import tool_raw
+    s = Session(ScriptedProvider([tool_raw(("confirm_order", {"order_id": 1})), text_raw("تم تأكيد طلبك")]))
+    conv_id, order_id, _ = s.checkout(4)  # preset 4: T06 XL كحلي
+    before = s.catalog.get("T06").stock["XL"]
+    s.chat(conv_id, "تمام")
+    agent = [m for m in s.state(120)["conversations"][0]["messages"] if m["role"] == "agent"]
+    texts = [n["text"] for n in agent[-1]["notes"]]
+    assert any(f"XL: {before} → {before - 1}" in t for t in texts), texts
+    assert any("order #1: awaiting confirmation → confirmed" in t for t in texts), texts

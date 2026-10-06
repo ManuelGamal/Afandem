@@ -49,6 +49,9 @@ def preset_items(catalog: Catalog, items: list[dict], n: int) -> list[dict]:
     return out
 
 
+_STATUS_WORDS = {"pending_confirmation": "awaiting confirmation", "needs_human": "held for a person"}
+
+
 class Session:
     def __init__(self, provider, clock: Clock | None = None):
         self.catalog = Catalog.load(seed_path())
@@ -103,13 +106,48 @@ class Session:
                          new="shipped", reason=None, total=order.total, source=order.source)
         return order
 
+    def _with_notes(self, conv: Conversation) -> list[dict]:
+        """The visible chat, each agent message carrying the database reads and writes behind it."""
+        messages = conv.visible()
+        agent = [m for m in messages if m["role"] == "agent"]
+        pending: list[dict] = []
+        i = 0
+        for e in self.bus.events:
+            if e.conversation_id != conv.id:
+                continue
+            note = self._note(e)
+            if note:
+                pending.append(note)
+            elif e.kind == "message_out":
+                while i < len(agent) and agent[i]["text"] != e.data.get("text"):
+                    i += 1
+                if i < len(agent):
+                    if pending:
+                        agent[i]["notes"] = pending
+                    pending, i = [], i + 1
+        return messages
+
+    def _note(self, e) -> dict | None:
+        if e.kind == "tool_call":
+            return e.data.get("db")
+        if e.kind == "stock":
+            p = self.catalog.get(e.data["product_id"])
+            after, delta = e.data["stock_after"], e.data["delta"]
+            why = e.data["reason"].replace("_", " ")
+            return {"kind": "write", "text": f"stock {p.name_ar if p else e.data['product_id']} "
+                                             f"{e.data['size']}: {after - delta} → {after} ({why})"}
+        if e.kind == "order_status" and e.data.get("old") and e.data["old"] != e.data["new"]:
+            old, new = (_STATUS_WORDS.get(x, x) for x in (e.data["old"], e.data["new"]))
+            return {"kind": "write", "text": f"order #{e.data['order_id']}: {old} → {new}"}
+        return None
+
     def state(self, failed_delivery_cost: float) -> dict:
         orders = self.book.all()
         return {
             "now": self.clock.now().isoformat(timespec="minutes"),
             "orders": [o.to_dict() | {"risk": score_order(self.book, o).to_dict()} for o in orders],
             "conversations": [{"id": c.id, "handed_off": c.handed_off,
-                               "awaiting_reply": c.awaiting_reply, "messages": c.visible()}
+                               "awaiting_reply": c.awaiting_reply, "messages": self._with_notes(c)}
                               for c in self.conversations.values()],
             "impact": impact(self.bus.events, orders, self.catalog, failed_delivery_cost),
             "events": [e.to_dict() for e in self.bus.events[-40:]],
