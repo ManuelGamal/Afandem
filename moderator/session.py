@@ -36,6 +36,7 @@ class Session:
         self.agent = Agent(self.catalog, self.book, self.bus, self.clock, provider)
         self.conversations: dict[str, Conversation] = {}
         self.lock = threading.Lock()
+        self.last_state: dict | None = None  # served while a reply is being written
         self.message_count = 0
         self._checkouts = 0
 

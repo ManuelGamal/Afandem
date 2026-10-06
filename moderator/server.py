@@ -12,6 +12,7 @@ import os
 import queue
 import secrets
 import threading
+import time
 from collections import OrderedDict
 from pathlib import Path
 
@@ -64,6 +65,18 @@ def versioned_index() -> str:
 
 def sse(event) -> str:
     return f"data: {json.dumps(event.to_dict(), ensure_ascii=False)}\n\n"
+
+
+async def next_event(q: queue.Queue, timeout: float = 15, poll: float = 0.1):
+    """The next bus event, or None after `timeout`. Polls, so an open stream holds no thread."""
+    deadline = time.monotonic() + timeout
+    while True:
+        try:
+            return q.get_nowait()
+        except queue.Empty:
+            if time.monotonic() >= deadline:
+                return None
+            await asyncio.sleep(poll)
 
 
 def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=None) -> FastAPI:
@@ -200,8 +213,14 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
     @app.get("/api/state")
     def state(request: Request, response: Response):
         s = view_session(request, response)
-        with s.lock:
-            return s.state(failed_cost) | {"messages_left": max_messages - s.message_count}
+        # While a reply is being written, serve the latest snapshot: the page refreshes on
+        # every event and must not tie up a worker waiting out a slow model call.
+        if s.lock.acquire(blocking=s.last_state is None):
+            try:
+                s.last_state = s.state(failed_cost) | {"messages_left": max_messages - s.message_count}
+            finally:
+                s.lock.release()
+        return s.last_state
 
     @app.post("/api/chat")
     def chat(body: ChatIn, request: Request, response: Response):
@@ -264,9 +283,8 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
             q = s.bus.subscribe()
             try:
                 while not await request.is_disconnected():
-                    try:
-                        event = await asyncio.to_thread(q.get, True, 15)
-                    except queue.Empty:
+                    event = await next_event(q)
+                    if event is None:
                         yield ": keepalive\n\n"
                         continue
                     yield sse(event)

@@ -131,3 +131,42 @@ def test_spent_daily_budget_turns_live_chat_away_but_not_the_demo():
     r = c.post("/api/chat", json={"conversation_id": "c1", "text": "hi"})
     assert r.status_code == 429 and "Play demo" in r.json()["detail"]
     assert c.post("/api/chat", json={"conversation_id": "demo-sale", "text": "hi"}).status_code == 200
+
+
+def test_state_answers_while_a_slow_reply_is_in_progress():
+    """The page refreshes on every event; a refresh must not wait out a slow model call."""
+    entered, release = threading.Event(), threading.Event()
+
+    class Blocking(ScriptedProvider):
+        def complete(self, messages, tools):
+            entered.set()
+            release.wait(10)
+            return {**text_raw("ok"), "_provider": "slow"}
+
+    c = TestClient(create_app(provider_factory=lambda: Blocking([]), mode="live"))
+    c.get("/api/state")
+    with ThreadPoolExecutor(2) as pool:
+        chat = pool.submit(c.post, "/api/chat", json={"conversation_id": "c1", "text": "hi"})
+        assert entered.wait(5)
+        state = pool.submit(c.get, "/api/state")
+        try:
+            assert state.result(timeout=2).status_code == 200
+        finally:
+            release.set()
+        assert chat.result(timeout=10).status_code == 200
+
+
+def test_event_stream_waits_without_holding_a_thread(monkeypatch):
+    import asyncio
+    import queue as queue_mod
+
+    from moderator import server
+
+    def no_threads(*a, **k):
+        raise AssertionError("an open event stream must not hold a worker thread")
+
+    monkeypatch.setattr(server.asyncio, "to_thread", no_threads)
+    q = queue_mod.Queue()
+    assert asyncio.run(server.next_event(q, timeout=0.2)) is None
+    q.put("ev")
+    assert asyncio.run(server.next_event(q, timeout=0.2)) == "ev"
