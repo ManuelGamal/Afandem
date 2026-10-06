@@ -112,7 +112,8 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
     if whatsapp_configured():
         sender = whatsapp_sender or WhatsAppSender(os.environ["WHATSAPP_TOKEN"],
                                                    os.environ["WHATSAPP_PHONE_ID"])
-        bridge = WhatsAppBridge(Session(provider), sender)
+        bridge = WhatsAppBridge(Session(provider), sender,
+                                daily_limit=int(os.environ.get("WHATSAPP_DAILY_LIMIT", "40")))
 
     def whatsapp_view(request: Request) -> Session | None:
         """The real WhatsApp shop, for its owner only: it holds real customers' numbers and

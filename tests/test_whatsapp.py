@@ -117,3 +117,40 @@ def test_whatsapp_view_is_off_without_a_view_key(monkeypatch):
     c, _ = wa_client(monkeypatch, ScriptedProvider([]))
     monkeypatch.delenv("WHATSAPP_VIEW_KEY")
     assert c.get("/api/state", params={"view": "whatsapp", "key": ""}).status_code == 403
+
+
+def test_each_number_has_a_daily_message_limit():
+    """One person spamming the line must not use up the day's model calls for everyone."""
+    from datetime import date
+
+    day = [date(2026, 10, 8)]
+    sender = FakeSender()
+    provider = ScriptedProvider([text_raw(f"رد {i}") for i in range(4)])
+    bridge = WhatsAppBridge(Session(provider), sender, daily_limit=2, today=lambda: day[0])
+    for i in range(5):
+        bridge.handle(payload(f"رسالة {i}", f"wamid.{i}"))
+    texts = [t for _, t in sender.sent]
+    assert texts[:2] == ["رد 0", "رد 1"] and len(texts) == 3  # two answers, then one notice, then silence
+    assert "النهاردة" in texts[2] and len(provider.requests) == 2
+    other = "201099999999"  # another customer is not affected
+    bridge.handle(payload("اهلا", "wamid.x", sender=other))
+    assert sender.sent[-1] == (other, "رد 2")
+    day[0] = date(2026, 10, 9)  # a new day, a new allowance
+    bridge.handle(payload("اهلا تاني", "wamid.y"))
+    assert sender.sent[-1] == (ME, "رد 3")
+
+
+def test_an_overlong_whatsapp_message_is_answered_without_a_model_call():
+    sender = FakeSender()
+    provider = ScriptedProvider([])
+    bridge = WhatsAppBridge(Session(provider), sender)
+    bridge.handle(payload("ا" * 1001))
+    assert len(provider.requests) == 0 and "أقصر" in sender.sent[0][1]
+
+
+def test_remembered_message_ids_are_bounded():
+    bridge = WhatsAppBridge(Session(ScriptedProvider([text_raw("x")] * 3)), FakeSender(), daily_limit=10**6)
+    bridge.max_seen = 2
+    for i in range(3):
+        bridge.handle(payload("/reset", f"wamid.{i}"))
+    assert len(bridge._seen) == 2

@@ -12,6 +12,8 @@ import hmac
 import logging
 import os
 import threading
+from collections import OrderedDict
+from datetime import date
 
 import httpx
 
@@ -21,6 +23,11 @@ from moderator.text import norm_phone
 log = logging.getLogger(__name__)
 GRAPH_URL = "https://graph.facebook.com/v21.0/{phone_id}/messages"
 ENV_KEYS = ("WHATSAPP_TOKEN", "WHATSAPP_PHONE_ID", "WHATSAPP_APP_SECRET", "WHATSAPP_VERIFY_TOKEN")
+DAILY_LIMIT = 40   # messages per number per day; past it, one notice and no model calls
+MAX_CHARS = 1000   # same as the web chat
+LIMIT_TEXT = ("وصلت لحد الرسائل النهاردة يا فندم 🌸 كمل معانا بكرة، "
+              "ولو محتاج حد من الفريق ابعت لنا على صفحة الشوب.")
+TOO_LONG_TEXT = "الرسالة طويلة شوية يا فندم، ممكن تبعتها أقصر؟ 🌸"
 
 
 def whatsapp_configured() -> bool:
@@ -62,20 +69,45 @@ class WhatsAppSender:
 
 
 class WhatsAppBridge:
-    def __init__(self, session: Session, sender):
+    def __init__(self, session: Session, sender, daily_limit: int = DAILY_LIMIT, today=date.today):
         self.session = session
         self.sender = sender
+        self.daily_limit = daily_limit
+        self._today = today
         self.active: dict[str, str] = {}  # phone -> conversation it is currently in
-        self._seen: set[str] = set()
+        self._seen: OrderedDict[str, None] = OrderedDict()  # recent message ids (Meta retries)
+        self.max_seen = 5000
+        self._count: dict[str, tuple[date, int]] = {}  # phone -> (day, messages that day)
         self._lock = threading.Lock()
+
+    def _allowance(self, phone: str) -> str:
+        """'ok', 'notice' (first message past the limit) or 'silent'."""
+        today = self._today()
+        day, n = self._count.get(phone, (today, 0))
+        n = n + 1 if day == today else 1
+        self._count[phone] = (today, n)
+        if n <= self.daily_limit:
+            return "ok"
+        return "notice" if n == self.daily_limit + 1 else "silent"
 
     def handle(self, payload: dict) -> None:
         for m in parse_messages(payload):
             with self._lock:
                 if m["id"] in self._seen:
                     continue
-                self._seen.add(m["id"])
-            for reply in self._replies(m):
+                self._seen[m["id"]] = None
+                while len(self._seen) > self.max_seen:
+                    self._seen.popitem(last=False)
+                allowance = self._allowance(m["from"])
+            if allowance == "silent":
+                continue
+            if allowance == "notice":
+                replies = [LIMIT_TEXT]
+            elif len(m["text"]) > MAX_CHARS:
+                replies = [TOO_LONG_TEXT]
+            else:
+                replies = self._replies(m)
+            for reply in replies:
                 try:
                     self.sender.send_text(m["from"], reply)
                 except Exception:  # a failed send must not stop the webhook

@@ -252,6 +252,11 @@ is not set. To connect a number, set `WHATSAPP_TOKEN`, `WHATSAPP_PHONE_ID`, `WHA
 `WHATSAPP_VERIFY_TOKEN` and `WHATSAPP_VIEW_KEY`, and point the app's webhook to
 `https://<your-host>/webhook/whatsapp`.
 
+Abuse limits: each number gets 40 messages a day (`WHATSAPP_DAILY_LIMIT`); past that it gets one polite
+notice and then no model calls until the next day, so one person can't use up the line for everyone.
+Messages over 1,000 characters get a short "please send it shorter" reply without a model call. The web
+demo has the same per-visitor cap (60 messages, kept across "Start over") and a daily cap on live calls.
+
 ## How it's built
 
 ```
