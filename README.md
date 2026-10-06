@@ -31,7 +31,9 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
    - **New website order** — an order arrives; the confirmation goes out as a WhatsApp-style template.
    - `التيشيرت اللي جالي مقطوع وعايز فلوسي` (the t-shirt I got is torn, I want my money) — handed to a person.
    - **Skip ahead 2 hours** on an unanswered order — one reminder, then it is cancelled before it ships.
-4. Open **Dashboard**, **ROI calculator**, **Agent activity** and **Needs a person** from the sidebar.
+4. Open **Dashboard**, **Inventory**, **ROI calculator**, **Agent activity** and **Needs a person**
+   from the sidebar. Try this: in **Inventory**, set the heavy hoodie's size L to 0, then ask the agent
+   for it in L — it answers from the database and offers the sizes still in stock.
 
 ## Run it locally (under 5 minutes)
 
@@ -78,6 +80,25 @@ wage 7,000 EGP — [Employsome][wage]) to:
 Plain COD-confirmation apps already exist (e.g. [WASP][wasp], [Cartsaver][cartsaver]) — they send a
 button or an OTP. Afandem is a conversational agent across the whole funnel: DM → order → confirmation →
 courier, with the shop owner in the loop.
+
+## The shop's database
+
+Hodoom runs on a real **SQLite** database — `products`, `inventory` (stock per product and size),
+`size_charts`, `delivery_zones`, `orders` and `stock_movements`. Nothing the agent says about the shop
+comes from memory or from the prompt:
+
+- **Every answer is a query.** Prices, colours, which sizes are in stock and how many, size charts and
+  delivery fees are read from the database at the moment the customer asks.
+- **Orders move stock.** Confirming an order reserves its items in the same transaction as the status
+  change; cancelling a confirmed order puts them back. If the last unit sold in the meantime, the
+  confirmation fails cleanly and the agent offers the sizes still available.
+- **The owner stays in control.** The **Inventory** panel shows live stock per size with low-stock
+  warnings; editing a number (a restock, a sold-out size) takes effect on the agent's very next answer.
+- **Every change is logged** in `stock_movements` (order confirmed, order cancelled, owner update) and
+  shown in **Agent activity**.
+
+Each visitor of the demo gets their own copy of the shop, so nobody drains anyone else's stock, and
+**Start over** restores it. Swapping SQLite for Postgres is a connection change; the queries are plain SQL.
 
 ## What the agent does
 
@@ -163,7 +184,8 @@ conversations show live at `/?view=whatsapp`. To connect a number, set `WHATSAPP
 
 ```
 moderator/
-  store/       catalog (30 products, size charts, 6 delivery zones) + SQLite order book
+  store/       the shop's SQLite database: 30 products, stock per size, size charts, 6 delivery zones,
+               orders and stock movements
   agent/       tools, risk score, Egyptian-Arabic system prompt, tool-calling loop with guards
   providers/   OpenAI-compatible client, fallback chain across free Gemini models, response cache
   server.py    FastAPI: a sandbox per browser, live dashboard over server-sent events, ROI endpoint
