@@ -168,3 +168,100 @@ def test_english_retry_matches_whole_words_and_puts_in_stock_first(tmp_path):
     path.write_text(json.dumps(seed, ensure_ascii=False), encoding="utf-8")
     found = Catalog.load(path).search("شوزات رجالي")
     assert [p.name_en for p in found][:2] == ["Men's Cruiser (Shoes)", "Men's Runner (Shoes)"]
+
+
+# --- spreadsheets (CSV, Excel, Google Sheets) -----------------------------------------
+SHEET_CSV = """الاسم,السعر,اللون,المقاس,الكمية,القسم
+هودي قطن,850,أسود,M,4,هوديز
+هودي قطن,850,أسود,L,0,هوديز
+هودي قطن,850,رمادي,L,3,هوديز
+بنطلون جينز,700,أزرق,32,6,بنطلونات
+شنطة كانفاس,300,بيج,,9,شنط
+"""
+
+
+def test_a_shop_sheet_imports_with_its_real_stock_counts(tmp_path):
+    from moderator.store.importer import seed_from_sheet
+    path = tmp_path / "stock.csv"
+    path.write_text(SHEET_CSV, encoding="utf-8")
+    seed = seed_from_sheet(path)
+    hoodie, jeans, bag = seed["products"]
+    assert hoodie["name_ar"] == "هودي قطن" and hoodie["price"] == 850
+    assert hoodie["colors"] == ["أسود", "رمادي"] and hoodie["stock"] == {"M": 4, "L": 3}  # summed over colours
+    assert hoodie["chart"] == "letters" and jeans["chart"] == "waist" and jeans["category"] == "bottoms"
+    assert bag["stock"] == {"ONE": 9} and bag["category"] == "accessories"
+    assert "sheet" in seed["shop"]["stock_note"] and "estimate" not in seed["shop"]["stock_note"]
+
+
+def test_an_excel_sheet_with_english_headers_imports_too(tmp_path):
+    import openpyxl
+
+    from moderator.store.importer import seed_from_sheet
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(["Product", "Price", "Colour", "Size", "Stock"])
+    ws.append(["Linen Shirt", 640, "White", "S", 2])
+    ws.append(["Linen Shirt", 640, "White", "M", 5])
+    path = tmp_path / "stock.xlsx"
+    wb.save(path)
+    (shirt,) = seed_from_sheet(path)["products"]
+    assert shirt["stock"] == {"S": 2, "M": 5} and shirt["colors"] == ["White"] and shirt["price"] == 640
+
+
+def test_a_sheet_without_the_needed_columns_is_explained(tmp_path):
+    import pytest
+
+    from moderator.store.importer import seed_from_sheet
+    path = tmp_path / "x.csv"
+    path.write_text("a,b\n1,2\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="name.*price"):
+        seed_from_sheet(path)
+
+
+def test_google_sheet_links_become_csv_exports():
+    from moderator.store.importer import sheet_csv_url
+    assert sheet_csv_url("https://docs.google.com/spreadsheets/d/ABC123/edit#gid=77") == \
+        "https://docs.google.com/spreadsheets/d/ABC123/export?format=csv&gid=77"
+    assert sheet_csv_url("https://docs.google.com/spreadsheets/d/ABC123/edit") == \
+        "https://docs.google.com/spreadsheets/d/ABC123/export?format=csv&gid=0"
+
+
+# --- WooCommerce -----------------------------------------------------------------------
+WOO = [
+    {"name": "Cargo Pants", "prices": {"price": "79000", "currency_minor_unit": 2},
+     "is_in_stock": True, "categories": [{"name": "Pants"}],
+     "attributes": [{"name": "Size", "terms": [{"name": "30"}, {"name": "32"}]},
+                    {"name": "Color", "terms": [{"name": "Khaki"}, {"name": "Black"}]}]},
+    {"name": "Basic Tee", "prices": {"price": "350", "currency_minor_unit": 0},
+     "is_in_stock": False, "categories": [{"name": "T-Shirts"}],
+     "attributes": [{"name": "المقاس", "terms": [{"name": "M"}, {"name": "L"}]}]},
+]
+
+
+def test_woocommerce_products_become_shop_products():
+    from moderator.store.importer import seed_from_woocommerce
+    seed = seed_from_woocommerce(WOO, source="https://woo.test", stock_estimate=5)
+    cargo, tee = seed["products"]
+    assert cargo["price"] == 790 and cargo["colors"] == ["Khaki", "Black"] and cargo["category"] == "bottoms"
+    assert cargo["stock"] == {"30": 5, "32": 5} and cargo["chart"] == "waist"
+    assert tee["stock"] == {"M": 0, "L": 0} and tee["colors"] == ["standard"]  # sold out
+    assert "estimate" in seed["shop"]["stock_note"]
+
+
+def test_the_source_is_detected_from_the_argument(tmp_path):
+    from moderator.store.importer import detect_source
+
+    class R:
+        def __init__(self, code, body):
+            self.status_code, self._body = code, body
+
+        def json(self):
+            return self._body
+
+    def woo_only(url, **kw):
+        return R(200, [WOO[0]]) if "wc/store" in url else R(404, {})
+
+    assert detect_source(str(tmp_path / "s.csv")) == "sheet"
+    assert detect_source("https://docs.google.com/spreadsheets/d/X/edit") == "sheet"
+    assert detect_source("https://shop.test", get=lambda url, **kw: R(200, {"products": []})) == "shopify"
+    assert detect_source("https://shop.test", get=woo_only) == "woocommerce"
