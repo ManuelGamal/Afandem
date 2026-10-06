@@ -84,9 +84,10 @@ def run_with_retries(card: Card, agent_provider, sim_provider, attempts: int = 3
 def make_providers(cache_dir: Path, sim_config: Path = SIM_CONFIG):
     """The agent (MODERATOR_PROVIDERS may replace its config) and the simulated customer (never
     replaced by it), each with its own response cache in `cache_dir`."""
-    agent = build_provider("live", cache_path=cache_dir / "bench-agent.jsonl")
+    no_seed = cache_dir / "no-replay-seed.jsonl"  # never seed the bench with the demo recording
+    agent = build_provider("live", cache_path=cache_dir / "bench-agent.jsonl", replay_path=no_seed)
     sim = build_provider("live", config_path=sim_config, cache_path=cache_dir / "bench-sim.jsonl",
-                         env_override=False)
+                         replay_path=no_seed, env_override=False)
     return agent, sim
 
 

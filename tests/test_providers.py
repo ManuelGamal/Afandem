@@ -256,3 +256,20 @@ def test_every_nebius_model_in_every_config_is_priced():
         for spec in load_specs(cfg):
             if spec.api_key_env == "NEBIUS_API_KEY":
                 assert spec.usd_per_mtok_in and spec.usd_per_mtok_out, f"{cfg.name}: {spec.name}"
+
+
+def test_reported_bench_runs_use_one_agent_model():
+    from pathlib import Path
+
+    from moderator.providers.config import load_specs
+    specs = load_specs(Path("configs/providers-gemini.yaml"))
+    assert {s.model for s in specs} == {"gemini-3.5-flash-lite"} and len({s.api_key_env for s in specs}) == 5
+
+
+def test_bench_providers_start_with_an_empty_cache(monkeypatch, tmp_path):
+    """A fresh bench run must call the live model every time, not answer from the demo recording."""
+    from moderator.bench.runner import make_providers
+    monkeypatch.setenv("FAKE_KEY", "k")
+    monkeypatch.setenv("MODERATOR_PROVIDERS", str(_one_provider_config(tmp_path, "agent-x")))
+    agent, sim = make_providers(tmp_path / "empty", _one_provider_config(tmp_path, "sim-y"))
+    assert agent._data == {} and sim._data == {}

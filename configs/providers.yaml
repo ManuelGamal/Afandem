@@ -6,6 +6,22 @@ providers:
     model: gemini-3.5-flash-lite
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key_env: GEMINI_API_KEY
+  - name: gemini-3.5-flash-lite-k2
+    model: gemini-3.5-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY_2
+  - name: gemini-3.5-flash-lite-k3
+    model: gemini-3.5-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY_3
+  - name: gemini-3.5-flash-lite-k4
+    model: gemini-3.5-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY_4
+  - name: gemini-3.5-flash-lite-k5
+    model: gemini-3.5-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY_5
   - name: gemini-3.1-flash-lite
     model: gemini-3.1-flash-lite
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
