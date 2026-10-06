@@ -7,7 +7,7 @@ git clone --depth 1 "$SPACE" "$TMP/space"
 find "$TMP/space" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
 git archive HEAD | tar -x -C "$TMP/space"
 {
-  printf -- '---\ntitle: Wasla AI Moderator\nemoji: 🛍️\ncolorFrom: green\ncolorTo: gray\nsdk: docker\napp_port: 7860\npinned: false\n---\n\n'
+  printf -- '---\ntitle: Afandem\nemoji: 🛍️\ncolorFrom: green\ncolorTo: gray\nsdk: docker\napp_port: 7860\npinned: false\n---\n\n'
   cat README.md
 } > "$TMP/space/README.md"
 cd "$TMP/space"

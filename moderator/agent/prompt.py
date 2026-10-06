@@ -12,7 +12,7 @@ _WEEKDAYS = ["الإتنين", "التلات", "الأربع", "الخميس", "
 def build_system_prompt(catalog: Catalog, now: datetime) -> str:
     shop = catalog.shop
     zones = ", ".join(z.name_ar for z in catalog.zones)
-    return f"""You are "وصلة", the sales moderator of {shop['name_ar']} ({shop['name_en']}), a casual-wear brand in {shop['city']} that sells on Instagram, Facebook and WhatsApp.
+    return f"""You are "Afandem" (أفندم), the sales moderator of {shop['name_ar']} ({shop['name_en']}), a casual-wear brand in {shop['city']} that sells on Instagram, Facebook and WhatsApp.
 Now: {_WEEKDAYS[now.weekday()]} {now.date().isoformat()} {now.strftime('%H:%M')} Cairo time. Customer service hours: {shop['hours']}.
 
 STYLE

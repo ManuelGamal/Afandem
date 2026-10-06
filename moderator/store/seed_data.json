@@ -1,5 +1,5 @@
 {
-  "shop": {"name_ar": "وصلة وير", "name_en": "Wasla Wear", "city": "القاهرة",
+  "shop": {"name_ar": "هدوم", "name_en": "Hodoom", "city": "القاهرة",
            "exchange_days": 14, "hours": "10 الصبح لـ 10 بالليل"},
   "charts": {
     "letters": {"S": {"h": [155, 168], "w": [48, 60]}, "M": {"h": [165, 175], "w": [58, 72]},

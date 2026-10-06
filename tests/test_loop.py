@@ -25,7 +25,7 @@ def test_simple_reply_uses_tool_then_answers():
     conv = Conversation("c1")
     assert agent.reply(conv, "عندكم هوديز؟") == ["الهودي التقيل بـ 890 جنيه يا فندم"]
     first = provider.requests[0]
-    assert first[0]["role"] == "system" and "وصلة" in first[0]["content"]
+    assert first[0]["role"] == "system" and "هدوم" in first[0]["content"] and "Afandem" in first[0]["content"]
     assert "2026-10-08" in first[0]["content"]
     assert any(m["role"] == "tool" for m in provider.requests[1])
     kinds = [e.kind for e in agent.bus.events]

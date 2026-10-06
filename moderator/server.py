@@ -61,7 +61,7 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
         mode, notice = "replay", str(e)
         provider = build_provider("replay")
 
-    app = FastAPI(title="Wasla Wear AI moderator")
+    app = FastAPI(title="Afandem — AI sales assistant")
     app.state.mode = mode
     sessions: OrderedDict[str, Session] = OrderedDict()
     registry = threading.Lock()

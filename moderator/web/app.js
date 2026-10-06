@@ -139,7 +139,7 @@ function renderSidebar() {
   const handed = state.conversations.filter((c) => c.handed_off).length;
   $("#open-handoffs").innerHTML = `${icon("user")}<span>Needs a person</span>${handed ? `<span class="badge">${handed}</span>` : ""}`;
   const conv = state.conversations.find((c) => c.id === current);
-  $("#conv-title").textContent = conv && conv.messages.length ? convTitle(conv) : "Wasla · AI moderator for Wasla Wear";
+  $("#conv-title").textContent = conv && conv.messages.length ? convTitle(conv) : "Afandem · AI sales assistant for Hodoom";
 }
 
 function renderChat() {
@@ -157,8 +157,8 @@ function renderChat() {
   }
   $("#chat").innerHTML = msgs.map((m) => m.role === "customer"
     ? `<div class="turn customer"><div class="bubble" dir="auto">${esc(m.text)}</div></div>`
-    : `<div class="turn agent"><span class="avatar" aria-hidden="true">W</span><div class="text" dir="auto">${esc(m.text)}</div></div>`).join("")
-    + (busy ? `<div class="turn agent"><span class="avatar" aria-hidden="true">W</span><div class="typing" aria-label="Typing"><span></span><span></span><span></span></div></div>` : "")
+    : `<div class="turn agent"><span class="avatar" aria-hidden="true">A</span><div class="text" dir="auto">${esc(m.text)}</div></div>`).join("")
+    + (busy ? `<div class="turn agent"><span class="avatar" aria-hidden="true">A</span><div class="typing" aria-label="Typing"><span></span><span></span><span></span></div></div>` : "")
     + (conv && conv.handed_off ? `<div class="sys"><span>${icon("user")}Handed to a person on the team</span></div>` : "");
   $("#chat").scrollTop = 1e9;
 }

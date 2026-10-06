@@ -1,10 +1,10 @@
-# Wasla — an AI moderator for Egyptian social-commerce shops
+# Afandem — an AI moderator for Egyptian social-commerce shops
 
-**Wasla answers a fashion shop's DMs in Egyptian Arabic, Franco (Arabic written in English letters, e.g. `3ayez jeans`) or English, takes the order, confirms
+**Afandem answers a fashion shop's DMs in Egyptian Arabic, Franco (Arabic written in English letters, e.g. `3ayez jeans`) or English, takes the order, confirms
 cash-on-delivery orders before they ship, and holds the risky ones — so fewer parcels come back
 refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam.ai).
 
-> The shop, **Wasla Wear**, is fictional. Every business number below is either cited, labelled
+> The shop, **Hodoom**, is fictional. Every business number below is either cited, labelled
 > `estimate`, or labelled as a **simulation** result. Nothing is presented as a real shop's results.
 
 | | |
@@ -66,7 +66,7 @@ wage 7,000 EGP — [Employsome][wage]) to:
    at the door or never completed ([EasySell][easysell], [eGrow][egrow]), and each refusal costs
    shipping both ways (Cairo delivery from 60 EGP — [Bosta][bosta]).
 
-| Before | With Wasla |
+| Before | With Afandem |
 |---|---|
 | DMs answered when a moderator is free | Every DM answered in seconds, in the customer's own style |
 | Size questions → guesswork → wrong-size refusals | Size from the product's chart (height, weight, fit) |
@@ -76,7 +76,7 @@ wage 7,000 EGP — [Employsome][wage]) to:
 | No numbers | A live dashboard and an ROI calculator with the shop's own numbers |
 
 Plain COD-confirmation apps already exist (e.g. [WASP][wasp], [Cartsaver][cartsaver]) — they send a
-button or an OTP. Wasla is a conversational agent across the whole funnel: DM → order → confirmation →
+button or an OTP. Afandem is a conversational agent across the whole funnel: DM → order → confirmation →
 courier, with the shop owner in the loop.
 
 ## What the agent does

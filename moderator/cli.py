@@ -24,7 +24,7 @@ def main() -> None:
     args = ap.parse_args()
     s = Session(build_provider(args.mode))
     conv, n, seen = "cli-1", 1, 0
-    print("وصلة جاهزة. اكتب رسالتك (أو /quit).")
+    print("Afandem جاهز. اكتب رسالتك (أو /quit).")
     while True:
         try:
             line = input("انت> ").strip()
@@ -56,7 +56,7 @@ def main() -> None:
         else:
             replies = s.chat(conv, line)
         for r in replies:
-            print(f"وصلة> {r}\n")
+            print(f"afandem> {r}\n")
         for e in s.bus.events[seen:]:
             if e.kind in ("llm_error", "handoff"):
                 print(f"[{e.kind}] {e.data}")
