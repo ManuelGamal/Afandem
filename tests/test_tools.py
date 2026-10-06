@@ -137,3 +137,23 @@ def test_high_risk_message_forbids_saying_confirmed():
     c.last_agent_message, c.customer_message = created["summary_ar"], "ماشي"
     out = run_tool("confirm_order", {"order_id": created["order_id"]}, c)
     assert "NOT confirmed" in out["message"] and "تم تأكيد" in out["message"]
+
+
+def test_confirm_moves_stock_and_publishes_it():
+    c = ctx()
+    created = run_tool("create_order", ORDER_ARGS, c)
+    c.last_agent_message, c.customer_message = created["summary_ar"], "تمام"
+    run_tool("confirm_order", {"order_id": created["order_id"]}, c)
+    assert c.catalog.get("T01").stock["M"] == 18
+    stock = [e.data for e in c.bus.events if e.kind == "stock"]
+    assert stock == [{"product_id": "T01", "size": "M", "delta": -2, "stock_after": 18,
+                      "reason": "order_confirmed", "order_id": created["order_id"]}]
+
+
+def test_confirm_reports_sold_out_sizes_to_the_agent():
+    c = ctx()
+    created = run_tool("create_order", ORDER_ARGS, c)
+    c.catalog.set_stock("T01", "M", 0)
+    c.last_agent_message, c.customer_message = created["summary_ar"], "تمام"
+    out = run_tool("confirm_order", {"order_id": created["order_id"]}, c)
+    assert out["error"] == "out_of_stock" and "M" not in out["available"]

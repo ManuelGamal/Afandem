@@ -84,3 +84,18 @@ def test_no_key_falls_back_to_replay():
     c = TestClient(create_app(provider_factory=broken, mode="live"))
     info = c.get("/api/info").json()
     assert info["mode"] == "replay" and "API key" in info["notice"]
+
+
+def test_inventory_read_and_owner_edit():
+    c, _ = client_with([])
+    inv = c.get("/api/inventory").json()
+    row = next(r for r in inv["rows"] if r["product_id"] == "T06" and r["size"] == "L")
+    assert row["stock"] == 12
+    r = c.post("/api/inventory", json={"product_id": "T06", "size": "L", "stock": 0})
+    assert r.status_code == 200 and r.json()["previous"] == 12
+    inv = c.get("/api/inventory").json()
+    assert inv["movements"][0]["reason"] == "owner_update"
+    assert c.post("/api/inventory", json={"product_id": "T06", "size": "XS", "stock": 1}).status_code == 404
+    assert c.post("/api/inventory", json={"product_id": "T06", "size": "L", "stock": -1}).status_code == 422
+    events = c.get("/api/state").json()["events"]
+    assert any(e["kind"] == "stock" for e in events)

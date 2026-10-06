@@ -30,6 +30,7 @@
       <nav class="side-section" aria-label="Shop owner tools">
         <p class="side-label">Shop owner</p>
         <button class="side-item" type="button" data-panel="dashboard" id="open-dashboard"></button>
+        <button class="side-item" type="button" data-panel="inventory" id="open-inventory"></button>
         <button class="side-item" type="button" data-panel="roi" id="open-roi"></button>
         <button class="side-item" type="button" data-panel="activity" id="open-activity"></button>
         <button class="side-item" type="button" data-panel="handoffs" id="open-handoffs"></button>
@@ -84,6 +85,13 @@
               <tbody></tbody>
             </table>
           </div>
+        </section>
+
+        <section class="panel" data-panel="inventory">
+          <p class="panel-hint">Live stock from the shop's database. The agent reads it on every answer, a confirmed order takes from it and a cancelled one puts it back. Change a number to restock or mark a size sold out, then ask the agent.</p>
+          <div id="inventory" class="inventory"></div>
+          <h3>Recent stock movements</h3>
+          <ol id="movements" class="log"></ol>
         </section>
 
         <section class="panel" data-panel="roi">

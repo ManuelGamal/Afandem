@@ -1,8 +1,14 @@
-"""Static shop catalog: products, size charts and delivery zones (fictional shop)."""
+"""The shop's database: products, stock per size, size charts and delivery zones in SQLite.
+
+Every read is a query, so stock is always live: orders reserve and release it, and the owner
+can edit it. Each `Catalog.load()` is its own shop (one per browser sandbox or bench card).
+"""
 
 from __future__ import annotations
 
 import json
+import sqlite3
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -10,6 +16,38 @@ from moderator.text import fold_text
 
 SEED_PATH = Path(__file__).with_name("seed_data.json")
 SIZE_ORDER = ["S", "M", "L", "XL", "XXL", "30", "32", "34", "36", "38", "ONE"]
+LOW_STOCK = 3  # at or below this, the owner's inventory view flags a size
+
+SCHEMA = """
+CREATE TABLE shop (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+CREATE TABLE products (
+  id TEXT PRIMARY KEY, name_ar TEXT NOT NULL, name_en TEXT NOT NULL, category TEXT NOT NULL,
+  price INTEGER NOT NULL CHECK (price > 0), colors TEXT NOT NULL, chart TEXT NOT NULL,
+  pairs_with TEXT NOT NULL);
+CREATE TABLE inventory (
+  product_id TEXT NOT NULL REFERENCES products(id), size TEXT NOT NULL,
+  stock INTEGER NOT NULL CHECK (stock >= 0), PRIMARY KEY (product_id, size));
+CREATE TABLE size_charts (
+  chart TEXT NOT NULL, size TEXT NOT NULL, h_min REAL, h_max REAL, w_min REAL, w_max REAL,
+  PRIMARY KEY (chart, size));
+CREATE TABLE delivery_zones (
+  id TEXT PRIMARY KEY, name_ar TEXT NOT NULL, fee INTEGER NOT NULL, days_min INTEGER NOT NULL,
+  days_max INTEGER NOT NULL, aliases TEXT NOT NULL);
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, conversation_id TEXT, status TEXT, phone TEXT,
+  data TEXT);
+CREATE TABLE stock_movements (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, product_id TEXT NOT NULL, size TEXT NOT NULL,
+  delta INTEGER NOT NULL, stock_after INTEGER NOT NULL, reason TEXT NOT NULL, order_id INTEGER);
+"""
+
+
+class ShopDB:
+    """One SQLite connection plus the lock every writer holds."""
+
+    def __init__(self, path: str = ":memory:"):
+        self.conn = sqlite3.connect(path, check_same_thread=False)
+        self.lock = threading.RLock()
 
 
 @dataclass
@@ -30,6 +68,7 @@ class Product:
     def to_dict(self) -> dict:
         return {"id": self.id, "name": self.name_ar, "name_en": self.name_en,
                 "category": self.category, "price": self.price, "colors": self.colors,
+                "stock_by_size": self.stock,
                 "sizes_in_stock": self.available_sizes(),
                 "sizes_out_of_stock": [s for s, n in self.stock.items() if n <= 0]}
 
@@ -45,18 +84,67 @@ class Zone:
 
 
 class Catalog:
-    def __init__(self, data: dict):
-        self.shop: dict = data["shop"]
-        self.charts: dict[str, dict] = data["charts"]
-        self.products: dict[str, Product] = {p["id"]: Product(**p) for p in data["products"]}
-        self.zones: list[Zone] = [Zone(**z) for z in data["zones"]]
+    def __init__(self, db: ShopDB):
+        self.db = db
+        q = db.conn.execute
+        self.shop: dict = json.loads(q("SELECT value FROM shop WHERE key='meta'").fetchone()[0])
+        self.charts: dict[str, dict] = {}
+        for chart, size, h0, h1, w0, w1 in q("SELECT chart, size, h_min, h_max, w_min, w_max FROM size_charts"):
+            self.charts.setdefault(chart, {})[size] = {"h": [h0, h1], "w": [w0, w1]}
+        for (chart,) in q("SELECT DISTINCT chart FROM products"):
+            self.charts.setdefault(chart, {})  # one-size products have no chart rows
+        self.zones: list[Zone] = [
+            Zone(id=r[0], name_ar=r[1], fee=r[2], days_min=r[3], days_max=r[4],
+                 aliases=json.loads(r[5]))
+            for r in q("SELECT id, name_ar, fee, days_min, days_max, aliases FROM delivery_zones ORDER BY rowid")]
 
+    # --- creation ------------------------------------------------------------------
     @classmethod
-    def load(cls, path: Path = SEED_PATH) -> Catalog:
-        return cls(json.loads(path.read_text(encoding="utf-8")))
+    def load(cls, path: Path = SEED_PATH, db_path: str = ":memory:") -> Catalog:
+        """A fresh shop database seeded from seed_data.json."""
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        db = ShopDB(db_path)
+        c = db.conn
+        c.executescript(SCHEMA)
+        c.execute("INSERT INTO shop VALUES ('meta', ?)", (json.dumps(data["shop"], ensure_ascii=False),))
+        for chart, sizes in data["charts"].items():
+            for size, rng in sizes.items():
+                c.execute("INSERT INTO size_charts VALUES (?, ?, ?, ?, ?, ?)",
+                          (chart, size, rng["h"][0], rng["h"][1], rng["w"][0], rng["w"][1]))
+        for p in data["products"]:
+            c.execute("INSERT INTO products VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                      (p["id"], p["name_ar"], p["name_en"], p["category"], p["price"],
+                       json.dumps(p["colors"], ensure_ascii=False), p["chart"],
+                       json.dumps(p["pairs_with"])))
+            for size, n in p["stock"].items():
+                c.execute("INSERT INTO inventory VALUES (?, ?, ?)", (p["id"], size, n))
+        for z in data["zones"]:
+            c.execute("INSERT INTO delivery_zones VALUES (?, ?, ?, ?, ?, ?)",
+                      (z["id"], z["name_ar"], z["fee"], z["days_min"], z["days_max"],
+                       json.dumps(z["aliases"], ensure_ascii=False)))
+        c.commit()
+        return cls(db)
+
+    # --- reads (always live) ---------------------------------------------------------
+    def _stock(self, product_id: str) -> dict[str, int]:
+        rows = self.db.conn.execute("SELECT size, stock FROM inventory WHERE product_id=?",
+                                    (product_id,)).fetchall()
+        return dict(sorted(rows, key=lambda r: SIZE_ORDER.index(r[0]) if r[0] in SIZE_ORDER else 99))
+
+    def _product(self, row) -> Product:
+        pid, name_ar, name_en, category, price, colors, chart, pairs = row
+        return Product(pid, name_ar, name_en, category, price, json.loads(colors),
+                       self._stock(pid), chart, json.loads(pairs))
+
+    @property
+    def products(self) -> dict[str, Product]:
+        rows = self.db.conn.execute("SELECT * FROM products ORDER BY rowid").fetchall()
+        return {r[0]: self._product(r) for r in rows}
 
     def get(self, product_id: str) -> Product | None:
-        return self.products.get(str(product_id).strip().upper())
+        row = self.db.conn.execute("SELECT * FROM products WHERE id=?",
+                                   (str(product_id).strip().upper(),)).fetchone()
+        return self._product(row) if row else None
 
     def search(self, query: str, category: str | None = None, max_price: int | None = None,
                limit: int = 5) -> list[Product]:
@@ -114,3 +202,54 @@ class Catalog:
             if f" {alias} " in f" {folded} ":
                 return zone
         return None
+
+    def inventory(self) -> list[dict]:
+        rows = self.db.conn.execute(
+            "SELECT p.id, p.name_ar, p.name_en, i.size, i.stock FROM inventory i "
+            "JOIN products p ON p.id = i.product_id ORDER BY p.rowid").fetchall()
+        out = [{"product_id": r[0], "name": r[1], "name_en": r[2], "size": r[3], "stock": r[4],
+                "low": r[4] <= LOW_STOCK} for r in rows]
+        return sorted(out, key=lambda r: (r["product_id"], SIZE_ORDER.index(r["size"])
+                                          if r["size"] in SIZE_ORDER else 99))
+
+    def stock_movements(self, limit: int = 50) -> list[dict]:
+        rows = self.db.conn.execute(
+            "SELECT product_id, size, delta, stock_after, reason, order_id FROM stock_movements "
+            "ORDER BY id DESC LIMIT ?", (limit,)).fetchall()
+        return [{"product_id": r[0], "size": r[1], "delta": r[2], "stock_after": r[3],
+                 "reason": r[4], "order_id": r[5]} for r in rows]
+
+    # --- writes ------------------------------------------------------------------------
+    def move_stock(self, product_id: str, size: str, delta: int, reason: str,
+                   order_id: int | None = None) -> int:
+        """Change stock by `delta` inside the caller's transaction; returns the new stock.
+        Raises ValueError if it would go below zero."""
+        with self.db.lock:
+            row = self.db.conn.execute("SELECT stock FROM inventory WHERE product_id=? AND size=?",
+                                       (product_id, size)).fetchone()
+            if row is None:
+                raise KeyError(f"{product_id}/{size}")
+            after = row[0] + delta
+            if after < 0:
+                raise ValueError(f"only {row[0]} left of {product_id}/{size}")
+            self.db.conn.execute("UPDATE inventory SET stock=? WHERE product_id=? AND size=?",
+                                 (after, product_id, size))
+            self.db.conn.execute(
+                "INSERT INTO stock_movements (product_id, size, delta, stock_after, reason, order_id) "
+                "VALUES (?, ?, ?, ?, ?, ?)", (product_id, size, delta, after, reason, order_id))
+            return after
+
+    def set_stock(self, product_id: str, size: str, stock: int) -> dict:
+        """The owner sets a size's stock (e.g. after a delivery from the workshop)."""
+        if stock < 0:
+            raise ValueError("stock cannot be negative")
+        pid, size = str(product_id).strip().upper(), str(size).strip().upper()
+        with self.db.lock:
+            row = self.db.conn.execute("SELECT stock FROM inventory WHERE product_id=? AND size=?",
+                                       (pid, size)).fetchone()
+            if row is None:
+                raise KeyError(f"{pid}/{size}")
+            if stock != row[0]:
+                self.move_stock(pid, size, stock - row[0], "owner_update")
+            self.db.conn.commit()
+            return {"product_id": pid, "size": size, "stock": stock, "previous": row[0]}

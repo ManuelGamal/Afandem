@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 import json
-import sqlite3
-import threading
 from dataclasses import asdict, dataclass, field
 from datetime import date, datetime, timedelta
 
@@ -63,8 +61,9 @@ class Order:
 class OrderBook:
     def __init__(self, catalog: Catalog, path: str = ":memory:"):
         self.catalog = catalog
-        self._lock = threading.Lock()
-        self._db = sqlite3.connect(path, check_same_thread=False)
+        # Orders live in the shop's own database, so stock and orders change in one transaction.
+        self._lock = catalog.db.lock
+        self._db = catalog.db.conn
         self._db.execute(
             "CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT,"
             " conversation_id TEXT, status TEXT, phone TEXT, data TEXT)"
@@ -176,10 +175,28 @@ class OrderBook:
             if status not in TRANSITIONS[old]:
                 raise OrderError("bad_transition", f"can't go from {old} to {status}",
                                  status=old)
-            order.status = status
-            if status == "cancelled":
-                order.cancel_reason = reason or "unspecified"
-            return self._save(order), old
+            try:
+                if status == "confirmed":  # the order's items leave the shelf
+                    for i in order.items:
+                        try:
+                            self.catalog.move_stock(i["product_id"], i["size"], -i["qty"],
+                                                    "order_confirmed", order.id)
+                        except ValueError as e:
+                            in_stock = self.catalog.get(i["product_id"]).stock.get(i["size"], 0)
+                            raise OrderError("out_of_stock", str(e), product_id=i["product_id"],
+                                             size=i["size"], requested=i["qty"], in_stock=in_stock,
+                                             available=self.catalog.get(i["product_id"]).available_sizes()) from e
+                elif old == "confirmed" and status == "cancelled":  # back on the shelf
+                    for i in order.items:
+                        self.catalog.move_stock(i["product_id"], i["size"], i["qty"],
+                                                "order_cancelled", order.id)
+                order.status = status
+                if status == "cancelled":
+                    order.cancel_reason = reason or "unspecified"
+                return self._save(order), old
+            except Exception:
+                self._db.rollback()  # stock and status change together or not at all
+                raise
 
     def schedule(self, order_id: int, day: date, today: date) -> Order:
         with self._lock:

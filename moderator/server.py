@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
 import os
 import queue
@@ -15,7 +16,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Query, Request, Response
-from fastapi.responses import FileResponse, PlainTextResponse, StreamingResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -44,6 +45,21 @@ class CheckoutIn(BaseModel):
 
 class AdvanceIn(BaseModel):
     hours: float = Field(gt=0, le=24)
+
+
+class StockIn(BaseModel):
+    product_id: str = Field(min_length=1, max_length=16)
+    size: str = Field(min_length=1, max_length=8)
+    stock: int = Field(ge=0, le=10000)
+
+
+def versioned_index() -> str:
+    """index.html with ?v=<content hash> on its assets, so a new deploy is never served stale."""
+    html = (WEB / "index.html").read_text(encoding="utf-8")
+    for name in ("app.js", "style.css"):
+        digest = hashlib.sha256((WEB / name).read_bytes()).hexdigest()[:10]
+        html = html.replace(f"/static/{name}\"", f"/static/{name}?v={digest}\"")
+    return html
 
 
 def sse(event) -> str:
@@ -116,9 +132,16 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
 
     @app.get("/")
     def index():
-        return FileResponse(WEB / "index.html")
+        return HTMLResponse(versioned_index())
 
     app.mount("/static", StaticFiles(directory=WEB), name="static")
+
+    @app.middleware("http")
+    async def revalidate_page(request: Request, call_next):
+        response = await call_next(request)
+        if request.url.path == "/" or request.url.path.startswith("/static/"):
+            response.headers["Cache-Control"] = "no-cache"  # always fetch the latest deploy
+        return response
 
     assumptions = load_assumptions(ASSUMPTIONS)
     bench = load_bench()
@@ -135,6 +158,26 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
                          "moderator_salary_egp_month": salary,
                          "refusal_rate_without_confirmation": refusal, "average_order_egp": aov},
                         assumptions, bench) | {"defaults": base}
+
+    @app.get("/api/inventory")
+    def inventory(request: Request, response: Response):
+        s = view_session(request, response)
+        with s.lock:
+            return {"rows": s.catalog.inventory(), "movements": s.catalog.stock_movements(20)}
+
+    @app.post("/api/inventory")
+    def set_stock(body: StockIn, request: Request, response: Response):
+        s = view_session(request, response)
+        with s.lock:
+            try:
+                row = s.catalog.set_stock(body.product_id, body.size, body.stock)
+            except KeyError as e:
+                raise HTTPException(404, f"no such product size: {e}") from e
+            if row["stock"] != row["previous"]:
+                s.bus.publish("stock", None, product_id=row["product_id"], size=row["size"],
+                              delta=row["stock"] - row["previous"], stock_after=row["stock"],
+                              reason="owner_update", order_id=None)
+            return row
 
     @app.get("/api/info")
     def info():

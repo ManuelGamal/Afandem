@@ -123,6 +123,21 @@ def _order_of(ctx: ToolContext, args: dict):
 def _status_event(ctx: ToolContext, order, old, reason=None) -> None:
     ctx.bus.publish("order_status", ctx.conversation_id, order_id=order.id, old=old,
                     new=order.status, reason=reason, total=order.total, source=order.source)
+    publish_stock_moves(ctx.catalog, ctx.bus, ctx.conversation_id, order, old)
+
+
+def publish_stock_moves(catalog, bus, conversation_id, order, old) -> None:
+    """Announce the shop database's stock changes caused by this status change."""
+    if order.status == "confirmed" and old != "confirmed":
+        why = "order_confirmed"
+    elif old == "confirmed" and order.status == "cancelled":
+        why = "order_cancelled"
+    else:
+        return
+    moves = [m for m in catalog.stock_movements(limit=100)
+             if m["order_id"] == order.id and m["reason"] == why][:len(order.items)]
+    for m in reversed(moves):
+        bus.publish("stock", conversation_id, **m)
 
 
 def _with_summary(ctx: ToolContext, order) -> dict:

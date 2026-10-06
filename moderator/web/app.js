@@ -21,6 +21,7 @@ const ICONS = {
   trend: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
   truck: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
   user: '<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
+  box: '<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
   chevron: '<path d="m15 18-6-6 6-6"/>',
 };
 const icon = (name, cls = "") =>
@@ -38,7 +39,9 @@ const TOOL_LABEL = { search_products: "Search products", get_product: "Product d
   recommend_size: "Size recommendation", quote_delivery: "Delivery quote", create_order: "Create order",
   update_order: "Update order", confirm_order: "Confirm order", cancel_order: "Cancel order",
   schedule_delivery: "Schedule delivery", flag_risk: "Flag risk", handoff_to_human: "Hand off to a person" };
-const PANELS = { dashboard: "Dashboard", roi: "ROI calculator", activity: "Agent activity",
+const STOCK_REASON = { order_confirmed: "order confirmed", order_cancelled: "order cancelled",
+  owner_update: "owner update" };
+const PANELS = { dashboard: "Dashboard", inventory: "Inventory", roi: "ROI calculator", activity: "Agent activity",
   handoffs: "Needs a person" };
 // What a customer would actually type (Egyptian Arabic / Franco), with an English caption.
 const SUGGESTIONS = [
@@ -83,7 +86,7 @@ async function refresh() {
 }
 function scheduleRefresh() {
   clearTimeout(timer);
-  timer = setTimeout(refresh, 250);
+  timer = setTimeout(() => { refresh(); if (openPanelName === "inventory") loadInventory(); }, 250);
 }
 
 function connect() {
@@ -231,6 +234,10 @@ function logEvent(e) {
     kind = "order";
     const from = STATUS[e.data.old] ? STATUS[e.data.old][0] : "New";
     text = `Order ${e.data.order_id}: ${from} → ${STATUS[e.data.new][0]}`;
+  } else if (e.kind === "stock") {
+    kind = "order";
+    const d = e.data.delta;
+    text = `Stock ${e.data.product_id} ${e.data.size}: ${d > 0 ? "+" : ""}${d} → ${e.data.stock_after} (${STOCK_REASON[e.data.reason] || e.data.reason})`;
   } else if (e.kind === "handoff") {
     kind = "human";
     text = `Handed to a person (${e.data.reason})`;
@@ -259,6 +266,7 @@ function openPanel(name) {
   $("#drawer").hidden = false;
   $("#scrim").hidden = false;
   closeSidebar();
+  if (name === "inventory") loadInventory();
   $("#btn-close-drawer").focus();
 }
 function closePanel() {
@@ -323,6 +331,39 @@ async function playDemo() {
   }
 }
 
+// --- inventory (the shop's database) ----------------------------------------------
+async function loadInventory() {
+  const inv = await api(`/api/inventory${VIEW_Q}`);
+  const byProduct = new Map();
+  for (const r of inv.rows) {
+    if (!byProduct.has(r.product_id)) byProduct.set(r.product_id, { name: r.name, name_en: r.name_en, sizes: [] });
+    byProduct.get(r.product_id).sizes.push(r);
+  }
+  $("#inventory").innerHTML = [...byProduct.entries()].map(([pid, p]) => `
+    <div class="inv-row">
+      <div class="inv-name"><span dir="auto">${esc(p.name)}</span><small>${esc(pid)} · ${esc(p.name_en)}</small></div>
+      <div class="inv-sizes">${p.sizes.map((s) => `
+        <label class="stock-cell${s.stock === 0 ? " out" : s.low ? " low" : ""}">${esc(s.size)}
+          <input type="number" min="0" max="10000" value="${s.stock}" data-pid="${esc(pid)}" data-size="${esc(s.size)}"
+                 aria-label="${esc(p.name_en)} size ${esc(s.size)} stock">
+        </label>`).join("")}</div>
+    </div>`).join("");
+  $("#movements").innerHTML = inv.movements.length ? inv.movements.map((m) => `
+    <li><time>${esc(m.product_id)} ${esc(m.size)}</time><span class="k order" aria-hidden="true"></span>
+      <span class="t">${m.delta > 0 ? "+" : ""}${m.delta} → ${m.stock_after} · ${esc(STOCK_REASON[m.reason] || m.reason)}${m.order_id ? ` (order ${m.order_id})` : ""}</span></li>`).join("")
+    : `<li class="muted">No stock movements yet. Confirm an order or edit a number above.</li>`;
+}
+
+$("#inventory").addEventListener("change", async (ev) => {
+  const input = ev.target.closest("input[data-pid]");
+  if (!input || input.value === "") return;
+  try {
+    await api(`/api/inventory${VIEW_Q}`, { product_id: input.dataset.pid, size: input.dataset.size,
+      stock: Number(input.value) });
+  } catch (err) { notice(err.message); }
+  loadInventory();
+});
+
 // --- ROI calculator ---------------------------------------------------------------
 const ROI_FIELDS = { orders: "#roi-orders", dms: "#roi-dms", salary: "#roi-salary",
   refusal: "#roi-refusal", aov: "#roi-aov" };
@@ -367,6 +408,7 @@ $("#btn-checkout").innerHTML = `${icon("cart")}<span>New website order</span>`;
 $("#btn-advance").innerHTML = `${icon("clock")}<span>Skip ahead 2 hours</span>`;
 $("#btn-reset").innerHTML = `${icon("reset")}<span>Start over</span>`;
 $("#open-dashboard").innerHTML = `${icon("chart")}<span>Dashboard</span>`;
+$("#open-inventory").innerHTML = `${icon("box")}<span>Inventory</span>`;
 $("#open-roi").innerHTML = `${icon("calc")}<span>ROI calculator</span>`;
 $("#open-activity").innerHTML = `${icon("activity")}<span>Agent activity</span>`;
 $("#btn-send").innerHTML = icon("send");

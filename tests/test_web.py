@@ -37,3 +37,24 @@ def test_page_supports_the_whatsapp_view():
     c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
     js = c.get("/static/app.js").text
     assert 'get("view")' in js and "WhatsApp" in js
+
+
+def test_inventory_panel_is_on_the_page():
+    c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
+    assert 'data-panel="inventory"' in c.get("/").text
+    js = c.get("/static/app.js").text
+    assert "/api/inventory" in js and '"stock"' in js
+
+
+def test_page_and_assets_are_revalidated_after_deploys():
+    c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
+    for path in ("/", "/static/app.js", "/static/style.css"):
+        assert c.get(path).headers.get("cache-control") == "no-cache", path
+
+
+def test_asset_urls_carry_a_content_version():
+    import re
+    c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
+    html = c.get("/").text
+    assert re.search(r'/static/app\.js\?v=[0-9a-f]{10}"', html)
+    assert re.search(r'/static/style\.css\?v=[0-9a-f]{10}"', html)
