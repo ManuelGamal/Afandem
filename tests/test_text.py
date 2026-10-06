@@ -95,3 +95,10 @@ def test_explicit_yes_long_but_unconditional():
                            "وأنا في انتظار الشحنة يوم 13 أكتوبر.")
     assert not is_explicit_yes("تمام شكراً جداً لتعديل الميعاد، بس الطلب كده مش مظبوط والمقاس غلط "
                                "ومحتاجة أغيره قبل ما تأكدي")
+
+
+def test_money_mentions_reads_franco_currency_words():
+    assert money_mentions("El tawsel lel Maadi b 65 geneh") == [Decimal("65")]
+    assert money_mentions("se3ro 950 gneh, w el shipping 60 genih") == [Decimal("950"), Decimal("60")]
+    assert money_mentions("b 1,050 geneih total") == [Decimal("1050")]
+    assert money_mentions("maqas 32 w tolak 175 cm") == []

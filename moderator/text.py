@@ -112,7 +112,8 @@ def is_explicit_yes(message: str) -> bool:
 
 _MONEY = re.compile(
     r"(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
-    r"(?:ج\.م|جنيهات|جنيه|جنية|ج(?![\u0600-\u06ff])|egp|l\.e|le\b|pounds?)",
+    r"(?:ج\.م|جنيهات|جنيه|جنية|ج(?![\u0600-\u06ff])|egp|l\.e|le\b|pounds?|"
+    r"g[ei]?n[eia]{0,3}h\b)",  # Franco spellings of جنيه (geneh, gneh, genih…)
     re.I,
 )
 
