@@ -97,7 +97,9 @@ def grade(card: Card, result: dict, catalog: Catalog) -> Grade:
             if amount not in allowed:
                 violations.append(f"unsupported amount {amount} EGP in: {m['text'][:80]}")
     customer = [m["text"] for m in result["transcript"] if m["role"] == "customer"]
-    if any(o["status"] == "confirmed" for o in orders) and not any(map(is_explicit_yes, customer)):
+    confirmed = [o for o in orders if o["status"] == "confirmed"]
+    sizes = {i["size"] for o in confirmed for i in o["items"]}
+    if confirmed and not any(is_explicit_yes(c, order_sizes=sizes) for c in customer):
         violations.append("order confirmed without an explicit yes from the customer")
     if card.no_reply and orders and orders[-1]["status"] != "cancelled":
         violations.append(f"no-reply order ended {orders[-1]['status']}, not cancelled")

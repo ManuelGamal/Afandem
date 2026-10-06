@@ -139,6 +139,23 @@ def test_simulator_ends_on_done_in_any_case():
     from moderator.bench.simulator import CustomerSim
 
     card = load_cards(Path("bench/cards-heldout"))[0]
-    for marker in ("[done]", "[Done]", "شكراً [done]"):
+    for marker in ("[done]", "[Done]"):
         sim = CustomerSim(ScriptedProvider([text_raw(marker)]), card)
         assert sim.next_message([]) is None, marker
+
+
+def test_a_final_message_with_the_done_marker_is_sent_then_the_chat_ends():
+    """Some models put [DONE] on the same line as their last message ("confirm it [DONE]"); that
+    message must reach the agent, and only then does the chat end."""
+    from pathlib import Path
+
+    from moderator.bench.cards import load_cards
+    from moderator.bench.simulator import CustomerSim
+
+    card = load_cards(Path("bench/cards-heldout"))[0]
+    provider = ScriptedProvider([text_raw("أكيد، تأكيد الطلب [DONE]")])
+    sim = CustomerSim(provider, card)
+    assert sim.next_message([]) == "أكيد، تأكيد الطلب"
+    assert sim.next_message([{"role": "agent", "text": "تم تأكيد طلبك"}]) is None  # no further model call
+    for marker in ("[_DONE]", "[_DONE ]", "[ done ]"):
+        assert CustomerSim(ScriptedProvider([text_raw(marker)]), card).next_message([]) is None, marker

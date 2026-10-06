@@ -7,6 +7,7 @@ import re
 from moderator.bench.cards import Card
 
 _THOUGHT = re.compile(r"<thought>.*?</thought>", re.S)
+_DONE = re.compile(r"\[\s*_?\s*done\s*\]", re.I)  # [DONE], [done], [_DONE ], ...
 
 STYLES = {
     "arabic": "Write only in Egyptian Arabic (Arabic script), casual and short, like WhatsApp.",
@@ -34,6 +35,7 @@ Rules:
 class CustomerSim:
     def __init__(self, provider, card: Card):
         self.provider = provider
+        self.finished = False
         self.system = PROMPT.format(persona=card.persona, style=STYLES[card.script],
                                     goal=card.goal,
                                     facts="; ".join(card.hidden_facts) or "none")
@@ -47,20 +49,24 @@ class CustomerSim:
                 messages[-1]["content"] += "\n" + m["text"]
             else:
                 messages.append({"role": role, "content": m["text"]})
-        text = self._ask(messages)
+        if self.finished:  # the last message carried the end marker; the agent has answered it
+            return None
+        text, done = self._ask(messages)
         if text is None and transcript and transcript[-1]["role"] == "agent" \
                 and _asks_question(transcript[-1]["text"]):
             # Simulators tend to quit on an open question (e.g. "أأكد الطلب؟"); that would be a
             # simulator failure scored against the agent, so nudge once.
-            text = self._ask(messages + [{"role": "system", "content": NUDGE}])
+            text, done = self._ask(messages + [{"role": "system", "content": NUDGE}])
+        self.finished = done and text is not None
         return text
 
-    def _ask(self, messages: list[dict]) -> str | None:
+    def _ask(self, messages: list[dict]) -> tuple[str | None, bool]:
+        """The customer's text without the end marker, and whether the marker was there. Some
+        models write it on the same line as a real last message ("confirm it [DONE]")."""
         raw = self.provider.complete(messages, [])
         text = _THOUGHT.sub("", raw["choices"][0]["message"].get("content") or "").strip()
-        if not text or "[done]" in text.lower():
-            return None
-        return text
+        done = bool(_DONE.search(text))
+        return _DONE.sub("", text).strip() or None, done
 
 
 NUDGE = ("The shop just asked you a question (for example whether to confirm the order). Answer it "

@@ -212,7 +212,7 @@ def _confirm_order(ctx, a):
         return {"ok": False, "error": "summary_not_sent",
                 "message": "Send the customer this order's summary_ar (with the total) first, "
                            "then wait for their clear yes."}
-    if not is_explicit_yes(ctx.customer_message):
+    if not is_explicit_yes(ctx.customer_message, order_sizes={i["size"] for i in order.items}):
         return {"ok": False, "error": "no_explicit_yes",
                 "message": "The customer has not given a clear, unconditional yes. Apply any "
                            "change they asked for, send the new summary, and ask again."}

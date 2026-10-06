@@ -106,11 +106,13 @@ _SIZE_WORDS = {"s", "m", "l", "xl", "xxl", "لارج", "ميديم", "سمول",
 _SEGMENT = re.compile(r"[^.!?؟…\n]+[.!?؟…\n]*")
 
 
-def _asks_for_change(words: list[str]) -> bool:
-    return any(w in _SIZE_WORDS or any(part in w for part in _CHANGE_PARTS) for w in words)
+def _asks_for_change(words: list[str], keep: set[str]) -> bool:
+    """A change word, or a size other than the order's own (repeating its size is not a change)."""
+    return any((w in _SIZE_WORDS and w not in keep) or any(part in w for part in _CHANGE_PARTS)
+               for w in words)
 
 
-def is_explicit_yes(message: str) -> bool:
+def is_explicit_yes(message: str, order_sizes=()) -> bool:
     """A short, unconditional yes. A change or a negation is not a yes, and neither is a
     question; a clear yes may be followed by an unrelated question ("confirm it! when does
     it arrive?")."""
@@ -123,7 +125,7 @@ def is_explicit_yes(message: str) -> bool:
         (asked if is_question else said).extend(fold_text(segment).split())
     if not said or len(said) > 25:
         return False
-    if any(w in _BLOCK for w in said + asked) or _asks_for_change(said + asked):
+    if any(w in _BLOCK for w in said + asked) or _asks_for_change(said + asked, {fold_text(z) for z in order_sizes}):
         return False
     return any(w in _YES or w.startswith(_YES_STEMS) for w in said)
 

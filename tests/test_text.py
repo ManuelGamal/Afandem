@@ -116,3 +116,10 @@ def test_explicit_yes_accepts_a_clear_yes_followed_by_an_unrelated_question():
     for msg in ["أكد الطلب. ممكن تخليه لارج؟", "aywa akked. momken a8ayar el size?",
                 "تمام. بس ممكن يوصل بكرة؟"]:
         assert not is_explicit_yes(msg), msg
+
+
+def test_a_yes_that_repeats_the_orders_own_size_is_still_a_yes():
+    msg = "ايوه اكدة ✅ مقاس L رمادي، كله مظبوط."
+    assert is_explicit_yes(msg, order_sizes={"L"})
+    assert not is_explicit_yes(msg, order_sizes={"M"})  # a different size is a change
+    assert not is_explicit_yes("ماشي والمقاس XL", order_sizes={"M"})
