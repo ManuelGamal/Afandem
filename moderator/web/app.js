@@ -336,6 +336,9 @@ async function playDemo() {
 // --- inventory (the shop's database) ----------------------------------------------
 async function loadInventory() {
   const inv = await api(`/api/inventory${VIEW_Q}`);
+  const source = $("#catalog-source");  // set when the catalog was imported from a real store
+  source.hidden = !inv.catalog_source;
+  source.textContent = inv.catalog_source ? `Catalog imported from ${inv.catalog_source}. ${inv.stock_note || ""}` : "";
   const byProduct = new Map();
   for (const r of inv.rows) {
     if (!byProduct.has(r.product_id)) byProduct.set(r.product_id, { name: r.name, name_en: r.name_en, sizes: [] });

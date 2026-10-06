@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+import os
 import threading
+from pathlib import Path
 
 from moderator.agent.loop import Agent, Conversation
 from moderator.agent.risk import score_order
 from moderator.clock import Clock
 from moderator.events import EventBus, impact
-from moderator.store.catalog import Catalog
+from moderator.store.catalog import SEED_PATH, Catalog
 from moderator.store.orders import Order, OrderBook, OrderError
 
 CHECKOUT_PRESETS = [
@@ -27,9 +29,29 @@ CHECKOUT_PRESETS = [
 ]
 
 
+def seed_path() -> Path:
+    """The shop's seed: Hodoom by default, or a store imported with moderator.store.importer."""
+    return Path(os.environ.get("MODERATOR_SEED") or SEED_PATH)
+
+
+def preset_items(catalog: Catalog, items: list[dict], n: int) -> list[dict]:
+    """A preset's items, or in-stock items from the shop's own catalog when it is not Hodoom's."""
+    if all(catalog.get(i["product_id"]) is not None for i in items):
+        return items
+    stocked = [p for p in catalog.products.values() if p.available_sizes()]
+    if not stocked:
+        return items  # nothing to sell; create() reports it
+    out = []
+    for k, item in enumerate(items):
+        p = stocked[(n + k) % len(stocked)]
+        out.append({"product_id": p.id, "size": p.available_sizes()[0], "color": p.colors[0],
+                    "qty": 1})
+    return out
+
+
 class Session:
     def __init__(self, provider, clock: Clock | None = None):
-        self.catalog = Catalog.load()
+        self.catalog = Catalog.load(seed_path())
         self.clock = clock or Clock()
         self.bus = EventBus(self.clock)
         self.book = OrderBook(self.catalog)
@@ -49,9 +71,9 @@ class Session:
         return self.agent.reply(self.conversation(conv_id), text)
 
     def checkout(self, preset: int | None = None) -> tuple[str, int, list[str]]:
-        data = CHECKOUT_PRESETS[(self._checkouts if preset is None else preset)
-                                % len(CHECKOUT_PRESETS)]
-        return self.checkout_order(data)
+        n = self._checkouts if preset is None else preset
+        data = CHECKOUT_PRESETS[n % len(CHECKOUT_PRESETS)]
+        return self.checkout_order({**data, "items": preset_items(self.catalog, data["items"], n)})
 
     def checkout_order(self, data: dict) -> tuple[str, int, list[str]]:
         self._checkouts += 1

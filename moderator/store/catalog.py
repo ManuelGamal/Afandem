@@ -18,6 +18,29 @@ SEED_PATH = Path(__file__).with_name("seed_data.json")
 SIZE_ORDER = ["S", "M", "L", "XL", "XXL", "30", "32", "34", "36", "38", "ONE"]
 LOW_STOCK = 3  # at or below this, the owner's inventory view flags a size
 
+# Arabic and Franco shopping words (fold_text form, matched as prefixes) and their English names,
+# for catalogs written in English, e.g. one imported from a store. Only tried when a search finds
+# nothing, so a search that already matches is unchanged.
+_ENGLISH_WORDS = {
+    ("شوز", "جزم", "حذا", "كوتشي", "shoz", "shooz", "gazma", "kotchy"): ["shoe", "sneaker", "runner", "trainer"],
+    ("هودي", "hody", "hoody"): ["hoodie"],
+    ("سويت", "sweet"): ["sweatshirt", "sweater"],
+    ("تيشيرت", "تيشرت", "tishirt", "tshirt"): ["tee", "t-shirt"],
+    ("قميص", "2amees", "amees"): ["shirt"],
+    ("بنطلون", "bantalon", "bantaloon"): ["pant", "trouser"],
+    ("جينز", "geenz", "jeenz"): ["jean", "denim"],
+    ("شورت",): ["short"],
+    ("جاكيت", "جاكت", "jaket", "jakit"): ["jacket"],
+    ("شنط", "shanta", "shanta"): ["bag", "tote"],
+    ("كاب",): ["cap", "hat"],
+    ("شراب", "sharab"): ["sock"],
+    ("فستان", "fostan"): ["dress"],
+    ("جيب", "jupe"): ["skirt"],
+    ("رجالي", "regali", "rgali"): ["men"],
+    ("حريمي", "harimi", "7arimi"): ["women"],
+}
+_ENGLISH = {fold_text(stem): en for stems, en in _ENGLISH_WORDS.items() for stem in stems}
+
 SCHEMA = """
 CREATE TABLE shop (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 CREATE TABLE products (
@@ -149,6 +172,19 @@ class Catalog:
     def search(self, query: str, category: str | None = None, max_price: int | None = None,
                limit: int = 5) -> list[Product]:
         words = [w for w in fold_text(query).split() if len(w) > 1]
+        found = self._search([[w] for w in words], category, max_price, limit)
+        if not found and words:  # an English-named catalog asked in Arabic or Franco
+            groups = [[e for stem, en in _ENGLISH.items() if w.startswith(stem) for e in en]
+                      for w in words]
+            groups = [g for g in groups if g]
+            if groups:
+                found = self._search(groups, category, max_price, limit, english=True)
+        return found
+
+    def _search(self, groups: list[list[str]], category: str | None, max_price: int | None,
+                limit: int, english: bool = False) -> list[Product]:
+        """Score = how many query words match (a group holds one word's alternatives). The English
+        retry matches at word starts ("men" is not in "women") and lists in-stock items first."""
         scored = []
         for p in self.products.values():
             if category and p.category != category:
@@ -156,10 +192,15 @@ class Catalog:
             if max_price is not None and p.price > max_price:
                 continue
             hay = fold_text(f"{p.name_ar} {p.name_en} {p.category} {' '.join(p.colors)}")
-            score = sum(1 for w in words if w in hay)
-            if score or not words:
+            if english:
+                hay = " " + hay
+            score = sum(1 for g in groups if any((f" {w}" if english else w) in hay for w in g))
+            if score or not groups:
                 scored.append((score, p))
-        scored.sort(key=lambda sp: (-sp[0], sp[1].price))
+        if english:
+            scored.sort(key=lambda sp: (-sp[0], not sp[1].available_sizes(), sp[1].price))
+        else:
+            scored.sort(key=lambda sp: (-sp[0], sp[1].price))
         return [p for _, p in scored[:limit]]
 
     def recommend_size(self, product_id: str, height_cm: float, weight_kg: float,
@@ -168,6 +209,10 @@ class Catalog:
         if product is None:
             raise KeyError(product_id)
         chart = self.charts[product.chart]
+        if not chart and "ONE" not in product.stock:  # sized, but no chart (e.g. imported shoes)
+            return {"size": None, "between": None, "in_stock": None,
+                    "available": product.available_sizes(),
+                    "note": "no size chart for this product; ask the customer's usual size"}
         if not chart:
             return {"size": "ONE", "between": None, "in_stock": product.stock.get("ONE", 0) > 0,
                     "available": product.available_sizes()}

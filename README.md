@@ -100,6 +100,33 @@ comes from memory or from the prompt:
 Each visitor of the demo gets their own copy of the shop, so nobody drains anyone else's stock, and
 **Start over** restores it. Swapping SQLite for Postgres is a connection change; the queries are plain SQL.
 
+## Use a real store's catalog
+
+Hodoom's catalog is made up, but Afandem can run on a real one. Most Egyptian fashion brands that sell
+online use Shopify, and every Shopify store publishes its catalog at `/products.json`. One command
+imports it into the shop database:
+
+```bash
+uv run python -m moderator.store.importer https://your-store.com --out data/my-shop.json
+MODERATOR_SEED=data/my-shop.json uv run uvicorn --factory moderator.server:create_app --port 8000
+```
+
+- **What comes from the store:** product names, prices, colours, sizes, and which sizes are sold out
+  (from the store's own availability flags), plus a one-line description of what the shop sells.
+- **What is estimated:** exact stock counts are private, so each size the store shows as available
+  gets an estimated count (`--stock`, default 8) and a sold-out size gets 0. The Inventory panel says
+  where the catalog came from and that the counts are estimates; the owner can correct any number.
+- **What stays Afandem's own:** delivery zones, fees and size charts. A store priced in another
+  currency can be converted with `--egp-per-unit`.
+- **Arabic questions, English product names:** when a search in Arabic or Franco finds nothing, it is
+  retried with the English words (`شوزات رجالي` → men's shoes), matching whole words and listing
+  in-stock items first.
+
+We tested it on a large public Shopify store: 80 products with their real names, prices, colours and
+sizes (703 of those sizes sold out), and the live agent answered from them in Arabic. Use it on your own
+store, or with the owner's permission; imported files go to `data/`, which is not committed. The bench,
+the recorded demo and the hosted demo all use Hodoom's catalog.
+
 ## What the agent does
 
 **Tools (11):** `search_products`, `get_product`, `recommend_size`, `quote_delivery`, `create_order`,
@@ -135,7 +162,8 @@ from the agent.
   cause (e.g. a too-strict yes check, a reply claiming a confirmation that never happened); task success
   went from 82% to 97%. [`bench/report/report.md`](bench/report/report.md)
 - **Held-out set (30 cards)** — new people, areas, products, phrasings and scenarios, written after the
-  development fixes and never used to tune the agent. Reported here: the final agent (commit `7bdb761`).
+  development fixes and never used to tune the agent. Reported here: the agent at commit `7bdb761`
+  (later commits add the store importer; its search retry only runs when a search finds nothing).
   [`bench/report-heldout/report.md`](bench/report-heldout/report.md)
 - **Transcripts are committed** ([`bench/results/heldout-final/`](bench/results/heldout-final),
   [`bench/results/run2/`](bench/results/run2)), so anyone can re-grade them:
@@ -215,7 +243,7 @@ replay/        the recorded demo used when there is no API key
 
 - **Free-tier friendly:** a fallback chain across Gemini Flash-Lite models that waits for the first
   model to free up instead of failing, and a response cache — the recorded demo never spends quota.
-- **Tests:** `uv run pytest` (182 tests, no API key needed).
+- **Tests:** `uv run pytest` (193 tests, no API key needed).
 - **Re-run the bench:** `uv run python -m moderator.bench.runner --cards bench/cards-heldout --out bench/results/heldout`
   (resumable), then `uv run python -m moderator.bench.report --results bench/results/heldout --cards bench/cards-heldout --out bench/report-heldout`.
 - **Play a card yourself:** `uv run python -m moderator.bench.runner --human --ids clear-1,decline-2 --out bench/results/human`.

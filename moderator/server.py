@@ -189,7 +189,9 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
     def inventory(request: Request, response: Response):
         s = view_session(request, response)
         with s.lock:
-            return {"rows": s.catalog.inventory(), "movements": s.catalog.stock_movements(20)}
+            return {"rows": s.catalog.inventory(), "movements": s.catalog.stock_movements(20),
+                    "catalog_source": s.catalog.shop.get("catalog_source"),
+                    "stock_note": s.catalog.shop.get("stock_note")}
 
     @app.post("/api/inventory")
     def set_stock(body: StockIn, request: Request, response: Response):
