@@ -119,6 +119,15 @@ def _charts(summary: dict, models: dict, out_dir: Path) -> None:
     plt.close(fig)
 
 
+def success_cell(summary: dict) -> str:
+    runs = summary.get("runs") or []
+    if len(runs) < 2:
+        return f"{summary['success_rate']:.0%}"
+    return (f"{summary['success_mean']:.1%} (mean of {len(runs)} runs; range "
+            f"{summary['success_min']:.0%}–{summary['success_max']:.0%}; "
+            f"{summary['cards']} conversations)")
+
+
 def reply_time_cell(summary: dict) -> str:
     """Reply time is measured only on replies that called the live model (cached ones take ~0 s)."""
     if summary.get("median_reply_s") is None:
@@ -128,13 +137,25 @@ def reply_time_cell(summary: dict) -> str:
             "that called the live model)")
 
 
-def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
+def build_report(results_dir: Path | list[Path], assumptions_path: Path, out_dir: Path,
                  cards_dir: Path = CARDS_DIR) -> Path:
+    """One results folder, or several runs of the same cards: then every number is pooled over all
+    conversations and task success also shows each run and their range."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    grades, cards = _grade_all(results_dir, cards_dir)
+    runs = [Path(d) for d in results_dir] if isinstance(results_dir, (list, tuple)) else [Path(results_dir)]
+    grades, cards, per_run = [], [], []
+    for run_dir in runs:
+        g, c = _grade_all(run_dir, cards_dir)
+        grades += g
+        cards += c
+        per_run.append({"run": run_dir.name, "cards": len(g),
+                        "success_rate": round(sum(x.success for x in g) / len(g), 3) if g else 0.0})
     pool = [g for g, c in zip(grades, cards) if c.expect.handoff is not True]
     summary = summarize(grades, self_service_pool=pool)
+    rates = [r["success_rate"] for r in per_run]
+    summary |= {"runs": per_run, "success_mean": round(sum(rates) / len(rates), 3),
+                "success_min": min(rates), "success_max": max(rates)}
     a = load_assumptions(assumptions_path)
     bench = bench_inputs(summary, grades)
     models = {s: impact_model(a, bench, s) for s in SCENARIOS}
@@ -161,7 +182,7 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
         "## Measured in simulation",
         "",
         "| Metric | Value |", "|---|---|",
-        f"| Task success | {summary['success_rate']:.0%} |",
+        f"| Task success | {success_cell(summary)} |",
         f"| Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | {summary['violations']} |",
         f"| Self-service rate (no human needed) | {summary['self_service_rate']:.0%} |",
         f"| Median agent reply time | {reply_time_cell(summary)} |",
@@ -224,12 +245,14 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results", required=True)
+    ap.add_argument("--results", required=True, nargs="+", help="one or more run folders (same cards)")
     ap.add_argument("--assumptions", default="bench/assumptions.yaml")
     ap.add_argument("--out", default="bench/report")
     ap.add_argument("--cards", default=str(CARDS_DIR), help="card set the results were run on")
     args = ap.parse_args()
-    print(build_report(Path(args.results), Path(args.assumptions), Path(args.out), Path(args.cards)))
+    results = [Path(r) for r in args.results]
+    print(build_report(results if len(results) > 1 else results[0], Path(args.assumptions),
+                       Path(args.out), Path(args.cards)))
 
 
 if __name__ == "__main__":

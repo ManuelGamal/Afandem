@@ -120,3 +120,21 @@ def test_reply_time_cell_says_how_it_was_measured():
     assert s["timed_conversations"] == 2
     assert reply_time_cell(s) == "2.5 s (2 conversations that called the live model)"
     assert "cache" in reply_time_cell(summarize([g(None)]))
+
+
+def test_report_pools_several_runs_and_shows_their_spread(tmp_path):
+    import shutil
+    from pathlib import Path
+
+    src = sorted(Path("bench/results/heldout-final").glob("*.json"))
+    a, b = tmp_path / "a", tmp_path / "b"
+    a.mkdir(); b.mkdir()
+    for f in src:
+        shutil.copy(f, a)
+    for f in src[:10]:
+        shutil.copy(f, b)
+    out = build_report([a, b], Path("bench/assumptions.yaml"), tmp_path / "r", Path("bench/cards-heldout"))
+    s = json.loads((tmp_path / "r" / "summary.json").read_text(encoding="utf-8"))["bench"]
+    assert s["cards"] == 40 and len(s["runs"]) == 2 and s["runs"][0]["cards"] == 30
+    assert s["success_min"] <= s["success_mean"] <= s["success_max"]
+    assert "mean of 2 runs" in out.read_text(encoding="utf-8")
