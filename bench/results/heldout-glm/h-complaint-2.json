@@ -1,0 +1,114 @@
+{
+ "card_id": "h-complaint-2",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "agent",
+   "text": "أهلاً يا فندم، وصلتنا رسالتك ومعلقين معاكي الموضوع بجد 🙏\n\nحولنا الكلام لفريق الشحن عشان يشوفوا بالظبط إيه اللي حصل مع المندوب ويردوا عليك في أقرب وقت.\n\nتحت أمرك أي وقت، ولو محتاجة حاجة تانية قوليلي."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_d35eacdda8aa41ebb37a2356",
+     "function": {
+      "arguments": "{\"reason\": \"Customer complaint: delivery agent says the order was returned/cancelled because customer was not present; customer wants to know what happened with their order.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "index": 10
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_d35eacdda8aa41ebb37a2356",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا فندم، وصلتنا رسالتك ومعلقين معاكي الموضوع بجد 🙏\n\nحولنا الكلام لفريق الشحن عشان يشوفوا بالظبط إيه اللي حصل مع المندوب ويردوا عليك في أقرب وقت.\n\nتحت أمرك أي وقت، ولو محتاجة حاجة تانية قوليلي."
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2038,
+    "tokens_out": 243,
+    "latency_s": 1.83
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "reason": "Customer complaint: delivery agent says the order was returned/cancelled because customer was not present; customer wants to know what happened with their order."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2114,
+    "tokens_out": 153,
+    "latency_s": 1.91
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "أهلاً يا فندم، وصلتنا رسالتك ومعلقين معاكي الموضوع بجد 🙏\n\nحولنا الكلام لفريق الشحن عشان يشوفوا بالظبط إيه اللي حصل مع المندوب ويردوا عليك في أقرب وقت.\n\nتحت أمرك أي وقت، ولو محتاجة حاجة تانية قوليلي.",
+    "latency_s": 3.74
+   }
+  }
+ ]
+}

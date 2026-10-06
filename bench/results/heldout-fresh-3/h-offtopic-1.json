@@ -1,0 +1,119 @@
+{
+ "card_id": "h-offtopic-1",
+ "category": "off_topic",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم أحنا متخصصين في بيع الهدوم والكاجوال بس، ومش بنعمل تصاميم لوجوهات. \n\nتحب تشوف تشكيلة الهدوم والترنجات عندنا؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش عاوز، بس شكراً."
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، وتحت أمرك في أي وقت! منورنا 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم أحنا متخصصين في بيع الهدوم والكاجوال بس، ومش بنعمل تصاميم لوجوهات. \n\nتحب تشوف تشكيلة الهدوم والترنجات عندنا؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TQLCc3mYhZSJrlZWJWnwoPR+ornALVTeS7Z2scNzH+/aeSHi//j4CgPj3X2V7fCRvTKe9pdHMTlDXuD2Ywi87/9dldWoTA1p675zVls2o+Q2rFNhQMyZPsEg="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا مش عاوز، بس شكراً."
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، وتحت أمرك في أي وقت! منورنا 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TLaHOl0Pt3oLxL9uMnO4/uKw0hN/Zo0WCyEddy4tskmGKUaUrwo4nz7OJHH9d6PB6RBv/j066m6YptbNV+ofTkE882DYSOuMv2cLE6wt5IKqZWCnhv5OgIJw="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1887,
+    "tokens_out": 47,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "يا فندم أحنا متخصصين في بيع الهدوم والكاجوال بس، ومش بنعمل تصاميم لوجوهات. \n\nتحب تشوف تشكيلة الهدوم والترنجات عندنا؟ 😊",
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "لا مش عاوز، بس شكراً."
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1944,
+    "tokens_out": 19,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "العفو يا فندم، وتحت أمرك في أي وقت! منورنا 😊",
+    "latency_s": 0.97
+   }
+  }
+ ]
+}

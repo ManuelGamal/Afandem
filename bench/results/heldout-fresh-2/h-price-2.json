@@ -1,0 +1,189 @@
+{
+ "card_id": "h-price-2",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "agent",
+   "text": "El genez el slim b 950 geneih, wel shohin le el Ismailia b 70 geneih w byakhod 2-4 ayam. \nHabib ne3raf tawlak w waznak w el fit el mofaddal 3ashan n2olrak el maqas el mazboot? 😊"
+  },
+  {
+   "role": "customer",
+   "text": "ana fakr fih, m3lesh el m3lomat de. shokran."
+  },
+  {
+   "role": "agent",
+   "text": "3afwan ya fandem, tawrt ayt wakt! 👖"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_97822",
+     "function": {
+      "arguments": "{\"query\":\"Slim jeans\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TAm0UA5zchDqKG67x8nRIL792mdvD30w53SUbv+tFFhRbG58JIm7aU09VspkkwBLhdsnnLdvm90PCR98srRRg4G1QdnBqVLHEm9pHrkifmopDR0GS5CcxcQY="
+      }
+     }
+    },
+    {
+     "id": "call_97823",
+     "function": {
+      "arguments": "{\"area\":\"الإسماعيلية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_97822",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"stock_by_size\": {\"30\": 6, \"32\": 12, \"34\": 10, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"stock_by_size\": {\"30\": 4, \"32\": 9, \"34\": 0, \"36\": 4, \"38\": 1}, \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 8, \"32\": 7, \"34\": 4, \"36\": 2, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_97823",
+   "content": "{\"ok\": true, \"zone\": \"مدن القناة\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "El genez el slim b 950 geneih, wel shohin le el Ismailia b 70 geneih w byakhod 2-4 ayam. \nHabib ne3raf tawlak w waznak w el fit el mofaddal 3ashan n2olrak el maqas el mazboot? 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TwXm555Rj/yYhJ90BIH//TSvowWC7j8o/8cmJPpBOFVEPb+VNBYl8y/vYSDllhp1KKMtMigWQP7eYdNj5JtwG6WhWwg5deF+oYveItyOh0dNDP09BLrB2d/c="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ana fakr fih, m3lesh el m3lomat de. shokran."
+  },
+  {
+   "role": "assistant",
+   "content": "3afwan ya fandem, tawrt ayt wakt! 👖",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T7DKAuvoO5/vb4239T5MTfsaQ0HMvkdJMWxUUEj90nO1AmKX3V46WUxYoZMQU+GU+2pvNya3xtOIr5ATkPbEiiq5QQtR1swkCOjFB49WqQMELuSG6Syg3w5I="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1944,
+    "tokens_out": 37,
+    "latency_s": 2.54
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2613,
+    "tokens_out": 75,
+    "latency_s": 1.41
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "El genez el slim b 950 geneih, wel shohin le el Ismailia b 70 geneih w byakhod 2-4 ayam. \nHabib ne3raf tawlak w waznak w el fit el mofaddal 3ashan n2olrak el maqas el mazboot? 😊",
+    "latency_s": 3.95
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "ana fakr fih, m3lesh el m3lomat de. shokran."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2709,
+    "tokens_out": 15,
+    "latency_s": 1.09
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "3afwan ya fandem, tawrt ayt wakt! 👖",
+    "latency_s": 1.09
+   }
+  }
+ ]
+}

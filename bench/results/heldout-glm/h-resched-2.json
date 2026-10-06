@@ -1,0 +1,453 @@
+{
+ "card_id": "h-resched-2",
+ "category": "reschedule",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ana 3ayez el tawseel yekoun el arba3 2026-10-14 bas  \n2a2ed el talab ba3d"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا حسام، ظبطتلك التوصيل يوم 2026-10-14 👍\nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: يوم 2026-10-14\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "2a2ed el talab  \nshokran"
+  },
+  {
+   "role": "agent",
+   "text": "يا حسام، التوصيل يوم 2026-10-14 متسجل عندنا تمام 👍\nبس عشان نضمن إن كل حاجة مظبوطة، حد من الفريق هيكلمك قريب لتأكيد الطلب نهائي.\nشكراً لصبرك، وتحت أمرك في أي حاجة!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "ana 3ayez el tawseel yekoun el arba3 2026-10-14 bas  \n2a2ed el talab ba3d"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_613c7947d50b4bebbac65535",
+     "function": {
+      "arguments": "{\"date\": \"2026-10-14\", \"order_id\": 1}",
+      "name": "schedule_delivery"
+     },
+     "type": "function",
+     "index": 8
+    },
+    {
+     "id": "call_821e966a7ad74102935947f2",
+     "function": {
+      "arguments": "{\"order_id\": 1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "index": 6
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_613c7947d50b4bebbac65535",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1050, \"summary_ar\": \"طلب رقم 1:\\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\\nالتوصيل: يوم 2026-10-14\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_821e966a7ad74102935947f2",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا حسام، ظبطتلك التوصيل يوم 2026-10-14 👍\nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: يوم 2026-10-14\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "2a2ed el talab  \nshokran"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_a4589adb793849778340e451",
+     "function": {
+      "arguments": "{\"order_id\": 1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "index": 6
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_a4589adb793849778340e451",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_8e9c1db809f44f8aa51e4b86",
+     "function": {
+      "arguments": "{\"order_id\": 1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "index": 6
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_8e9c1db809f44f8aa51e4b86",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_0778b16d65bf4d9986667eaa",
+     "function": {
+      "arguments": "{\"reason\": \"Order 1: customer gave a clear confirmation (\\\"2a2ed el talab\\\") but confirm_order keeps returning no_explicit_yes error. Order still pending_confirmation. Needs manual confirmation by a team member. Delivery already scheduled for 2026-10-14.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "index": 10
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_0778b16d65bf4d9986667eaa",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "user",
+   "content": "[حدث داخلي] ردك بيقول إن الطلب اتأكد، لكنه لسه مش متأكد في النظام. متقولش كده؛ لو العميل وافق بوضوح استخدم confirm_order، وإلا ابعت الملخص واسأله يأكد."
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_6a30125129cd48b4a145d079",
+     "function": {
+      "arguments": "{\"order_id\": 1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "index": 6
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_6a30125129cd48b4a145d079",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "يا حسام، التوصيل يوم 2026-10-14 متسجل عندنا تمام 👍\nبس عشان نضمن إن كل حاجة مظبوطة، حد من الفريق هيكلمك قريب لتأكيد الطلب نهائي.\nشكراً لصبرك، وتحت أمرك في أي حاجة!"
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "needs_human",
+   "source": "checkout",
+   "customer_name": "حسام فتحي",
+   "phone": "01147890123",
+   "address": "12 شارع الجمهورية الدور 4",
+   "area": "المنصورة",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B02",
+     "name_ar": "جينز ستريت",
+     "size": "32",
+     "color": "أزرق غامق",
+     "qty": 1,
+     "unit_price": 980
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 980,
+   "total": 1050,
+   "delivery_date": "2026-10-14",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1050,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ana 3ayez el tawseel yekoun el arba3 2026-10-14 bas  \n2a2ed el talab ba3d"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2327,
+    "tokens_out": 408,
+    "latency_s": 4.7
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2576,
+    "tokens_out": 319,
+    "latency_s": 10.83
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا حسام، ظبطتلك التوصيل يوم 2026-10-14 👍\nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: يوم 2026-10-14\n\nأأكد الطلب؟",
+    "latency_s": 15.53
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "2a2ed el talab  \nshokran"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2729,
+    "tokens_out": 50,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2792,
+    "tokens_out": 318,
+    "latency_s": 2.5
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2855,
+    "tokens_out": 1002,
+    "latency_s": 7.51
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "needs_human",
+    "reason": "handoff",
+    "total": 1050,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "checkout-1",
+   "data": {
+    "reason": "Order 1: customer gave a clear confirmation (\"2a2ed el talab\") but confirm_order keeps returning no_explicit_yes error. Order still pending_confirmation. Needs manual confirmation by a team member. Delivery already scheduled for 2026-10-14."
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2956,
+    "tokens_out": 162,
+    "latency_s": 1.71
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3020,
+    "tokens_out": 153,
+    "latency_s": 1.7
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3083,
+    "tokens_out": 468,
+    "latency_s": 3.93
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "يا حسام، التوصيل يوم 2026-10-14 متسجل عندنا تمام 👍\nبس عشان نضمن إن كل حاجة مظبوطة، حد من الفريق هيكلمك قريب لتأكيد الطلب نهائي.\nشكراً لصبرك، وتحت أمرك في أي حاجة!",
+    "latency_s": 18.34
+   }
+  }
+ ]
+}

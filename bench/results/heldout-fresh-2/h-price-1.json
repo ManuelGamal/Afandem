@@ -1,0 +1,244 @@
+{
+ "card_id": "h-price-1",
+ "category": "price_shopper",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+  },
+  {
+   "role": "agent",
+   "text": "سعر جاكيت ويند بريكر 1100 جنيه، ومتاح ألوان (أسود وكحلي).\nوبنشحن لأسوان طبعاً، مصاريف الشحن 85 جنيه وبياخد من 3 لـ 5 أيام عمل. تحب أساعدك في اختيار المقاس المناسب؟"
+  },
+  {
+   "role": "customer",
+   "text": "يا ريت تبعتلي صورة للون الكحلي، وسعر الشحن شامل التوصيل للمنزل؟"
+  },
+  {
+   "role": "agent",
+   "text": "تحت أمرك يا فندم، أنا حولت محادثتك لفريق خدمة العملاء وهيبعتلك الصور في أقرب وقت."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_28052",
+     "function": {
+      "arguments": "{\"query\":\"جاكيت ويند بريكر\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0ThMM2TvyQWs3y3H1sSg2FMJPpM4qKppjftoULK78LQ28VHvWLxY/pS0qZJuKrWtdwjjVT394pYZZPgoJN+6vvXNsryeiX7eJTPxUcZziLRl3rZFphBWKyg6U="
+      }
+     }
+    },
+    {
+     "id": "call_28053",
+     "function": {
+      "arguments": "{\"area\":\"أسوان\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_28052",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O06\", \"name\": \"جاكيت ويند بريكر\", \"name_en\": \"Windbreaker\", \"category\": \"outerwear\", \"price\": 1100, \"colors\": [\"أسود\", \"كحلي\"], \"stock_by_size\": {\"S\": 3, \"M\": 6, \"L\": 6, \"XL\": 4, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"name_en\": \"Denim jacket\", \"category\": \"outerwear\", \"price\": 1250, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"stock_by_size\": {\"S\": 3, \"M\": 6, \"L\": 6, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"O02\", \"name\": \"جاكيت بومبر\", \"name_en\": \"Bomber jacket\", \"category\": \"outerwear\", \"price\": 1450, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 2, \"M\": 5, \"L\": 5, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}, {\"id\": \"O03\", \"name\": \"جاكيت جلد صناعي\", \"name_en\": \"Faux-leather jacket\", \"category\": \"outerwear\", \"price\": 1650, \"colors\": [\"أسود\", \"بني\"], \"stock_by_size\": {\"S\": 2, \"M\": 4, \"L\": 0, \"XL\": 2, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"XL\"], \"sizes_out_of_stock\": [\"L\", \"XXL\"], \"pairs_with\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_28053",
+   "content": "{\"ok\": true, \"zone\": \"الصعيد\", \"fee\": 85, \"days_min\": 3, \"days_max\": 5}"
+  },
+  {
+   "role": "assistant",
+   "content": "سعر جاكيت ويند بريكر 1100 جنيه، ومتاح ألوان (أسود وكحلي).\nوبنشحن لأسوان طبعاً، مصاريف الشحن 85 جنيه وبياخد من 3 لـ 5 أيام عمل. تحب أساعدك في اختيار المقاس المناسب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TrQjqVOoQaawsVJAFf23FaQNihzpBjVqCjkQ2EDpUSysoUgyDeSFPwZG3LDOXxC+bkt3UgiTevTWYxKXxoX1GM4w8Hig2+kTJXffjO7qcoQMMHP+GPbjHVWM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "يا ريت تبعتلي صورة للون الكحلي، وسعر الشحن شامل التوصيل للمنزل؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_522740",
+     "function": {
+      "arguments": "{\"reason\":\"Customer requested pictures of the product, which cannot be sent via the current tool capabilities.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0THirRW/WnagODMzqrqzMIuVmRNyyP52Bm2QbBMcUEhrsAcPDUXR6CFrxF3JqOs8xIxjgpsMSeE64mJrtdvuea/55BKlmp9d6irVwYV3zvlHtVL92+eA4aitU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_522740",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "تحت أمرك يا فندم، أنا حولت محادثتك لفريق خدمة العملاء وهيبعتلك الصور في أقرب وقت.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TFM3mRupR96esd9qPeiwOn1OW5kIG2vvI+9eMCfhq/ruisC7p71Y/kTpp2YA6pukXEgCAP3d7MjyWz9qfbvItAbNqNxZswRvKUrVLPXcFa7j/eVEdWJ1XiYw="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1897,
+    "tokens_out": 39,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2702,
+    "tokens_out": 72,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "سعر جاكيت ويند بريكر 1100 جنيه، ومتاح ألوان (أسود وكحلي).\nوبنشحن لأسوان طبعاً، مصاريف الشحن 85 جنيه وبياخد من 3 لـ 5 أيام عمل. تحب أساعدك في اختيار المقاس المناسب؟",
+    "latency_s": 1.86
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "يا ريت تبعتلي صورة للون الكحلي، وسعر الشحن شامل التوصيل للمنزل؟"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2801,
+    "tokens_out": 35,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "reason": "Customer requested pictures of the product, which cannot be sent via the current tool capabilities."
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2882,
+    "tokens_out": 30,
+    "latency_s": 2.29
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "تحت أمرك يا فندم، أنا حولت محادثتك لفريق خدمة العملاء وهيبعتلك الصور في أقرب وقت.",
+    "latency_s": 3.21
+   }
+  }
+ ]
+}

@@ -1,0 +1,122 @@
+{
+ "card_id": "h-complaint-2",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "agent",
+   "text": "Wala yohmok ya fandem! Hahawel el mawdoo3 حالا لزميلي في خدمة العملاء وهيكلموك قريباً جداً يظبطوا معاكي كل حاجة."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_120643",
+     "function": {
+      "arguments": "{\"reason\":\"Customer reports order was cancelled because they were not present when the courier arrived.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TP2mRVuKSo+1NsTcWWumrmaYO7AQckloa7m3rS7NSGuaKbsfqnT4AWB1OgcduEutyminhnKFIDZW2D5O5ZP0Lwum9Q7gcwsrniPCSjKmzJGo9wRcq8a/1Zlg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_120643",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yohmok ya fandem! Hahawel el mawdoo3 حالا لزميلي في خدمة العملاء وهيكلموك قريباً جداً يظبطوا معاكي كل حاجة.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TeNv1x15982aZiUzkge6qxE28KybxjrTghpJivGGoQOTWN92xPyCiUhJ26Sa/8FAuyLZotyaqpW5IfgH2FEVes52QtWOvvMcNY4eX8caeE4nICDj7T26Jksc="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 1968,
+    "tokens_out": 33,
+    "latency_s": 0.86
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "reason": "Customer reports order was cancelled because they were not present when the courier arrived."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2047,
+    "tokens_out": 44,
+    "latency_s": 1.13
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "Wala yohmok ya fandem! Hahawel el mawdoo3 حالا لزميلي في خدمة العملاء وهيكلموك قريباً جداً يظبطوا معاكي كل حاجة.",
+    "latency_s": 1.98
+   }
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "أهلاً يا فندم! احنا للأسف مفيش عندنا فرع في دبي، ومفيش نظام فرانشايز حالياً. \n\nلو حابب تتواصل مع الإدارة بخصوص أي اقتراحات تانية، ممكن أحولك لحد من الفريق يتابع معاك؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش هحتاج، شكراً. مفيش داعي."
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك في أي وقت تشرفنا في مصر! 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا فندم! احنا للأسف مفيش عندنا فرع في دبي، ومفيش نظام فرانشايز حالياً. \n\nلو حابب تتواصل مع الإدارة بخصوص أي اقتراحات تانية، ممكن أحولك لحد من الفريق يتابع معاك؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tg9+1JgZV8qlofEe0mSqLfOgivtVU9O0+07+uXkpd3tFFxiUiO7OHChEC1IOtucRAWZaldZr+qfV77WSeIz5qQXaoB1Lq9OcZ6rzbA/cqDbkO9jv0AxzslHE="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا مش هحتاج، شكراً. مفيش داعي."
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك في أي وقت تشرفنا في مصر! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TowA3+EAuO02tJCV0HewGsg1Wbrb8zkf+BWZHqApPVwX+eJJrOwK8zNBcjmboKpBz+o2xryjfgash0bxetzk2JMTq3lQj86hpI2VuLH0v6xpJtdH4/uRp734="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1888,
+    "tokens_out": 66,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "أهلاً يا فندم! احنا للأسف مفيش عندنا فرع في دبي، ومفيش نظام فرانشايز حالياً. \n\nلو حابب تتواصل مع الإدارة بخصوص أي اقتراحات تانية، ممكن أحولك لحد من الفريق يتابع معاك؟",
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "لا مش هحتاج، شكراً. مفيش داعي."
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1970,
+    "tokens_out": 21,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك في أي وقت تشرفنا في مصر! 🌸",
+    "latency_s": 0.88
+   }
+  }
+ ]
+}

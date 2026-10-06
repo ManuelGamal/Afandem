@@ -1,0 +1,184 @@
+{
+ "card_id": "h-decline-1",
+ "category": "declines",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون نبيتي = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا يا فندم، متلغى الطلب من فضلكم."
+  },
+  {
+   "role": "agent",
+   "text": "تم يا فندم، لغيت الطلب ومفيش أي التزام 🌸\nلو حابب أي حاجة تانية في أي وقت، احنا تحت أمرك."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون نبيتي = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون نبيتي = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "لا يا فندم، متلغى الطلب من فضلكم."
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_527f7499299c49fa8af2782b",
+     "function": {
+      "arguments": "{\"order_id\": 1, \"reason\": \"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "index": 7
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_527f7499299c49fa8af2782b",
+   "content": "{\"ok\": true, \"status\": \"cancelled\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم يا فندم، لغيت الطلب ومفيش أي التزام 🌸\nلو حابب أي حاجة تانية في أي وقت، احنا تحت أمرك."
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "cancelled",
+   "source": "checkout",
+   "customer_name": "دينا مجدي",
+   "phone": "01014567890",
+   "address": "33 شارع الحجاز الدور 7 شقة 14",
+   "area": "مصر الجديدة",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T03",
+     "name_ar": "بولو شيرت بيكيه",
+     "size": "M",
+     "color": "نبيتي",
+     "qty": 1,
+     "unit_price": 520
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 520,
+   "total": 580,
+   "delivery_date": null,
+   "cancel_reason": "customer_declined",
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 580,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون نبيتي = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "لا يا فندم، متلغى الطلب من فضلكم."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2260,
+    "tokens_out": 46,
+    "latency_s": 0.82
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "cancelled",
+    "reason": "customer_declined",
+    "total": 580,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "cancel_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2296,
+    "tokens_out": 59,
+    "latency_s": 1.04
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم يا فندم، لغيت الطلب ومفيش أي التزام 🌸\nلو حابب أي حاجة تانية في أي وقت، احنا تحت أمرك.",
+    "latency_s": 1.87
+   }
+  }
+ ]
+}

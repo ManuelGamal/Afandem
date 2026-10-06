@@ -1,0 +1,87 @@
+{
+ "card_id": "h-complaint-1",
+ "category": "complaint",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "طلبت من أسبوع ولسه الأوردر موصلش، وكل ما أكلمكم محدش بيرد"
+  },
+  {
+   "role": "agent",
+   "text": "أنا بجد أسف جداً لتأخير الأوردر وعشان ما اتأخرش عليك أكتر من كده، هحولك حالا بحد من زميلنا في خدمة العملاء وهيتأكد من كل التفاصيل ويتابع معاك فوراً. 💙"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "طلبت من أسبوع ولسه الأوردر موصلش، وكل ما أكلمكم محدش بيرد"
+  },
+  {
+   "role": "assistant",
+   "content": "أنا بجد أسف جداً لتأخير الأوردر وعشان ما اتأخرش عليك أكتر من كده، هحولك حالا بحد من زميلنا في خدمة العملاء وهيتأكد من كل التفاصيل ويتابع معاك فوراً. 💙",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tx9o8l/J6zRbbpb+kQBinIwYHFo5thBBMCdnhNbEK0kC6xBTXgFFU9NFHIxuHmGCieKoIwkk5RYKdNHATZkeoA/Xtcwgq3+W3VDoEN2f5eWQG6FCWV1WNeyg="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-1",
+   "data": {
+    "text": "طلبت من أسبوع ولسه الأوردر موصلش، وكل ما أكلمكم محدش بيرد"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1901,
+    "tokens_out": 58,
+    "latency_s": 6.53
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-1",
+   "data": {
+    "reason": "agent_promised_handoff"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-1",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-1",
+   "data": {
+    "text": "أنا بجد أسف جداً لتأخير الأوردر وعشان ما اتأخرش عليك أكتر من كده، هحولك حالا بحد من زميلنا في خدمة العملاء وهيتأكد من كل التفاصيل ويتابع معاك فوراً. 💙",
+    "latency_s": 6.53
+   }
+  }
+ ]
+}

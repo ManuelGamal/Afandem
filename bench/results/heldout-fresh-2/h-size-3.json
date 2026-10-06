@@ -1,0 +1,576 @@
+{
+ "card_id": "h-size-3",
+ "category": "size_unsure",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ال Linen shirt عاجبني جداً، بس which size هيبقى مناسب؟"
+  },
+  {
+   "role": "agent",
+   "text": "تحت أمرك يا فندم! عشان أقولك المقاس المبوط، ممكن تقولي طولك كام سم، وزنك كام كيلو، وحابب اللبس يكون (regular، ولا loose، ولا tight)؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "طول 162 سم، وزن 55 كيلو، وعايزه يكون regular fit."
+  },
+  {
+   "role": "agent",
+   "text": "مقاس S هيبقى مظبوط جداً معاك يا فندم في القميص الكتان، ومتاح بالألوان: أبيض، بيج، وسماوي (بس مقاس XXL خلصان). \nتحب أضيفلك بنطلون تشينو بـ 780 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "أنا عايز لون سماوي فقط، متاعي واحد. ماشي؟"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، القميص الكتان لونه سماوي مقاس S.\nممكن اعرف اسم حضرتك، ورقم الموبايل، وعنوان الاستلام بالتفصيل (المدينة، الشارع، رقم العُمارة، الدور، وعلامة مميزة)؟"
+  },
+  {
+   "role": "customer",
+   "text": "حسام فتحي، 01147890123، المنصورة، 12 شارع الجمهورية، الدور 4، شقة 14."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× قميص كتان مقاس S لون سماوي = 690 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 760 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية، الدور 4، شقة 14، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ماشي، اكيد."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك يا فندم وشكراً لاختيارك هدوم! هنكلمك قريب عشان التوصيل. يومك سعيد! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ال Linen shirt عاجبني جداً، بس which size هيبقى مناسب؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_118409",
+     "function": {
+      "arguments": "{\"query\":\"Linen shirt\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tn6NL34+as7QgJhqSDil5QE3k8rGnyeMkfvkDzlYW0YMhADIamm94CkCih6qrcw5qPZkgNrMD8wUXQUuX7VemoiLz6PSQp9M66aGf8Dj8pzKNBIG+CtTh6zg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_118409",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T04\", \"name\": \"قميص كتان\", \"name_en\": \"Linen shirt\", \"category\": \"tops\", \"price\": 690, \"colors\": [\"أبيض\", \"بيج\", \"سماوي\"], \"stock_by_size\": {\"S\": 3, \"M\": 8, \"L\": 7, \"XL\": 4, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}, {\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"price\": 740}]}, {\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"name_en\": \"Oxford shirt\", \"category\": \"tops\", \"price\": 650, \"colors\": [\"سماوي\", \"أبيض\"], \"stock_by_size\": {\"S\": 4, \"M\": 9, \"L\": 9, \"XL\": 5, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B02\", \"name\": \"جينز ستريت\", \"price\": 980}, {\"id\": \"O04\", \"name\": \"بليزر كاجوال\", \"price\": 1550}]}, {\"id\": \"T07\", \"name\": \"سويت شيرت\", \"name_en\": \"Crewneck sweatshirt\", \"category\": \"tops\", \"price\": 750, \"colors\": [\"رمادي\", \"بيج\"], \"stock_by_size\": {\"S\": 3, \"M\": 7, \"L\": 8, \"XL\": 4, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "تحت أمرك يا فندم! عشان أقولك المقاس المبوط، ممكن تقولي طولك كام سم، وزنك كام كيلو، وحابب اللبس يكون (regular، ولا loose، ولا tight)؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TNRnEay1pt3KEBbG7V/7x/sVQcNTWQW79dnVhLekS7O+f2WGdUSruHgNG7DrceqC1eY89yevuf1gFKY6Af5OSDc1HGSm/UBIu7ZOiCTqSf89oi2i+Yem0JVo="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "طول 162 سم، وزن 55 كيلو، وعايزه يكون regular fit."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_56262",
+     "function": {
+      "arguments": "{\"fit_preference\":\"regular\",\"weight_kg\":55,\"height_cm\":162,\"product_id\":\"T04\"}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TjLQNOYme5ZMivVS9SoujrrYtmrTR6odzHjzYHvTrsVtQgqqa7zVqsmIuxeMVqDBTdm4pyjPrgLMjI99VM0GgevRcK+DDWkdc7QBA66tOiWYh+aU3oypMEA0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_56262",
+   "content": "{\"ok\": true, \"size\": \"S\", \"between\": null, \"in_stock\": true, \"available\": [\"S\", \"M\", \"L\", \"XL\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "مقاس S هيبقى مظبوط جداً معاك يا فندم في القميص الكتان، ومتاح بالألوان: أبيض، بيج، وسماوي (بس مقاس XXL خلصان). \nتحب أضيفلك بنطلون تشينو بـ 780 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TL/nn77FIohpStLwYqzei3tG9HbzgQYiWxY+oBnpMaOipFgppDtEhlB/CcOKSwDAE8pD35auwp+h/PQwow1UnzXm71OHrgH8nxGGXKNVYz4l6fKtlG9iMayw="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أنا عايز لون سماوي فقط، متاعي واحد. ماشي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، القميص الكتان لونه سماوي مقاس S.\nممكن اعرف اسم حضرتك، ورقم الموبايل، وعنوان الاستلام بالتفصيل (المدينة، الشارع، رقم العُمارة، الدور، وعلامة مميزة)؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tx51rVj9G5Ub/kOpwtIjGfTHoOmupbtLw1D5BBZaFhRoLP3bjJYsCQ2gkkR9DRLE4/154rgUX4k6R0N0zUk8Lvh1Ul7H7M4QHFJ+rdHrIJfrxvORQl2eiOHM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "حسام فتحي، 01147890123، المنصورة، 12 شارع الجمهورية، الدور 4، شقة 14."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_119114",
+     "function": {
+      "arguments": "{\"area\":\"المنصورة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+bdMDZZLkxokxDbHam7crWNi3aBE+vshZRYkf6kRkYgS70gOOrUunay0W5on1gRPfPjGPaiEiUmVXImK32OltEVIqAdVBwxQTHWH/lHJadY3nXZjuXWe6eI="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_119114",
+   "content": "{\"ok\": true, \"zone\": \"الدلتا\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_11267",
+     "function": {
+      "arguments": "{\"customer_name\":\"حسام فتحي\",\"area\":\"المنصورة\",\"items\":[{\"product_id\":\"T04\",\"color\":\"سماوي\",\"size\":\"S\",\"qty\":1}],\"address\":\"12 شارع الجمهورية، الدور 4، شقة 14\",\"phone\":\"01147890123\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TawVGQhJWpIcv7tuoPRgmiyKcAcT84GZPmSf9fblhNyh5bdh1e4dPCzbJstoDPxSlXEv+8FMjdp++VmwIG+6kbdEdMfDuzbo8oPvJP1fUymN5YImWJT0Hxpk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_11267",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 760, \"summary_ar\": \"طلب رقم 1:\\n- 1× قميص كتان مقاس S لون سماوي = 690 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 760 جنيه (الدفع عند الاستلام)\\nالعنوان: 12 شارع الجمهورية، الدور 4، شقة 14، المنصورة\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× قميص كتان مقاس S لون سماوي = 690 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 760 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية، الدور 4، شقة 14، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0ToogOzjianlsNVn7jwD9owp0aNsLinjcQcXlGrJVSyyW3rbF1nYt/uweLi8LSfN8v6Hjo2TRtflqkarvZIDjDKuhN9hFXn7LTvz8R4a7/eKNSIX1uH6l2/+o="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ماشي، اكيد."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_64298",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TN8F/iQXbjGVRhuPgGRvwJga9MgpVgCbDs5XG9/a59xW7sB2EqPJrVyA+Xp+PLCwLYUEQ48w5F3sf/9wheDbyKH4l8tSIw4Wue/FGeJtD9dKgCG9pdX+2zq8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_64298",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك يا فندم وشكراً لاختيارك هدوم! هنكلمك قريب عشان التوصيل. يومك سعيد! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TMoqyZmDtlKScQRH7ow8C9zz3aaDb1bKUn57AxadYfm27tl1NsiQR/qZ8jUjLoy6dm16MAszfVCLEYy0KWjOPzV4BSLQ/wNlYgGCKWW8/AiSpK873TtraooM="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-size-3",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "حسام فتحي",
+   "phone": "01147890123",
+   "address": "12 شارع الجمهورية، الدور 4، شقة 14",
+   "area": "المنصورة",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "T04",
+     "name_ar": "قميص كتان",
+     "size": "S",
+     "color": "سماوي",
+     "qty": 1,
+     "unit_price": 690
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 690,
+   "total": 760,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "ال Linen shirt عاجبني جداً، بس which size هيبقى مناسب؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 1893,
+    "tokens_out": 18,
+    "latency_s": 0.75
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2484,
+    "tokens_out": 48,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "تحت أمرك يا فندم! عشان أقولك المقاس المبوط، ممكن تقولي طولك كام سم، وزنك كام كيلو، وحابب اللبس يكون (regular، ولا loose، ولا tight)؟ 😊",
+    "latency_s": 1.64
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "طول 162 سم، وزن 55 كيلو، وعايزه يكون regular fit."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2555,
+    "tokens_out": 43,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2649,
+    "tokens_out": 64,
+    "latency_s": 1.06
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "مقاس S هيبقى مظبوط جداً معاك يا فندم في القميص الكتان، ومتاح بالألوان: أبيض، بيج، وسماوي (بس مقاس XXL خلصان). \nتحب أضيفلك بنطلون تشينو بـ 780 جنيه؟",
+    "latency_s": 1.96
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "أنا عايز لون سماوي فقط، متاعي واحد. ماشي؟"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2729,
+    "tokens_out": 61,
+    "latency_s": 2.22
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "تمام يا فندم، القميص الكتان لونه سماوي مقاس S.\nممكن اعرف اسم حضرتك، ورقم الموبايل، وعنوان الاستلام بالتفصيل (المدينة، الشارع، رقم العُمارة، الدور، وعلامة مميزة)؟",
+    "latency_s": 2.22
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "حسام فتحي، 01147890123، المنصورة، 12 شارع الجمهورية، الدور 4، شقة 14."
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2832,
+    "tokens_out": 19,
+    "latency_s": 1.29
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2900,
+    "tokens_out": 98,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 760,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3166,
+    "tokens_out": 98,
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× قميص كتان مقاس S لون سماوي = 690 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 760 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية، الدور 4، شقة 14، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 3.18
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "ماشي، اكيد."
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3271,
+    "tokens_out": 16,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 760,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "product_id": "T04",
+    "size": "S",
+    "delta": -1,
+    "stock_after": 2,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3346,
+    "tokens_out": 33,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-3",
+   "data": {
+    "text": "تم تأكيد طلبك يا فندم وشكراً لاختيارك هدوم! هنكلمك قريب عشان التوصيل. يومك سعيد! 😊",
+    "latency_s": 1.96
+   }
+  }
+ ]
+}

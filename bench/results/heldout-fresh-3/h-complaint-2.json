@@ -1,0 +1,122 @@
+{
+ "card_id": "h-complaint-2",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "agent",
+   "text": "Wala yohmok ya fandem, hesal kher. Ha3awed a3mlak hahandoff el mawdoo3 w hadd men el fریق el mokhtas hayred 3alek fe a2rab wa2t enshallah."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_61396",
+     "function": {
+      "arguments": "{\"reason\":\"customer's order was cancelled because they weren't available for delivery\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+uNRX5BNzMA1bCIOQ50jdwBfSScDHgbDNkeB8uw7Bb3mtVDtGuSm4aKcHzgdm63FJhjRldHLnR/80YxergLPsu/HqshMsE4iy50weYOdlwORt8e2dzW0jXI="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_61396",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yohmok ya fandem, hesal kher. Ha3awed a3mlak hahandoff el mawdoo3 w hadd men el fریق el mokhtas hayred 3alek fe a2rab wa2t enshallah.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TprMqa3Hd79sLLjHpdTmshPnfMJPFYacz8BWS0lHq5+YPDod46ZSqJ3Pr7cWmUhKu8sGOvx/6GmXnxyzF00S9ydeB5GNYM92U/Isun9YfADGG4+A2HZmGdIs="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 1968,
+    "tokens_out": 32,
+    "latency_s": 2.39
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "reason": "customer's order was cancelled because they weren't available for delivery"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2046,
+    "tokens_out": 55,
+    "latency_s": 1.5
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "Wala yohmok ya fandem, hesal kher. Ha3awed a3mlak hahandoff el mawdoo3 w hadd men el fریق el mokhtas hayred 3alek fe a2rab wa2t enshallah.",
+    "latency_s": 3.89
+   }
+  }
+ ]
+}

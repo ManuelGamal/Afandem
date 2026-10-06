@@ -1,0 +1,241 @@
+{
+ "card_id": "h-price-2",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 3,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "agent",
+   "text": "El Geniz El Slim b 950 geneh, wel shohol le Ismailia b 70 geneh we byakhod mn 2 l 4 ayam. Taht amrak ya fandem! 😊"
+  },
+  {
+   "role": "customer",
+   "text": "shokran, 5ales a7ki fe el amr."
+  },
+  {
+   "role": "agent",
+   "text": "3afwan ya fandem, t7eb negib el maqas el mozbot? 2olii tolak, waznak, w el fit elly betfaddalo (regular, loose, walla tight)?"
+  },
+  {
+   "role": "customer",
+   "text": "la2, ana 7asib amri bas. shokran."
+  },
+  {
+   "role": "agent",
+   "text": "3ala ayny ya fandem, law e7tagt ay haga fe ay wakt a7na taht amrak. Nahn mabsotin bik w marhaba bik dayman! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_486138",
+     "function": {
+      "arguments": "{\"query\":\"Slim jeans\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Th7I3M+FWNRWNChq47ByTyHF/0r5KZS3x0jZHSW9/33MxrV3gT+qxCpOmtHK3LgwoX/xMBLy+XkgimMKRWrkj1V6J8CyTGd66smLa7LFUaW9Y8+ywme32UV4="
+      }
+     }
+    },
+    {
+     "id": "call_486139",
+     "function": {
+      "arguments": "{\"area\":\"الإسماعيلية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_486138",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"stock_by_size\": {\"30\": 6, \"32\": 12, \"34\": 10, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"stock_by_size\": {\"30\": 4, \"32\": 9, \"34\": 0, \"36\": 4, \"38\": 1}, \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 8, \"32\": 7, \"34\": 4, \"36\": 2, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_486139",
+   "content": "{\"ok\": true, \"zone\": \"مدن القناة\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "El Geniz El Slim b 950 geneh, wel shohol le Ismailia b 70 geneh we byakhod mn 2 l 4 ayam. Taht amrak ya fandem! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TTGloUYg4Nie/gZ1Xwp/zGM3ey1kb6O0LmXdmEoBSGoOChPYdUK1ZGhfwfU31ut5KlxKp4NDKA+2VQKBr7tq5o4hV6QCr8sOS/rqY97VQnCfX3CRMwbWCcXw="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "shokran, 5ales a7ki fe el amr."
+  },
+  {
+   "role": "assistant",
+   "content": "3afwan ya fandem, t7eb negib el maqas el mozbot? 2olii tolak, waznak, w el fit elly betfaddalo (regular, loose, walla tight)?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TGTergvVGcDrO9YC2CNr6y2xiqFnbbz1yByWuw3tz+jcMGv72eTSwkingwPZ4hyzuVYolpGYWCmqCWUlvsQB1BpccAA+gwr9jKOL7Ctv5yo0/PAafzlUi6Uo="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "la2, ana 7asib amri bas. shokran."
+  },
+  {
+   "role": "assistant",
+   "content": "3ala ayny ya fandem, law e7tagt ay haga fe ay wakt a7na taht amrak. Nahn mabsotin bik w marhaba bik dayman! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T1GtjIXMlo6cveh4p6nRy5981rugr0Ujmk2vOuX+/ujmzHrMwtXsz4WKXndmFDQbYyqQC3KNPoQyk+4YMB6rKhyzhOsr2Z4x1UqWLmWNbfcuSMkRX9Je58bU="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 1944,
+    "tokens_out": 37,
+    "latency_s": 0.72
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2613,
+    "tokens_out": 47,
+    "latency_s": 0.99
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "El Geniz El Slim b 950 geneh, wel shohol le Ismailia b 70 geneh we byakhod mn 2 l 4 ayam. Taht amrak ya fandem! 😊",
+    "latency_s": 1.71
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "shokran, 5ales a7ki fe el amr."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2676,
+    "tokens_out": 48,
+    "latency_s": 1.21
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "3afwan ya fandem, t7eb negib el maqas el mozbot? 2olii tolak, waznak, w el fit elly betfaddalo (regular, loose, walla tight)?",
+    "latency_s": 1.21
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "la2, ana 7asib amri bas. shokran."
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2742,
+    "tokens_out": 40,
+    "latency_s": 1.64
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "3ala ayny ya fandem, law e7tagt ay haga fe ay wakt a7na taht amrak. Nahn mabsotin bik w marhaba bik dayman! 😊",
+    "latency_s": 1.64
+   }
+  }
+ ]
+}

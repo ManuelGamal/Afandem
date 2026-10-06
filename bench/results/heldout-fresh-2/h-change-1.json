@@ -1,0 +1,350 @@
+{
+ "card_id": "h-change-1",
+ "category": "change_at_confirmation",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون أسود = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا، لون التيشيرت غلط... عايز نفس المقاس (M) بس لون بيج بدل الأسود.  \nهل ممكن أغير اللون دلوقتي؟"
+  },
+  {
+   "role": "agent",
+   "text": "طبعاً يا فندم، عيوني! غيرت اللون لبيج زي ما طلبت. \nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون بيج = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكيد، اؤكد الطلب باللون البيج.  \nشكرًا لتعديل الطلب!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك دائماً! تم تأكيد طلبك وهيوصلك في خلال 2-4 أيام 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون أسود = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون أسود = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "لا، لون التيشيرت غلط... عايز نفس المقاس (M) بس لون بيج بدل الأسود.  \nهل ممكن أغير اللون دلوقتي؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_37677",
+     "function": {
+      "arguments": "{\"query\":\"تيشيرت أوفر سايز\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TNIpHhuBdweRI2VLW81XAGffbskj3EBaa291lC8FnchVLnoOUNCfW0m0cwnJ7JTypNCyQfGoOnGE8mtegaxJ2XmyRuIy3onn2UC4CSnNt9uAMEXx+J4r2lns="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_37677",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"name_en\": \"Oversized tee\", \"category\": \"tops\", \"price\": 420, \"colors\": [\"أسود\", \"بيج\", \"أخضر زيتي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 11, \"XL\": 0, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XXL\"], \"sizes_out_of_stock\": [\"XL\"], \"pairs_with\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"name_en\": \"Striped tee\", \"category\": \"tops\", \"price\": 390, \"colors\": [\"كحلي وأبيض\", \"أسود وأبيض\"], \"stock_by_size\": {\"S\": 6, \"M\": 10, \"L\": 9, \"XL\": 5, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_32203",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"items\":[{\"size\":\"M\",\"color\":\"بيج\",\"qty\":1,\"product_id\":\"T02\"}]}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Td57916sNRky62JfypKXIzRZrwSDWi+353GHQlb15hZijppG5+nHIUxXl/lGasrBRcfLAEt+RBAJBA2tsb+5TdJBM3mOFmJdAo7276WTcBcLrIk3sSQwMfsA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_32203",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 490, \"summary_ar\": \"طلب رقم 1:\\n- 1× تيشيرت أوفر سايز مقاس M لون بيج = 420 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طبعاً يا فندم، عيوني! غيرت اللون لبيج زي ما طلبت. \nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون بيج = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0To6z++7WxVJYLkoRZDI7iDKqW1aUjcFb65kk+17A/dHzlC3q/4/zn/at7HEs5LDGxynpPQxzF55l59+ORNB6MDCGwxBdfYnHnuoOa8o2Yeg4+OsW21b8oJXg="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أكيد، اؤكد الطلب باللون البيج.  \nشكرًا لتعديل الطلب!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_11371",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TIgpkmyh/jwGWE4dgPiPPy7nDe5uIQmVuJKNZcaUsIBLN5Fu6nTe/XIuG9eEGJs0Na6Iqz2pS99PkH4tJZxd368aJt1oCn/i8RzxrokePagj0XV3NaXfALjk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_11371",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك دائماً! تم تأكيد طلبك وهيوصلك في خلال 2-4 أيام 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Ty/A3XOZbOkEZ2KScxwglE3EvPDkxHr9lvS6DeHiq1QzmO029xlV6R8hml0s4qNFsDK575+JuCkMtzYziFRbazquCal1a4az+pBJZuK8rtW+ukHWOsjDj0wk="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "حسام فتحي",
+   "phone": "01147890123",
+   "address": "12 شارع الجمهورية الدور 4",
+   "area": "المنصورة",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "T02",
+     "name_ar": "تيشيرت أوفر سايز",
+     "size": "M",
+     "color": "بيج",
+     "qty": 1,
+     "unit_price": 420
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 420,
+   "total": 490,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 490,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون أسود = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "لا، لون التيشيرت غلط... عايز نفس المقاس (M) بس لون بيج بدل الأسود.  \nهل ممكن أغير اللون دلوقتي؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2164,
+    "tokens_out": 23,
+    "latency_s": 0.73
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2759,
+    "tokens_out": 48,
+    "latency_s": 2.56
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2973,
+    "tokens_out": 125,
+    "latency_s": 2.25
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "طبعاً يا فندم، عيوني! غيرت اللون لبيج زي ما طلبت. \nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× تيشيرت أوفر سايز مقاس M لون بيج = 420 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 490 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 5.54
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أكيد، اؤكد الطلب باللون البيج.  \nشكرًا لتعديل الطلب!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3124,
+    "tokens_out": 16,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 490,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "T02",
+    "size": "M",
+    "delta": -1,
+    "stock_after": 13,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3199,
+    "tokens_out": 31,
+    "latency_s": 2.44
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك دائماً! تم تأكيد طلبك وهيوصلك في خلال 2-4 أيام 🌸",
+    "latency_s": 3.35
+   }
+  }
+ ]
+}

@@ -1,0 +1,122 @@
+{
+ "card_id": "h-complaint-2",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "agent",
+   "text": "Ma3lesh ya fandem, wala yehemmak. Ana hawwelet el mawdoo3 le el fareo2 el mokhtas we hadd min el fريق hayred 3alek fe a2rab wa2t enshallah."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_61104",
+     "function": {
+      "arguments": "{\"reason\":\"Customer reports delivery agent said order was cancelled because customer was not available.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TbaUNbO0ta26OmPdZ87KhKfUMHLPADOQMZsNWulRFWO4THPUcX9XrzTgvzLZVyiW/rSHV0W9Z8kqKZST+/U0qS9ToZbdmNOkov1lSDpG4ziVyZrMMIpOfeTc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_61104",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Ma3lesh ya fandem, wala yehemmak. Ana hawwelet el mawdoo3 le el fareo2 el mokhtas we hadd min el fريق hayred 3alek fe a2rab wa2t enshallah.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TqdJM4cErUKuTnPN7cjgVDymFoQ1RdfyZ6SV2vEcBMO4HRIq6atrCFegWTUs/lcXSGHX2pBTrWzjm+B7wq0fAy6Jo+gMTIRq+7ZNdXwXwN+nvMVwHGqjBpw0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 1968,
+    "tokens_out": 32,
+    "latency_s": 0.79
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "reason": "Customer reports delivery agent said order was cancelled because customer was not available."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2046,
+    "tokens_out": 52,
+    "latency_s": 1.35
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "Ma3lesh ya fandem, wala yehemmak. Ana hawwelet el mawdoo3 le el fareo2 el mokhtas we hadd min el fريق hayred 3alek fe a2rab wa2t enshallah.",
+    "latency_s": 2.14
+   }
+  }
+ ]
+}

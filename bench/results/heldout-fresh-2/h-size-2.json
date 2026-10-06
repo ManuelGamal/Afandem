@@ -1,0 +1,668 @@
+{
+ "card_id": "h-size-2",
+ "category": "size_unsure",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "3ayza el Wide-leg pants bas msh 3arfa el size"
+  },
+  {
+   "role": "agent",
+   "text": "34t waznak w toulk, w 7abbt el fit ykon regular wala loose wala tight 3ashan a2ollek el size el mazboot? 😊"
+  },
+  {
+   "role": "customer",
+   "text": "touli 183 w mezny 90 w 7ebb el fit ykon regular"
+  },
+  {
+   "role": "agent",
+   "text": "El size el monaseb leky m3 el regular fit howa XL، w el pantaloun mawgoud bel lonen el aswad wel beige. 👖\n\nTa7ebbi adiflek ma3ah belouza shifon b 580 geneh?"
+  },
+  {
+   "role": "customer",
+   "text": "aywa el XL 3ayza el beige bas msh 3ayza 7aga tanya"
+  },
+  {
+   "role": "agent",
+   "text": "Momken el esm el kamil, rakm el mobayl, wel 3enwan el tafsili (el sharea, rakm el mabna, el dor, wel 3elama el mmayza)?"
+  },
+  {
+   "role": "customer",
+   "text": "rana 3atf, 01536789012, 45 share3 khaled ben el walid, el dor el tany, sidi bishr"
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\nالعنوان: 45 share3 khaled ben el walid, el dor el tany, sidi bishr، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "aywa 2as7ab el mo7asalat kda"
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fannm, et2akkad el talab w haywselk fe el maw3ed enshallah! Shokran leeki ya Rana. 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "3ayza el Wide-leg pants bas msh 3arfa el size"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_663031",
+     "function": {
+      "arguments": "{\"query\":\"Wide-leg pants\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TQydRwcEi/5tqGlBI7i5gj+HoRwJg+mwsy5Cv8dxstAJ7Yk+6KhRxGNnGZ1U3ddVdK4OSgKyGuPkBhO+Jh+C9lwK5QeVjz8Ew6hoO55nt1B4TrhjXkppdtos="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_663031",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"name_en\": \"Wide-leg pants\", \"category\": \"bottoms\", \"price\": 740, \"colors\": [\"أسود\", \"بيج\"], \"stock_by_size\": {\"S\": 6, \"M\": 8, \"L\": 6, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"price\": 690}]}, {\"id\": \"B09\", \"name\": \"ليجن رياضي\", \"name_en\": \"Sport leggings\", \"category\": \"bottoms\", \"price\": 450, \"colors\": [\"أسود\", \"كحلي\"], \"stock_by_size\": {\"S\": 8, \"M\": 10, \"L\": 7, \"XL\": 3, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "34t waznak w toulk, w 7abbt el fit ykon regular wala loose wala tight 3ashan a2ollek el size el mazboot? 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T/OtkfsTRLR0UQXK6lz41xe5iEDV9vxHxmiQg6dsb8w4UOJ/yh4gAhnZvzgPoNKc7Yju+2JDDB025Ble2ioUvPTQ0Cndl7j9GUUFJ0veeDcyQ5aVCqTvPna0="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "touli 183 w mezny 90 w 7ebb el fit ykon regular"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_58892",
+     "function": {
+      "arguments": "{\"product_id\":\"B07\",\"fit_preference\":\"regular\",\"weight_kg\":90,\"height_cm\":183}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TbV+58wcu4k05LlpkAgNjrKgJ67p2pCnoU/VbAJeJmOoi/s4gQXGDKz94tDiajHnYTpo7NIbOllmgfRWl+ETltLvjxgm6JichfvRRVFgIECdUOIY9lAxX8+4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_58892",
+   "content": "{\"ok\": true, \"size\": \"XL\", \"between\": null, \"in_stock\": true, \"available\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "El size el monaseb leky m3 el regular fit howa XL، w el pantaloun mawgoud bel lonen el aswad wel beige. 👖\n\nTa7ebbi adiflek ma3ah belouza shifon b 580 geneh?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TVjTR7BdVT+VPyieZgGj2zXCOLtloXtigklUkfUlkXqocebOiO0DhG+2AXdXbfAi63wuAk/kxQuE0f0UH3kQZOwgPGmcVvqJijONsOmg7VBBMjDwmH2kbryQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "aywa el XL 3ayza el beige bas msh 3ayza 7aga tanya"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_107001",
+     "function": {
+      "arguments": "{\"area\":\"القاهرة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TceccWrWbKj4uWk5G0/MHmmvJrAbHxbtd5UTR3iyPO2vhxdwYGGyRjJbujXNB/JVGE/z/LovO/hoy4bWLm/EJMuSUxhfVGxW4qoNkjeDpjJzST0MF50FrdDc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_107001",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_30523",
+     "function": {
+      "arguments": "{\"items\":[{\"color\":\"بيج\",\"size\":\"XL\",\"product_id\":\"B07\",\"qty\":1}],\"address\":\"القاهرة\",\"area\":\"القاهرة\",\"customer_name\":\"عميل\",\"phone\":\"01000000000\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TFZntZIxc4ZFyW9b2a+qw/O0lO1IxWPRHe8O+vmEg6KCG8oiFISuNP2b22kd0i25VEdlAjOO17OtdmQ8bdBaQbf7AwYDvd6FYNcq4Wgk9N/tyS7sX4ZsfwUU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_30523",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 800, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 800 جنيه (الدفع عند الاستلام)\\nالعنوان: القاهرة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 3, \"level\": \"medium\", \"reasons\": [\"first order from this phone\", \"address is incomplete (no building number or landmark)\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Momken el esm el kamil, rakm el mobayl, wel 3enwan el tafsili (el sharea, rakm el mabna, el dor, wel 3elama el mmayza)?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TB4czTDWhbY0scowzKwF9+gCOgq3zeurRA+y/oqYyuCWa6OTy4cOxQsc6NdPwuAUQRNMQqAm5GO2P1djbXDVak2Bf881bMKWN4bqj/FmVerGJ2D5uwg7Q7DM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "rana 3atf, 01536789012, 45 share3 khaled ben el walid, el dor el tany, sidi bishr"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_44263",
+     "function": {
+      "arguments": "{\"area\":\"الإسكندرية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TcMBHAw1pF3LhDq7fMBQm6baDfan8UlOy3brPjZmfTrlw0Oqelj0QijFR8Q+PRaAoaPGj9AtxaCQVbQKPS3JC/gYcmcrzfD5y1jsaUhpr88a0g5dGfprgp5w="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_44263",
+   "content": "{\"ok\": true, \"zone\": \"الإسكندرية\", \"fee\": 65, \"days_min\": 2, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_38635",
+     "function": {
+      "arguments": "{\"changes\":{\"phone\":\"01536789012\",\"area\":\"الإسكندرية\",\"customer_name\":\"Rana Aatif\",\"address\":\"45 share3 khaled ben el walid, el dor el tany, sidi bishr\"},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TCa8MW/vIbUC9hdech9JjWoCN70tGvdBXajA7npEDsc1SAb+4fZKPtDkM5bkouPny7z0XlZVOhPfeyJIU/URFqwJ+LLN9TjqhP11NOTLFoNCok/IpyKWQ5dw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_38635",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 805, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\\nالعنوان: 45 share3 khaled ben el walid, el dor el tany, sidi bishr، الإسكندرية\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\nالعنوان: 45 share3 khaled ben el walid, el dor el tany, sidi bishr، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TJjvstX3NbgO5jhWl/X7hOkePsqoa4Qm3gf/n96CmtTMP1dUeAYmUJcPzBOSo/+nYLfRV7Yrx/yQ2Ey2Tf8fnPirYKXzLpxXDe7bAuNN5Ym1HAHPBB0aD3OY="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "aywa 2as7ab el mo7asalat kda"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_98143",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Txa6G9BXdJx1azkD3/AS3tFMWLOwuh00zxwuQ09gL3mAMECLpQMl9Wou6cyjgXD6vt9FVJoJMq/aYniR4puLUgat9YoZpmgU8os6oNPgjReVuQhysryELC9I="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_98143",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fannm, et2akkad el talab w haywselk fe el maw3ed enshallah! Shokran leeki ya Rana. 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TqoIJQ9iHocdrN5xOEGyahfaJ8Vj9R8/7FJFJn6+2mB4w74VntzfZcRmVCXtoWWaoH3qIjpf8vwyaLv5MUMaDGufkzu75uVOxxiazIiSFfkLsC5isN6AGSPk="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-size-2",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "Rana Aatif",
+   "phone": "01536789012",
+   "address": "45 share3 khaled ben el walid, el dor el tany, sidi bishr",
+   "area": "الإسكندرية",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "B07",
+     "name_ar": "بنطلون واسع",
+     "size": "XL",
+     "color": "بيج",
+     "qty": 1,
+     "unit_price": 740
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 740,
+   "total": 805,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "3ayza el Wide-leg pants bas msh 3arfa el size"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 1947,
+    "tokens_out": 19,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2330,
+    "tokens_out": 40,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "34t waznak w toulk, w 7abbt el fit ykon regular wala loose wala tight 3ashan a2ollek el size el mazboot? 😊",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "touli 183 w mezny 90 w 7ebb el fit ykon regular"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2393,
+    "tokens_out": 43,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2491,
+    "tokens_out": 59,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "El size el monaseb leky m3 el regular fit howa XL، w el pantaloun mawgoud bel lonen el aswad wel beige. 👖\n\nTa7ebbi adiflek ma3ah belouza shifon b 580 geneh?",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "aywa el XL 3ayza el beige bas msh 3ayza 7aga tanya"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2573,
+    "tokens_out": 17,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2638,
+    "tokens_out": 79,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 800,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2876,
+    "tokens_out": 49,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "Momken el esm el kamil, rakm el mobayl, wel 3enwan el tafsili (el sharea, rakm el mabna, el dor, wel 3elama el mmayza)?",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "rana 3atf, 01536789012, 45 share3 khaled ben el walid, el dor el tany, sidi bishr"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2969,
+    "tokens_out": 19,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 3038,
+    "tokens_out": 81,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3295,
+    "tokens_out": 106,
+    "latency_s": 2.13
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\nالعنوان: 45 share3 khaled ben el walid, el dor el tany, sidi bishr، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.13
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "aywa 2as7ab el mo7asalat kda"
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3417,
+    "tokens_out": 16,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 805,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "product_id": "B07",
+    "size": "XL",
+    "delta": -1,
+    "stock_after": 2,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 31,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3492,
+    "tokens_out": 37,
+    "latency_s": 1.18
+   }
+  },
+  {
+   "seq": 32,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "Tamam ya fannm, et2akkad el talab w haywselk fe el maw3ed enshallah! Shokran leeki ya Rana. 😊",
+    "latency_s": 2.09
+   }
+  }
+ ]
+}

@@ -1,0 +1,518 @@
+{
+ "card_id": "h-size-2",
+ "category": "size_unsure",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "3ayza el Wide-leg pants bas msh 3arfa el size"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، البنطلون الواسع موجود عندنا بـ 740 جنيه وألوانه أسود وبيج، وكل المقاسات متوفرة 👌\n\nعشان أظبطلك المقاس، قوليلي طولك ووزنك كام، وتحبي القماش عادي ولا واسع شوية؟"
+  },
+  {
+   "role": "customer",
+   "text": "طول 183 ووزن 90، وابغاها عادية (regular fit)"
+  },
+  {
+   "role": "agent",
+   "text": "مقاسك يا فندم هو XL ومتوفر بالأسود والبيج 👌\n\nبالمناسبة، تحب أضيفلك بلوزة شيفون بـ 580 جنيه تكمّل معاها اللوك؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا ينفع، بس البنطلون فقط، لون بيج مقاس XL"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، بنطلون واسع بيج مقاس XL ✅\n\nعشان أظبطلك الطلب، ابعتيلي:\n- اسمك\n- رقم الموبايل\n- العنوان بالتفصيل (الشارع، رقم العمارة، الدور، وعلامة مميزة)\n- المنطقة"
+  },
+  {
+   "role": "customer",
+   "text": "رنا عاطف\n01536789012\n45 شارع خالد بن الوليد، الدور 2، سيدي بشر"
+  },
+  {
+   "role": "agent",
+   "text": "تم يا فندم، طلبك اتحجز:\n\nطلب رقم 1:\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد، الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "اكيد، تأكدي من الطلب"
+  },
+  {
+   "role": "agent",
+   "text": "تم التأكيد يا فندم ✅ طلبك رقم 1 هيوصلك خلال 2-3 أيام، والدفع كاش عند الاستلام.\n\nأي خدمة تانية تحت أمرك 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "3ayza el Wide-leg pants bas msh 3arfa el size"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_081d992490474e46ab70dfb4",
+     "function": {
+      "arguments": "{\"category\": \"bottoms\", \"query\": \"wide-leg pants\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_081d992490474e46ab70dfb4",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"name_en\": \"Wide-leg pants\", \"category\": \"bottoms\", \"price\": 740, \"colors\": [\"أسود\", \"بيج\"], \"stock_by_size\": {\"S\": 6, \"M\": 8, \"L\": 6, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"price\": 690}]}, {\"id\": \"B09\", \"name\": \"ليجن رياضي\", \"name_en\": \"Sport leggings\", \"category\": \"bottoms\", \"price\": 450, \"colors\": [\"أسود\", \"كحلي\"], \"stock_by_size\": {\"S\": 8, \"M\": 10, \"L\": 7, \"XL\": 3, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، البنطلون الواسع موجود عندنا بـ 740 جنيه وألوانه أسود وبيج، وكل المقاسات متوفرة 👌\n\nعشان أظبطلك المقاس، قوليلي طولك ووزنك كام، وتحبي القماش عادي ولا واسع شوية؟"
+  },
+  {
+   "role": "user",
+   "content": "طول 183 ووزن 90، وابغاها عادية (regular fit)"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_03cd64b3c17046219614e901",
+     "function": {
+      "arguments": "{\"fit_preference\": \"regular\", \"height_cm\": 183, \"product_id\": \"B07\", \"weight_kg\": 90}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "index": 2
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_03cd64b3c17046219614e901",
+   "content": "{\"ok\": true, \"size\": \"XL\", \"between\": null, \"in_stock\": true, \"available\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "مقاسك يا فندم هو XL ومتوفر بالأسود والبيج 👌\n\nبالمناسبة، تحب أضيفلك بلوزة شيفون بـ 580 جنيه تكمّل معاها اللوك؟"
+  },
+  {
+   "role": "user",
+   "content": "لا ينفع، بس البنطلون فقط، لون بيج مقاس XL"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، بنطلون واسع بيج مقاس XL ✅\n\nعشان أظبطلك الطلب، ابعتيلي:\n- اسمك\n- رقم الموبايل\n- العنوان بالتفصيل (الشارع، رقم العمارة، الدور، وعلامة مميزة)\n- المنطقة"
+  },
+  {
+   "role": "user",
+   "content": "رنا عاطف\n01536789012\n45 شارع خالد بن الوليد، الدور 2، سيدي بشر"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_b75982d2d444416489ae2801",
+     "function": {
+      "arguments": "{\"area\": \"سيدي بشر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "index": 3
+    },
+    {
+     "id": "call_d1a306ed6c754c5d8a119d02",
+     "function": {
+      "arguments": "{\"address\": \"45 شارع خالد بن الوليد، الدور 2، سيدي بشر\", \"area\": \"سيدي بشر\", \"customer_name\": \"رنا عاطف\", \"items\": [{\"color\": \"بيج\", \"product_id\": \"B07\", \"qty\": 1, \"size\": \"XL\"}], \"phone\": \"01536789012\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "index": 4
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_b75982d2d444416489ae2801",
+   "content": "{\"ok\": true, \"zone\": \"الإسكندرية\", \"fee\": 65, \"days_min\": 2, \"days_max\": 3}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_d1a306ed6c754c5d8a119d02",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 805, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\\nالعنوان: 45 شارع خالد بن الوليد، الدور 2، سيدي بشر\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم يا فندم، طلبك اتحجز:\n\nطلب رقم 1:\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد، الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "اكيد، تأكدي من الطلب"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_90c9a3dbbb554667940371a5",
+     "function": {
+      "arguments": "{\"order_id\": 1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "index": 6
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_90c9a3dbbb554667940371a5",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم التأكيد يا فندم ✅ طلبك رقم 1 هيوصلك خلال 2-3 أيام، والدفع كاش عند الاستلام.\n\nأي خدمة تانية تحت أمرك 🌸"
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-size-2",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "رنا عاطف",
+   "phone": "01536789012",
+   "address": "45 شارع خالد بن الوليد، الدور 2، سيدي بشر",
+   "area": "سيدي بشر",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "B07",
+     "name_ar": "بنطلون واسع",
+     "size": "XL",
+     "color": "بيج",
+     "qty": 1,
+     "unit_price": 740
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 740,
+   "total": 805,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "3ayza el Wide-leg pants bas msh 3arfa el size"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2013,
+    "tokens_out": 102,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2362,
+    "tokens_out": 147,
+    "latency_s": 1.48
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "تمام يا فندم، البنطلون الواسع موجود عندنا بـ 740 جنيه وألوانه أسود وبيج، وكل المقاسات متوفرة 👌\n\nعشان أظبطلك المقاس، قوليلي طولك ووزنك كام، وتحبي القماش عادي ولا واسع شوية؟",
+    "latency_s": 2.44
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "طول 183 ووزن 90، وابغاها عادية (regular fit)"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2415,
+    "tokens_out": 70,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2496,
+    "tokens_out": 170,
+    "latency_s": 1.47
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "مقاسك يا فندم هو XL ومتوفر بالأسود والبيج 👌\n\nبالمناسبة، تحب أضيفلك بلوزة شيفون بـ 580 جنيه تكمّل معاها اللوك؟",
+    "latency_s": 2.37
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "لا ينفع، بس البنطلون فقط، لون بيج مقاس XL"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2575,
+    "tokens_out": 150,
+    "latency_s": 1.42
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "تمام يا فندم، بنطلون واسع بيج مقاس XL ✅\n\nعشان أظبطلك الطلب، ابعتيلي:\n- اسمك\n- رقم الموبايل\n- العنوان بالتفصيل (الشارع، رقم العمارة، الدور، وعلامة مميزة)\n- المنطقة",
+    "latency_s": 1.42
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "رنا عاطف\n01536789012\n45 شارع خالد بن الوليد، الدور 2، سيدي بشر"
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2688,
+    "tokens_out": 350,
+    "latency_s": 2.43
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 805,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3002,
+    "tokens_out": 124,
+    "latency_s": 1.21
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "تم يا فندم، طلبك اتحجز:\n\nطلب رقم 1:\n- 1× بنطلون واسع مقاس XL لون بيج = 740 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 805 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد، الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 3.65
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "اكيد، تأكدي من الطلب"
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3137,
+    "tokens_out": 27,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 805,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "product_id": "B07",
+    "size": "XL",
+    "delta": -1,
+    "stock_after": 2,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3199,
+    "tokens_out": 50,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-2",
+   "data": {
+    "text": "تم التأكيد يا فندم ✅ طلبك رقم 1 هيوصلك خلال 2-3 أيام، والدفع كاش عند الاستلام.\n\nأي خدمة تانية تحت أمرك 🌸",
+    "latency_s": 2.03
+   }
+  }
+ ]
+}

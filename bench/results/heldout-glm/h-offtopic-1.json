@@ -1,0 +1,114 @@
+{
+ "card_id": "h-offtopic-1",
+ "category": "off_topic",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم، إحنا في هدوم بنبيع هدوم كاجوال بس، وتصميم اللوجو مش من شغلتنا 😅\nبس سجلت طلبك وهيتم التواصل معاك من فريقنا في أقرب وقت.\nلو حابب تشوف من تشكيلتنا الجديدة، تحت أمرك!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_b8bbb8f57051459888622865",
+     "function": {
+      "arguments": "{\"reason\": \"العميل يطلب خدمة تصميم لوجو لمحله، وده خارج نطاق المبيعات والطلبات بتاعة هدوم.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "index": 10
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_b8bbb8f57051459888622865",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم، إحنا في هدوم بنبيع هدوم كاجوال بس، وتصميم اللوجو مش من شغلتنا 😅\nبس سجلت طلبك وهيتم التواصل معاك من فريقنا في أقرب وقت.\nلو حابب تشوف من تشكيلتنا الجديدة، تحت أمرك!"
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 1959,
+    "tokens_out": 368,
+    "latency_s": 3.26
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "reason": "العميل يطلب خدمة تصميم لوجو لمحله، وده خارج نطاق المبيعات والطلبات بتاعة هدوم."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2040,
+    "tokens_out": 145,
+    "latency_s": 1.49
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "يا فندم، إحنا في هدوم بنبيع هدوم كاجوال بس، وتصميم اللوجو مش من شغلتنا 😅\nبس سجلت طلبك وهيتم التواصل معاك من فريقنا في أقرب وقت.\nلو حابب تشوف من تشكيلتنا الجديدة، تحت أمرك!",
+    "latency_s": 4.75
+   }
+  }
+ ]
+}

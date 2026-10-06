@@ -1,0 +1,328 @@
+{
+ "card_id": "h-resched-2",
+ "category": "reschedule",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ايوه اكيد، بس عايز التوصيل يكون يوم الاربع 14 اكتوبر بالظبط  \nمفيش مشكلة؟"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، سجلنا موعد التوصيل يوم الأربعاء 14 أكتوبر. \n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: يوم 2026-10-14\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ايوه اكيد، اؤكد الطلب  \nكله تمام"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! وشكراً لاختيارك هدوم 🌸 وهنوصلك في المعاد المحدد."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "ايوه اكيد، بس عايز التوصيل يكون يوم الاربع 14 اكتوبر بالظبط  \nمفيش مشكلة؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_491779",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TUY1V8TpHoZtfT3/HdPvlihn/5iRAxIWL7jdHixKRhgD12FIzzU/BjWkW42j68no1moRKlnG2PaljA6tvlPPTEbaNkEo6gwNGRs6zuk39OYaLomzUYrnxRlk="
+      }
+     }
+    },
+    {
+     "id": "call_491780",
+     "function": {
+      "arguments": "{\"date\":\"2026-10-14\",\"order_id\":1}",
+      "name": "schedule_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_491779",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_491780",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1050, \"summary_ar\": \"طلب رقم 1:\\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\\nالتوصيل: يوم 2026-10-14\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، سجلنا موعد التوصيل يوم الأربعاء 14 أكتوبر. \n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: يوم 2026-10-14\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TE1WCAzHLZA+ifJcdPiSctumYhSj+0oABXl8dfRxTopbnwpi6fxst99Xfcxqce/rdM5VgVbxoDgsSlmGDFgeNCmulUuAvO6bJujwongkSxXu1KweqbZhJMQ4="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ايوه اكيد، اؤكد الطلب  \nكله تمام"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_562005",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T9KL6vDzFbnOn2iB0zmP3PFLVLL2WInHTsBQr/xPnXiZDo7LJxz/3ur8TdZQze00OW5pHQn8c1i6SbQlB78TXPN5RnHIkqb/kLhyKmkrvyWzHwG1ue91vDSM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_562005",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! وشكراً لاختيارك هدوم 🌸 وهنوصلك في المعاد المحدد.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TdIsDdNBrX3+hCzUdWxRu5+aRWtP4Orc7h0AZz+zMymRSlcd8Ydtl4B8Tnca1qUyYWIoQLsV0Agcb3o7STAt/C1ZtsYiZyvijJmSyMB9CtGAmhrt4Xtov88o="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "حسام فتحي",
+   "phone": "01147890123",
+   "address": "12 شارع الجمهورية الدور 4",
+   "area": "المنصورة",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B02",
+     "name_ar": "جينز ستريت",
+     "size": "32",
+     "color": "أزرق غامق",
+     "qty": 1,
+     "unit_price": 980
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 980,
+   "total": 1050,
+   "delivery_date": "2026-10-14",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1050,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا حسام! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ايوه اكيد، بس عايز التوصيل يكون يوم الاربع 14 اكتوبر بالظبط  \nمفيش مشكلة؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2169,
+    "tokens_out": 47,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2453,
+    "tokens_out": 129,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا فندم، سجلنا موعد التوصيل يوم الأربعاء 14 أكتوبر. \n\nطلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق غامق = 980 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1050 جنيه (الدفع عند الاستلام)\nالعنوان: 12 شارع الجمهورية الدور 4، المنصورة\nالتوصيل: يوم 2026-10-14\n\nأأكد الطلب؟",
+    "latency_s": 1.89
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ايوه اكيد، اؤكد الطلب  \nكله تمام"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2597,
+    "tokens_out": 16,
+    "latency_s": 5.22
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1050,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "B02",
+    "size": "32",
+    "delta": -1,
+    "stock_after": 8,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2672,
+    "tokens_out": 32,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! وشكراً لاختيارك هدوم 🌸 وهنوصلك في المعاد المحدد.",
+    "latency_s": 6.13
+   }
+  }
+ ]
+}

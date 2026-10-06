@@ -1,0 +1,570 @@
+{
+ "card_id": "h-clear-3",
+ "category": "clear_buyer",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم ال Puffer vest في size L لون أسود؟"
+  },
+  {
+   "role": "agent",
+   "text": "أيوه يا فندم، الفيست المنفوخ لون أسود مقاس L متوفر وسعره 990 جنيه. \nتحب أساعدك في اختيار المقاس المناسب بناءً على الطول والوزن؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش هتحتاج، عندي تيشيرت نفس الماركة مقاس L وكمان الطول والوزن مش هفرق في الفيست. عاوزة أطلب اللي فات."
+  },
+  {
+   "role": "agent",
+   "text": "تحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟ وعشان نكمل الأوردر، ممكن تفاصيل الشحن: الاسم، رقم الموبايل، وعنوانك بالتفصيل (المنطقة، الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش هضيف حاجة تانية، بس ابعتلي بيانات الشحن.  \nاسمي رنا عاطف، موبايل 01536789012، عنواني 45 شارع خالد بن الوليد الدور 2، سيدي بشر."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× فيست منفوخ مقاس L لون أسود = 990 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1055 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أيوه، التفاصيل صح. أكد الطلب من فضلك."
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، تم تأكيد طلبك بنجاح وهيوصلك خلال 2-3 أيام. شكرا لاختيارك هدوم! 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم ال Puffer vest في size L لون أسود؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_489114",
+     "function": {
+      "arguments": "{\"query\":\"Puffer vest\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TUDEYKu0I8t6vZw1xJ2O952aqiw51naevkuTcKYvcbCrl2Sep+acYPGvfvXwR1FfgmPnNYis64A9FJfjz6k6cmBTZeBbm6UChOJ4XzZDIRce8Wu+DUiIrC88="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_489114",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O05\", \"name\": \"فيست منفوخ\", \"name_en\": \"Puffer vest\", \"category\": \"outerwear\", \"price\": 990, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 3, \"M\": 5, \"L\": 5, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_5632",
+     "function": {
+      "arguments": "{\"product_id\":\"O05\"}",
+      "name": "get_product"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TCkpA12R+tmWazDcD5dunPIa/bmHEIYZtJgu+ddGJyuvDdtw8m6EyNh2NNMUiCLXgGYxYXiwIf/Rb7f0Up7EfDXcgiqp/J22LYqc53DCFuzDsADUfIfNvA8E="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_5632",
+   "content": "{\"ok\": true, \"product\": {\"id\": \"O05\", \"name\": \"فيست منفوخ\", \"name_en\": \"Puffer vest\", \"category\": \"outerwear\", \"price\": 990, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 3, \"M\": 5, \"L\": 5, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"size_chart\": {\"S\": {\"h\": [155.0, 168.0], \"w\": [48.0, 60.0]}, \"M\": {\"h\": [165.0, 175.0], \"w\": [58.0, 72.0]}, \"L\": {\"h\": [172.0, 182.0], \"w\": [70.0, 85.0]}, \"XL\": {\"h\": [178.0, 190.0], \"w\": [83.0, 100.0]}, \"XXL\": {\"h\": [182.0, 198.0], \"w\": [98.0, 120.0]}}, \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "أيوه يا فندم، الفيست المنفوخ لون أسود مقاس L متوفر وسعره 990 جنيه. \nتحب أساعدك في اختيار المقاس المناسب بناءً على الطول والوزن؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0THGAoNSsjsfm0G3rV9RaPxo29l7WT0kC+b/8UdjKSyoYVq0JhLZMXBASEvsBqprKrwxi6NRut7jbQ3+mHsgBkFTXxqGEUGwzvt6cNSfaxHZWw9g9E2+kTKIY="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا مش هتحتاج، عندي تيشيرت نفس الماركة مقاس L وكمان الطول والوزن مش هفرق في الفيست. عاوزة أطلب اللي فات."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_74212",
+     "function": {
+      "arguments": "{\"query\":\"هودي قطن تقيل\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T7uf4Qf9avFD3Wmg/oHkTJL9xMEQsNL2aCtkydyZiWUS4TA8PC8Wsips0L+jPMalgmUNutZlZUFgDrrME1wKh9wp/4t+bYNiFz1oLONpEg8Ur57PUX6gxMKQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_74212",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"stock_by_size\": {\"ONE\": 40}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"stock_by_size\": {\"ONE\": 25}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "تحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟ وعشان نكمل الأوردر، ممكن تفاصيل الشحن: الاسم، رقم الموبايل، وعنوانك بالتفصيل (المنطقة، الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TS71gIFk2YxUuSym5HWRrk3OJU40zGcgYMXtUKYEFNi72ySHGKxZeApln4CVZX1sK5odagUQpSUg6MPWlri6pRCC2WS70qonS0GgEfYLxL1JuHMNdPUI4/mQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا مش هضيف حاجة تانية، بس ابعتلي بيانات الشحن.  \nاسمي رنا عاطف، موبايل 01536789012، عنواني 45 شارع خالد بن الوليد الدور 2، سيدي بشر."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_43499",
+     "function": {
+      "arguments": "{\"area\":\"الإسكندرية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tpr2OkI5IcLacUheb0XmzKx3VKPNKDO5BHDTyQrUjipldvMl6ls0Z+sF5zkR9qAeP+PSwUpT18IYnzxwSao309YpLW6e22hJ+nv1YyyhWwMObVHDIDCizRyc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_43499",
+   "content": "{\"ok\": true, \"zone\": \"الإسكندرية\", \"fee\": 65, \"days_min\": 2, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_510807",
+     "function": {
+      "arguments": "{\"area\":\"الإسكندرية\",\"phone\":\"01536789012\",\"address\":\"45 شارع خالد بن الوليد الدور 2\",\"customer_name\":\"رنا عاطف\",\"items\":[{\"size\":\"L\",\"color\":\"أسود\",\"qty\":1,\"product_id\":\"O05\"}]}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TAQkPTMvbOTgLo87QLlCBb1ZdmduhZt1aQgj3BFp7Ioz5hJ4iyDwjO5qqhuMCcDnyNtF1PsIaCpLNLKrJzTnfqI/574h7vHhHqdzrY/drVrKvQtPUYk0gB38="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_510807",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 1055, \"summary_ar\": \"طلب رقم 1:\\n- 1× فيست منفوخ مقاس L لون أسود = 990 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 1055 جنيه (الدفع عند الاستلام)\\nالعنوان: 45 شارع خالد بن الوليد الدور 2، الإسكندرية\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× فيست منفوخ مقاس L لون أسود = 990 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1055 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tuk4HKfLZekVq6T0qXsLqhxvlJ6PD0Wn/E4S4ZKJXOBjmXKBr28EP0CaPWheeWekjXj8R3YyXXzXjLd8Dnt/JJrq8BvtPzJkPhh1bNWFTtTDj26AieDdQjjs="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أيوه، التفاصيل صح. أكد الطلب من فضلك."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_456969",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TKocWl27pqD2+kr4ZLF9EQPGNaD2vfOqGqfkqe6TofGjSvqw2M8ky1l38zQH6VJYbgHQX2bLq9+/c+XBjbLVoenxVAewFcMCEpZjOKaaMBLbB0Y4FnyWLnRE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_456969",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، تم تأكيد طلبك بنجاح وهيوصلك خلال 2-3 أيام. شكرا لاختيارك هدوم! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tz+Vb3nnXLS9ZNg/4CoB6QxYIolJcDRMys0JJ4Oj9oTlE3jju60Q/YFIgdCrf96gTWejhspDHFDvklDyma1FP7Ea1xjCRki6ojQXZLVifTWc6FpS5X7M005o="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-clear-3",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "رنا عاطف",
+   "phone": "01536789012",
+   "address": "45 شارع خالد بن الوليد الدور 2",
+   "area": "الإسكندرية",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "O05",
+     "name_ar": "فيست منفوخ",
+     "size": "L",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 990
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 990,
+   "total": 1055,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "عندكم ال Puffer vest في size L لون أسود؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1890,
+    "tokens_out": 18,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2087,
+    "tokens_out": 20,
+    "latency_s": 1.15
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "name": "get_product",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2470,
+    "tokens_out": 51,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "أيوه يا فندم، الفيست المنفوخ لون أسود مقاس L متوفر وسعره 990 جنيه. \nتحب أساعدك في اختيار المقاس المناسب بناءً على الطول والوزن؟",
+    "latency_s": 3.11
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "لا مش هتحتاج، عندي تيشيرت نفس الماركة مقاس L وكمان الطول والوزن مش هفرق في الفيست. عاوزة أطلب اللي فات."
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2562,
+    "tokens_out": 21,
+    "latency_s": 0.81
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 3404,
+    "tokens_out": 71,
+    "latency_s": 1.53
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "تحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟ وعشان نكمل الأوردر، ممكن تفاصيل الشحن: الاسم، رقم الموبايل، وعنوانك بالتفصيل (المنطقة، الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)؟ 😊",
+    "latency_s": 2.34
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "لا مش هضيف حاجة تانية، بس ابعتلي بيانات الشحن.  \nاسمي رنا عاطف، موبايل 01536789012، عنواني 45 شارع خالد بن الوليد الدور 2، سيدي بشر."
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3539,
+    "tokens_out": 19,
+    "latency_s": 1.57
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3608,
+    "tokens_out": 93,
+    "latency_s": 1.33
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 1055,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3868,
+    "tokens_out": 96,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× فيست منفوخ مقاس L لون أسود = 990 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1055 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 3.91
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "أيوه، التفاصيل صح. أكد الطلب من فضلك."
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3981,
+    "tokens_out": 16,
+    "latency_s": 1.43
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1055,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "product_id": "O05",
+    "size": "L",
+    "delta": -1,
+    "stock_after": 4,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 4056,
+    "tokens_out": 36,
+    "latency_s": 1.19
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-3",
+   "data": {
+    "text": "تمام يا فندم، تم تأكيد طلبك بنجاح وهيوصلك خلال 2-3 أيام. شكرا لاختيارك هدوم! 🌸",
+    "latency_s": 2.63
+   }
+  }
+ ]
+}

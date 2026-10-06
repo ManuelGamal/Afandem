@@ -1,0 +1,189 @@
+{
+ "card_id": "h-price-2",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "agent",
+   "text": "El ginz el slim b 950 geneh, w el shahin le el Ismailia b 70 geneh w byakhod men 2 l 4 ayam. Taht amrak ya fandem! 😊"
+  },
+  {
+   "role": "customer",
+   "text": "shokran, 7asab 3ala el ma7al. 3ayez efakar fi el amr."
+  },
+  {
+   "role": "agent",
+   "text": "3ala rehtak ya fandem, norneto fel wa2t elly te3gebak. Ana dayman mawgod law 3ost ay estفسار! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_70016",
+     "function": {
+      "arguments": "{\"query\":\"slim jeans\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TCZLcEG5eq1EE56ufTOdz9VCWFhiugOrf36fa7yBApj4dTKynpxzfDQr5GEu2Mo8m8tj53Cz7+z9KTSgONshplpESxOK8nIJDFqm+jCx6NvtTV+M4Tp1Q/Mk="
+      }
+     }
+    },
+    {
+     "id": "call_70017",
+     "function": {
+      "arguments": "{\"area\":\"الإسماعيلية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_70016",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"stock_by_size\": {\"30\": 6, \"32\": 12, \"34\": 10, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"stock_by_size\": {\"30\": 4, \"32\": 9, \"34\": 0, \"36\": 4, \"38\": 1}, \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 8, \"32\": 7, \"34\": 4, \"36\": 2, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_70017",
+   "content": "{\"ok\": true, \"zone\": \"مدن القناة\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "El ginz el slim b 950 geneh, w el shahin le el Ismailia b 70 geneh w byakhod men 2 l 4 ayam. Taht amrak ya fandem! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TdArC+mN5T/exdRdYs8yzS9XRjpR2FK54fwI21afcF6mhr4zmUMR8lhKB8KSZhkIfMZQJDc8INCE3sz1jrqY60VB07JnBUm9cS9Lf4qt7PN1skyzhH/tmgbU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "shokran, 7asab 3ala el ma7al. 3ayez efakar fi el amr."
+  },
+  {
+   "role": "assistant",
+   "content": "3ala rehtak ya fandem, norneto fel wa2t elly te3gebak. Ana dayman mawgod law 3ost ay estفسار! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TTyhps4erMniU2p4lqCDh7jkl6a29pD7ddcClMChxe5iGy/aQ5PyDeHz6/NP1luSt3IZ2y/fkvzP0HFgjAwn6zd723HMyG2l0v92Om6Q290riOzOBehdhOpE="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 1944,
+    "tokens_out": 37,
+    "latency_s": 1.95
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2613,
+    "tokens_out": 48,
+    "latency_s": 1.05
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "El ginz el slim b 950 geneh, w el shahin le el Ismailia b 70 geneh w byakhod men 2 l 4 ayam. Taht amrak ya fandem! 😊",
+    "latency_s": 3.01
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "shokran, 7asab 3ala el ma7al. 3ayez efakar fi el amr."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2690,
+    "tokens_out": 38,
+    "latency_s": 1.12
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "3ala rehtak ya fandem, norneto fel wa2t elly te3gebak. Ana dayman mawgod law 3ost ay estفسار! 😊",
+    "latency_s": 1.12
+   }
+  }
+ ]
+}

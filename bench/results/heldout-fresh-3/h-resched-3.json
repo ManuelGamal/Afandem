@@ -1,0 +1,304 @@
+{
+ "card_id": "h-resched-3",
+ "category": "reschedule",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكيد، بس خليني أوضح حاجة... مقدر أستلمه إلا الجمعة الجاية (16 أكتوبر) عشان مش متفرغ قبل كده. تقدر تؤجل التوصيل لليوم ده؟"
+  },
+  {
+   "role": "agent",
+   "text": "عينيا الاثنين يا فندم، أجّلتلك التوصيل لجمعة 16 أكتوبر. \nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكيد، اتفضل اأكد الطلب. شكراً على التفاهم!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك دائماً! تم تأكيد طلبك وهيوصلك يوم الجمعة 16 أكتوبر إن شاء الله. شكرًا لاختيارك هدوم 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أكيد، بس خليني أوضح حاجة... مقدر أستلمه إلا الجمعة الجاية (16 أكتوبر) عشان مش متفرغ قبل كده. تقدر تؤجل التوصيل لليوم ده؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_379923",
+     "function": {
+      "arguments": "{\"order_id\":1,\"date\":\"2026-10-16\"}",
+      "name": "schedule_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Ty0KbgtBDvLkj1MpclGCFnkamYALrpEk4NyD/sRK8RVj99SFtjCUQHVVP8qnK4aHZbm+VQgtQ8KMgAsgnxglscapIr8t8+H9CyRtKpStLq7Lhhu55dyFvXAM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_379923",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1310, \"summary_ar\": \"طلب رقم 1:\\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\\nالعنوان: 18 شارع السودان الدور 3، الدقي\\nالتوصيل: يوم 2026-10-16\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "عينيا الاثنين يا فندم، أجّلتلك التوصيل لجمعة 16 أكتوبر. \nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tfd+4B+2GK4NwAON55fUI29Ja2qGeBq5lonLCShvZ1Zj48Mf+mnsIfADGufrh02BuuGR3v5sq0PG6nDi0owXVQCHaTwPl7z79UCUp9kbJB86p+FrnDbi1cGM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أكيد، اتفضل اأكد الطلب. شكراً على التفاهم!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_492357",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T/a3lET3k5gEidBRNwOFnSCP+hOaZRWZitNUuFnVpaTvVCXv1MG/xIcbvuC5ysTH3d+LlCTwEPAu92NYXlDUAI8120wgToafCxq1RyEMHqpxhVYIvpYROYnI="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_492357",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك دائماً! تم تأكيد طلبك وهيوصلك يوم الجمعة 16 أكتوبر إن شاء الله. شكرًا لاختيارك هدوم 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TvGvw8HnQG7AbpvpZT3F2oF6Q2cnRQ2qj0Etla8wxJZrFAegakFsDl+IfkvhIK6q1nTtnsJWSoG2GQbyjAO8Ya9d5m+sLzp+7bg/swG+u5oUTWvF0c1nnb7k="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "طارق سليم",
+   "phone": "01225678901",
+   "address": "18 شارع السودان الدور 3",
+   "area": "الدقي",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "O01",
+     "name_ar": "جاكيت جينز",
+     "size": "L",
+     "color": "أزرق فاتح",
+     "qty": 1,
+     "unit_price": 1250
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 1250,
+   "total": 1310,
+   "delivery_date": "2026-10-16",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1310,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أكيد، بس خليني أوضح حاجة... مقدر أستلمه إلا الجمعة الجاية (16 أكتوبر) عشان مش متفرغ قبل كده. تقدر تؤجل التوصيل لليوم ده؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2176,
+    "tokens_out": 31,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2380,
+    "tokens_out": 31,
+    "latency_s": 1.71
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "عينيا الاثنين يا فندم، أجّلتلك التوصيل لجمعة 16 أكتوبر. \nأأكد الطلب؟",
+    "latency_s": 2.61
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أكيد، اتفضل اأكد الطلب. شكراً على التفاهم!"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2431,
+    "tokens_out": 16,
+    "latency_s": 0.78
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1310,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "O01",
+    "size": "L",
+    "delta": -1,
+    "stock_after": 5,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2506,
+    "tokens_out": 44,
+    "latency_s": 1.12
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك دائماً! تم تأكيد طلبك وهيوصلك يوم الجمعة 16 أكتوبر إن شاء الله. شكرًا لاختيارك هدوم 🌸",
+    "latency_s": 1.91
+   }
+  }
+ ]
+}

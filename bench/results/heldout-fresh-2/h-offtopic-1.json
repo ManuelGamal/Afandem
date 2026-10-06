@@ -1,0 +1,67 @@
+{
+ "card_id": "h-offtopic-1",
+ "category": "off_topic",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم أحنا متخصصين في بيع اللبس الكاجوال وبس مش بنعمل تصميمات لوجوهات، وتحت أمرك لو حابب تفرج على شغلنا من اللبس! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم أحنا متخصصين في بيع اللبس الكاجوال وبس مش بنعمل تصميمات لوجوهات، وتحت أمرك لو حابب تفرج على شغلنا من اللبس! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tuh2CbOTP5bc6ks8RAUgJSfJ8AmcEzbn7INBKwmBJFDAMs4L8J9V5h741jU15AmAwuQH9EiCME17hSSUrpS0FsBkt3jPt9Ir3fI4Ou/Sp/ZNiWSNbTYykwD4="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 1887,
+    "tokens_out": 45,
+    "latency_s": 0.98
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "يا فندم أحنا متخصصين في بيع اللبس الكاجوال وبس مش بنعمل تصميمات لوجوهات، وتحت أمرك لو حابب تفرج على شغلنا من اللبس! 😊",
+    "latency_s": 0.98
+   }
+  }
+ ]
+}

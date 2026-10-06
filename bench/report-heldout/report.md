@@ -1,37 +1,37 @@
-# Bench and impact report — HELD-OUT set (30 cards never used for fixes; final agent 7bdb761)
+# Bench and impact report — HELD-OUT set: 5 fresh runs × 30 cards, agent Gemini 3.5 Flash-Lite at d4df47b, customer Qwen3-235B
 
-The shop is fictional. **Measured** numbers come from the simulation bench (30 simulated customer conversations, graded by fixed rules). **Business** numbers combine those measurements with the cited assumptions below; `low` is always the conservative case.
+The shop is fictional. **Measured** numbers come from the simulation bench (150 simulated customer conversations, graded by fixed rules). **Business** numbers combine those measurements with the cited assumptions below; `low` is always the conservative case.
 
 ## Measured in simulation
 
 | Metric | Value |
 |---|---|
-| Task success | 97% |
+| Task success | 94.0% (mean of 5 runs; range 90%–100%; 150 conversations) |
 | Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | 0 |
-| Self-service rate (no human needed) | 100% |
-| Median agent reply time | 1.56 s (1 conversation that called the live model) |
+| Self-service rate (no human needed) | 96% |
+| Median agent reply time | 2.54 s (135 conversations that called the live model) |
 | Median customer turns | 2.0 |
-| Mean model calls / tokens in / tokens out per conversation | 5.4 / 16,123 / 293 |
+| Mean model calls / tokens in / tokens out per conversation | 4.4 / 11,387 / 203 |
 | Suggested-item purchases (simulation) | 0 orders, 0 EGP |
 
 | Customer type | Success |
 |---|---|
 | change_at_confirmation | 100% |
-| clear_buyer | 100% |
+| clear_buyer | 73% |
 | complaint | 100% |
 | declines | 100% |
 | no_reply | 100% |
 | off_topic | 100% |
-| price_shopper | 67% |
-| reschedule | 100% |
-| size_unsure | 100% |
-| vague_address | 100% |
+| price_shopper | 93% |
+| reschedule | 93% |
+| size_unsure | 93% |
+| vague_address | 87% |
 
 | Writing style | Success |
 |---|---|
-| Egyptian Arabic | 100% |
-| Franco (Arabic in English letters) | 90% |
-| Mixed Arabic and English | 100% |
+| Egyptian Arabic | 96% |
+| Franco (Arabic in English letters) | 92% |
+| Mixed Arabic and English | 94% |
 
 ![success by category](success_by_category.png)
 
@@ -39,18 +39,18 @@ The shop is fictional. **Measured** numbers come from the simulation bench (30 s
 
 | | low | base | high |
 |---|---|---|---|
-| Hours saved / week | 15.0 | 34.5 | 106.8 |
-| Moderator cost saved (EGP) | 1,875 | 5,031 | 17,788 |
+| Hours saved / week | 14.5 | 33.2 | 102.9 |
+| Moderator cost saved (EGP) | 1,806 | 4,845 | 17,130 |
 | Refused COD deliveries prevented | 20 | 130 | 486 |
 | Failed-delivery cost saved (EGP) | 1,755 | 15,600 | 82,620 |
-| Model cost (EGP) | 1,338 | 833 | 461 |
-| Running cost: model + hosting (EGP) | 1,838 | 1,083 | 461 |
-| **Net cost saved (EGP)** | 1,792 | 19,549 | 99,948 |
-| **Pays for itself in (days)** | 15.2 | 1.6 | 0.1 |
-| Return on running cost (net saved ÷ running cost) | 1× | 18× | 217× |
-| Extra sales from faster replies (EGP, gross) | 9,360 | 54,600 | 337,500 |
+| Model cost (EGP) | 943 | 587 | 325 |
+| Running cost: model + hosting (EGP) | 1,443 | 837 | 325 |
+| **Net cost saved (EGP)** | 2,117 | 19,609 | 99,425 |
+| **Pays for itself in (days)** | 12.2 | 1.2 | 0.1 |
+| Return on running cost (net saved ÷ running cost) | 1× | 23× | 306× |
+| Extra sales from faster replies (EGP, gross) | 9,014 | 52,580 | 325,012 |
 | Extra sales from suggested items (EGP, gross; simulation rate) | 0 | 0 | 0 |
-| **Extra sales total (EGP, gross)** | 9,360 | 54,600 | 337,500 |
+| **Extra sales total (EGP, gross)** | 9,014 | 52,580 | 325,012 |
 
 ![impact](impact.png)
 

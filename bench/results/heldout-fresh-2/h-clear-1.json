@@ -1,0 +1,478 @@
+{
+ "card_id": "h-clear-1",
+ "category": "clear_buyer",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "مساء الخير، لو سمحت تيشيرت مقلم مقاس M لونه كحلي وأبيض موجود؟"
+  },
+  {
+   "role": "agent",
+   "text": "مساء النور يا فندم، أيوه التيشيرت المقلم لونه كحلي وأبيض مقاس M متوفر وسعره 390 جنيه. تحب أضيفلك شورت جينز بـ 520 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا شكراً، أنا عايزة التيشيرت بس."
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، تحت أمرك. \nعلشان نكمل طلبك، ممكن تديني اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة) والمنطقة أو المدينة؟"
+  },
+  {
+   "role": "customer",
+   "text": "دينا مجدي  \n01014567890  \n33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة"
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أيوة، تأكيد. شكراً."
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال يوم لـ 3 أيام. نورتي هدوم!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "مساء الخير، لو سمحت تيشيرت مقلم مقاس M لونه كحلي وأبيض موجود؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_42999",
+     "function": {
+      "arguments": "{\"query\":\"تيشيرت مقلم\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TaxnHEW7EDMyZtBdwxOharw0aoZMbTEgijkVq8amBx5tedSpb8tRxP+PJvNDAzSe+9wUHtfFTkQiPhWslRuIJK+oUq6nXsB0HpLIF/9nQQuW15F3o9paAl30="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_42999",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"name_en\": \"Striped tee\", \"category\": \"tops\", \"price\": 390, \"colors\": [\"كحلي وأبيض\", \"أسود وأبيض\"], \"stock_by_size\": {\"S\": 6, \"M\": 10, \"L\": 9, \"XL\": 5, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"name_en\": \"Oversized tee\", \"category\": \"tops\", \"price\": 420, \"colors\": [\"أسود\", \"بيج\", \"أخضر زيتي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 11, \"XL\": 0, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XXL\"], \"sizes_out_of_stock\": [\"XL\"], \"pairs_with\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "مساء النور يا فندم، أيوه التيشيرت المقلم لونه كحلي وأبيض مقاس M متوفر وسعره 390 جنيه. تحب أضيفلك شورت جينز بـ 520 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TSQIwwGhIZRwwteka7G5JTziiFEKulv1C41T1amiTFqROHOSwbgRK42ns8zGL7o7ExRmAM8Yo43HFgb0GDE/+O60SdHgYJVbt0KrinSBz9IrjpeLEi/+4Ga8="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا شكراً، أنا عايزة التيشيرت بس."
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، تحت أمرك. \nعلشان نكمل طلبك، ممكن تديني اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة) والمنطقة أو المدينة؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TEC0Mr39gHP1j7DYSzp3oD/3q5KmnPXVYNMyx/k2hg1V6XP8OZ8YmoyqsKWKLv2o2O2ccJ4EgHE4fYvQF/fwFZcfA1jTsn8NzLJAnnX1m/f9XBTVvzAlPsfo="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "دينا مجدي  \n01014567890  \n33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_66092",
+     "function": {
+      "arguments": "{\"area\":\"مصر الجديدة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T3BmfBd9HrskQWnJQPyPZGDjWPUzvHYj/m9fmLrh33fn+3fp3+fCbB7bzoMmJuwhx2rSvtbfVFCAHAFgNX/yCnusT4A8SH97BzsrywGoclH7rByNCUDtQCRo="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_66092",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_48471",
+     "function": {
+      "arguments": "{\"customer_name\":\"دينا مجدي\",\"address\":\"33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة\",\"phone\":\"01014567890\",\"area\":\"مصر الجديدة\",\"items\":[{\"size\":\"M\",\"color\":\"كحلي وأبيض\",\"qty\":1,\"product_id\":\"T08\"}]}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T6+2GF9yB50HYHrGutptcWPCzDkhW8BKO3mzIRkVzVcuuOTwBJ2NiMI5I9wuxfxb4tvMXn8Q0E8QnqQt8xetfny5Gk23pkeJiqFFh6NIOloxMDGDhjMYx740="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_48471",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 450, \"summary_ar\": \"طلب رقم 1:\\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\\nالعنوان: 33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TeaJ+irHZSpBT5UXZcR7tA0MKv/ArbT1/H276Ds7PLdMZxCSFCGb8Xp8tU2WoYw1hzBKIG7+Rmxce3WyTD7VZ4tQXvXF8cbaQ/BCa9yB87HFirtk801bIraU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أيوة، تأكيد. شكراً."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_472512",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TGGuarQEXfzQNFTGxaT3CdXz8tkNh5RhTPPGNaoWeRwwJVqBI/fAOhEWDKrEsXDFB9CPXXOmT83qDfYUojpcPgRPxpZ69NAXP8hcXrI36ZfPIrcqFKPZlvx0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_472512",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال يوم لـ 3 أيام. نورتي هدوم!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0ToUmx7x16edkugRuXI3BLkLyTG8O7kE29SEWt2af1we8lY6TtDFJh/4XtuXXodedSVX37//lNQx/87NIxH9hxSB3AiyBSrSIFmE4zRH7cL0jyoLDR/Lm5SCI="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-clear-1",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "دينا مجدي",
+   "phone": "01014567890",
+   "address": "33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة",
+   "area": "مصر الجديدة",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T08",
+     "name_ar": "تيشيرت مقلم",
+     "size": "M",
+     "color": "كحلي وأبيض",
+     "qty": 1,
+     "unit_price": 390
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 390,
+   "total": 450,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "مساء الخير، لو سمحت تيشيرت مقلم مقاس M لونه كحلي وأبيض موجود؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 1902,
+    "tokens_out": 21,
+    "latency_s": 16.5
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2495,
+    "tokens_out": 56,
+    "latency_s": 23.74
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "مساء النور يا فندم، أيوه التيشيرت المقلم لونه كحلي وأبيض مقاس M متوفر وسعره 390 جنيه. تحب أضيفلك شورت جينز بـ 520 جنيه؟",
+    "latency_s": 40.24
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "لا شكراً، أنا عايزة التيشيرت بس."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2566,
+    "tokens_out": 62,
+    "latency_s": 4.34
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "تمام يا فندم، تحت أمرك. \nعلشان نكمل طلبك، ممكن تديني اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة) والمنطقة أو المدينة؟",
+    "latency_s": 4.34
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "دينا مجدي  \n01014567890  \n33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2668,
+    "tokens_out": 18,
+    "latency_s": 17.79
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2734,
+    "tokens_out": 102,
+    "latency_s": 20.8
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 450,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3006,
+    "tokens_out": 100,
+    "latency_s": 3.79
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز، الدور 7، شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 42.38
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "أيوة، تأكيد. شكراً."
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3118,
+    "tokens_out": 16,
+    "latency_s": 11.9
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 450,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "product_id": "T08",
+    "size": "M",
+    "delta": -1,
+    "stock_after": 9,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3193,
+    "tokens_out": 34,
+    "latency_s": 19.69
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-1",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال يوم لـ 3 أيام. نورتي هدوم!",
+    "latency_s": 31.59
+   }
+  }
+ ]
+}

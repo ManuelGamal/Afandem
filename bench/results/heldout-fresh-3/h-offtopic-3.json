@@ -1,0 +1,67 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم أحنا حالياً البيع أونلاين في مصر بس، ومفيش فروع في دبي أو نظام فرانشايز حالياً. \n\nلو حابب تطلب أي قطعة من عندنا جوة مصر، أنا تحت أمرك! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم أحنا حالياً البيع أونلاين في مصر بس، ومفيش فروع في دبي أو نظام فرانشايز حالياً. \n\nلو حابب تطلب أي قطعة من عندنا جوة مصر، أنا تحت أمرك! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TGcDU6khRPp9e1RY9nNERU5toS5FuBY+9GxpWdgVJfb0LM9Sr6vMboNwwO23JYb5qf7Gd2DEMzh4b5IGcS/i3toXXSjXDNEHuLVH1M2FVOkraKe5KYxOFMLc="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 1888,
+    "tokens_out": 57,
+    "latency_s": 8.55
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "يا فندم أحنا حالياً البيع أونلاين في مصر بس، ومفيش فروع في دبي أو نظام فرانشايز حالياً. \n\nلو حابب تطلب أي قطعة من عندنا جوة مصر، أنا تحت أمرك! 😊",
+    "latency_s": 8.55
+   }
+  }
+ ]
+}

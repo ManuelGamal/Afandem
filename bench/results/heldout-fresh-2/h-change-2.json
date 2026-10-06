@@ -1,0 +1,396 @@
+{
+ "card_id": "h-change-2",
+ "category": "change_at_confirmation",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "غيري المقاس من M لـ L ولونه رمادي زي ما هو  \nبعد كده اكدي الطلب"
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ايوه اكدي الطلب بالمقاس الجديد  \nمتشكرة"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 2-4 أيام 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "غيري المقاس من M لـ L ولونه رمادي زي ما هو  \nبعد كده اكدي الطلب"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_76396",
+     "function": {
+      "arguments": "{\"query\":\"جوجر قطن\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TKJQadqYVfzxYkxqyVOkeD4HPBmoaZiYVcxzuDBClMAdFDBSEIsCqH91NPYXnDHZYC2t0TJPmAcIPya55vFl3jcw/RNoLcC7yFUTDEx5Awj7+mhxUsf8/QE0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_76396",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"stock_by_size\": {\"ONE\": 40}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"stock_by_size\": {\"ONE\": 25}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_105858",
+     "function": {
+      "arguments": "{\"changes\":{\"items\":[{\"qty\":1,\"product_id\":\"B05\",\"color\":\"رمادي\",\"size\":\"L\"}]},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Td4WnYArYIxOFlJGBNQ9rYVbe/3rDtBAc8srvNpoBTrvaXWKytHyCpGO+W2cWIiH4hNMVNS0BpENwGJ0eI/mPW93kTpE5AE09VAjVMIndUC5Pyphk45XzB+A="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_105858",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 630, \"summary_ar\": \"طلب رقم 1:\\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_559970",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TuQ/eDUILYj3+uB9uei80mhmswv23DJa/vCnppYDqLd0EWOusifpNyFYaDpwxMJMrsCr7ASg5JnckK2pEn9HCSU4M4dTPu+6eLR6hdbUOC1CD1cPdsnRS8Ug="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_559970",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TJuojO1xbkzJnRC9MZFrNCJ1QM1B5xAsyayEJf0iLN5IGySvc5imN6L5RHGiXicJJbCu/VE3cseMm7upaHrycWB4Gv21xSmCBkMX7AZdj5rMd9YaAWo+mkoM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ايوه اكدي الطلب بالمقاس الجديد  \nمتشكرة"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_75540",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Ter6BPKXC7FGAGI/YLzKj7UI+pbZCbG33qp6DMqRmqqdYGfkiDhFyehJNrOXFs0dzRuyjNFTbUAjY/O+cs4rPZT+fjpkhiCktkxth1Wn/C2YSeXEM5f8rHLU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_75540",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 2-4 أيام 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T0tfkcaqqivJeyA0lSENY3i2sctjqu17W5lPIiRfI7Qw72HDdeZxQD4oSDjOWvw+3fAApSjC7FxWdGjXPk7CZ0IFI38JtP3sot/OwH8HmkJFWWu2XiGNWMmc="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "ملك وائل",
+   "phone": "01058901234",
+   "address": "عمارة 6 شارع الثورة الدور 5 شقة 10",
+   "area": "الزقازيق",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B05",
+     "name_ar": "جوجر قطن",
+     "size": "L",
+     "color": "رمادي",
+     "qty": 1,
+     "unit_price": 560
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 560,
+   "total": 630,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 630,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "غيري المقاس من M لـ L ولونه رمادي زي ما هو  \nبعد كده اكدي الطلب"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2162,
+    "tokens_out": 20,
+    "latency_s": 1.04
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3003,
+    "tokens_out": 48,
+    "latency_s": 1.04
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3221,
+    "tokens_out": 16,
+    "latency_s": 0.74
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3297,
+    "tokens_out": 98,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 3.82
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ايوه اكدي الطلب بالمقاس الجديد  \nمتشكرة"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3412,
+    "tokens_out": 16,
+    "latency_s": 1.32
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 630,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "B05",
+    "size": "L",
+    "delta": -1,
+    "stock_after": 11,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3487,
+    "tokens_out": 28,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 2-4 أيام 🌸",
+    "latency_s": 2.25
+   }
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "card_id": "h-complaint-3",
+ "category": "complaint",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم نأسف جدًا على اللي حصل 🙏\nحولتك لفريق خدمة العملاء وهما هيكلموك قريب ويتابعوا معاك موضوع الـ refund.\nتحت أمرك دايمًا."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_571e253456fa493f8ec02bdb",
+     "function": {
+      "arguments": "{\"reason\": \"Customer received an order with wrong size and color different from the pictures; requesting a refund. Needs human follow-up for refund/return handling.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "index": 10
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_571e253456fa493f8ec02bdb",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم نأسف جدًا على اللي حصل 🙏\nحولتك لفريق خدمة العملاء وهما هيكلموك قريب ويتابعوا معاك موضوع الـ refund.\nتحت أمرك دايمًا."
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "text": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 1967,
+    "tokens_out": 523,
+    "latency_s": 4.28
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "reason": "Customer received an order with wrong size and color different from the pictures; requesting a refund. Needs human follow-up for refund/return handling."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2042,
+    "tokens_out": 126,
+    "latency_s": 1.75
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "text": "يا فندم نأسف جدًا على اللي حصل 🙏\nحولتك لفريق خدمة العملاء وهما هيكلموك قريب ويتابعوا معاك موضوع الـ refund.\nتحت أمرك دايمًا.",
+    "latency_s": 6.03
+   }
+  }
+ ]
+}

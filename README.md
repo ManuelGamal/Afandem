@@ -9,9 +9,9 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
 
 | | |
 |---|---|
-| **Held-out task success** | **97%** of 30 simulated customers the agent was never tuned on |
-| **Safety violations** | **0** — no made-up price, no confirmation without an explicit yes |
-| **One typical shop, base case** | **35 h/week** saved · **19,549 EGP/month** net · running cost earned back in **1.6 days** |
+| **Held-out task success** | **94%** over 150 live conversations (5 runs of 30 cards the agent was never tuned on; runs ranged 90–100%) |
+| **Safety violations** | **0** in 150 — no made-up price, no confirmation without an explicit yes |
+| **One typical shop, base case** | **33 h/week** saved · **19,609 EGP/month** net · running cost earned back in **1.2 days** |
 
 <!-- HOSTED_URL -->
 
@@ -155,42 +155,56 @@ The bench follows the method of [τ-bench][taubench] / [τ²-bench][tau2]: a lan
 customer from a scenario card, and the outcome is graded **by fixed rules from the final order state**
 — no model judges. Cards cover 10 customer types (clear buyer, unsure of size, price shopper, change at
 confirmation, vague address, reschedule, declines, never replies, complaint, off-topic) and three
-writing styles (Egyptian Arabic, Franco, mixed Arabic and English). The simulated customer runs on a different model
-from the agent.
+writing styles (Egyptian Arabic, Franco, mixed Arabic and English). The simulated customer is
+Qwen3-235B (on Nebius), a different model family from the agent (Gemini) and its fallback (GLM).
 
 - **Development set (60 cards)** — used to find and fix failures. Every failure was traced to a root
   cause (e.g. a too-strict yes check, a reply claiming a confirmation that never happened); task success
   went from 82% to 97%. [`bench/report/report.md`](bench/report/report.md)
 - **Held-out set (30 cards)** — new people, areas, products, phrasings and scenarios, written after the
-  development fixes and never used to tune the agent. Reported here: the agent at commit `7bdb761`
-  (later commits add the store importer; its search retry only runs when a search finds nothing).
-  [`bench/report-heldout/report.md`](bench/report-heldout/report.md)
-- **Transcripts are committed** ([`bench/results/heldout-final/`](bench/results/heldout-final),
-  [`bench/results/run2/`](bench/results/run2)), so anyone can re-grade them:
-  `uv run python -m moderator.bench.report --results bench/results/heldout-final --cards bench/cards-heldout --out /tmp/r`.
+  development fixes and never used to tune the agent. Reported here: **five fresh runs** of all 30
+  cards on the agent at commit `d4df47b` — 150 conversations, every model call live (each run starts from
+  an empty cache), the agent on one model (Gemini 3.5 Flash-Lite). [`bench/report-heldout/report.md`](bench/report-heldout/report.md)
+- **Transcripts are committed** ([`bench/results/heldout-fresh-1`](bench/results/heldout-fresh-1) … `-5`),
+  so anyone can re-grade them:
+  `uv run python -m moderator.bench.report --results bench/results/heldout-fresh-{1,2,3,4,5} --cards bench/cards-heldout --out /tmp/r`.
 
-| Held-out (30 simulated customers) | |
+| Held-out: 5 runs × 30 simulated customers | |
 |---|---|
-| Task success | **97%** (29/30) |
+| Task success | **94.0%** (141/150; runs: 90–100%) |
 | Safety violations | **0** |
-| Handled without a person | 100% |
-| Median agent reply time (live model calls only) | 2.2 s on the development run · 6.2 s on the earlier held-out run, which includes waiting out free-tier rate limits |
-| Success by writing style | Egyptian Arabic 100% · Franco 90% · mixed 100% |
-| Model calls / tokens per conversation | 5.4 / 16,123 in, 293 out |
+| Handled without a person | 96% |
+| Median agent reply time (live calls) | 2.5 s |
+| Success by writing style | Egyptian Arabic 96% · Franco 92% · mixed 94% |
+| Model calls / tokens per conversation | 4.4 / 11,387 in, 203 out |
+| Same cards on the fallback model (GLM-5.3-Flash, 1 run) | 87%, 0 violations — [`bench/report-heldout-glm/report.md`](bench/report-heldout-glm/report.md) |
 
-The one miss (`h-price-2`): the card's customer is a price shopper who should leave without buying, but
-the simulated customer decided to buy and wrote "aywa… akked el talab!" (yes, confirm the order). The
-agent confirmed as asked; the grader expected no order, so it counts as a failure. We left the grading
-as it was rather than change it after seeing held-out results.
+Every one of the 9 misses was traced:
+- **4 — the simulated customer misread one card** (`h-clear-2`): it reads "accept a matching extra item
+  *under 700 EGP*" as a budget for the main item (780 EGP), haggles, and walks away. The agent held the
+  price and invented no discount.
+- **3 — the customer left mid-change**: they asked to fix the address or the delivery day; the agent made
+  the change, sent the new summary and asked again (the rule: a changed order is re-confirmed), and the
+  simulated customer ended the chat without answering.
+- **1 — handoff for a photo** (`h-price-1`): the customer asked for a picture of the navy colour; the
+  agent can't send photos and passed the chat to a person. The card expected no handoff.
+- **1 — a real agent error** (`h-size-1`): a customer in Dokki (Giza) was filed under the Cairo zone. The
+  fee is the same (60 EGP), so the customer was charged correctly, but the zone is wrong.
+
+We have not tuned the agent on these results: fixing the held-out misses and re-running would turn the
+held-out set into a development set.
 
 Honest notes on the method:
-- Model responses are cached by exact request, so a request seen in an earlier run reuses its recorded
-  answer; any request the newer code changed goes to the live model. That is why reply time is
-  measured only on live calls.
+- A harness bug was found and fixed during these runs: the new simulated customer sometimes writes its
+  last message and the end marker on one line ("confirm it [DONE]"), and the runner dropped that
+  message. The five runs reported here all ran after the fix (commit `d4df47b`); the runs before it were
+  discarded.
 - "0 violations" for *confirmed without a yes* uses the same yes-check the agent's guard uses, so it
   shows the guard held in every conversation, not an independent judgment of what the customer meant.
   The other violations (amounts not from the shop's data, wrong status for a customer who never
   replied) are checked independently of the agent's code.
+- An earlier single held-out run on Gemini as the simulated customer scored 97% (29/30)
+  ([`bench/results/heldout-final/`](bench/results/heldout-final)); we report the larger, fresher sample.
 
 LLM-simulated customers are imperfect proxies for people ([Lost in Simulation][lost]); these are
 simulation results, not field results.
@@ -201,12 +215,12 @@ Measured agent quality × cited assumptions (`low` is always the conservative ca
 
 | Per month unless noted | low | base | high |
 |---|---|---|---|
-| Hours saved / week | 15.0 | 34.5 | 106.8 |
+| Hours saved / week | 14.5 | 33.2 | 102.9 |
 | Refused COD deliveries prevented | 20 | 130 | 486 |
-| Running cost: model + hosting (EGP) | 1,838 | 1,083 | 461 |
-| **Net cost saved (EGP)** | **1,792** | **19,549** | **99,948** |
-| **Running cost earned back in (days)** | 15.2 | 1.6 | 0.1 |
-| Extra sales from faster replies (EGP, gross, estimate) | 9,360 | 54,600 | 337,500 |
+| Running cost: model + hosting (EGP) | 1,443 | 837 | 325 |
+| **Net cost saved (EGP)** | **2,117** | **19,609** | **99,425** |
+| **Running cost earned back in (days)** | 12.2 | 1.2 | 0.1 |
+| Extra sales from faster replies (EGP, gross, estimate) | 9,014 | 52,580 | 325,012 |
 
 "Earned back" = one month's running cost ÷ a day's gross savings. There is no setup fee in this model;
 a shop's own setup time is not counted.
@@ -255,9 +269,10 @@ replay/        the recorded demo used when there is no API key
 
 - **Free-tier friendly:** a fallback chain across Gemini Flash-Lite models that waits for the first
   model to free up instead of failing, and a response cache — the recorded demo never spends quota.
-- **Tests:** `uv run pytest` (193 tests, no API key needed).
-- **Re-run the bench:** `uv run python -m moderator.bench.runner --cards bench/cards-heldout --out bench/results/heldout`
-  (resumable), then `uv run python -m moderator.bench.report --results bench/results/heldout --cards bench/cards-heldout --out bench/report-heldout`.
+- **Tests:** `uv run pytest` (205 tests, no API key needed).
+- **Re-run the bench:** `MODERATOR_PROVIDERS=configs/providers-gemini.yaml uv run python -m moderator.bench.runner --cards bench/cards-heldout --out bench/results/my-run --cache-dir cache/my-run --sim-config configs/providers-sim-nebius.yaml`
+  (resumable; the simulated customer needs `NEBIUS_API_KEY`, or drop `--sim-config` to use Gemini),
+  then `uv run python -m moderator.bench.report --results bench/results/my-run --cards bench/cards-heldout --out /tmp/r`.
 - **Play a card yourself:** `uv run python -m moderator.bench.runner --human --ids clear-1,decline-2 --out bench/results/human`.
 
 ## Honesty notes

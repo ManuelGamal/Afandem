@@ -1,0 +1,328 @@
+{
+ "card_id": "h-resched-1",
+ "category": "reschedule",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكيد، أكدي الطلب. بس خليني أقولك إن التوصيل يناسبني بس السبت، يعني 10 أكتوبر.  \nمفيش مشكلة؟"
+  },
+  {
+   "role": "agent",
+   "text": "ولا أي مشكلة خالص يا فندم، ظبطنا ميعاد التوصيل يوم السبت 10 أكتوبر 🌸\n\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: يوم 2026-10-10\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكدي الطلب من فضلك.  \nشكرًا، ويا ريت تبعتولي تأكيد بالطلب على الواتس."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم السبت 10 أكتوبر وطبعاً هنبعتلك تفاصيل التأكيد على الواتساب. شكراً لتسوقك معنا في هدوم! 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أكيد، أكدي الطلب. بس خليني أقولك إن التوصيل يناسبني بس السبت، يعني 10 أكتوبر.  \nمفيش مشكلة؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_52355",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0To5MatHEB0Ov5XapCe17N11tjR6+uG9ySbHVmYjL5bhmy6wWd9jxrYuI1pE88/Z1BStBrUcSVr5YD1Poswa83yExkCIr0xNyyGtr+YkxkgOCk9UT4bUHjUmU="
+      }
+     }
+    },
+    {
+     "id": "call_52356",
+     "function": {
+      "arguments": "{\"order_id\":1,\"date\":\"2026-10-10\"}",
+      "name": "schedule_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_52355",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_52356",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 810, \"summary_ar\": \"طلب رقم 1:\\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\\nالتوصيل: يوم 2026-10-10\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا أي مشكلة خالص يا فندم، ظبطنا ميعاد التوصيل يوم السبت 10 أكتوبر 🌸\n\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: يوم 2026-10-10\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TXxomzAErN0Vd65zzoqpzWN3c2g8U05meqmrWfxKECyOMnuVwTEzwP5tWJZjPnQnSNzY/bhOGYnK6YqOIhJxaFWuv9XQZDwAZCinH+J884MqwTHLmpc/7hYg="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أكدي الطلب من فضلك.  \nشكرًا، ويا ريت تبعتولي تأكيد بالطلب على الواتس."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_43779",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T5bPS5JQ1VdB3C/QPYj4JG0pGiiS2czh0G9HX6zIg8Z3SlZnaWx+0yh4Sg088ZL5FNG6TJt5Gqvp80FT1EyYg3Sk2CI4wnK5VHStj0cAbv49Bki3Sd0cF3XQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_43779",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم السبت 10 أكتوبر وطبعاً هنبعتلك تفاصيل التأكيد على الواتساب. شكراً لتسوقك معنا في هدوم! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TF8oF9UCnIuUQ585Qc1kbXpNLTacgMXKiRAU8Fov3QeRktvKbQ/LzTa1StXjUoVJXoHmNwtWrQ2d5GUjSAyGtg37k3P4y7y0U/Hi3MQGwC+ZSAJ+sw0kREQI="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "دينا مجدي",
+   "phone": "01014567890",
+   "address": "33 شارع الحجاز الدور 7 شقة 14",
+   "area": "مصر الجديدة",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T07",
+     "name_ar": "سويت شيرت",
+     "size": "M",
+     "color": "رمادي",
+     "qty": 1,
+     "unit_price": 750
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 750,
+   "total": 810,
+   "delivery_date": "2026-10-10",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 810,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أكيد، أكدي الطلب. بس خليني أقولك إن التوصيل يناسبني بس السبت، يعني 10 أكتوبر.  \nمفيش مشكلة؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2170,
+    "tokens_out": 47,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2448,
+    "tokens_out": 129,
+    "latency_s": 1.09
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ولا أي مشكلة خالص يا فندم، ظبطنا ميعاد التوصيل يوم السبت 10 أكتوبر 🌸\n\nطلب رقم 1:\n- 1× سويت شيرت مقاس M لون رمادي = 750 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: يوم 2026-10-10\n\nأأكد الطلب؟",
+    "latency_s": 2.25
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أكدي الطلب من فضلك.  \nشكرًا، ويا ريت تبعتولي تأكيد بالطلب على الواتس."
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2609,
+    "tokens_out": 16,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 810,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "T07",
+    "size": "M",
+    "delta": -1,
+    "stock_after": 6,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2684,
+    "tokens_out": 53,
+    "latency_s": 1.1
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم السبت 10 أكتوبر وطبعاً هنبعتلك تفاصيل التأكيد على الواتساب. شكراً لتسوقك معنا في هدوم! 🌸",
+    "latency_s": 1.97
+   }
+  }
+ ]
+}

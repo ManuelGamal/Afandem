@@ -1,0 +1,189 @@
+{
+ "card_id": "h-price-2",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "agent",
+   "text": "El genz slim b 950 geneh, wel shipping le el Ismailia b 70 geneh we byakhod mn 2 le 4 ayam. Taht amrak ya fandem, habeb t2olena toolak w waznak w el fit el mofadal 3ashan ne2tarelak el maas el mazboot?"
+  },
+  {
+   "role": "customer",
+   "text": "shokran, ana hafakr w a3id. shokran tani."
+  },
+  {
+   "role": "agent",
+   "text": "El 3afw ya fandem, noratna w teht amrak fe ay wakt!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_216644",
+     "function": {
+      "arguments": "{\"query\":\"Slim jeans\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+beVwfGYLD1YZLDRqm8uoLvNzLcRxlDo+GGjknZBXthU7phDdb6ublgy43NvUJosSXh5g8kuXtogXnticlJZEvIUaOD5uJdbPqCCstORf2T0bcGnrpOskSE="
+      }
+     }
+    },
+    {
+     "id": "call_216645",
+     "function": {
+      "arguments": "{\"area\":\"Ismailia\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_216644",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"stock_by_size\": {\"30\": 6, \"32\": 12, \"34\": 10, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"stock_by_size\": {\"30\": 4, \"32\": 9, \"34\": 0, \"36\": 4, \"38\": 1}, \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 8, \"32\": 7, \"34\": 4, \"36\": 2, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_216645",
+   "content": "{\"ok\": true, \"zone\": \"مدن القناة\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "El genz slim b 950 geneh, wel shipping le el Ismailia b 70 geneh we byakhod mn 2 le 4 ayam. Taht amrak ya fandem, habeb t2olena toolak w waznak w el fit el mofadal 3ashan ne2tarelak el maas el mazboot?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+47bnPLj9R+08VWMtTiVOcXAenulvQt1iOc6Z3sgloGkQM2wzl0XL8em1dQFQVn7Nq5wHtj5piJKTD9s+d3mpBEB06I+l0FmqItu4H+PZpwPSEoJLTRDzf8="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "shokran, ana hafakr w a3id. shokran tani."
+  },
+  {
+   "role": "assistant",
+   "content": "El 3afw ya fandem, noratna w teht amrak fe ay wakt!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TAmQoExY9HUu7dosU7KvBenyGkzBK691e2Ly+M31Sy6Pzk4rKzmxOrhl+22gAslGJ4KmpJhMa5XtTzZnUrnFrTQH0r/vuvrOJUtieGCNuNCAjB+UVqQ/tuQ4="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 1944,
+    "tokens_out": 35,
+    "latency_s": 0.85
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2611,
+    "tokens_out": 80,
+    "latency_s": 1.36
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "El genz slim b 950 geneh, wel shipping le el Ismailia b 70 geneh we byakhod mn 2 le 4 ayam. Taht amrak ya fandem, habeb t2olena toolak w waznak w el fit el mofadal 3ashan ne2tarelak el maas el mazboot?",
+    "latency_s": 2.21
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "shokran, ana hafakr w a3id. shokran tani."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2709,
+    "tokens_out": 21,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "El 3afw ya fandem, noratna w teht amrak fe ay wakt!",
+    "latency_s": 0.9
+   }
+  }
+ ]
+}

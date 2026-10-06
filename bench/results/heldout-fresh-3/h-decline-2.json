@@ -1,0 +1,192 @@
+{
+ "card_id": "h-decline-2",
+ "category": "declines",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جيبة ميدي مقاس S لون زيتي = 690 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 750 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش عايز الطلب ده"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، تم الغلغاء تحت أمرك في أي وقت 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جيبة ميدي مقاس S لون زيتي = 690 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 750 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جيبة ميدي مقاس S لون زيتي = 690 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 750 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "لا مش عايز الطلب ده"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_34027",
+     "function": {
+      "arguments": "{\"order_id\":1,\"reason\":\"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T/JdGnxCcm8stmHs9Amlg/h6lmPasGskh47IJjGdpvqoNOoBfsvzlRltUoXtWCqV7oV5m58cIgEHVtaktNXp2SNzPKYJtPKuh5DtYPrXhbTs/Gu01qAuQfPA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_34027",
+   "content": "{\"ok\": true, \"status\": \"cancelled\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، تم الغلغاء تحت أمرك في أي وقت 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TInAgH01pSeEJMAth9k8wGx6QTCVICU2wsuwpE4ZbRM2RcRsVA2h8+KlonW+tmehEU/A2wJ3cGhiQExu+RlKV70bMYneIAQlQy46Jf8zHJBCx4a2YApr9abU="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "cancelled",
+   "source": "checkout",
+   "customer_name": "طارق سليم",
+   "phone": "01225678901",
+   "address": "18 شارع السودان الدور 3",
+   "area": "الدقي",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "B08",
+     "name_ar": "جيبة ميدي",
+     "size": "S",
+     "color": "زيتي",
+     "qty": 1,
+     "unit_price": 690
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 690,
+   "total": 750,
+   "delivery_date": null,
+   "cancel_reason": "customer_declined",
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 750,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جيبة ميدي مقاس S لون زيتي = 690 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 750 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "لا مش عايز الطلب ده"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2125,
+    "tokens_out": 25,
+    "latency_s": 0.77
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "cancelled",
+    "reason": "customer_declined",
+    "total": 750,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "cancel_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2174,
+    "tokens_out": 21,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ولا يهمك يا فندم، تم الغلغاء تحت أمرك في أي وقت 😊",
+    "latency_s": 1.66
+   }
+  }
+ ]
+}

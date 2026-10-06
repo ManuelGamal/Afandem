@@ -1,0 +1,189 @@
+{
+ "card_id": "h-price-2",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "agent",
+   "text": "El-Slim jeans b 950 geneh, w el shipping le Ismailiya b 70 geneh w byakhod men 2 l 4 ayam. Tehb ashrablak matloub eih tani wala aollek 3an el magasat?"
+  },
+  {
+   "role": "customer",
+   "text": "yekfi da, 7ot ro7y a3mel fekra w a3odlak. tamaam?"
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fandam, wala yhemmak! Ana mawgod fe ay waqt law e7tatt ay haga. Nehna taht amrak 💙"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_53076",
+     "function": {
+      "arguments": "{\"query\":\"Slim jeans\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T/VAUi+vuOSWeh5rQgc8/fGIieWD6KEkfwcoU8vLiPeBvQHB0DVy8BjvHvn9IbswoZ1Ado0NnK9Lva/08VJ+tV9lmof/qOrsv8somlqOE5t9iOJGS56muMXU="
+      }
+     }
+    },
+    {
+     "id": "call_53077",
+     "function": {
+      "arguments": "{\"area\":\"Ismailia\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_53076",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"stock_by_size\": {\"30\": 6, \"32\": 12, \"34\": 10, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"stock_by_size\": {\"30\": 4, \"32\": 9, \"34\": 0, \"36\": 4, \"38\": 1}, \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 8, \"32\": 7, \"34\": 4, \"36\": 2, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_53077",
+   "content": "{\"ok\": true, \"zone\": \"مدن القناة\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "El-Slim jeans b 950 geneh, w el shipping le Ismailiya b 70 geneh w byakhod men 2 l 4 ayam. Tehb ashrablak matloub eih tani wala aollek 3an el magasat?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tto/1pyzjd4TiIFCBl1QIlTvYRPEsaKEIyIsOjkLtLNvE+GgO5mX3NxWQbu12xz2jeWjPVYootQ30VfR2s2ufrjgb8G4yM12whpYChyn62kojBbEM1Khk0aQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "yekfi da, 7ot ro7y a3mel fekra w a3odlak. tamaam?"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fandam, wala yhemmak! Ana mawgod fe ay waqt law e7tatt ay haga. Nehna taht amrak 💙",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TMkv92R+PFg3ILoc9y0j8fvDke7Rq5/rHfsHI131ZywTMXqJBtorvs7uYeZEz9UCmLsM5WU5WZudjyPcL0hG86FjFG892+vTBAQFgQZqkVd5KDDqDkxQAwhU="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "el Slim jeans b kam? w el shipping le Ismailia kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 1944,
+    "tokens_out": 35,
+    "latency_s": 1.03
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2611,
+    "tokens_out": 61,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "El-Slim jeans b 950 geneh, w el shipping le Ismailiya b 70 geneh w byakhod men 2 l 4 ayam. Tehb ashrablak matloub eih tani wala aollek 3an el magasat?",
+    "latency_s": 2.2
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "yekfi da, 7ot ro7y a3mel fekra w a3odlak. tamaam?"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2698,
+    "tokens_out": 34,
+    "latency_s": 1.35
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-2",
+   "data": {
+    "text": "Tamam ya fandam, wala yhemmak! Ana mawgod fe ay waqt law e7tatt ay haga. Nehna taht amrak 💙",
+    "latency_s": 1.35
+   }
+  }
+ ]
+}

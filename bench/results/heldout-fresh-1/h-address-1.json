@@ -1,0 +1,252 @@
+{
+ "card_id": "h-address-1",
+ "category": "vague_address",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 720 جنيه (الدفع عند الاستلام)\nالعنوان: عند الكنيسة، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "العنوان غلط، صححه من فضلك: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق  \nبعد ما تصوبه، أكّد الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم تعديل العنوان وتأكيد الطلب يا فندم! شكراً لذوقك وهنبأ نجهز شحنتك فوراً 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 720 جنيه (الدفع عند الاستلام)\nالعنوان: عند الكنيسة، الزقازيق\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 720 جنيه (الدفع عند الاستلام)\nالعنوان: عند الكنيسة، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "العنوان غلط، صححه من فضلك: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق  \nبعد ما تصوبه، أكّد الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_402090",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"area\":\"الزقازيق\",\"address\":\"عمارة 6 شارع الثورة الدور 5 شقة 10\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T9C5+01cVZa+KgEiQZwgC0MyO19Qpg4aEteety/k3/d2VIGaCqdcJPXYjRjWp22N6ImGEzPlQAAy2rKRjIdMByc/tWcLPCvRPrMynE62CsaJGqtGkXtCIWbc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_402090",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 720, \"summary_ar\": \"طلب رقم 1:\\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 720 جنيه (الدفع عند الاستلام)\\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_52388",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TPnKgmPE0u6c8Ni+frLU0FKY0SAxolZwxKKkUc9fps6QfYItoUYEJR5SvMQxQLlr5UoJNBPCR8puGgrKz7WyOVdAdujOleeo83K6I6mZn2AZkXdx3zjnM+rA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_52388",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تعديل العنوان وتأكيد الطلب يا فندم! شكراً لذوقك وهنبأ نجهز شحنتك فوراً 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tr2opFpUh+KBqYlNiNVv5/maKrmV3Y+vsw+4PZF02ntJlhqWe2VVpmy2EYFW/hiC5qVDV6JA/LNZZFiXdrBM18JjGT8wjYEVslpM606z11CjjTXNP1+rdSi4="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "ملك وائل",
+   "phone": "01058901234",
+   "address": "عمارة 6 شارع الثورة الدور 5 شقة 10",
+   "area": "الزقازيق",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "T05",
+     "name_ar": "قميص أكسفورد",
+     "size": "L",
+     "color": "أبيض",
+     "qty": 1,
+     "unit_price": 650
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 650,
+   "total": 720,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 720,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 720 جنيه (الدفع عند الاستلام)\nالعنوان: عند الكنيسة، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العنوان غلط، صححه من فضلك: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق  \nبعد ما تصوبه، أكّد الطلب."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2162,
+    "tokens_out": 50,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2385,
+    "tokens_out": 16,
+    "latency_s": 3.76
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 720,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "T05",
+    "size": "L",
+    "delta": -1,
+    "stock_after": 8,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2460,
+    "tokens_out": 32,
+    "latency_s": 1.83
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تعديل العنوان وتأكيد الطلب يا فندم! شكراً لذوقك وهنبأ نجهز شحنتك فوراً 🌸",
+    "latency_s": 6.53
+   }
+  }
+ ]
+}

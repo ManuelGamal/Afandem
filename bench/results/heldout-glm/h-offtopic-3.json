@@ -1,0 +1,114 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم، سؤالك عن الفرنشايز وفرع دبي وصل للفريق المختص 🙏\n\nحد من التيم هيكلمك قريب جداً.\n\nتحت أمرك لو حابب تسأل عن أي منتجات أو طلب!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_bbc8e3ca72ec4303b82fad2a",
+     "function": {
+      "arguments": "{\"reason\": \"Customer asking about a Dubai branch and wants to open a franchise — business/partnership inquiry outside sales and orders.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "index": 10
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_bbc8e3ca72ec4303b82fad2a",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم، سؤالك عن الفرنشايز وفرع دبي وصل للفريق المختص 🙏\n\nحد من التيم هيكلمك قريب جداً.\n\nتحت أمرك لو حابب تسأل عن أي منتجات أو طلب!"
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 1957,
+    "tokens_out": 268,
+    "latency_s": 2.11
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "reason": "Customer asking about a Dubai branch and wants to open a franchise — business/partnership inquiry outside sales and orders."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2027,
+    "tokens_out": 139,
+    "latency_s": 1.42
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "يا فندم، سؤالك عن الفرنشايز وفرع دبي وصل للفريق المختص 🙏\n\nحد من التيم هيكلمك قريب جداً.\n\nتحت أمرك لو حابب تسأل عن أي منتجات أو طلب!",
+    "latency_s": 3.52
+   }
+  }
+ ]
+}

@@ -1,0 +1,680 @@
+{
+ "card_id": "h-clear-2",
+ "category": "clear_buyer",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 6,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "hi, el Chinos size 34 olive available 3ndko?"
+  },
+  {
+   "role": "agent",
+   "text": "أهلاً بيك يا فندم 🌟\nآه، التشينو مقاس 34 لون زيتي متوفر عندي، بـ 780 جنيه.\nتحب أضيفلك بولو شيرت بيكيه بـ 520 جنيه يبقى لوك كامل؟"
+  },
+  {
+   "role": "customer",
+   "text": "780 kwayes, bas ana 3ayzo lwa7do. 3ayz el chinos bas."
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، التشينو زيتي 34 لوحده 👌\nابعتلي اسمك ورقم موبايلك والعنوان بالتفصيل (الشارع، رقم العمارة، الدور، وعلامة مميزة) والمنطقة عشان أجهزلك الطلب."
+  },
+  {
+   "role": "customer",
+   "text": "Tarek Selim\n01225678901\n18 شارع السودان الدور 3، الدقي"
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان، الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "la, el kher kano ta7t 700 pound. 3ayz wa7ed ta7t el 700."
+  },
+  {
+   "role": "agent",
+   "text": "للأسف يا فندم، مفيش بنطلون تشينو تحت الـ 700 عندنا، التشينو بـ 780 بس.\nالمتاح تحت 700 في البناطيل: شورت جينز أزرق فاتح بـ 520 جنيه، متوفر مقاس 34.\nتحب أخدلك هو بدل التشينو ولا نفضل على التشينو الأصلي؟"
+  },
+  {
+   "role": "customer",
+   "text": "la, ana 3ayz el chinos bas. mafish 7aga. shokran."
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، رجعنا للتشينو زيتي 34 لوحده 👌\nالطلب رقم 1 زي ما هو: الإجمالي 840 جنيه (شامل الشحن 60)، دفع عند الاستلام.\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "la, mafish 7aga. ana 3ayz wa7ed ta7t 700. mafish 7aga. shokran."
+  },
+  {
+   "role": "agent",
+   "text": "Ma3leish ya fandem, el chinos 3andena 780 bas, mafeesh ta7t 700. 🙏\nLghayet ma tghayar ra2yek, el order etlagha. Law 3ayez 7aga tania ana hena."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "hi, el Chinos size 34 olive available 3ndko?"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_0bc31481162b4c4d99ba5276",
+     "function": {
+      "arguments": "{\"category\": \"bottoms\", \"query\": \"chinos\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_0bc31481162b4c4d99ba5276",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"name_en\": \"Chinos\", \"category\": \"bottoms\", \"price\": 780, \"colors\": [\"بيج\", \"كحلي\", \"زيتي\"], \"stock_by_size\": {\"30\": 5, \"32\": 10, \"34\": 9, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T03\", \"name\": \"بولو شيرت بيكيه\", \"price\": 520}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"price\": 690}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً بيك يا فندم 🌟\nآه، التشينو مقاس 34 لون زيتي متوفر عندي، بـ 780 جنيه.\nتحب أضيفلك بولو شيرت بيكيه بـ 520 جنيه يبقى لوك كامل؟"
+  },
+  {
+   "role": "user",
+   "content": "780 kwayes, bas ana 3ayzo lwa7do. 3ayz el chinos bas."
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، التشينو زيتي 34 لوحده 👌\nابعتلي اسمك ورقم موبايلك والعنوان بالتفصيل (الشارع، رقم العمارة، الدور، وعلامة مميزة) والمنطقة عشان أجهزلك الطلب."
+  },
+  {
+   "role": "user",
+   "content": "Tarek Selim\n01225678901\n18 شارع السودان الدور 3، الدقي"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_c5fa954566144f74a9997c3e",
+     "function": {
+      "arguments": "{\"area\": \"الدقي\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "index": 3
+    },
+    {
+     "id": "call_85f418a0f8854367a25be0c1",
+     "function": {
+      "arguments": "{\"address\": \"18 شارع السودان، الدور 3\", \"area\": \"الدقي\", \"customer_name\": \"Tarek Selim\", \"items\": [{\"color\": \"زيتي\", \"product_id\": \"B04\", \"qty\": 1, \"size\": \"34\"}], \"phone\": \"01225678901\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "index": 4
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_c5fa954566144f74a9997c3e",
+   "content": "{\"ok\": true, \"zone\": \"الجيزة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_85f418a0f8854367a25be0c1",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 840, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\\nالعنوان: 18 شارع السودان، الدور 3، الدقي\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان، الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "la, el kher kano ta7t 700 pound. 3ayz wa7ed ta7t el 700."
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_5300deb67a1e4fb89ae10aae",
+     "function": {
+      "arguments": "{\"category\": \"bottoms\", \"max_price\": 700, \"query\": \"chinos بنطلون\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_5300deb67a1e4fb89ae10aae",
+   "content": "{\"ok\": true, \"products\": []}"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_ba71d5904e0a4397be58607e",
+     "function": {
+      "arguments": "{\"category\": \"bottoms\", \"max_price\": 700, \"query\": \"بنطلون\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_ba71d5904e0a4397be58607e",
+   "content": "{\"ok\": true, \"products\": []}"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_81c0249f1102411891a824b4",
+     "function": {
+      "arguments": "{\"max_price\": 700, \"query\": \"بنطلون pants\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_81c0249f1102411891a824b4",
+   "content": "{\"ok\": true, \"products\": []}"
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_926eeae6ea9440f594d8eb53",
+     "function": {
+      "arguments": "{\"max_price\": 700, \"query\": \"تشينو جينز بنطلون\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_926eeae6ea9440f594d8eb53",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B06\", \"name\": \"شورت جينز\", \"name_en\": \"Denim shorts\", \"category\": \"bottoms\", \"price\": 520, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 5, \"32\": 7, \"34\": 6, \"36\": 3, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"price\": 390}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "للأسف يا فندم، مفيش بنطلون تشينو تحت الـ 700 عندنا، التشينو بـ 780 بس.\nالمتاح تحت 700 في البناطيل: شورت جينز أزرق فاتح بـ 520 جنيه، متوفر مقاس 34.\nتحب أخدلك هو بدل التشينو ولا نفضل على التشينو الأصلي؟"
+  },
+  {
+   "role": "user",
+   "content": "la, ana 3ayz el chinos bas. mafish 7aga. shokran."
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، رجعنا للتشينو زيتي 34 لوحده 👌\nالطلب رقم 1 زي ما هو: الإجمالي 840 جنيه (شامل الشحن 60)، دفع عند الاستلام.\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "la, mafish 7aga. ana 3ayz wa7ed ta7t 700. mafish 7aga. shokran."
+  },
+  {
+   "role": "assistant",
+   "content": "",
+   "tool_calls": [
+    {
+     "id": "call_27f64d707b954e299fd012c2",
+     "function": {
+      "arguments": "{\"order_id\": 1, \"reason\": \"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "index": 7
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_27f64d707b954e299fd012c2",
+   "content": "{\"ok\": true, \"status\": \"cancelled\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Ma3leish ya fandem, el chinos 3andena 780 bas, mafeesh ta7t 700. 🙏\nLghayet ma tghayar ra2yek, el order etlagha. Law 3ayez 7aga tania ana hena."
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-clear-2",
+   "status": "cancelled",
+   "source": "chat",
+   "customer_name": "Tarek Selim",
+   "phone": "01225678901",
+   "address": "18 شارع السودان، الدور 3",
+   "area": "الدقي",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "B04",
+     "name_ar": "بنطلون تشينو",
+     "size": "34",
+     "color": "زيتي",
+     "qty": 1,
+     "unit_price": 780
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 780,
+   "total": 840,
+   "delivery_date": null,
+   "cancel_reason": "customer_declined",
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "hi, el Chinos size 34 olive available 3ndko?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2012,
+    "tokens_out": 69,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2220,
+    "tokens_out": 240,
+    "latency_s": 1.78
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "أهلاً بيك يا فندم 🌟\nآه، التشينو مقاس 34 لون زيتي متوفر عندي، بـ 780 جنيه.\nتحب أضيفلك بولو شيرت بيكيه بـ 520 جنيه يبقى لوك كامل؟",
+    "latency_s": 2.68
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "780 kwayes, bas ana 3ayzo lwa7do. 3ayz el chinos bas."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2325,
+    "tokens_out": 156,
+    "latency_s": 1.5
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "تمام يا فندم، التشينو زيتي 34 لوحده 👌\nابعتلي اسمك ورقم موبايلك والعنوان بالتفصيل (الشارع، رقم العمارة، الدور، وعلامة مميزة) والمنطقة عشان أجهزلك الطلب.",
+    "latency_s": 1.5
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Tarek Selim\n01225678901\n18 شارع السودان الدور 3، الدقي"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2373,
+    "tokens_out": 263,
+    "latency_s": 1.9
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 840,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2669,
+    "tokens_out": 132,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان، الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.91
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "la, el kher kano ta7t 700 pound. 3ayz wa7ed ta7t el 700."
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2860,
+    "tokens_out": 88,
+    "latency_s": 1.07
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2904,
+    "tokens_out": 47,
+    "latency_s": 0.8
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2946,
+    "tokens_out": 143,
+    "latency_s": 1.42
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 2982,
+    "tokens_out": 50,
+    "latency_s": 0.95
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3190,
+    "tokens_out": 267,
+    "latency_s": 2.03
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "للأسف يا فندم، مفيش بنطلون تشينو تحت الـ 700 عندنا، التشينو بـ 780 بس.\nالمتاح تحت 700 في البناطيل: شورت جينز أزرق فاتح بـ 520 جنيه، متوفر مقاس 34.\nتحب أخدلك هو بدل التشينو ولا نفضل على التشينو الأصلي؟",
+    "latency_s": 6.28
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "la, ana 3ayz el chinos bas. mafish 7aga. shokran."
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3317,
+    "tokens_out": 658,
+    "latency_s": 4.72
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "تمام يا فندم، رجعنا للتشينو زيتي 34 لوحده 👌\nالطلب رقم 1 زي ما هو: الإجمالي 840 جنيه (شامل الشحن 60)، دفع عند الاستلام.\nأأكد الطلب؟",
+    "latency_s": 4.72
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "la, mafish 7aga. ana 3ayz wa7ed ta7t 700. mafish 7aga. shokran."
+   }
+  },
+  {
+   "seq": 31,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3420,
+    "tokens_out": 61,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 32,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "cancelled",
+    "reason": "customer_declined",
+    "total": 840,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 33,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "cancel_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 34,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "nebius-glm-5.3-flash",
+    "tokens_in": 3456,
+    "tokens_out": 288,
+    "latency_s": 2.47
+   }
+  },
+  {
+   "seq": 35,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Ma3leish ya fandem, el chinos 3andena 780 bas, mafeesh ta7t 700. 🙏\nLghayet ma tghayar ra2yek, el order etlagha. Law 3ayez 7aga tania ana hena.",
+    "latency_s": 3.55
+   }
+  }
+ ]
+}

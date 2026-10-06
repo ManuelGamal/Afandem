@@ -1,0 +1,119 @@
+{
+ "card_id": "h-offtopic-1",
+ "category": "off_topic",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم أحنا متخصصين في بيع اللبس الكاجوال وبس، مش بنصمم لوجوهات 😅 \nتحب تشوف أي حاجة من كولكشن اللبس الجديد؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش عايز أي حاجة من اللبس، بس شكراً."
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك في أي وقت! نورتنا 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم أحنا متخصصين في بيع اللبس الكاجوال وبس، مش بنصمم لوجوهات 😅 \nتحب تشوف أي حاجة من كولكشن اللبس الجديد؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0ThYmF05wCDuCpkYiopJ6bd3z6LXARjkStFabzdcMEFyr7UjinnDkxO6mJNoaMUyPHiOyXW+tj3KHsP5Is0By5nmIFfNG1YrVK+SbbiFN++8OQS7QjvGzpVjc="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا مش عايز أي حاجة من اللبس، بس شكراً."
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك في أي وقت! نورتنا 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TIs/BjTp9eDOxzhoNwO0HuYy1IHsRf4xSzvkiIgRl8mCYVB0FxegZQAtHH6mT0pzMbFBtH6jj/ysrs83Txl/YmfgV7BPcbh6J2YPew1pEvswVzNLmBiFcc5s="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 1887,
+    "tokens_out": 44,
+    "latency_s": 31.55
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "يا فندم أحنا متخصصين في بيع اللبس الكاجوال وبس، مش بنصمم لوجوهات 😅 \nتحب تشوف أي حاجة من كولكشن اللبس الجديد؟",
+    "latency_s": 31.55
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "لا مش عايز أي حاجة من اللبس، بس شكراً."
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 1947,
+    "tokens_out": 18,
+    "latency_s": 0.69
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك في أي وقت! نورتنا 😊",
+    "latency_s": 0.69
+   }
+  }
+ ]
+}

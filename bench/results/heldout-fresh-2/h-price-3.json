@@ -1,0 +1,189 @@
+{
+ "card_id": "h-price-3",
+ "category": "price_shopper",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+  },
+  {
+   "role": "agent",
+   "text": "هودي قطن تقيل سعره 890 جنيه، والشحن للأقصر بـ 85 جنيه وبيوصل خلال 3 لـ 5 أيام. \nتحب أقولك الألوان والمقاسات المتاحة؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، شكراً. هفكّر فيها شوية وأرجع إن شاء الله."
+  },
+  {
+   "role": "agent",
+   "text": "تنورنا في أي وقت يا فندم، وتحت أمرك في أي استفسار ثاني! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_11300",
+     "function": {
+      "arguments": "{\"query\":\"Heavy cotton hoodie\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TS8tbWnameljfp7RE5bB51HYZNX3GPCpez8VfJyvuyJce6ntdvriQMiLWDqJRTbDLnHCi27s6LzSrgEqSucpN8a6U8FP9n6vaCToiBsZfbANy+3+mRpwdjpk="
+      }
+     }
+    },
+    {
+     "id": "call_11301",
+     "function": {
+      "arguments": "{\"area\":\"الأقصر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_11300",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"stock_by_size\": {\"ONE\": 40}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"stock_by_size\": {\"ONE\": 25}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_11301",
+   "content": "{\"ok\": true, \"zone\": \"الصعيد\", \"fee\": 85, \"days_min\": 3, \"days_max\": 5}"
+  },
+  {
+   "role": "assistant",
+   "content": "هودي قطن تقيل سعره 890 جنيه، والشحن للأقصر بـ 85 جنيه وبيوصل خلال 3 لـ 5 أيام. \nتحب أقولك الألوان والمقاسات المتاحة؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TnpgypLAWd4522Go3hZAYJ2yHEwv+dxgCvV/yX+ByoAjyxBX8YFM9O7+YUgDFCuxYD0kT8zuvnV6Ziykd3HkWg8YxeW6Eal/E/QHr4H7ybeaCRDyaE5wH+xU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، شكراً. هفكّر فيها شوية وأرجع إن شاء الله."
+  },
+  {
+   "role": "assistant",
+   "content": "تنورنا في أي وقت يا فندم، وتحت أمرك في أي استفسار ثاني! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T5Ki9w8yFwfS0N/sh/d3unDrx5C5r50guba3plmu2CS5/vk/UmL06Z+WS0rb3Pxc6TIoHvLt7AGRvwcDNlfkD1/R14Tr0q8H94RtmQAKhkV3v5R0n6Q2QpKo="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 1895,
+    "tokens_out": 36,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2799,
+    "tokens_out": 53,
+    "latency_s": 1.06
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "هودي قطن تقيل سعره 890 جنيه، والشحن للأقصر بـ 85 جنيه وبيوصل خلال 3 لـ 5 أيام. \nتحب أقولك الألوان والمقاسات المتاحة؟",
+    "latency_s": 1.94
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "تمام، شكراً. هفكّر فيها شوية وأرجع إن شاء الله."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2871,
+    "tokens_out": 23,
+    "latency_s": 2.31
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "تنورنا في أي وقت يا فندم، وتحت أمرك في أي استفسار ثاني! 😊",
+    "latency_s": 2.31
+   }
+  }
+ ]
+}
