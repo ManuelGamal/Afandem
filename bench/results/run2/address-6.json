@@ -1,0 +1,290 @@
+{
+ "card_id": "address-6",
+ "category": "vague_address",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام يا فندم، بس العنوان بالتفصيل: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر. كدة تمام؟"
+  },
+  {
+   "role": "agent",
+   "text": "تمام، العنوان كده اتحدث. وده الملخص الجديد:\n\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، أكدوا الطلب يا ريت، شكراً جداً."
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 1-3 أيام. شكراً لاختيارك وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "تمام يا فندم، بس العنوان بالتفصيل: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر. كدة تمام؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_690570",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"address\":\"بلوك 12 عمارة 4 الدور 6، جنب البنزينة، 6 أكتوبر\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TMtN40yohHWj6RtMXDOwEb77xMY0IWvFJS7LAeFWuplhLWL7Ba+dzSYLRo0zwIeV3p3KaS863Q9RNcckw1QExaOX6/KOiwRTmYMu18i1QWJXlOfovkLUQFbU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_690570",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 280, \"summary_ar\": \"طلب رقم 1:\\n- 1× كاب قطن لون بيج = 220 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\\nالعنوان: بلوك 12 عمارة 4 الدور 6، جنب البنزينة، 6 أكتوبر\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام، العنوان كده اتحدث. وده الملخص الجديد:\n\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TakbUZIXuWb5am1AC6eIfE7rpNM9RPnihjY78LD1H3VhocDqPc6jTVNuqQPmPrHoLoJdPf6zuVOTm5V41kJ9sw77qI1Ba0fsSwRgEMbE04VjSVMfG2I9CxNw="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، أكدوا الطلب يا ريت، شكراً جداً."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_16474",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tv5THFGQlGrZDd3AswwGtHpoYCSOLQxwHfkkgKaz8ZoCtoNugu88UyQNyDkt2aXfohmkopI7HGADvFYJJ69GDhy6pyOX864t5kbdVi7nBTl3U40aiq0L2nXA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_16474",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 1-3 أيام. شكراً لاختيارك وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T9pKH9UavPBIMLmf7g0ANj7CrGWIz2M8zeJKzenavT2r6OJphOq1P8RPuY7Dq8YRkLzmEg06pbG0RwrusXBk5E2djVT12q4ayrRgJkakXQ7rr1F60nZ06IDM="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "مصطفى نبيل",
+   "phone": "01166667777",
+   "address": "بلوك 12 عمارة 4 الدور 6، جنب البنزينة، 6 أكتوبر",
+   "area": "6 أكتوبر",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "A01",
+     "name_ar": "كاب قطن",
+     "size": "ONE",
+     "color": "بيج",
+     "qty": 1,
+     "unit_price": 220
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 220,
+   "total": 280,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 280,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا فندم، بس العنوان بالتفصيل: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر. كدة تمام؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2134,
+    "tokens_out": 45,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2345,
+    "tokens_out": 107,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، العنوان كده اتحدث. وده الملخص الجديد:\n\nطلب رقم 1:\n- 1× كاب قطن لون بيج = 220 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 280 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، جنب البنزينة، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 1.97
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، أكدوا الطلب يا ريت، شكراً جداً."
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2470,
+    "tokens_out": 16,
+    "latency_s": 0.77
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 280,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2545,
+    "tokens_out": 38,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 1-3 أيام. شكراً لاختيارك وصلة وير 🌸",
+    "latency_s": 1.68
+   }
+  }
+ ]
+}

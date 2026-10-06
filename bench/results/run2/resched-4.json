@@ -1,0 +1,336 @@
+{
+ "card_id": "resched-4",
+ "category": "reschedule",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× شورت رياضي مقاس M لون أسود = 380 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام يا فندم، بس أنا مسافر حالياً وممكن يوصلني يوم الحد 11/10؟ لو ينفع أكيد أكدوه."
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، سجلت ميعاد التوصيل يوم الأحد 11/10 تحت أمرك 🌸\nأأكد الطلب كده تمام؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام جداً، كدة تمام."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم الأحد 11/10 إن شاء الله. شكراً لاختيارك وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× شورت رياضي مقاس M لون أسود = 380 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× شورت رياضي مقاس M لون أسود = 380 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "تمام يا فندم، بس أنا مسافر حالياً وممكن يوصلني يوم الحد 11/10؟ لو ينفع أكيد أكدوه."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_84637",
+     "function": {
+      "arguments": "{\"date\":\"2026-10-11\",\"order_id\":1}",
+      "name": "schedule_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TYEYOBGWJml51/gg6jkNl+WYus/76SxRdGGhv7gmL81fOl2u2JDQjcHKJGN7ObZ5ZjalxpQ1R3lfFMjtbCTn2YDKeFAPANEj3PeI62jYhlHqi9U694eQnGSc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_84637",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 450, \"summary_ar\": \"طلب رقم 1:\\n- 1× شورت رياضي مقاس M لون أسود = 380 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\\nالتوصيل: يوم 2026-10-11\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_81843",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T1Y/73N7xS+1z9hvtQve1waKyeSuxredpHxzvfq2DgHixn36VaLFYyWpKkrKvjDy5Nk/FS5tLKz0LPlk7kx9qts1tOm077paxqw1S7BiLP+21qpykyF+2Eo4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_81843",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، سجلت ميعاد التوصيل يوم الأحد 11/10 تحت أمرك 🌸\nأأكد الطلب كده تمام؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tr5fMt9INO1kpotas9Wt8xEFz9d1V4o7E7YmDSaUu90ZLnj64vdcfHVP73IHwbHDpOI8/EtL8sA5b7d1rvUFiC3FRLG0PmV+3pJUWLlvTRjym0uqJ/3hpzQ0="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام جداً، كدة تمام."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_58662",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TXdgdnsONI8WZKBQstDplWVLtbuGAMMGlCr/B2v+vN4eTwbfmkKS0HYaAEbBFhY8z8LtDeRoqQDqK85bNx9VtavQntnYbaie9FPL2tOFHvFHUcGMPKfAGy3I="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_58662",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم الأحد 11/10 إن شاء الله. شكراً لاختيارك وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T2+jaHkCVLS/9F6KHN3EQXRL1ADefDTyXk7Mk0cSrpQqCTgGa12kbZmYfgZWxlZkGSSxidkExkZjFA11JE/MMqG+tCXh7CDSfUdtoYR1MYDbCrYM4J8FkOoE="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "عمر شريف",
+   "phone": "01544445555",
+   "address": "9 شارع الجلاء الدور 3",
+   "area": "طنطا",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B10",
+     "name_ar": "شورت رياضي",
+     "size": "M",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 380
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 380,
+   "total": 450,
+   "delivery_date": "2026-10-11",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 450,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× شورت رياضي مقاس M لون أسود = 380 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا فندم، بس أنا مسافر حالياً وممكن يوصلني يوم الحد 11/10؟ لو ينفع أكيد أكدوه."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2151,
+    "tokens_out": 31,
+    "latency_s": 1.09
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2349,
+    "tokens_out": 16,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2425,
+    "tokens_out": 37,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا فندم، سجلت ميعاد التوصيل يوم الأحد 11/10 تحت أمرك 🌸\nأأكد الطلب كده تمام؟",
+    "latency_s": 2.88
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام جداً، كدة تمام."
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2472,
+    "tokens_out": 16,
+    "latency_s": 0.78
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 450,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2547,
+    "tokens_out": 41,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم الأحد 11/10 إن شاء الله. شكراً لاختيارك وصلة وير 🌸",
+    "latency_s": 1.68
+   }
+  }
+ ]
+}

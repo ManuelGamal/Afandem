@@ -1,0 +1,192 @@
+{
+ "card_id": "decline-4",
+ "category": "declines",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون بيج = 1550 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1620 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أهلاً، معلش يا جماعة ممكن نلغي الأوردر؟ ظروفي المادية الشهر ده مش سامحة خالص."
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، ولاءك لينا يفرحنا وأكيد نتشرف بيك في أي وقت تاني 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون بيج = 1550 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1620 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون بيج = 1550 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1620 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أهلاً، معلش يا جماعة ممكن نلغي الأوردر؟ ظروفي المادية الشهر ده مش سامحة خالص."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_27053",
+     "function": {
+      "arguments": "{\"order_id\":1,\"reason\":\"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TLDeaDq9zGW3H3DA6zBGsllKJ+UVu9g+xUh/TOaknuy+lqdyBlI4EKSK66M915Oc7ApUpOCWbA+WAlkqMx6e1N25oovoTaInCp3jH9x2E0GXpm6Z/hFrFV0g="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_27053",
+   "content": "{\"ok\": true, \"status\": \"cancelled\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، ولاءك لينا يفرحنا وأكيد نتشرف بيك في أي وقت تاني 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TJrgbnBHIlsZ9t8dM51jfUc0GVWwghu+ogRdDaDjJAm6d5+Z/F0SsTznOntskarIDgceC3NeRuILXvIS6//SY1hUP2/+hAUJ+SefG9LXYcYppgF5hTCQd9SQ="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "cancelled",
+   "source": "checkout",
+   "customer_name": "عمر شريف",
+   "phone": "01544445555",
+   "address": "9 شارع الجلاء الدور 3",
+   "area": "طنطا",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "O04",
+     "name_ar": "بليزر كاجوال",
+     "size": "L",
+     "color": "بيج",
+     "qty": 1,
+     "unit_price": 1550
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 1550,
+   "total": 1620,
+   "delivery_date": null,
+   "cancel_reason": "customer_declined",
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1620,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون بيج = 1550 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 1620 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً، معلش يا جماعة ممكن نلغي الأوردر؟ ظروفي المادية الشهر ده مش سامحة خالص."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2154,
+    "tokens_out": 25,
+    "latency_s": 0.77
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "cancelled",
+    "reason": "customer_declined",
+    "total": 1620,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "cancel_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2203,
+    "tokens_out": 30,
+    "latency_s": 0.99
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ولا يهمك يا فندم، ولاءك لينا يفرحنا وأكيد نتشرف بيك في أي وقت تاني 🌸",
+    "latency_s": 1.76
+   }
+  }
+ ]
+}

@@ -1,0 +1,336 @@
+{
+ "card_id": "change-3",
+ "category": "change_at_confirmation",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا ياسمين! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس M لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ممكن بس تغيري المقاس لـ L بدل M؟ نفس اللون الأبيض، تمام كدة؟"
+  },
+  {
+   "role": "agent",
+   "text": "عينيا اتفضلي! ده الملخص الجديد بعد تعديل المقاس:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام كدة، أكدي الطلب. Thanks!"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك يا فندم، وهيتحضر للشحن في أقرب وقت. شكراً لاختيارك وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس M لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا ياسمين! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس M لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "ممكن بس تغيري المقاس لـ L بدل M؟ نفس اللون الأبيض، تمام كدة؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_48223",
+     "function": {
+      "arguments": "{\"query\":\"قميص أكسفورد\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T7FXQIPI7o1f0IMDJcBOMGGTjbD4Mop1eVqH+jHXBC3fDf/1ieidNadPYjbNp8CbTP5kSc0yeIoprL76qxvCSywdxua2N9RMf6o+GAkNw8Z79ZUAO+vZ2HL0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_48223",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"name_en\": \"Oxford shirt\", \"category\": \"tops\", \"price\": 650, \"colors\": [\"سماوي\", \"أبيض\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B02\", \"name\": \"جينز ستريت\", \"price\": 980}, {\"id\": \"O04\", \"name\": \"بليزر كاجوال\", \"price\": 1550}]}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"name_en\": \"Linen shirt\", \"category\": \"tops\", \"price\": 690, \"colors\": [\"أبيض\", \"بيج\", \"سماوي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}, {\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"price\": 740}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_50839",
+     "function": {
+      "arguments": "{\"changes\":{\"items\":[{\"product_id\":\"T05\",\"color\":\"أبيض\",\"size\":\"L\",\"qty\":1}]},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tn7TfNWejPJu228cclXHENJBgaFK+2OEW2euCk+WN4Cn/FCjlw+00RLdl/NVcunm54H81VXqR6fP8DiXuoK9NliZqyZnsJ1t83Iksohuu1LfbfJyXvl/3n8U="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_50839",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 715, \"summary_ar\": \"طلب رقم 1:\\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "عينيا اتفضلي! ده الملخص الجديد بعد تعديل المقاس:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TB1FNjhhx7ZUgiKi42Sa7GjWKJCoKht2sCgfX9YPUAh9x7ol7Wa0aUh4fj5FUu3Nsiwl+D6GYFJfgjtSJfjAZcqG/bHnFagT+M26JdunyL5jYUgJeCY/OI4g="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام كدة، أكدي الطلب. Thanks!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_693961",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TfV0UUFtw5cBj9Kl4mLR9zZTZFshW9eywpwCYYkfq92GpmvAQ42QwrH/eLR3MzTQnho2eD3R/86W5z6ImsgRwZ4t42oNBKzMYZEwGfRiMu2jTJoZVi8+jCb0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_693961",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك يا فندم، وهيتحضر للشحن في أقرب وقت. شكراً لاختيارك وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TPsqOLAiPM9nUrUghDPL4efRwlsDLIRgwjraNxkop5NEroixc6AQjyEvM4X9ePRQ9nSbBV34E7zbkAVaNcd9RBEQhO/DneP1Ywpvwevc1VSWv6riOboPnYSg="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "ياسمين فؤاد",
+   "phone": "01233334444",
+   "address": "22 شارع فوزي معاذ الدور 5",
+   "area": "سموحة",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "T05",
+     "name_ar": "قميص أكسفورد",
+     "size": "L",
+     "color": "أبيض",
+     "qty": 1,
+     "unit_price": 650
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 650,
+   "total": 715,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 715,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا ياسمين! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس M لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ممكن بس تغيري المقاس لـ L بدل M؟ نفس اللون الأبيض، تمام كدة؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2153,
+    "tokens_out": 22,
+    "latency_s": 1.1
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2492,
+    "tokens_out": 48,
+    "latency_s": 1.54
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2708,
+    "tokens_out": 113,
+    "latency_s": 1.14
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "عينيا اتفضلي! ده الملخص الجديد بعد تعديل المقاس:\n\nطلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون أبيض = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 3.78
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام كدة، أكدي الطلب. Thanks!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2834,
+    "tokens_out": 16,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 715,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2909,
+    "tokens_out": 31,
+    "latency_s": 0.95
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك يا فندم، وهيتحضر للشحن في أقرب وقت. شكراً لاختيارك وصلة وير 🌸",
+    "latency_s": 1.88
+   }
+  }
+ ]
+}

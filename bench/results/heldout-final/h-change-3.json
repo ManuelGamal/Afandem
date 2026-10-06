@@ -1,0 +1,350 @@
+{
+ "card_id": "h-change-3",
+ "category": "change_at_confirmation",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا شادي! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أهلاً، معلش ممكن نغير المقاس لـ M بدل L؟ نفس اللون الكحلي تمام."
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، عدلته لمقاس M. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس M لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، شكراً جداً لتعديل المقاس. أكد الطلب، أنا جاهز لاستلامه."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! شكراً لتعاملكم مع هدوم، وهيوصلك في خلال من 1 لـ 3 أيام إن شاء الله 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا شادي! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أهلاً، معلش ممكن نغير المقاس لـ M بدل L؟ نفس اللون الكحلي تمام."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_196276",
+     "function": {
+      "arguments": "{\"query\":\"بليزر كاجوال\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TqST19TGBXqPBqW8QR8DtKyr/BcEawJqQq4lBNFANVlY33J/a3/odh8nhPbuX7RJhz5OOo0Tz0Fh20EgsDzuxOtx91Lreksc5IH70DePjg93+PAbyhAm8wPM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_196276",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O04\", \"name\": \"بليزر كاجوال\", \"name_en\": \"Casual blazer\", \"category\": \"outerwear\", \"price\": 1550, \"colors\": [\"كحلي\", \"بيج\"], \"stock_by_size\": {\"S\": 2, \"M\": 4, \"L\": 4, \"XL\": 2, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}, {\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_231790",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"items\":[{\"qty\":1,\"size\":\"M\",\"product_id\":\"O04\",\"color\":\"كحلي\"}]}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T44tQ0/V6iXXyiYsUREL75fY7D1gMt+/nyMedwo0TX8Vnm1lD6kl4jeET/2lGa98iGJbegCZb/uy1S4KGQsjh6v8ocXGvo6NjP0qvIVecyDo6AF1OQju8k38="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_231790",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1610, \"summary_ar\": \"طلب رقم 1:\\n- 1× بليزر كاجوال مقاس M لون كحلي = 1550 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 2, \"level\": \"medium\", \"reasons\": [\"first order from this phone\", \"high value (1610 EGP)\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، عدلته لمقاس M. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس M لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TXUW2o+IVvMeT4Prta3ei/CpnrNT5B52MeWA7JZEg1lqt+1vRgwVI8C+dWCKMym7G0o7wikhA7lvYfp6EqZU0JJZfCogNvH5J7/VCCE566DT5dCw9WLcfztU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، شكراً جداً لتعديل المقاس. أكد الطلب، أنا جاهز لاستلامه."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_201597",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+a9NeFMnnmR8Sqw59o6X33YH3t+hU19qAZNqtBy21fsYlOkFzyFOJ85Mvxhv223OXALQ/av3q3b70TWzVJJuXIRFtWmM0zNTAvxLnfcdzqqCuLqPok/Wf7I="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_201597",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 2, \"level\": \"medium\", \"reasons\": [\"first order from this phone\", \"high value (1610 EGP)\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! شكراً لتعاملكم مع هدوم، وهيوصلك في خلال من 1 لـ 3 أيام إن شاء الله 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TGeMIvY1+NM47Nl9oX4JDXJB+o5wIPOfVPl2qvOKIu0NdCABXa9q5+mXxqoPGbm9EbWYsYL+VmTUy/ghJSnY7sO+r4WqUgyEhMU31EihczQl18cAk0DvZwXs="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "شادي رمزي",
+   "phone": "01269012345",
+   "address": "27 شارع 26 يوليو الدور 1",
+   "area": "الشيخ زايد",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "O04",
+     "name_ar": "بليزر كاجوال",
+     "size": "M",
+     "color": "كحلي",
+     "qty": 1,
+     "unit_price": 1550
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 1550,
+   "total": 1610,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1610,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا شادي! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس L لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً، معلش ممكن نغير المقاس لـ M بدل L؟ نفس اللون الكحلي تمام."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2160,
+    "tokens_out": 21,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2390,
+    "tokens_out": 49,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2620,
+    "tokens_out": 119,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ولا يهمك يا فندم، عدلته لمقاس M. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× بليزر كاجوال مقاس M لون كحلي = 1550 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1610 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، شكراً جداً لتعديل المقاس. أكد الطلب، أنا جاهز لاستلامه."
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2765,
+    "tokens_out": 16,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1610,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "O04",
+    "size": "M",
+    "delta": -1,
+    "stock_after": 3,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2852,
+    "tokens_out": 42,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! شكراً لتعاملكم مع هدوم، وهيوصلك في خلال من 1 لـ 3 أيام إن شاء الله 🌸",
+    "latency_s": 0.0
+   }
+  }
+ ]
+}

@@ -1,0 +1,464 @@
+{
+ "card_id": "clear-5",
+ "category": "clear_buyer",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "salam, 3ayza Denim jacket size M light blue, mawgood?"
+  },
+  {
+   "role": "agent",
+   "text": "Ahlan ya famr! Aywa mawgood, el gacket el ginz el azraq el fateh b 1250 genih w el size M mawgood. \nW tehibb adiflak tيشيرت قطن سادة b 350 genih m3ah? 😊"
+  },
+  {
+   "role": "customer",
+   "text": "la2 shokran, 3ayza el gacket bas."
+  },
+  {
+   "role": "agent",
+   "text": "Wala yhemmak ya famr! \n3ashan akamal lak el talab, momken el esm el komil, el raqam, w el 3enwan bel zabt (el mantaqa, el shari3, raqam el mabna, w el dor)?"
+  },
+  {
+   "role": "customer",
+   "text": "Heba Samy, 01055556666, 5 share3 9 el dor 1 shaqqa 2, el Maadi."
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya Heba, da molakhas el talab:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق فاتح = 1250 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 5 share3 9 el dor 1 shaqqa 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2akid el talab?"
+  },
+  {
+   "role": "customer",
+   "text": "Ah el talab mazboot, momken te2akdo. Shukran!"
+  },
+  {
+   "role": "agent",
+   "text": "3afwan ya famr! Tamam, akadna el talab w hayselak fe khlel 1-3 ayam. Notrafeh da2man b wosla wear! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "salam, 3ayza Denim jacket size M light blue, mawgood?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_766989",
+     "function": {
+      "arguments": "{\"query\":\"Denim jacket\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TrqczCBKtQRFOSUHgmmVSb4l2NdbRIN1D5yBuKRK3P+63ORmpmaCK9b+Oz+/x70RVzb3CZw/vsKQahpQ5VyV5G52LLpwIZxuIXi3+YybxJ7me3UnwVi3uOaY="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_766989",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"name_en\": \"Denim jacket\", \"category\": \"outerwear\", \"price\": 1250, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"name_en\": \"Denim shorts\", \"category\": \"bottoms\", \"price\": 520, \"colors\": [\"أزرق فاتح\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"price\": 390}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"O02\", \"name\": \"جاكيت بومبر\", \"name_en\": \"Bomber jacket\", \"category\": \"outerwear\", \"price\": 1450, \"colors\": [\"أسود\", \"زيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}, {\"id\": \"O03\", \"name\": \"جاكيت جلد صناعي\", \"name_en\": \"Faux-leather jacket\", \"category\": \"outerwear\", \"price\": 1650, \"colors\": [\"أسود\", \"بني\"], \"sizes_in_stock\": [\"S\", \"M\", \"XL\"], \"sizes_out_of_stock\": [\"L\", \"XXL\"], \"pairs_with\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "Ahlan ya famr! Aywa mawgood, el gacket el ginz el azraq el fateh b 1250 genih w el size M mawgood. \nW tehibb adiflak tيشيرت قطن سادة b 350 genih m3ah? 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+qS9K+M6Iu3h9oqRPLLsoIZorisrQYbMTEzHJCMj+qLZZBBJs+NklsXt6OuraENWEG9/ueMztBtTtBjuBj2q+UTxVQEwW0ZHQwddBmA5Y3Jqa+9iBh6URgI="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "la2 shokran, 3ayza el gacket bas."
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yhemmak ya famr! \n3ashan akamal lak el talab, momken el esm el komil, el raqam, w el 3enwan bel zabt (el mantaqa, el shari3, raqam el mabna, w el dor)?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T1TP7u0tUtlav9kiG1oXlypsOU9eJlUujSiOnmHMD8Ih6senorOv5MAJxrH2wm5PX+ZK3nYntGF1AZDiq6y2DReD9WNFdINGadxMH0rnEfmjbkEkxZGRxDW4="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Heba Samy, 01055556666, 5 share3 9 el dor 1 shaqqa 2, el Maadi."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_52251",
+     "function": {
+      "arguments": "{\"area\":\"المعادي\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0THCD23tJjC1oaa6I9s1f4JF62t6MQZRnzxv0vFD47178mAJz9xS49NFpi/izDm6nYpTdwwWCWUTaG05Tonno+Ity8jRguQr6J0jSlD7cs+8G4xIQp0XI1BWs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_52251",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_45158",
+     "function": {
+      "arguments": "{\"area\":\"المعادي\",\"customer_name\":\"Heba Samy\",\"address\":\"5 share3 9 el dor 1 shaqqa 2\",\"items\":[{\"color\":\"أزرق فاتح\",\"qty\":1,\"product_id\":\"O01\",\"size\":\"M\"}],\"phone\":\"01055556666\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Ty4cGVXlkFM5igUQnsFwAAdGFfuUyWwCZNSEr8Dukc6iGf96ged8MMO2Urx5uP50O1/PPq/zs39bNCIBE+GXnXA9K5KoDmUAsi3Ne8SpcMyZDjBCl7l4xkK4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_45158",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 1310, \"summary_ar\": \"طلب رقم 1:\\n- 1× جاكيت جينز مقاس M لون أزرق فاتح = 1250 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\\nالعنوان: 5 share3 9 el dor 1 shaqqa 2، المعادي\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya Heba, da molakhas el talab:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق فاتح = 1250 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 5 share3 9 el dor 1 shaqqa 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2akid el talab?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TzbUlfUOwgwHxz1+PEgrha7Q6d3qaWeyGJfBeMW3f5092V2KFMjTOoWknL/lo0NPENlQgisejGOtXZVM3yBvK47ZDymS9zB+u6rvXfTDfvcd1Jl6XQRjMTII="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Ah el talab mazboot, momken te2akdo. Shukran!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_9148",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TGNk/X/DXuAZFiiboUEUNpLVtTuihyyrzjIvQKf5s3mK5CA3h6mZ8y0JkZlVfaz9THp/foodQejxYvh88KQrwUfJJw6/rZqMOr4eEzoRkpXjlB93N/JO1zHI="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_9148",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "3afwan ya famr! Tamam, akadna el talab w hayselak fe khlel 1-3 ayam. Notrafeh da2man b wosla wear! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tf+GglqP6c4r778kM3gV/835KwcurheBJONDDUHhAeTvjKOwLpdUB96OUbQY4zrqXuDe+i0XtsnALoZ4wbpjwtrb6yIVlbmbnLzTv6hf02NJpyH1/h0XHJCA="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-clear-5",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "Heba Samy",
+   "phone": "01055556666",
+   "address": "5 share3 9 el dor 1 shaqqa 2",
+   "area": "المعادي",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "O01",
+     "name_ar": "جاكيت جينز",
+     "size": "M",
+     "color": "أزرق فاتح",
+     "qty": 1,
+     "unit_price": 1250
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 1250,
+   "total": 1310,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "salam, 3ayza Denim jacket size M light blue, mawgood?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1942,
+    "tokens_out": 18,
+    "latency_s": 0.84
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2556,
+    "tokens_out": 67,
+    "latency_s": 1.54
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "Ahlan ya famr! Aywa mawgood, el gacket el ginz el azraq el fateh b 1250 genih w el size M mawgood. \nW tehibb adiflak tيشيرت قطن سادة b 350 genih m3ah? 😊",
+    "latency_s": 2.37
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "la2 shokran, 3ayza el gacket bas."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2640,
+    "tokens_out": 65,
+    "latency_s": 1.35
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "Wala yhemmak ya famr! \n3ashan akamal lak el talab, momken el esm el komil, el raqam, w el 3enwan bel zabt (el mantaqa, el shari3, raqam el mabna, w el dor)?",
+    "latency_s": 1.35
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "Heba Samy, 01055556666, 5 share3 9 el dor 1 shaqqa 2, el Maadi."
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2745,
+    "tokens_out": 18,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2811,
+    "tokens_out": 97,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 1310,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3078,
+    "tokens_out": 116,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "Tamam ya Heba, da molakhas el talab:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق فاتح = 1250 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 5 share3 9 el dor 1 shaqqa 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2akid el talab?",
+    "latency_s": 3.02
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "Ah el talab mazboot, momken te2akdo. Shukran!"
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3213,
+    "tokens_out": 16,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1310,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3288,
+    "tokens_out": 44,
+    "latency_s": 1.69
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-5",
+   "data": {
+    "text": "3afwan ya famr! Tamam, akadna el talab w hayselak fe khlel 1-3 ayam. Notrafeh da2man b wosla wear! 😊",
+    "latency_s": 2.66
+   }
+  }
+ ]
+}

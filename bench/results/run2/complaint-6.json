@@ -1,0 +1,122 @@
+{
+ "card_id": "complaint-6",
+ "category": "complaint",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "الطلب ما وصلش خالص والـ tracking مش شغال، عايز refund"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، أنا حولت مشكلتك لزميل من الفريق وهيكلمك في أقرب وقت يتابع معاك موضوع الاسترجاع. تحب أساعدك في حاجة تاني؟"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "الطلب ما وصلش خالص والـ tracking مش شغال، عايز refund"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_59623",
+     "function": {
+      "arguments": "{\"reason\":\"Customer asking for a refund and complaining about undelivered past order.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TxpRVZNzhTpyFyYQ2NFXTPnne057EcwaM5buAG3LByCJchd8DX2UgpoeG2CyDpYvSDjU3GBTdZTweAZNbrwUYlU4d+3aSsw1olg7ieX7NpsnY768NUjX4Bq4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_59623",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، أنا حولت مشكلتك لزميل من الفريق وهيكلمك في أقرب وقت يتابع معاك موضوع الاسترجاع. تحب أساعدك في حاجة تاني؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Ttm2agtHS2x/RETRNPUO8Qu382cz4YhIsM4C65YwAoy2yDyX/8eQbFe/dm4JKbx9FNRGNRtaGZm7cO1CbgLnN0sa3ZfRZC8JjDg/U+FoWUPKwkIlMq9i7XDk="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-complaint-6",
+   "data": {
+    "text": "الطلب ما وصلش خالص والـ tracking مش شغال، عايز refund"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1887,
+    "tokens_out": 32,
+    "latency_s": 0.81
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-complaint-6",
+   "data": {
+    "reason": "Customer asking for a refund and complaining about undelivered past order."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-complaint-6",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1965,
+    "tokens_out": 47,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-complaint-6",
+   "data": {
+    "text": "ولا يهمك يا فندم، أنا حولت مشكلتك لزميل من الفريق وهيكلمك في أقرب وقت يتابع معاك موضوع الاسترجاع. تحب أساعدك في حاجة تاني؟",
+    "latency_s": 1.98
+   }
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "card_id": "complaint-3",
+ "category": "complaint",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "الطلب بتاعي late بقاله 10 days، ده مش professional خالص"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم ألف عذراً لحضرتك على التأخير، ده أكيد مش المستوى اللي نحب تشوفه خالص مننا. \n\nأنا حولت مشكلتك حالا لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت يتابعوا الشحنة. 🙏"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "الطلب بتاعي late بقاله 10 days، ده مش professional خالص"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم ألف عذراً لحضرتك على التأخير، ده أكيد مش المستوى اللي نحب تشوفه خالص مننا. \n\nأنا حولت مشكلتك حالا لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت يتابعوا الشحنة. 🙏",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TMuU8QhEpb+bMEvAgWP+VkwQ1kV0xTwxtMfeV3T8edpJXl850weIQLv8evAiH9j0dXirKF3rvcFPd6SdW+ln4qZvRg3g4OgWaV3gstyjx3lf0rzObq5/Mwn8="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-complaint-3",
+   "data": {
+    "text": "الطلب بتاعي late بقاله 10 days، ده مش professional خالص"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1888,
+    "tokens_out": 63,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-complaint-3",
+   "data": {
+    "reason": "agent_promised_handoff"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-complaint-3",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-complaint-3",
+   "data": {
+    "text": "يا فندم ألف عذراً لحضرتك على التأخير، ده أكيد مش المستوى اللي نحب تشوفه خالص مننا. \n\nأنا حولت مشكلتك حالا لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت يتابعوا الشحنة. 🙏",
+    "latency_s": 0.9
+   }
+  }
+ ]
+}

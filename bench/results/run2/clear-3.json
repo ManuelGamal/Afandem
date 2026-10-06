@@ -1,0 +1,798 @@
+{
+ "card_id": "clear-3",
+ "category": "clear_buyer",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 6,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "Hi، عايزة ال Heavy cotton hoodie size L لون رمادي لو available"
+  },
+  {
+   "role": "agent",
+   "text": "موجود يا فندم، الهودي القطن التقيل باللون الرمادي ومقاس L متاح بـ 890 جنيه. \nتحب أضيفلك جوجر قطن بـ 560 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا شكراً، كفاية الهودي بس. ممكن أعرف الخطوات عشان أعمل الأوردر؟"
+  },
+  {
+   "role": "agent",
+   "text": "تحت أمرك يا فندم، منورانا! \nعشان نكمل الأوردر، محتاجة اعرف منك: الاسم، ورقم الموبايل، والعنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة)، والمنطقة أو المحافظة."
+  },
+  {
+   "role": "customer",
+   "text": "ياسمين فؤاد، 01233334444. العنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، يا ريت تأكدي الطلب. بس ممكن أعرف لو فيه إمكانية أفتح الشحنة قبل ما أدفع للمندوب؟"
+  },
+  {
+   "role": "agent",
+   "text": "للأسف يا فندم سياسة الشركة مش بتسمح بفتح الشحنة قبل الدفع، بس طبعاً لو في أي مشكلة في المقاس تقدري تبدليه خلال 14 يوم طالما بالتج والدستور! \nأأكد الطلب كده؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، مفيش مشكلة طالما فيه إمكانية التبديل لو المقاس طلع مش مظبوط. أكدي الطلب من فضلك."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أيوة يا فندم، أكدي الطلب، وشكراً جداً على ذوقك!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، أنا في الخدمة دائماً! تم تأكيد طلبك بنجاح، وهيصلك في خلال 2-3 أيام إن شاء الله. نورتي وصلة وير! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "Hi، عايزة ال Heavy cotton hoodie size L لون رمادي لو available"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_81752",
+     "function": {
+      "arguments": "{\"query\":\"Heavy cotton hoodie\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TGuyYXkUSalLXppOKvARGGG1QrCx3O2qeQiqmcENYVDfTmrci7SCJ1kbZ2QEQk8tDZPXb0qQ53JcyeY7R/stspGeF4KMkV8DHibDuG0QobjQf1MDTGo5wTpg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_81752",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_15392",
+     "function": {
+      "arguments": "{\"product_id\":\"T06\"}",
+      "name": "get_product"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TUbhzGStNPcZGY9QYLNR9NyTecCFoU+WGwozcImt8rOgSb2uHH213yNUYq/4lpwb4vmFB6jXDSNsjlzcDveiIam7XX/OhepLoSX4c+7BVd+FA0MHa6898yzg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_15392",
+   "content": "{\"ok\": true, \"product\": {\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"size_chart\": {\"S\": {\"h\": [155, 168], \"w\": [48, 60]}, \"M\": {\"h\": [165, 175], \"w\": [58, 72]}, \"L\": {\"h\": [172, 182], \"w\": [70, 85]}, \"XL\": {\"h\": [178, 190], \"w\": [83, 100]}, \"XXL\": {\"h\": [182, 198], \"w\": [98, 120]}}, \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "موجود يا فندم، الهودي القطن التقيل باللون الرمادي ومقاس L متاح بـ 890 جنيه. \nتحب أضيفلك جوجر قطن بـ 560 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TSoXm4rSClwky1nTuzYnV876RaEQsL18o7GIjONQEsXPrSYn+hteP4TPeO0uVhgligOyaGeFutIu07jlHaQGNjgdAf0i9qan1YY3SG3CKBxUL0wIJQULbWns="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا شكراً، كفاية الهودي بس. ممكن أعرف الخطوات عشان أعمل الأوردر؟"
+  },
+  {
+   "role": "assistant",
+   "content": "تحت أمرك يا فندم، منورانا! \nعشان نكمل الأوردر، محتاجة اعرف منك: الاسم، ورقم الموبايل، والعنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة)، والمنطقة أو المحافظة.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TLDgNeKcQjyCrd/6iUTiZGV8AZGZvhjlnY631JvsImHXL59VUKH9eed9naCe5dE5IQYS5pjfwxH71rMaM6s1xaKQwbPwE1ODs8KZ5M54EMlQb7yGAhsT5BnM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ياسمين فؤاد، 01233334444. العنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_143653",
+     "function": {
+      "arguments": "{\"area\":\"الإسكندرية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TzDaD+ySOqlWUhWmrwcUB91HQucEnKTCDmGu+7FASRgXhj6778nKhxAxnquVZT/Lx7oIHqezsrvoBMPqsjdPxlxlJ/E82ywvoaQoF4nr89dFUCyKvqFRN8Uk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_143653",
+   "content": "{\"ok\": true, \"zone\": \"الإسكندرية\", \"fee\": 65, \"days_min\": 2, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_34008",
+     "function": {
+      "arguments": "{\"address\":\"22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)\",\"area\":\"الإسكندرية\",\"items\":[{\"product_id\":\"T06\",\"size\":\"L\",\"qty\":1,\"color\":\"رمادي\"}],\"phone\":\"01233334444\",\"customer_name\":\"ياسمين فؤاد\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+xxxLBOC8iHIgn+9E8WpHKJRP2Qvn5mYx2woB7wVaUQ1vUaE181R0z31Hae6FzhuYCjOWhWjEBdrZH0WLUihef+NfRUaK45YndlzXVJkMtT/zlF22cFeKnk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_34008",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 955, \"summary_ar\": \"طلب رقم 1:\\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+oGQcCvQXv6TeAkC3POzpRdjifAQ8NUDtbsZzEP1s67KzVDYDTsIe3FtvYikRPAdSy2kEorUu+GlmDg9QTtdcWMDnPLmwWdueRSWu+aSzINDdzgvQ7Hz/mM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، يا ريت تأكدي الطلب. بس ممكن أعرف لو فيه إمكانية أفتح الشحنة قبل ما أدفع للمندوب؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_12002",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TfKBVpR5dhSzX4c4UgXiMiR+lYVoRJJyDdCXmzlQr+K5jlkruzT2s87IncEG4YRV2jYZRTqKPUO+dFZcxi0qKp5owQ5hkstWgbM2orvoFtstNoPl1viitbBU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_12002",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_25907",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TwmdzW6AZIELXlty+IxVNaA/KAZ26YTa4SfkEffKunfkFhaxaxUFDJBLtq/DllWdJrwFnVrFd2tQ4A8xdji76PhGMeDBtLrgs4Kiz+wfW/6teiCShQC7NEIU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_25907",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "للأسف يا فندم سياسة الشركة مش بتسمح بفتح الشحنة قبل الدفع، بس طبعاً لو في أي مشكلة في المقاس تقدري تبدليه خلال 14 يوم طالما بالتج والدستور! \nأأكد الطلب كده؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tv+U75r/opML/r/UJIgXFZakt2P5+uLuGxQfoVWYNVVOCIIthtIB4Mj823vKaRHi9lWW62D0177a7q7xkq0KZ46kS4sdQ198RHSNOMG51/cUpnKOvsPTAHVM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، مفيش مشكلة طالما فيه إمكانية التبديل لو المقاس طلع مش مظبوط. أكدي الطلب من فضلك."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_50845",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TNj8Wo/4ymlxI1prYTsW91do1CWTk1JcZ3b7sesLEJ9wxdQsYKrKS/mfYOqvYJ9bBGrZpTIoIZ8TIo5RJkeoKUNN/y7dtBnlJGh6lJ5brzh4IrTQW1UsX3PE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_50845",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_13311",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TsEFv6fAZfyYnq+UBU1Hr7i1zB3h1GvXWjlSnJ3IwPZjGswbw3BuysEES/RGauNpQHJ35bxNzAr2MoZu8LSdPxsC99HuTxrHKh+G/6QSAz4erqzxNOpehXWs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_13311",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TNMH2d6196tVWS3pShO6cZM/Tky2flJzpDuBuietXtjBb/bZCbEdYcy2Od0C5+wqIvXf8QszicyBccyw7BKuol1FrX2ootVOLk2V6M4vBXpZhPBbJuTHXznU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أيوة يا فندم، أكدي الطلب، وشكراً جداً على ذوقك!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_809164",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TMlvdx5Fb/D2ZInynOXvg1oz9u+reNTC6i2XmpZq5sznfDSgBXNlJhhfEk2o/fzQTyFNGfVGHk/HxTr084+odEymeQBV/NG57oVVkRaDMm6I1t4ywbgBBH3w="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_809164",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، أنا في الخدمة دائماً! تم تأكيد طلبك بنجاح، وهيصلك في خلال 2-3 أيام إن شاء الله. نورتي وصلة وير! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T8dGlXIfp7gPu/gfUFznMynUSNunFiTU4enZRsXEf34+IiM1XVXKD4ZqNpxTnsJ7I+g+5OmMoQjMrereQv6g+p1Px7QkEMlmK8jxb6lbZ52jQYFBXxEaX0YY="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-clear-3",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "ياسمين فؤاد",
+   "phone": "01233334444",
+   "address": "22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)",
+   "area": "الإسكندرية",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "T06",
+     "name_ar": "هودي قطن تقيل",
+     "size": "L",
+     "color": "رمادي",
+     "qty": 1,
+     "unit_price": 890
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 890,
+   "total": 955,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "Hi، عايزة ال Heavy cotton hoodie size L لون رمادي لو available"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1887,
+    "tokens_out": 18,
+    "latency_s": 1.12
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2577,
+    "tokens_out": 20,
+    "latency_s": 0.72
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "get_product",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2886,
+    "tokens_out": 51,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "موجود يا فندم، الهودي القطن التقيل باللون الرمادي ومقاس L متاح بـ 890 جنيه. \nتحب أضيفلك جوجر قطن بـ 560 جنيه؟",
+    "latency_s": 2.81
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "لا شكراً، كفاية الهودي بس. ممكن أعرف الخطوات عشان أعمل الأوردر؟"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2962,
+    "tokens_out": 68,
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "تحت أمرك يا فندم، منورانا! \nعشان نكمل الأوردر، محتاجة اعرف منك: الاسم، ورقم الموبايل، والعنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة)، والمنطقة أو المحافظة.",
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "ياسمين فؤاد، 01233334444. العنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3076,
+    "tokens_out": 19,
+    "latency_s": 0.85
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3145,
+    "tokens_out": 103,
+    "latency_s": 0.8
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 955,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3422,
+    "tokens_out": 104,
+    "latency_s": 2.8
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 4.46
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "تمام، يا ريت تأكدي الطلب. بس ممكن أعرف لو فيه إمكانية أفتح الشحنة قبل ما أدفع للمندوب؟"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3561,
+    "tokens_out": 16,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3637,
+    "tokens_out": 16,
+    "latency_s": 0.75
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3713,
+    "tokens_out": 63,
+    "latency_s": 1.03
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "للأسف يا فندم سياسة الشركة مش بتسمح بفتح الشحنة قبل الدفع، بس طبعاً لو في أي مشكلة في المقاس تقدري تبدليه خلال 14 يوم طالما بالتج والدستور! \nأأكد الطلب كده؟",
+    "latency_s": 2.71
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "تمام، مفيش مشكلة طالما فيه إمكانية التبديل لو المقاس طلع مش مظبوط. أكدي الطلب من فضلك."
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3811,
+    "tokens_out": 16,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3887,
+    "tokens_out": 16,
+    "latency_s": 0.79
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 31,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3963,
+    "tokens_out": 104,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 32,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون رمادي = 890 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 955 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5 (علامة مميزة قريبة)، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.88
+   }
+  },
+  {
+   "seq": 33,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "أيوة يا فندم، أكدي الطلب، وشكراً جداً على ذوقك!"
+   }
+  },
+  {
+   "seq": 34,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 4092,
+    "tokens_out": 16,
+    "latency_s": 1.21
+   }
+  },
+  {
+   "seq": 35,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 955,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 36,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 37,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 4167,
+    "tokens_out": 45,
+    "latency_s": 1.05
+   }
+  },
+  {
+   "seq": 38,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-3",
+   "data": {
+    "text": "العفو يا فندم، أنا في الخدمة دائماً! تم تأكيد طلبك بنجاح، وهيصلك في خلال 2-3 أيام إن شاء الله. نورتي وصلة وير! 😊",
+    "latency_s": 2.26
+   }
+  }
+ ]
+}

@@ -1,0 +1,388 @@
+{
+ "card_id": "change-5",
+ "category": "change_at_confirmation",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 3,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "La2 momken a3del el maqas? Ana talabt M bs kont 3ayza L nafs el lon el ramy."
+  },
+  {
+   "role": "agent",
+   "text": "Tab3an, 3adelet el maqas lel L. Dah el melas el geded:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2ked el talab?"
+  },
+  {
+   "role": "customer",
+   "text": "أيوه تمام، كدة مظبوط جداً. تأكيد الطلب من فضلك!"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك يا فندم وشكراً لاختيارك وصلة وير! 🌸\nهيتوصل بيك مندوب الشحن في خلال 1-3 أيام. تحبي نضيفلك هودي قطن تقيل بـ 890 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "شكراً جداً! بس حالياً مش محتاجة هودي، الطلب كدة تمام بالنسبة لي. شكراً لمساعدتك!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك في أي وقت! يسعدنا جداً التعامل معاكي وتأكيد طلبك 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "La2 momken a3del el maqas? Ana talabt M bs kont 3ayza L nafs el lon el ramy."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_98055",
+     "function": {
+      "arguments": "{\"query\":\"جوجر قطن\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T0q9Bdx7EJJ2BwdDzbDb8+Ouii8GAeViQ8lpM1QqDY40dG1BOcBjepF6FjCMCCw5Sn/hJaUB+ayk1GDGfl27romOPSugIfk8SjTRVZyxfxJokDbXsDhrOLDM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_98055",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_796216",
+     "function": {
+      "arguments": "{\"changes\":{\"items\":[{\"size\":\"L\",\"product_id\":\"B05\",\"color\":\"رمادي\",\"qty\":1}]},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TdNKjCp2fcDnXJRbEbSbKTnPugxcnvh8iddFRRBhulRcg8qPtwLsmCbLUjf5Kmrrxbtcjcwgma3WMh17qsY09fFJ+dZLRj/OgFJOcfEKuZamVJwvwKV1DWUw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_796216",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 620, \"summary_ar\": \"طلب رقم 1:\\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tab3an, 3adelet el maqas lel L. Dah el melas el geded:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2ked el talab?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T3Or2ApYqPI4GYqYmS5AUZkTQwOB2MZ4zUyIsjmVnuSagKrUZRmYezsuFwgP1cKknpON2YIYUJ35jJdqhkhnE297cbTHdgr0Cih8Z3QUS0EpB3PMgdkpy4xI="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أيوه تمام، كدة مظبوط جداً. تأكيد الطلب من فضلك!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_687818",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TFgtOnT7sJ8LoOktMcTWitXvdDwdEgLZV4LT2nZeFPJOx7tWCXVWCS/9mSSNjLnsABudCQtJTla/x/3/1cS3idim8PFb2ZsfSPjbF3L6fAol1t8cD3IaM4Yo="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_687818",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك يا فندم وشكراً لاختيارك وصلة وير! 🌸\nهيتوصل بيك مندوب الشحن في خلال 1-3 أيام. تحبي نضيفلك هودي قطن تقيل بـ 890 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TmtC2wdyPup1VMOgsWzJqP8iZAIWF1S5fxYp1R9iRFfdAiIy9azqNXZnFSwIOTc9t0ox4mq8VMN80jPTO4rqQJpgdkt2Th0sFdM376jppFIN5zrkJlf1zB84="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "شكراً جداً! بس حالياً مش محتاجة هودي، الطلب كدة تمام بالنسبة لي. شكراً لمساعدتك!"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك في أي وقت! يسعدنا جداً التعامل معاكي وتأكيد طلبك 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TsZcZpkCwkrgRL4QWa06D+YZ30N0H1cipn//CQcySc9Q8563gqtXNPM8ciaEzzsINZqh1DsBz2oilET/9u5HiYIYdMC7liX1Mt29RMoi5v1A84sETesOMJwg="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "هبة سامي",
+   "phone": "01055556666",
+   "address": "5 شارع 9 الدور 1 شقة 2",
+   "area": "المعادي",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "B05",
+     "name_ar": "جوجر قطن",
+     "size": "L",
+     "color": "رمادي",
+     "qty": 1,
+     "unit_price": 560
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 560,
+   "total": 620,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 620,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "La2 momken a3del el maqas? Ana talabt M bs kont 3ayza L nafs el lon el ramy."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2204,
+    "tokens_out": 20,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2896,
+    "tokens_out": 48,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3107,
+    "tokens_out": 115,
+    "latency_s": 1.07
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Tab3an, 3adelet el maqas lel L. Dah el melas el geded:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2ked el talab?",
+    "latency_s": 2.87
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أيوه تمام، كدة مظبوط جداً. تأكيد الطلب من فضلك!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3190,
+    "tokens_out": 16,
+    "latency_s": 1.03
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 620,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3265,
+    "tokens_out": 58,
+    "latency_s": 1.66
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك يا فندم وشكراً لاختيارك وصلة وير! 🌸\nهيتوصل بيك مندوب الشحن في خلال 1-3 أيام. تحبي نضيفلك هودي قطن تقيل بـ 890 جنيه؟",
+    "latency_s": 2.69
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "شكراً جداً! بس حالياً مش محتاجة هودي، الطلب كدة تمام بالنسبة لي. شكراً لمساعدتك!"
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3354,
+    "tokens_out": 29,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك في أي وقت! يسعدنا جداً التعامل معاكي وتأكيد طلبك 🌸",
+    "latency_s": 1.01
+   }
+  }
+ ]
+}

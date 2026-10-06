@@ -1,0 +1,654 @@
+{
+ "card_id": "size-3",
+ "category": "size_unsure",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عاجبني ال Oxford shirt بس مش sure ايه ال size المناسب"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، قميص أكسفورد تحفة! \nقولي طولك كام ووزنك كام، وبتحب اللبس يكون مظبوط (regular) ولا واسع (loose) ولا ضيق (tight)؟"
+  },
+  {
+   "role": "customer",
+   "text": "طولي 177 سم ووزني 77 كيلو وبحب الـ regular fit، تحب أرشحلك مقاس إيه؟"
+  },
+  {
+   "role": "agent",
+   "text": "المقاس المناسب ليك هو L، ومتاح وموجود في الألوان السماوي والأبيض بـ 650 جنيه 😊\nتحب أضيفلك جينز ستريت بـ 980 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام الـ L، هجيب الـ سماوي بس.. شكراً مش عايزة الـ jeans."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 710 جنيه (الدفع عند الاستلام)\nالعنوان: القاهرة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا العنوان مش القاهرة، أنا في سموحة. اسمي ياسمين فؤاد ورقمي 01233334444 وعنواني 22 شارع فوزي معاذ الدور 5، سموحة."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، يا ريت تأكد الطلب. شكراً جداً!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 2-3 أيام إن شاء الله. نورتي وصلة وير! ✨"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عاجبني ال Oxford shirt بس مش sure ايه ال size المناسب"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_511040",
+     "function": {
+      "arguments": "{\"query\":\"Oxford shirt\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TCR7y/R/6ruRRxuhtcVZnJhNVa6V0+taxT4cQNvg3RdL9Sicz0nKaQ0XIuiLQTqKNx0Wem4C9woQLrn2zGW/tJNMAImaTnzCbMqO/qj2WHiv0OYA28JZlbOc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_511040",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"name_en\": \"Oxford shirt\", \"category\": \"tops\", \"price\": 650, \"colors\": [\"سماوي\", \"أبيض\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B02\", \"name\": \"جينز ستريت\", \"price\": 980}, {\"id\": \"O04\", \"name\": \"بليزر كاجوال\", \"price\": 1550}]}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"name_en\": \"Linen shirt\", \"category\": \"tops\", \"price\": 690, \"colors\": [\"أبيض\", \"بيج\", \"سماوي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}, {\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"price\": 740}]}, {\"id\": \"T07\", \"name\": \"سويت شيرت\", \"name_en\": \"Crewneck sweatshirt\", \"category\": \"tops\", \"price\": 750, \"colors\": [\"رمادي\", \"بيج\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، قميص أكسفورد تحفة! \nقولي طولك كام ووزنك كام، وبتحب اللبس يكون مظبوط (regular) ولا واسع (loose) ولا ضيق (tight)؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TQxnRyR53VbKcx0YfyZxHP+S+Eo14/tqAUJod9dEM/w2DLMcBeYPOaRHovcZd6fSwXD7v0KH4W6RPAdwdeh7loAR4OGHhvhuPICwEY47Ixno9zLqPxRrtBVM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "طولي 177 سم ووزني 77 كيلو وبحب الـ regular fit، تحب أرشحلك مقاس إيه؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_722053",
+     "function": {
+      "arguments": "{\"fit_preference\":\"regular\",\"height_cm\":177,\"weight_kg\":77,\"product_id\":\"T05\"}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+WW3tmbcL3bNLUn+MzsPI7KI7OjRQKCHWjFfPvZqnTY9yielUagmd53iDiIPdFBvoIv8cMW+uh0yVyuiW76NH3B7Iu8TohKHRSSfPBgMqDrWQxzTrIiLBk4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_722053",
+   "content": "{\"ok\": true, \"size\": \"L\", \"between\": null, \"in_stock\": true, \"available\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "المقاس المناسب ليك هو L، ومتاح وموجود في الألوان السماوي والأبيض بـ 650 جنيه 😊\nتحب أضيفلك جينز ستريت بـ 980 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TP8xxTHe7YU6CXFeQ+lqPlsSRjjXF3sFORBBrdbHSBeDIVKxMP6IvuQ14SAM8Z160MaPM11XJ/+hxJsJwlu9GU3Q+zZLmYAp/bySf8dy0ilX5/QekgqaRSGY="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام الـ L، هجيب الـ سماوي بس.. شكراً مش عايزة الـ jeans."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_21538",
+     "function": {
+      "arguments": "{\"area\":\"القاهرة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TCwF+N6m4EJYHSEqm69+YlinYXJdfuhPnmjlKI/TLMWAHK/wCxg6XuzHQq8HMVuwzwGxxUqhlXYyIYqYtxfrmDtGijpkU6wcbzdaBF7Xd1o5FUzXfiFQzu/g="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_21538",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_94407",
+     "function": {
+      "arguments": "{\"phone\":\"01000000000\",\"address\":\"القاهرة\",\"area\":\"القاهرة\",\"items\":[{\"size\":\"L\",\"product_id\":\"T05\",\"color\":\"سماوي\",\"qty\":1}],\"customer_name\":\"العميل\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TKW3aYkwc3BOPct6Gdhgx66qaVUL/BSCicz9BpWlX0MYGJ8oKn+ZWEWnS/QRdpexmsBv+66ryr5/pmPp9MqSD+GCbOHLmULvOYMQBOOkLZ/B7zhzCAyaB3Ds="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_94407",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 710, \"summary_ar\": \"طلب رقم 1:\\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 710 جنيه (الدفع عند الاستلام)\\nالعنوان: القاهرة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 3, \"level\": \"medium\", \"reasons\": [\"first order from this phone\", \"address is incomplete (no building number or landmark)\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 710 جنيه (الدفع عند الاستلام)\nالعنوان: القاهرة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tz+QUMErz+WJ/116kyKrJZazsSWacYf92Hu+sCuxU1G7V5McnGYaW8olwILlTYpztc7VMraMvdaxh4anamBOnjBkPXQLr35oupA7PrIxAhZY3O/ZmcGlQ7H0="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا العنوان مش القاهرة، أنا في سموحة. اسمي ياسمين فؤاد ورقمي 01233334444 وعنواني 22 شارع فوزي معاذ الدور 5، سموحة."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_799088",
+     "function": {
+      "arguments": "{\"area\":\"الإسكندرية\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T+lnNjTdTow4qdNaa4/hqo1jRlMwKc4wf60vgt8eYU8+/FR8o5Ab0Sk2edPdioS79uha16p48DW+eJEwyC3vAEUBkMBcG+jjH9bSseSPM2BVuUjg16lcmLOE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_799088",
+   "content": "{\"ok\": true, \"zone\": \"الإسكندرية\", \"fee\": 65, \"days_min\": 2, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_73253",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"customer_name\":\"ياسمين فؤاد\",\"area\":\"سموحة، الإسكندرية\",\"address\":\"22 شارع فوزي معاذ الدور 5\",\"phone\":\"01233334444\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TkseE3jQ+fex2tojUB1esrpg0eTlWHI5B6hlqE5laYOtRbN/K/HRXUCD/8SI89Ao9iF31GX1NrLfHqDQuxWeDnkqrjv5UXcQvxNHS66OUbZa7FX6q42ymgK8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_73253",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 715, \"summary_ar\": \"طلب رقم 1:\\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TqaD90LzXqh1yMyMhBrQVYC9SdDMOc9gdk3EkKDW9M1B47/gXtz4Q+WDLn0TnA4E4f8R1sRmc+rc+hs54W50ZzvMOX+/WnN0NVKuZ2WQryeiqsboiuqVP28s="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، يا ريت تأكد الطلب. شكراً جداً!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_553554",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TVonVsWrhaX7IeZtYEnl/ohDMIhNugUi2hOy4Rv2f2Mz0jm+qt9WD511DDiaLMQSxfNTGAM7SH6bP0nB5gAmPpYJNNAl9Y4fQS7olda8eOWLhvZmKPnSLCOk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_553554",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 2-3 أيام إن شاء الله. نورتي وصلة وير! ✨",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TCGeyuti4kWCtAtJ9R6wvCLkDFSdpzRggv8v3EsVBlQbxU1x/oEFE+/hfE+UWxiYgAusDNTm5yvdnQhbTOUJQIUHuBbJQg89pymiiCjfj+rlCf+bnKUurWnA="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-size-3",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "ياسمين فؤاد",
+   "phone": "01233334444",
+   "address": "22 شارع فوزي معاذ الدور 5",
+   "area": "سموحة، الإسكندرية",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "T05",
+     "name_ar": "قميص أكسفورد",
+     "size": "L",
+     "color": "سماوي",
+     "qty": 1,
+     "unit_price": 650
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 650,
+   "total": 715,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "عاجبني ال Oxford shirt بس مش sure ايه ال size المناسب"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1887,
+    "tokens_out": 17,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2363,
+    "tokens_out": 55,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "ولا يهمك يا فندم، قميص أكسفورد تحفة! \nقولي طولك كام ووزنك كام، وبتحب اللبس يكون مظبوط (regular) ولا واسع (loose) ولا ضيق (tight)؟",
+    "latency_s": 1.9
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "طولي 177 سم ووزني 77 كيلو وبحب الـ regular fit، تحب أرشحلك مقاس إيه؟"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2452,
+    "tokens_out": 43,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2550,
+    "tokens_out": 48,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "المقاس المناسب ليك هو L، ومتاح وموجود في الألوان السماوي والأبيض بـ 650 جنيه 😊\nتحب أضيفلك جينز ستريت بـ 980 جنيه؟",
+    "latency_s": 1.95
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "تمام الـ L، هجيب الـ سماوي بس.. شكراً مش عايزة الـ jeans."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2623,
+    "tokens_out": 17,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2688,
+    "tokens_out": 81,
+    "latency_s": 0.98
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 710,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2930,
+    "tokens_out": 79,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 710 جنيه (الدفع عند الاستلام)\nالعنوان: القاهرة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.83
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "لا العنوان مش القاهرة، أنا في سموحة. اسمي ياسمين فؤاد ورقمي 01233334444 وعنواني 22 شارع فوزي معاذ الدور 5، سموحة."
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3064,
+    "tokens_out": 19,
+    "latency_s": 1.05
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3133,
+    "tokens_out": 76,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3380,
+    "tokens_out": 101,
+    "latency_s": 2.39
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× قميص أكسفورد مقاس L لون سماوي = 650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 715 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة، الإسكندرية\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 4.52
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "تمام، يا ريت تأكد الطلب. شكراً جداً!"
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3498,
+    "tokens_out": 16,
+    "latency_s": 1.27
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 715,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3573,
+    "tokens_out": 38,
+    "latency_s": 0.98
+   }
+  },
+  {
+   "seq": 31,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-3",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 2-3 أيام إن شاء الله. نورتي وصلة وير! ✨",
+    "latency_s": 2.26
+   }
+  }
+ ]
+}

@@ -1,0 +1,660 @@
+{
+ "card_id": "size-5",
+ "category": "size_unsure",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 6,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Straight jeans 7elw awy bas msh 3arfa a5od size eh"
+  },
+  {
+   "role": "agent",
+   "text": "3youny! 3ashan a2ollek el size el mazboot, momken el tol (height) w el wazn (weight), w bethebbii el lebse ykon regular wala loose wala tight? 😊"
+  },
+  {
+   "role": "customer",
+   "text": "toly 173 cm w wazny 69 kg, w ba7eb el regular fit."
+  },
+  {
+   "role": "agent",
+   "text": "Size 32 hwa el mazboot 3aleki w mawgood mnh el lon el azraq el fateh w el azraq el ghameq! 👖\n\nTehbii neftah el order wala te7bii te3rafy ay haga tanya?"
+  },
+  {
+   "role": "customer",
+   "text": "el size 32 kwayes, momken neftah el order. ma7taga el azraq el fateh bas, mesh 3ayza 7aga tanya."
+  },
+  {
+   "role": "agent",
+   "text": "Tamam gedan! W 9abl ma nekmal, tehby aydafleq qamees ὀksford b 650 geneh? ✨"
+  },
+  {
+   "role": "customer",
+   "text": "la shokran, msh 3ayza 7aga tanya. el bantaloon bas."
+  },
+  {
+   "role": "agent",
+   "text": "Wala yehemek ya famd! 3ashan neftah el order, momken tketbly esmek, ragam el mobyl, w el 3enwan el kamel (el manteqa, el sharea, ragam el mabna, w el dor)?"
+  },
+  {
+   "role": "customer",
+   "text": "Heba Samy, 01055556666, 5 sharea 9 el dor 1 she2a 2, Maadi."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق فاتح = 980 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1040 جنيه (الدفع عند الاستلام)\nالعنوان: 5 sharea 9 el dor 1 she2a 2، Maadi\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "Ah, ya reit, aked el talab. Shukran gedan!"
+  },
+  {
+   "role": "agent",
+   "text": "El 3afw ya famd, el talab et2akad be nagah! Tslama w mabrook 3aleki el bantaloon, w taht amrek fi ay wakt. 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Straight jeans 7elw awy bas msh 3arfa a5od size eh"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_87633",
+     "function": {
+      "arguments": "{\"query\":\"Straight jeans\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T6zmQwh0XQvA7hjLPioqJLNRAyCW7CAhI+nES3aXNmsV1IciR9lybPpjWmZ/RMUwgQ/1BlSOHKys0Nw8M9tNx5xeX1Ungz6J6uosUMkKl6E/DwsmvesyPnuk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_87633",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "3youny! 3ashan a2ollek el size el mazboot, momken el tol (height) w el wazn (weight), w bethebbii el lebse ykon regular wala loose wala tight? 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TaIFNRnLQm/dZqBvNXLE3UkMhsJj7U7S6fLealb6KytVtJwLCJcKEGjCPZDBmMg6IhvO1A01ANH88+qz0lqBYMpIN+38Wl+QOKNPNsYHeZqHUKvAmmfJcZ7I="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "toly 173 cm w wazny 69 kg, w ba7eb el regular fit."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_602036",
+     "function": {
+      "arguments": "{\"fit_preference\":\"regular\",\"product_id\":\"B02\",\"height_cm\":173,\"weight_kg\":69}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TXng1MG5KPc7s/ZbqhIykXEoB2JV2MywzLAhAen6Ynt0c1V1abizs1mVyW6AJr8TuThKzy+jYWZnsABFiksdX9DyuvPf7XX00lZ662+eP5HsPo2RzShYE49U="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_602036",
+   "content": "{\"ok\": true, \"size\": \"32\", \"between\": null, \"in_stock\": true, \"available\": [\"30\", \"32\", \"36\", \"38\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "Size 32 hwa el mazboot 3aleki w mawgood mnh el lon el azraq el fateh w el azraq el ghameq! 👖\n\nTehbii neftah el order wala te7bii te3rafy ay haga tanya?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T9dtzOSaMiLpQtwRRZ9nyTvFkjpX8dCO2WZW5Q2Cxjq/hzMWtUQclfEbdMBxqF4Qt0+NmwY4Laps8LY5EvXpA0YPIDwVLioo4AcJr+JepGQXvMGeJndHmw0Q="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "el size 32 kwayes, momken neftah el order. ma7taga el azraq el fateh bas, mesh 3ayza 7aga tanya."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_671071",
+     "function": {
+      "arguments": "{\"query\":\"جينز ستريت\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TK1Mcc/fCdx8zylSVCa1/j3HhpA/6IQjcqU+3n9UtKHa2X+X7PhL2D7iWBxTFp1dP/MJ24o0IMTIpc+lUWX3NfOKceu5tyIVDNLj1/juyktxN3p2ofNelCqw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_671071",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"name_en\": \"Denim shorts\", \"category\": \"bottoms\", \"price\": 520, \"colors\": [\"أزرق فاتح\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"price\": 390}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"name_en\": \"Denim jacket\", \"category\": \"outerwear\", \"price\": 1250, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam gedan! W 9abl ma nekmal, tehby aydafleq qamees ὀksford b 650 geneh? ✨",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TAVIwVbJ4T2GlK6ypHdEZmFrUEjeihydd/5u+wuq61bzOa7Y1CxQpSVuM5XfXDxLWzKKT++0eX3claAU2frdaYSY9UrRbtlKeqpUFXAyL6vp6X4W7vL2xh9k="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "la shokran, msh 3ayza 7aga tanya. el bantaloon bas."
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yehemek ya famd! 3ashan neftah el order, momken tketbly esmek, ragam el mobyl, w el 3enwan el kamel (el manteqa, el sharea, ragam el mabna, w el dor)?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T8Y7nVfExXsBKWSVCz7iXAhabVwn4dgae7poEpHgcw+ZDWR9bDh/Ek1/RPCzQJhLzeEayuGDXcyXSq9RzXFSwsMcvtKoZiC/YbAmMOo6koIir2GXT+uNMyns="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Heba Samy, 01055556666, 5 sharea 9 el dor 1 she2a 2, Maadi."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_63333",
+     "function": {
+      "arguments": "{\"area\":\"Maadi\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TQMHHXRSQR2/ObhQ/ZIqodIGTFf5n1Gtbjy2sMS/5VqqSHoTmcOLfFKz5EqnlFPOHouvC8neC4Jj1BTO54klnElKjH+04mIoOHSovOUet/KTrm5/YhXLyUuw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_63333",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_51305",
+     "function": {
+      "arguments": "{\"address\":\"5 sharea 9 el dor 1 she2a 2\",\"phone\":\"01055556666\",\"customer_name\":\"Heba Samy\",\"area\":\"Maadi\",\"items\":[{\"size\":\"32\",\"color\":\"أزرق فاتح\",\"product_id\":\"B02\",\"qty\":1}]}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TBA6OdUQkAbOtSSRFHCTx8DLf95K4w4RE22e1e+Nstenj0LNZTvsEyQ+RoGGU1TS6nT/446a8GdROSV1qJ5/CeLEOgeBRTCKvDtWBwcjGL9hD1w2uuPXSWuQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_51305",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 1040, \"summary_ar\": \"طلب رقم 1:\\n- 1× جينز ستريت مقاس 32 لون أزرق فاتح = 980 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 1040 جنيه (الدفع عند الاستلام)\\nالعنوان: 5 sharea 9 el dor 1 she2a 2، Maadi\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق فاتح = 980 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1040 جنيه (الدفع عند الاستلام)\nالعنوان: 5 sharea 9 el dor 1 she2a 2، Maadi\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T2MxixPSKm2PzvrUzEDAEt8ZCil+dFmaxOXDZcsOTJEz1pZCvxSMUHsFYp2Dj8Nm+vid/whjBawOudblzScld4xjuThoCDIp8SyxWVsLY912A1gJnJwR38Wg="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Ah, ya reit, aked el talab. Shukran gedan!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_77656",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Taurnp7JDvo5VdN2srBafvigR/+tLwzMCYQJQNJJrwg39CKuorAPf3/SU/LXIitOhGdDut64ps4Y2H6KAG/vtnVlFuW6mWF8h8NBWV6LZuWbBmxV5+oi20a4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_77656",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "El 3afw ya famd, el talab et2akad be nagah! Tslama w mabrook 3aleki el bantaloon, w taht amrek fi ay wakt. 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TM7gS4bJbUWuzKp93sY0/8Omcd+W7lzQn3IJFiWk/43aXA/WmeJSHqTf6vv5S2DmPLtW1/MBglrdTjcPeUH4y6wlCxOEGYT9RgeduV0Z0FtxbscUzXdC7a58="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-size-5",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "Heba Samy",
+   "phone": "01055556666",
+   "address": "5 sharea 9 el dor 1 she2a 2",
+   "area": "Maadi",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "B02",
+     "name_ar": "جينز ستريت",
+     "size": "32",
+     "color": "أزرق فاتح",
+     "qty": 1,
+     "unit_price": 980
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 980,
+   "total": 1040,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "el Straight jeans 7elw awy bas msh 3arfa a5od size eh"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1946,
+    "tokens_out": 17,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2418,
+    "tokens_out": 51,
+    "latency_s": 1.11
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "3youny! 3ashan a2ollek el size el mazboot, momken el tol (height) w el wazn (weight), w bethebbii el lebse ykon regular wala loose wala tight? 😊",
+    "latency_s": 2.01
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "toly 173 cm w wazny 69 kg, w ba7eb el regular fit."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2495,
+    "tokens_out": 43,
+    "latency_s": 0.85
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2594,
+    "tokens_out": 59,
+    "latency_s": 1.22
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "Size 32 hwa el mazboot 3aleki w mawgood mnh el lon el azraq el fateh w el azraq el ghameq! 👖\n\nTehbii neftah el order wala te7bii te3rafy ay haga tanya?",
+    "latency_s": 2.07
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "el size 32 kwayes, momken neftah el order. ma7taga el azraq el fateh bas, mesh 3ayza 7aga tanya."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2694,
+    "tokens_out": 20,
+    "latency_s": 1.19
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3448,
+    "tokens_out": 35,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "Tamam gedan! W 9abl ma nekmal, tehby aydafleq qamees ὀksford b 650 geneh? ✨",
+    "latency_s": 2.2
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "la shokran, msh 3ayza 7aga tanya. el bantaloon bas."
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3506,
+    "tokens_out": 61,
+    "latency_s": 1.3
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "Wala yehemek ya famd! 3ashan neftah el order, momken tketbly esmek, ragam el mobyl, w el 3enwan el kamel (el manteqa, el sharea, ragam el mabna, w el dor)?",
+    "latency_s": 1.3
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "Heba Samy, 01055556666, 5 sharea 9 el dor 1 she2a 2, Maadi."
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3606,
+    "tokens_out": 17,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3671,
+    "tokens_out": 97,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 1040,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3940,
+    "tokens_out": 101,
+    "latency_s": 1.0
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× جينز ستريت مقاس 32 لون أزرق فاتح = 980 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1040 جنيه (الدفع عند الاستلام)\nالعنوان: 5 sharea 9 el dor 1 she2a 2، Maadi\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 3.08
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "Ah, ya reit, aked el talab. Shukran gedan!"
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 4060,
+    "tokens_out": 16,
+    "latency_s": 1.32
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1040,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 31,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 4135,
+    "tokens_out": 45,
+    "latency_s": 1.11
+   }
+  },
+  {
+   "seq": 32,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-5",
+   "data": {
+    "text": "El 3afw ya famd, el talab et2akad be nagah! Tslama w mabrook 3aleki el bantaloon, w taht amrek fi ay wakt. 😊",
+    "latency_s": 2.44
+   }
+  }
+ ]
+}

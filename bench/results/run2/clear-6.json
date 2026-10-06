@@ -1,0 +1,510 @@
+{
+ "card_id": "clear-6",
+ "category": "clear_buyer",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "Hi، عايز ال Cotton joggers size M لون كحلي لو available"
+  },
+  {
+   "role": "agent",
+   "text": "متاحة يا فندم بلون كحلي ومقاس M وسعرها 560 جنيه. \nتحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا شكراً، مش محتاج حاجة تانية. ممكن نخلص الأوردر؟"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، من عيوني! \nممكن الاسم، رقم الموبايل، والسنوات/العنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة) والمنطقة؟"
+  },
+  {
+   "role": "customer",
+   "text": "مصطفى نبيل، 01166667777.\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× جوجر قطن مقاس M لون كحلي = 560 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أيوة تمام، أكد الطلب. شكراً جداً!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد الأوردر بنجاح! \nهيوصلك في خلال يوم لـ 3 أيام إن شاء الله، تحت أمرك في أي وقت!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "Hi، عايز ال Cotton joggers size M لون كحلي لو available"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_534182",
+     "function": {
+      "arguments": "{\"query\":\"Cotton joggers\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TtxedPInvwDT43A8EMFz+pIIvQVUEy/zvM1meFqJBHGRMz7aZCPQkc4Lr5qWqlPpV9cLmQM3+I3jGpAZ1+vFAUnH3x+JY7z4r8PpF39kNltDQUWZWqwSv20Y="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_534182",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_818270",
+     "function": {
+      "arguments": "{\"product_id\":\"B05\"}",
+      "name": "get_product"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TwGDAIpmOyD4L8DrCrkh+rg7t09JdKEdgyCujVYYnuLA+yUZ2fGaq6WSWm0rfrJwbfxVwOX2UaEExdTWjye53TOuwXvN4tJIBIZMdC9WlNgeERHPtrnmId+o="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_818270",
+   "content": "{\"ok\": true, \"product\": {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"size_chart\": {\"S\": {\"h\": [155, 168], \"w\": [48, 60]}, \"M\": {\"h\": [165, 175], \"w\": [58, 72]}, \"L\": {\"h\": [172, 182], \"w\": [70, 85]}, \"XL\": {\"h\": [178, 190], \"w\": [83, 100]}, \"XXL\": {\"h\": [182, 198], \"w\": [98, 120]}}, \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "متاحة يا فندم بلون كحلي ومقاس M وسعرها 560 جنيه. \nتحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T0fITBVY+ibk6kfJl2aX2lShjhsMf3OQLRidkLOMU2fkRx7eobjJ595Ucnx3CePa82VV/dEmwRdTh7ehmF3XAYSiL261+OBPVsgqI5vReb76ZLWLW9tIhma8="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا شكراً، مش محتاج حاجة تانية. ممكن نخلص الأوردر؟"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، من عيوني! \nممكن الاسم، رقم الموبايل، والسنوات/العنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة) والمنطقة؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T3L9CfdUCeFCVtTn5MtONRrZoJ2f/+bxZSecNgSt+ClMKIKuaeX0Y1yKuRoWj0GPunnz+YVl1N369gFW3H+b81VTFdviXp8Ae+P7RMqBwnf97iT6Vw6w3Q/o="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "مصطفى نبيل، 01166667777.\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_570307",
+     "function": {
+      "arguments": "{\"area\":\"6 أكتوبر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TNXYiOHQ0xcobianZyAtJiUCFMI1zddmZqgirOBWcYMUUyXcDvKqc7MaoNNAtk8Ig/rACV0Gxy0NSUP/n1wIfTFnW3hbZNJoO8XvN+Kj8cTCdDJTHQpnXRhk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_570307",
+   "content": "{\"ok\": true, \"zone\": \"الجيزة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_54601",
+     "function": {
+      "arguments": "{\"phone\":\"01166667777\",\"customer_name\":\"مصطفى نبيل\",\"items\":[{\"qty\":1,\"color\":\"كحلي\",\"size\":\"M\",\"product_id\":\"B05\"}],\"address\":\"بلوك 12 عمارة 4 الدور 6\",\"area\":\"6 أكتوبر\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TexARtI+IOc5w4/Rt57UNr0QwrcRtcNWvGclLAaAiFKbRZ6wzzFhXWHVzK6gXhqVxI8QeyET1+qy6cthc3Z9aVoS0ajrV0Sw/ZNtptJy8NCq9sb8mqJ2nDvk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_54601",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 620, \"summary_ar\": \"طلب رقم 1:\\n- 1× جوجر قطن مقاس M لون كحلي = 560 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× جوجر قطن مقاس M لون كحلي = 560 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TU8FSjx+cfUaFXrWyvvAPOhcCDl4e0JlW2bOUKuxK1cifFbCcQiNW6CNlYCSP5rb7sUrG02lNpWtU4YMyhvvOg31CSwWxkWVgCkZANzl7orSs+9H14aWzwpw="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أيوة تمام، أكد الطلب. شكراً جداً!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_35426",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TuO2I6irgtWRX4EiFvt7cyXm71RLDJtLCVNkVNZf6gD5YVn96EHRzf/cGjXqsxrMg3gtDRzfqaNJUnG4xsqhWMOeKQB3ccAEUWC4+yWqGLOT1Oxr2cggvefU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_35426",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد الأوردر بنجاح! \nهيوصلك في خلال يوم لـ 3 أيام إن شاء الله، تحت أمرك في أي وقت!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TUEiRIMi1dSFBgH7RUFzoEqcI7SUYkY6ct5r7KPZGF5w2wW/4s76XkrZtFlF0Px8Yb6UWZr2CEO1eBoKanKFovIKcqb2hpUIqtObXxEqCnEDvttiJ/8hT4wI="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-clear-6",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "مصطفى نبيل",
+   "phone": "01166667777",
+   "address": "بلوك 12 عمارة 4 الدور 6",
+   "area": "6 أكتوبر",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "B05",
+     "name_ar": "جوجر قطن",
+     "size": "M",
+     "color": "كحلي",
+     "qty": 1,
+     "unit_price": 560
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 560,
+   "total": 620,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "Hi، عايز ال Cotton joggers size M لون كحلي لو available"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 1886,
+    "tokens_out": 17,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2575,
+    "tokens_out": 20,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "name": "get_product",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2913,
+    "tokens_out": 46,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "متاحة يا فندم بلون كحلي ومقاس M وسعرها 560 جنيه. \nتحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "لا شكراً، مش محتاج حاجة تانية. ممكن نخلص الأوردر؟"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2980,
+    "tokens_out": 54,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "تمام يا فندم، من عيوني! \nممكن الاسم، رقم الموبايل، والسنوات/العنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة) والمنطقة؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "مصطفى نبيل، 01166667777.\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3077,
+    "tokens_out": 17,
+    "latency_s": 13.7
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3142,
+    "tokens_out": 94,
+    "latency_s": 14.12
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 620,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3399,
+    "tokens_out": 93,
+    "latency_s": 14.74
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× جوجر قطن مقاس M لون كحلي = 560 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 620 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 42.56
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "أيوة تمام، أكد الطلب. شكراً جداً!"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3509,
+    "tokens_out": 16,
+    "latency_s": 5.61
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 620,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3584,
+    "tokens_out": 42,
+    "latency_s": 14.35
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-6",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد الأوردر بنجاح! \nهيوصلك في خلال يوم لـ 3 أيام إن شاء الله، تحت أمرك في أي وقت!",
+    "latency_s": 19.96
+   }
+  }
+ ]
+}

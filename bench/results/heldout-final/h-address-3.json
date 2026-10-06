@@ -1,0 +1,350 @@
+{
+ "card_id": "h-address-3",
+ "category": "vague_address",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: قريب من الموقف الكبير، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام بس العنوان أدق: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة. ياريت يتعدل، وأنا موافقة."
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، عدلت العنوان. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، أكد الطلب يا ريت. شكراً جداً!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك! تم تأكيد طلبك بنجاح وهيوصلك في خلال من يوم لـ 3 أيام. نورتي هدوم 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: قريب من الموقف الكبير، مصر الجديدة\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: قريب من الموقف الكبير، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "تمام بس العنوان أدق: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة. ياريت يتعدل، وأنا موافقة."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_85225",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"address\":\"33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TECliYMVqT5QXMr5wLycrLqdtliXQ+qasm5vF51T+Wr2arvL+iiSW4CkWJFag3bY6eJxqOXSTO/h1p3kqF2dGskRfI8/qfjQ7NWoTMSQXfRkjiD1XL1nqPQ0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_85225",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 210, \"summary_ar\": \"طلب رقم 1:\\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_159877",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TKbIohOUIdUL6FUtbUCDrvAVZYDRFoTR4VpvyzIKOJ2FEYiL6gMRSKhxgk2lfEyaeTQ6l7fMgn/dkcOZnZ3INRSeLFC8Im3zmoZKQvC0G6KNLq+DUNjKxQf8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_159877",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، عدلت العنوان. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tlm+AHTsBYr0fS5CH8ixj+Q5qJWgcfEUTpSRqVAoaqktD0L5x1F8j3p8xGdrqr8qQQ+uRmJLqXEyXUamafUcdLaFGpMlqd8Xrxol7hplsfvjpoNkUrGJNR2E="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، أكد الطلب يا ريت. شكراً جداً!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_253627",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T5Vj1Ad7xXjcfkcblFrRoi5RxrvcggBnLku5GhlEkZRkWnvyJJKR5I9faw6G5P3jUM6J+DENLFMEolaCAeBiCqNyL/3Ddie48I8We56DR7rH7WDVRUIVhBTk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_253627",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك! تم تأكيد طلبك بنجاح وهيوصلك في خلال من يوم لـ 3 أيام. نورتي هدوم 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TrIZtGGkAdmxD6ELpBR0fspJ8Ogqxmj+qUNnlog8sM+/2/McCrtUUBIq3f8EmZBMEjm/ZWjM4cx2zSmZf1I+Md3n4+vfDEkRu4hLilvi7RbBIpgyURDyvyQ0="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "دينا مجدي",
+   "phone": "01014567890",
+   "address": "33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة",
+   "area": "مصر الجديدة",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "A04",
+     "name_ar": "شراب قطن 3 قطع",
+     "size": "ONE",
+     "color": "أبيض",
+     "qty": 1,
+     "unit_price": 150
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 150,
+   "total": 210,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 210,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا دينا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: قريب من الموقف الكبير، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام بس العنوان أدق: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة. ياريت يتعدل، وأنا موافقة."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2145,
+    "tokens_out": 40,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2349,
+    "tokens_out": 16,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2425,
+    "tokens_out": 108,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا فندم، عدلت العنوان. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× شراب قطن 3 قطع لون أبيض = 150 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 210 جنيه (الدفع عند الاستلام)\nالعنوان: 33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، أكد الطلب يا ريت. شكراً جداً!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2550,
+    "tokens_out": 16,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 210,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "A04",
+    "size": "ONE",
+    "delta": -1,
+    "stock_after": 39,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2625,
+    "tokens_out": 40,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك! تم تأكيد طلبك بنجاح وهيوصلك في خلال من يوم لـ 3 أيام. نورتي هدوم 🌸",
+    "latency_s": 0.0
+   }
+  }
+ ]
+}

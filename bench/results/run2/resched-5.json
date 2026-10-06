@@ -1,0 +1,290 @@
+{
+ "card_id": "resched-5",
+ "category": "reschedule",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس L لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "Ahlan, aywa bas ana mosafera w msh ha2dar astalem ay 7aga abl el etneen. Momken el taslim ykoun el etneen 2026-10-12?"
+  },
+  {
+   "role": "agent",
+   "text": "Wel sew, w etsawara bel salama! 3awza aked el talab 3ala yom el Etneen 2026-10-12?"
+  },
+  {
+   "role": "customer",
+   "text": "Aywa keda tamam, aked el talab. Shokran!"
+  },
+  {
+   "role": "agent",
+   "text": "El 3afw ya fanm, tmam gedan! Talabek et2akad w hena4to ywasal lak yom el Etneen 2026-10-12 enshallah 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس L لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس L لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "Ahlan, aywa bas ana mosafera w msh ha2dar astalem ay 7aga abl el etneen. Momken el taslim ykoun el etneen 2026-10-12?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_49464",
+     "function": {
+      "arguments": "{\"date\":\"2026-10-12\",\"order_id\":1}",
+      "name": "schedule_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TQ2ToFtgOQD2EypXbg1c7rVPEeVyr/kpJMriHXzCYoDKyMVPPxfzg1ljFl4hvHK5jBj6onr6seyxV+YCLUNf2DWeTODQZyBuBWkbQ793+oGcBiTd2yCODrfM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_49464",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 580, \"summary_ar\": \"طلب رقم 1:\\n- 1× بولو شيرت بيكيه مقاس L لون أبيض = 520 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\\nالتوصيل: يوم 2026-10-12\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Wel sew, w etsawara bel salama! 3awza aked el talab 3ala yom el Etneen 2026-10-12?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Teobs5X/aIyZKZZY05eGd97HVkoqN6Sh6cQsHFHv6P+sA5nnHJbj1nUwwNPpZXA2h9IRmh6xgwPOPNu9CmPfMjoFSVvOGss0QQfS2V7gBhnxXJo1qcTcLW6w="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Aywa keda tamam, aked el talab. Shokran!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_29205",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T2BbJzJVPgmzkbbBgtQE+p1SdF/T8UueNBO7pVE88qsVOtbxjUbqsls/LJ/hm96gn2AmpG+Wz5cDIJb8Td7ixAirudSjQ2c/RJZvHugh3uWIhRIXPx/ajid4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_29205",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "El 3afw ya fanm, tmam gedan! Talabek et2akad w hena4to ywasal lak yom el Etneen 2026-10-12 enshallah 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0THQI4+7NcLkzxqm/kmueCl7emh7da4EstVHRY0CPu1nzgv7sEOzk6GGT9J2WjFrhzZ6rWFeSQoHELnddIBhzHEAHl5EExOv//sTiNKBvkVX7obIXbtV0GrJs="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "هبة سامي",
+   "phone": "01055556666",
+   "address": "5 شارع 9 الدور 1 شقة 2",
+   "area": "المعادي",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T03",
+     "name_ar": "بولو شيرت بيكيه",
+     "size": "L",
+     "color": "أبيض",
+     "qty": 1,
+     "unit_price": 520
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 520,
+   "total": 580,
+   "delivery_date": "2026-10-12",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 580,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس L لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9 الدور 1 شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Ahlan, aywa bas ana mosafera w msh ha2dar astalem ay 7aga abl el etneen. Momken el taslim ykoun el etneen 2026-10-12?"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2233,
+    "tokens_out": 31,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2437,
+    "tokens_out": 41,
+    "latency_s": 1.99
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Wel sew, w etsawara bel salama! 3awza aked el talab 3ala yom el Etneen 2026-10-12?",
+    "latency_s": 2.88
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Aywa keda tamam, aked el talab. Shokran!"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2496,
+    "tokens_out": 16,
+    "latency_s": 0.84
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 580,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2571,
+    "tokens_out": 50,
+    "latency_s": 1.24
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "El 3afw ya fanm, tmam gedan! Talabek et2akad w hena4to ywasal lak yom el Etneen 2026-10-12 enshallah 🌸",
+    "latency_s": 2.08
+   }
+  }
+ ]
+}

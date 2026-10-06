@@ -1,0 +1,614 @@
+{
+ "card_id": "size-1",
+ "category": "size_unsure",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 6,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "بولو شيرت بيكيه حلو أوي، بس مش عارفة آخد مقاس ايه"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، من عيوني! عشان أقولك المقاس المضبوط بالظبط، ممكن تقوليلي طولك كام سم، وزنك كام كيلو، وحابة اللبس يكون مظبوط (ريجولار) ولا واسع (لوز)؟"
+  },
+  {
+   "role": "customer",
+   "text": "طولي 170 سم ووزني 65 كيلو، وبحب اللبس ريجولار فيت."
+  },
+  {
+   "role": "agent",
+   "text": "المقاس المناسب لحضرتك هو M ومتاح معانا بجميع الألوان (كحلي، أبيض، نبيتي) وسعره 520 جنيه. \n\nتحب أضيفلك بنطلون تشينو بـ 780 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، هخد الـ M باللون الأبيض، مش محتاجة بنطلون شكراً."
+  },
+  {
+   "role": "agent",
+   "text": "تمام جداً يا فندم، مبروك مقدماً! \nممكن تفطيني باسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة) واسم المحافظة؟"
+  },
+  {
+   "role": "customer",
+   "text": "منى حسن، 01011112222، 14 شارع الطيران الدور 4 شقة 8، مدينة نصر."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، كدة مظبوط، أكد الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! شكراً لتعاملك مع وصلة وير، وهيوصلك في خلال يوم لـ 3 أيام. تحبِ أساعدك في حاجة تاني؟"
+  },
+  {
+   "role": "customer",
+   "text": "شكراً جداً، تسلم. هو هيجيلي رسالة لما المندوب يكون في الطريق؟"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تسلمي! أيوه طبعاً، المندوب هيتصل بيكي قبل ما يوصل عشان تنسقوا وقت التسليم. تحت أمرك في أي وقت! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "بولو شيرت بيكيه حلو أوي، بس مش عارفة آخد مقاس ايه"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_49536",
+     "function": {
+      "arguments": "{\"query\":\"بولو شيرت بيكيه\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TVEdNW+WPbvg1blZnZ5EW8mHJsijiFtnU6iehgHAB0aHYuxYeH0YtHlA04Ou681w0vGmb/kLTc3cmG+VPnNLFt+uPWw2cFTqVGxtgl/B9cPT4cvSPePuQrI4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_49536",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T03\", \"name\": \"بولو شيرت بيكيه\", \"name_en\": \"Pique polo\", \"category\": \"tops\", \"price\": 520, \"colors\": [\"كحلي\", \"أبيض\", \"نبيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"name_en\": \"Striped tee\", \"category\": \"tops\", \"price\": 390, \"colors\": [\"كحلي وأبيض\", \"أسود وأبيض\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"name_en\": \"Oversized tee\", \"category\": \"tops\", \"price\": 420, \"colors\": [\"أسود\", \"بيج\", \"أخضر زيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XXL\"], \"sizes_out_of_stock\": [\"XL\"], \"pairs_with\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}, {\"id\": \"T07\", \"name\": \"سويت شيرت\", \"name_en\": \"Crewneck sweatshirt\", \"category\": \"tops\", \"price\": 750, \"colors\": [\"رمادي\", \"بيج\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، من عيوني! عشان أقولك المقاس المضبوط بالظبط، ممكن تقوليلي طولك كام سم، وزنك كام كيلو، وحابة اللبس يكون مظبوط (ريجولار) ولا واسع (لوز)؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TmJqrzbRxAa85FuONwDiZav2Bzv3uvAkZ44GSGZIXmdDdOYbT+0tFXzCS3IFpEHMDKZ6ANVs8xfxvBO5L7pf1NSsWb/iwaSBIydjXF/Fjc4HB1GI8/7qhmvE="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "طولي 170 سم ووزني 65 كيلو، وبحب اللبس ريجولار فيت."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_24927",
+     "function": {
+      "arguments": "{\"product_id\":\"T03\",\"fit_preference\":\"regular\",\"height_cm\":170,\"weight_kg\":65}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TJpvLatjO2UJHroclCx5WHJMMzeLUKGTJ4WRxFGX+1tOCdI6KUsD/9BNPCl0kTVp/GnrLlOEbPCeZ6BTfDODzWeA/NQwXo095icp249jVYmZN2X8jGMV28Y8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_24927",
+   "content": "{\"ok\": true, \"size\": \"M\", \"between\": null, \"in_stock\": true, \"available\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "المقاس المناسب لحضرتك هو M ومتاح معانا بجميع الألوان (كحلي، أبيض، نبيتي) وسعره 520 جنيه. \n\nتحب أضيفلك بنطلون تشينو بـ 780 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tb1RpHzXeCUa0r2/L4Je2Hbn2R6Yczy/QpAh4AoFWlq7PfYTMp0FVxbhMCuMCxSUlvny+1DQg0pTVkGM9pKp+OwuGe3P0rZzXKQ4Zb8QJBOyUxOvEyoIYpag="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، هخد الـ M باللون الأبيض، مش محتاجة بنطلون شكراً."
+  },
+  {
+   "role": "assistant",
+   "content": "تمام جداً يا فندم، مبروك مقدماً! \nممكن تفطيني باسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة) واسم المحافظة؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TdavVj7sVgxcoZCCMemKtc2EfKN3C9KOmlUb3pK6Sx8393PetlN5bsWFqfvsla81gXr+WpUSjXDDtyD1zym1fpPSo7uBvSixqMKV+Y74XYPcAOibIqHTrC4s="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "منى حسن، 01011112222، 14 شارع الطيران الدور 4 شقة 8، مدينة نصر."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_47106",
+     "function": {
+      "arguments": "{\"area\":\"مدينة نصر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TMqRCmaVp53RKavqcWhXm4NY98OLMxSqMgdHp2rsqY114jWj7E846lC36UQ7oBSpkSKnH7GkkeYNTamTnx3bAUb95QRrOHP8KC6/fLlypcQHGjcqvgNczNg4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_47106",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_24292",
+     "function": {
+      "arguments": "{\"address\":\"14 شارع الطيران الدور 4 شقة 8\",\"phone\":\"01011112222\",\"items\":[{\"qty\":1,\"color\":\"أبيض\",\"product_id\":\"T03\",\"size\":\"M\"}],\"area\":\"مدينة نصر\",\"customer_name\":\"منى حسن\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0ThnG08skPViCCuhqyzDAxhuG6NmVzDiilA0zR2yRq6Qt10+/g1OV6hcbkfAvPUcRHycqDn+sh3+GktZftNQMv4XhJXi0i4zW38+Lgb2I0ryb0CvWvxwmTHSQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_24292",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 580, \"summary_ar\": \"طلب رقم 1:\\n- 1× بولو شيرت بيكيه مقاس M لون أبيض = 520 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TMmtCsUKarHvivkgpobB0OnXgbCtJ8HaqOgBc+nHneSp6aZ5kYdLFVIYGnpJCSwCK0ahES+v15iGV/kHhKj4xEVK3DGEKnKgooCQt3qUiMArUKWSQDHuWy2I="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، كدة مظبوط، أكد الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_40232",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TZvdwSA5rhhHp+axIavEKMHAjqgykzzcXblxwHZuHpZBJuhZ61u2KaaQq24UT6L2SQpMe2Hlj73pfLFrCKqpSiRA6giZ1F6KqYz5y5f84OuzEc77lKrnXDvk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_40232",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! شكراً لتعاملك مع وصلة وير، وهيوصلك في خلال يوم لـ 3 أيام. تحبِ أساعدك في حاجة تاني؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Ttar5NHNx8XB6kkjM6a7fD51xdem5pmvx4tsCcAKLfmxLU2iIcPmJ1lOjpqCft5A7Q6swkHm3h9OV9+M53zYxS8IYyMhMIyXCMdI3kS5v3ta2qVVd+vXAglU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "شكراً جداً، تسلم. هو هيجيلي رسالة لما المندوب يكون في الطريق؟"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تسلمي! أيوه طبعاً، المندوب هيتصل بيكي قبل ما يوصل عشان تنسقوا وقت التسليم. تحت أمرك في أي وقت! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TtvERo3Timeb6F6pR3oOoflpQZ4ej195FD+7yCH09He3ebezXBCnjiuq7Ieo0o6t6gZUlUe+Lw4RFs8zsi6qTgjQqisIYcqd6N9+GphNyqLPTOt5+NIwzCuA="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-size-1",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "منى حسن",
+   "phone": "01011112222",
+   "address": "14 شارع الطيران الدور 4 شقة 8",
+   "area": "مدينة نصر",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T03",
+     "name_ar": "بولو شيرت بيكيه",
+     "size": "M",
+     "color": "أبيض",
+     "qty": 1,
+     "unit_price": 520
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 520,
+   "total": 580,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "بولو شيرت بيكيه حلو أوي، بس مش عارفة آخد مقاس ايه"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1893,
+    "tokens_out": 23,
+    "latency_s": 11.32
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2637,
+    "tokens_out": 61,
+    "latency_s": 18.73
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "ولا يهمك يا فندم، من عيوني! عشان أقولك المقاس المضبوط بالظبط، ممكن تقوليلي طولك كام سم، وزنك كام كيلو، وحابة اللبس يكون مظبوط (ريجولار) ولا واسع (لوز)؟",
+    "latency_s": 30.06
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "طولي 170 سم ووزني 65 كيلو، وبحب اللبس ريجولار فيت."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2726,
+    "tokens_out": 43,
+    "latency_s": 11.22
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2824,
+    "tokens_out": 60,
+    "latency_s": 10.95
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "المقاس المناسب لحضرتك هو M ومتاح معانا بجميع الألوان (كحلي، أبيض، نبيتي) وسعره 520 جنيه. \n\nتحب أضيفلك بنطلون تشينو بـ 780 جنيه؟",
+    "latency_s": 22.17
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "تمام، هخد الـ M باللون الأبيض، مش محتاجة بنطلون شكراً."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2907,
+    "tokens_out": 62,
+    "latency_s": 16.32
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "تمام جداً يا فندم، مبروك مقدماً! \nممكن تفطيني باسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة) واسم المحافظة؟",
+    "latency_s": 16.32
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "منى حسن، 01011112222، 14 شارع الطيران الدور 4 شقة 8، مدينة نصر."
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3006,
+    "tokens_out": 18,
+    "latency_s": 17.44
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3072,
+    "tokens_out": 91,
+    "latency_s": 11.23
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 580,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3330,
+    "tokens_out": 97,
+    "latency_s": 12.17
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون أبيض = 520 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 40.84
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "تمام، كدة مظبوط، أكد الطلب."
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3441,
+    "tokens_out": 16,
+    "latency_s": 9.52
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 580,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3516,
+    "tokens_out": 48,
+    "latency_s": 21.73
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! شكراً لتعاملك مع وصلة وير، وهيوصلك في خلال يوم لـ 3 أيام. تحبِ أساعدك في حاجة تاني؟",
+    "latency_s": 31.25
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "شكراً جداً، تسلم. هو هيجيلي رسالة لما المندوب يكون في الطريق؟"
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3588,
+    "tokens_out": 45,
+    "latency_s": 1.32
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-1",
+   "data": {
+    "text": "العفو يا فندم، تسلمي! أيوه طبعاً، المندوب هيتصل بيكي قبل ما يوصل عشان تنسقوا وقت التسليم. تحت أمرك في أي وقت! 😊",
+    "latency_s": 1.32
+   }
+  }
+ ]
+}

@@ -1,0 +1,304 @@
+{
+ "card_id": "h-resched-3",
+ "category": "reschedule",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام بس ممكن الـ delivery يكون الجمعة الجاية بس؟ 2026-10-16"
+  },
+  {
+   "role": "agent",
+   "text": "عيوني يا فندم، عدلت ميعاد التوصيل ليكون يوم الجمعة 2026-10-16 🌸\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: يوم 2026-10-16\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، الطلب مظبوط ومؤكد. شكراً جداً لاهتمامكم!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، شكراً لثقتك في هدوم وهنجهز طلبك يوصلك في الميعاد المحدد 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "تمام بس ممكن الـ delivery يكون الجمعة الجاية بس؟ 2026-10-16"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_238536",
+     "function": {
+      "arguments": "{\"date\":\"2026-10-16\",\"order_id\":1}",
+      "name": "schedule_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TjsXB8vzQp6EHJKdYFs+l0dUjVnnbwlOELpdHCmVV/9IY2hrU8ush9IxVGZOLOgNefZnM56Lx79Z/HyrrFC72CIe7QCI1QImjSPuJnJGPJqjDdJuCGJqDXz4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_238536",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1310, \"summary_ar\": \"طلب رقم 1:\\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\\nالعنوان: 18 شارع السودان الدور 3، الدقي\\nالتوصيل: يوم 2026-10-16\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "عيوني يا فندم، عدلت ميعاد التوصيل ليكون يوم الجمعة 2026-10-16 🌸\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: يوم 2026-10-16\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TWGQyoxaoDZEDGQZmgaJhXafwFwjdD62dzO84GsbEepzegCCwafW/SapieKPG9TG/xYGl184m+QlSeazRwfION1IIwACi9zj9/AFVL4oZzT6bO06A933EMIM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، الطلب مظبوط ومؤكد. شكراً جداً لاهتمامكم!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_157055",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Te99Sz8Hs7U3zRii/tDBOKWJddiHBfAnF41OQTrHBUk+hNnrmlPAcJp4z4rZBmA4CtdpU5Lur3Hlm4CsnJ/0k689IRLujmTv324dOptM04IZjTN6JP9IHInI="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_157055",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، شكراً لثقتك في هدوم وهنجهز طلبك يوصلك في الميعاد المحدد 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TEpYiY/ICyXXZTExqxSb8Sz7XpZuiBFdPWeE14Pb0OXhy1qjmqC2NZFvww1fJD9kIHlvzucclILo6NsKZmNal3aegKi/dcfW4BtfvqOGyNP1RBSjahFOtjck="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "طارق سليم",
+   "phone": "01225678901",
+   "address": "18 شارع السودان الدور 3",
+   "area": "الدقي",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "O01",
+     "name_ar": "جاكيت جينز",
+     "size": "L",
+     "color": "أزرق فاتح",
+     "qty": 1,
+     "unit_price": 1250
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 1250,
+   "total": 1310,
+   "delivery_date": "2026-10-16",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1310,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا طارق! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام بس ممكن الـ delivery يكون الجمعة الجاية بس؟ 2026-10-16"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2155,
+    "tokens_out": 31,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2359,
+    "tokens_out": 134,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "عيوني يا فندم، عدلت ميعاد التوصيل ليكون يوم الجمعة 2026-10-16 🌸\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق فاتح = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان الدور 3، الدقي\nالتوصيل: يوم 2026-10-16\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، الطلب مظبوط ومؤكد. شكراً جداً لاهتمامكم!"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2514,
+    "tokens_out": 16,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1310,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "O01",
+    "size": "L",
+    "delta": -1,
+    "stock_after": 5,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2589,
+    "tokens_out": 31,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، شكراً لثقتك في هدوم وهنجهز طلبك يوصلك في الميعاد المحدد 🌸",
+    "latency_s": 0.0
+   }
+  }
+ ]
+}

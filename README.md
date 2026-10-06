@@ -11,7 +11,7 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
 |---|---|
 | **Held-out task success** | **97%** of 30 simulated customers the agent was never tuned on |
 | **Safety violations** | **0** — no made-up price, no confirmation without an explicit yes |
-| **One typical shop, base case** | **32 h/week** saved · **19,372 EGP/month** net · **pays for itself in 1.3 days** |
+| **One typical shop, base case** | **35 h/week** saved · **19,549 EGP/month** net · running cost earned back in **1.6 days** |
 
 <!-- HOSTED_URL -->
 
@@ -135,21 +135,34 @@ from the agent.
   cause (e.g. a too-strict yes check, a reply claiming a confirmation that never happened); task success
   went from 82% to 97%. [`bench/report/report.md`](bench/report/report.md)
 - **Held-out set (30 cards)** — new people, areas, products, phrasings and scenarios, written after the
-  fixes and run once on the agent frozen at commit `8b29e1e`, with no changes afterwards.
+  development fixes and never used to tune the agent. Reported here: the final agent (commit `7bdb761`).
   [`bench/report-heldout/report.md`](bench/report-heldout/report.md)
+- **Transcripts are committed** ([`bench/results/heldout-final/`](bench/results/heldout-final),
+  [`bench/results/run2/`](bench/results/run2)), so anyone can re-grade them:
+  `uv run python -m moderator.bench.report --results bench/results/heldout-final --cards bench/cards-heldout --out /tmp/r`.
 
 | Held-out (30 simulated customers) | |
 |---|---|
 | Task success | **97%** (29/30) |
 | Safety violations | **0** |
-| Handled without a person | 93% |
-| Median agent reply time | 3.0 s |
+| Handled without a person | 100% |
+| Median agent reply time (live model calls only) | 2.2 s on the development run · 6.2 s on the earlier held-out run, which includes waiting out free-tier rate limits |
 | Success by writing style | Egyptian Arabic 100% · Franco 90% · mixed 100% |
-| Model calls / tokens per conversation | 4.6 / 12,205 in, 240 out |
+| Model calls / tokens per conversation | 5.4 / 16,123 in, 293 out |
 
-The one miss: a customer asked whether the fabric shrinks after washing. The catalog has no fabric
-information, so the agent handed her to a person instead of inventing an answer — the grader counts it
-as a failure because the order was not confirmed.
+The one miss (`h-price-2`): the card's customer is a price shopper who should leave without buying, but
+the simulated customer decided to buy and wrote "aywa… akked el talab!" (yes, confirm the order). The
+agent confirmed as asked; the grader expected no order, so it counts as a failure. We left the grading
+as it was rather than change it after seeing held-out results.
+
+Honest notes on the method:
+- Model responses are cached by exact request, so a request seen in an earlier run reuses its recorded
+  answer; any request the newer code changed goes to the live model. That is why reply time is
+  measured only on live calls.
+- "0 violations" for *confirmed without a yes* uses the same yes-check the agent's guard uses, so it
+  shows the guard held in every conversation, not an independent judgment of what the customer meant.
+  The other violations (amounts not from the shop's data, wrong status for a customer who never
+  replied) are checked independently of the agent's code.
 
 LLM-simulated customers are imperfect proxies for people ([Lost in Simulation][lost]); these are
 simulation results, not field results.
@@ -160,12 +173,15 @@ Measured agent quality × cited assumptions (`low` is always the conservative ca
 
 | Per month unless noted | low | base | high |
 |---|---|---|---|
-| Hours saved / week | 13.9 | 32.0 | 98.9 |
+| Hours saved / week | 15.0 | 34.5 | 106.8 |
 | Refused COD deliveries prevented | 20 | 130 | 486 |
-| Running cost: model + hosting (EGP) | 1,519 | 887 | 351 |
-| **Net cost saved (EGP)** | **1,972** | **19,372** | **98,741** |
-| **Pays for itself in (days)** | 13.1 | 1.3 | 0.1 |
-| Extra sales from faster replies (EGP, gross, estimate) | 8,667 | 50,560 | 312,525 |
+| Running cost: model + hosting (EGP) | 1,838 | 1,083 | 461 |
+| **Net cost saved (EGP)** | **1,792** | **19,549** | **99,948** |
+| **Running cost earned back in (days)** | 15.2 | 1.6 | 0.1 |
+| Extra sales from faster replies (EGP, gross, estimate) | 9,360 | 54,600 | 337,500 |
+
+"Earned back" = one month's running cost ÷ a day's gross savings. There is no setup fee in this model;
+a shop's own setup time is not counted.
 
 The **ROI calculator** in the app runs the same model with a shop's own numbers (orders/day,
 messages/day, moderator salary, refusal rate, average order). All parameters, sources and formulas:
@@ -199,7 +215,7 @@ replay/        the recorded demo used when there is no API key
 
 - **Free-tier friendly:** a fallback chain across Gemini Flash-Lite models that waits for the first
   model to free up instead of failing, and a response cache — the recorded demo never spends quota.
-- **Tests:** `uv run pytest` (150 tests, no API key needed).
+- **Tests:** `uv run pytest` (182 tests, no API key needed).
 - **Re-run the bench:** `uv run python -m moderator.bench.runner --cards bench/cards-heldout --out bench/results/heldout`
   (resumable), then `uv run python -m moderator.bench.report --results bench/results/heldout --cards bench/cards-heldout --out bench/report-heldout`.
 - **Play a card yourself:** `uv run python -m moderator.bench.runner --human --ids clear-1,decline-2 --out bench/results/human`.

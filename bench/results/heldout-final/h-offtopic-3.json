@@ -1,0 +1,269 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "للأسف يا فندم إحنا بنوصل داخل مصر بس ومش متاح فرع في دبي حالياً. تحب تشوف أي منتجات عندنا للشحن داخل مصر؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "شكراً على ردك! بما إن التوسع حالياً مش متاح، ممكن أطلب منك خدمة تانية؟\n\nكنت حابب أعرف إذا كان متاح عندكم إمكانية \"الطلب المسبق\" (Pre-order) لمنتجات معينة مش موجودة حالياً في المخزون، ولا بتعتمدوا بس على اللي متوفر في الموقع؟"
+  },
+  {
+   "role": "agent",
+   "text": "عفواً يا فندم! بخصوص الطلبات، إحنا بنعتمد على المنتجات المتاحة في المخزون حالياً فقط ومافيش خدمة طلب مسبق. \n\nتحب أساعدك بحاجة من تشكيلة اللبس المتاحة عندنا؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، فهمت قصدك. طيب بما إن الطلب المسبق مش متاح، ممكن أطلب أوردر لقطعتين من اللي موجودين حالياً في الموقع؟\n\nعايز أتأكد بس قبل ما أتمم، هل متاح لي إني أفتح الطرد وأجرب المقاس قبل ما أدفع للكابتن بتاع الشحن؟ ولا السياسة عندكم بتمنع ده؟"
+  },
+  {
+   "role": "agent",
+   "text": "تحت أمرك يا فندم! بخصوص التجربة، متاح إنك تفتح الطرد وتتأكد من المنتج، بس للأسف تجربة اللبس نفسه وقت الاستلام مش متاح، وعندنا سياسة استبدال خلال 14 يوم لو المقاس مظبطش بشرط يكون بنفس التيك وماتلبسش. \n\nحبايبي، تحب تشوف إيه من منتجاتنا وتبدأ تختار؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، ده حل ممتاز ومطمن جداً، خصوصاً سياسة الاستبدال خلال 14 يوم.\n\nخلاص أنا جاهز، ممكن أبدأ أختار القطع اللي محتاجها. بس قبل ما أبعتلك الأوردر، هل في أي \"كود خصم\" متاح حالياً للطلبات الأولى أو عروض على القطعتين؟"
+  },
+  {
+   "role": "agent",
+   "text": "مفيش أكواد خصم متاحة حالياً يا فندم، بس أسعارنا وتخفيضاتنا نازلة على طول في الموقع! \n\nتفضل باختيار القطع اللي تعجبك (زي الهوديات أو التيشرتات مثلاً)، وقولي على اسم القطعة أو نوعها عشان نبدأ نختار المقاس المناسب وتحت أمرك في أي وقت. 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "للأسف يا فندم إحنا بنوصل داخل مصر بس ومش متاح فرع في دبي حالياً. تحب تشوف أي منتجات عندنا للشحن داخل مصر؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TF+L/XkObxHo3O4mmfGSwNBeACx4AGfpwp1ExZ9FhrmazJUKEByF1seLWE8Da+RgUMqfJpF6ebAawQkOayby+ijYNPm3gsfv0q/qsJKlBry5Ru4ydKgZljH4="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "شكراً على ردك! بما إن التوسع حالياً مش متاح، ممكن أطلب منك خدمة تانية؟\n\nكنت حابب أعرف إذا كان متاح عندكم إمكانية \"الطلب المسبق\" (Pre-order) لمنتجات معينة مش موجودة حالياً في المخزون، ولا بتعتمدوا بس على اللي متوفر في الموقع؟"
+  },
+  {
+   "role": "assistant",
+   "content": "عفواً يا فندم! بخصوص الطلبات، إحنا بنعتمد على المنتجات المتاحة في المخزون حالياً فقط ومافيش خدمة طلب مسبق. \n\nتحب أساعدك بحاجة من تشكيلة اللبس المتاحة عندنا؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T9Q1dAuxT6hVNtjCUTjMTIrBXF5kzdHHc3OiLQoEkEYkCoIuSv7HVUI2TdeoXLjpBbbmJSPBedtry6z+KNqOKyw1Litm021XZbKLpTHryQBxPuTLkYDkclzI="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، فهمت قصدك. طيب بما إن الطلب المسبق مش متاح، ممكن أطلب أوردر لقطعتين من اللي موجودين حالياً في الموقع؟\n\nعايز أتأكد بس قبل ما أتمم، هل متاح لي إني أفتح الطرد وأجرب المقاس قبل ما أدفع للكابتن بتاع الشحن؟ ولا السياسة عندكم بتمنع ده؟"
+  },
+  {
+   "role": "assistant",
+   "content": "تحت أمرك يا فندم! بخصوص التجربة، متاح إنك تفتح الطرد وتتأكد من المنتج، بس للأسف تجربة اللبس نفسه وقت الاستلام مش متاح، وعندنا سياسة استبدال خلال 14 يوم لو المقاس مظبطش بشرط يكون بنفس التيك وماتلبسش. \n\nحبايبي، تحب تشوف إيه من منتجاتنا وتبدأ تختار؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TPk9RuXR17+GSAm0ivj75G+mJiRqmK6PmIvf+BPHUWanBTqdR1DF9HFB1EZigGs6mYLY+zxhKzNn01z+230eFi5GvDqS6GbVUbmiqXqSxEfdGRyBjiKZSF+w="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، ده حل ممتاز ومطمن جداً، خصوصاً سياسة الاستبدال خلال 14 يوم.\n\nخلاص أنا جاهز، ممكن أبدأ أختار القطع اللي محتاجها. بس قبل ما أبعتلك الأوردر، هل في أي \"كود خصم\" متاح حالياً للطلبات الأولى أو عروض على القطعتين؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_239059",
+     "function": {
+      "arguments": "{\"query\":\"hoodie\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TXhFiC/XxV5M4zahwgKd8w8aNzVQRzolrcjNK8S4Dv9tG9ORlBwqMMFgH/eriRksKHG/unaiam0YeYPXxsEYdXk5NaqxY8hQ+VC9CT6Xlzmxgevz7wFgz7+Q="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_239059",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "مفيش أكواد خصم متاحة حالياً يا فندم، بس أسعارنا وتخفيضاتنا نازلة على طول في الموقع! \n\nتفضل باختيار القطع اللي تعجبك (زي الهوديات أو التيشرتات مثلاً)، وقولي على اسم القطعة أو نوعها عشان نبدأ نختار المقاس المناسب وتحت أمرك في أي وقت. 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TN8JeEWxfacET84c9VNo4J2zaJrxmuDaOhI3emEinuzbMt+3hvlXNXSxEKW116Q7gRW25tbUt/kQeT9WiioYDuGgSULVQUp4nCAHV6DUKDtw8F6jitPcfnME="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 1888,
+    "tokens_out": 39,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "للأسف يا فندم إحنا بنوصل داخل مصر بس ومش متاح فرع في دبي حالياً. تحب تشوف أي منتجات عندنا للشحن داخل مصر؟ 😊",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "شكراً على ردك! بما إن التوسع حالياً مش متاح، ممكن أطلب منك خدمة تانية؟\n\nكنت حابب أعرف إذا كان متاح عندكم إمكانية \"الطلب المسبق\" (Pre-order) لمنتجات معينة مش موجودة حالياً في المخزون، ولا بتعتمدوا بس على اللي متوفر في الموقع؟"
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2010,
+    "tokens_out": 63,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عفواً يا فندم! بخصوص الطلبات، إحنا بنعتمد على المنتجات المتاحة في المخزون حالياً فقط ومافيش خدمة طلب مسبق. \n\nتحب أساعدك بحاجة من تشكيلة اللبس المتاحة عندنا؟ 😊",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "تمام، فهمت قصدك. طيب بما إن الطلب المسبق مش متاح، ممكن أطلب أوردر لقطعتين من اللي موجودين حالياً في الموقع؟\n\nعايز أتأكد بس قبل ما أتمم، هل متاح لي إني أفتح الطرد وأجرب المقاس قبل ما أدفع للكابتن بتاع الشحن؟ ولا السياسة عندكم بتمنع ده؟"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2163,
+    "tokens_out": 96,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "تحت أمرك يا فندم! بخصوص التجربة، متاح إنك تفتح الطرد وتتأكد من المنتج، بس للأسف تجربة اللبس نفسه وقت الاستلام مش متاح، وعندنا سياسة استبدال خلال 14 يوم لو المقاس مظبطش بشرط يكون بنفس التيك وماتلبسش. \n\nحبايبي، تحب تشوف إيه من منتجاتنا وتبدأ تختار؟ 😊",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "تمام، ده حل ممتاز ومطمن جداً، خصوصاً سياسة الاستبدال خلال 14 يوم.\n\nخلاص أنا جاهز، ممكن أبدأ أختار القطع اللي محتاجها. بس قبل ما أبعتلك الأوردر، هل في أي \"كود خصم\" متاح حالياً للطلبات الأولى أو عروض على القطعتين؟"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2339,
+    "tokens_out": 17,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2541,
+    "tokens_out": 87,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "مفيش أكواد خصم متاحة حالياً يا فندم، بس أسعارنا وتخفيضاتنا نازلة على طول في الموقع! \n\nتفضل باختيار القطع اللي تعجبك (زي الهوديات أو التيشرتات مثلاً)، وقولي على اسم القطعة أو نوعها عشان نبدأ نختار المقاس المناسب وتحت أمرك في أي وقت. 😊",
+    "latency_s": 0.0
+   }
+  }
+ ]
+}

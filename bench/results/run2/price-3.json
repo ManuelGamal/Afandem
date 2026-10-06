@@ -1,0 +1,189 @@
+{
+ "card_id": "price-3",
+ "category": "price_shopper",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "How much ال Casual blazer؟ وال delivery للمنصورة كام؟"
+  },
+  {
+   "role": "agent",
+   "text": "البليزر الكاجوال بـ 1550 جنيه، والتوصيل للمنصورة بـ 70 جنيه وبياخد من يومين لـ 4 أيام يا فندم. تحب أساعدك في اختيار المقاس؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "غالي أوي كدة! too expensive عليا والله.. شكراً جداً."
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، نورتنا وتحت أمرك في أي وقت! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "How much ال Casual blazer؟ وال delivery للمنصورة كام؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_673391",
+     "function": {
+      "arguments": "{\"query\":\"Casual blazer\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TViS2kfIhT0iue3nVpYzC16//EfcJ/MOIb0GHT0cVsEGvHFsu+PxWmVBDiixYr8I6luhzjdIKutuY6BFF7MzuOobzAqe23AwPFdGhlRxu4zwSuoqOob9e71Y="
+      }
+     }
+    },
+    {
+     "id": "call_673392",
+     "function": {
+      "arguments": "{\"area\":\"المنصورة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_673391",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O04\", \"name\": \"بليزر كاجوال\", \"name_en\": \"Casual blazer\", \"category\": \"outerwear\", \"price\": 1550, \"colors\": [\"كحلي\", \"بيج\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}, {\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_673392",
+   "content": "{\"ok\": true, \"zone\": \"الدلتا\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "البليزر الكاجوال بـ 1550 جنيه، والتوصيل للمنصورة بـ 70 جنيه وبياخد من يومين لـ 4 أيام يا فندم. تحب أساعدك في اختيار المقاس؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TBG/iyx5lyWw3K6dr4Q1rtxBd9ebgM7QK0Bz6hBR0MMYwCdriqlzz4hfJrjIWz2gA6bT/FmVWi/XMW36gymcR0vCX7zDGk6zzYy6g6gXDuwqVm6c2Oz6soFs="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "غالي أوي كدة! too expensive عليا والله.. شكراً جداً."
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، نورتنا وتحت أمرك في أي وقت! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T5RIcdw+E8bvEIYcMkQs3vdHW6zlixLYyVvyRS5Os+D9LjtQ7HT2LrKoYgqvafEbG1aPCCtlnTfiLNIEfHnL2Nz8GWs4mWmJZZKiIIaw8jkj1jkuGBXehQT4="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "text": "How much ال Casual blazer؟ وال delivery للمنصورة كام؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1886,
+    "tokens_out": 36,
+    "latency_s": 2.59
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2141,
+    "tokens_out": 55,
+    "latency_s": 2.25
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "text": "البليزر الكاجوال بـ 1550 جنيه، والتوصيل للمنصورة بـ 70 جنيه وبياخد من يومين لـ 4 أيام يا فندم. تحب أساعدك في اختيار المقاس؟ 😊",
+    "latency_s": 4.84
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "text": "غالي أوي كدة! too expensive عليا والله.. شكراً جداً."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2216,
+    "tokens_out": 21,
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-3",
+   "data": {
+    "text": "ولا يهمك يا فندم، نورتنا وتحت أمرك في أي وقت! 😊",
+    "latency_s": 1.02
+   }
+  }
+ ]
+}

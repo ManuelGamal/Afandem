@@ -1,0 +1,290 @@
+{
+ "card_id": "address-5",
+ "category": "vague_address",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: near the metro، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "Ahlan, el talab tamam bas el 3enwan el sa7: 5 share3 9 el dor 1 she'a 2, el Maadi. Momken t'akdou el talab?"
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fandam, da el mel5as ba3d el ta3deel:\n\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9، الدور 1، شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2ked el talab?"
+  },
+  {
+   "role": "customer",
+   "text": "Aywa, aked el talab. Shokran gedan!"
+  },
+  {
+   "role": "agent",
+   "text": "El 3afw ya fandam! 2akadt el talab w hanehgezoholak 3ala kher. Shoqran le2tikatak m3ana 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: near the metro، المعادي\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: near the metro، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "Ahlan, el talab tamam bas el 3enwan el sa7: 5 share3 9 el dor 1 she'a 2, el Maadi. Momken t'akdou el talab?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_48145",
+     "function": {
+      "arguments": "{\"changes\":{\"address\":\"5 شارع 9، الدور 1، شقة 2، المعادي\"},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T0MOKsUpJbViWUpZS9FV67eS6ss0XriHhFsvQ1tJWDpZFT5Qa4KmbPQcTY9/u1TlOcL2c+yYoIcm9/LpSTY3D0lZ4o/5axdRQZuI7XsR/3c6UG5fFg+q5PDc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_48145",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 450, \"summary_ar\": \"طلب رقم 1:\\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\\nالعنوان: 5 شارع 9، الدور 1، شقة 2، المعادي\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fandam, da el mel5as ba3d el ta3deel:\n\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9، الدور 1، شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2ked el talab?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TU5fhkL5tnYM3e5Yw57yoTfrLnC+uCKBh9gWwSx/y15orant8L8U//Od3JnUW5IDmpTyTpdR1mVKvggWajj9X5ausiw58Ar4QX7uqAxuIQ6Nmea6PFxzYbJE="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Aywa, aked el talab. Shokran gedan!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_827548",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TQmw/GmaB0xjBTWLGvYXkkfgTyu7WOgVpKhCue1/XGqnWvZ8e3MSonugoQPR7gzcDDpcgejNf+lVrh93VwPMw+8t6YsZuKHogKZZ1vyZiEmLghd6Udk3jWXM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_827548",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "El 3afw ya fandam! 2akadt el talab w hanehgezoholak 3ala kher. Shoqran le2tikatak m3ana 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TDsvodHimxP8yMTDc42XKbNB0Wcfez35yCfk7r2aoLsH69936GXOmqQ1l+nOS+lGk6o4q0LG709buiOpA8NIUGp7+uCCJXKnEfEfE3jTZHZ8rRWczoj0e03s="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "هبة سامي",
+   "phone": "01055556666",
+   "address": "5 شارع 9، الدور 1، شقة 2، المعادي",
+   "area": "المعادي",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T08",
+     "name_ar": "تيشيرت مقلم",
+     "size": "M",
+     "color": "كحلي وأبيض",
+     "qty": 1,
+     "unit_price": 390
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 390,
+   "total": 450,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 450,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا هبة! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: near the metro، المعادي\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Ahlan, el talab tamam bas el 3enwan el sa7: 5 share3 9 el dor 1 she'a 2, el Maadi. Momken t'akdou el talab?"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2211,
+    "tokens_out": 40,
+    "latency_s": 0.79
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2421,
+    "tokens_out": 119,
+    "latency_s": 1.23
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Tamam ya fandam, da el mel5as ba3d el ta3deel:\n\nطلب رقم 1:\n- 1× تيشيرت مقلم مقاس M لون كحلي وأبيض = 390 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 450 جنيه (الدفع عند الاستلام)\nالعنوان: 5 شارع 9، الدور 1، شقة 2، المعادي\nالتوصيل: خلال 1-3 أيام\n\nA2ked el talab?",
+    "latency_s": 2.02
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Aywa, aked el talab. Shokran gedan!"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2557,
+    "tokens_out": 16,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 450,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2632,
+    "tokens_out": 42,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "El 3afw ya fandam! 2akadt el talab w hanehgezoholak 3ala kher. Shoqran le2tikatak m3ana 🌸",
+    "latency_s": 1.98
+   }
+  }
+ ]
+}

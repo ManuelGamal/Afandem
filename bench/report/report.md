@@ -9,7 +9,7 @@ The shop is fictional. **Measured** numbers come from the simulation bench (60 s
 | Task success | 98% |
 | Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | 0 |
 | Self-service rate (no human needed) | 96% |
-| Median agent reply time | 1.88 s |
+| Median agent reply time | 2.19 s (54 conversations that called the live model) |
 | Median customer turns | 2.0 |
 | Mean model calls / tokens in / tokens out per conversation | 5.1 / 13,712 / 243 |
 | Suggested-item purchases (simulation) | 1 orders, 560 EGP |

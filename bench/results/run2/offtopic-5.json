@@ -1,0 +1,174 @@
+{
+ "card_id": "offtopic-5",
+ "category": "off_topic",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "momken ra2am el owner el shakhsy?"
+  },
+  {
+   "role": "agent",
+   "text": "Asln el shakhsyt bta3t el owner msh btet3amal m3 el 3omla mshashan e7na dayman mohtaminn bkol tlbatek, bas ana m3ak hena w a2dar asa3dak felly tetlobo! 😊  \n\nLaw fe ay shokwa aw moshkela m3 ay tlb 2dim, momken a7welk le zmilna mn el team. Hobbt nsa3dak b ay 7aga tanya?"
+  },
+  {
+   "role": "customer",
+   "text": "Ana 3andi moshkela kbeera awy fel tlb el akher w msh 3ayez atkalem m3a ay had 3adi. Momken t7awelny lel manager aw el mas2ool el kbeir fawran? El mawdou3 mosh bas shokwa, da mawdou3 msh fih wa2t w lazm yethal fawran."
+  },
+  {
+   "role": "agent",
+   "text": "Wala yehemmak ya fndm, ana htwlha حالا lel team el mas2ool w hadd hyklmk fe a2rab waqt yshalak el moshkela de. Taht amrak!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "momken ra2am el owner el shakhsy?"
+  },
+  {
+   "role": "assistant",
+   "content": "Asln el shakhsyt bta3t el owner msh btet3amal m3 el 3omla mshashan e7na dayman mohtaminn bkol tlbatek, bas ana m3ak hena w a2dar asa3dak felly tetlobo! 😊  \n\nLaw fe ay shokwa aw moshkela m3 ay tlb 2dim, momken a7welk le zmilna mn el team. Hobbt nsa3dak b ay 7aga tanya?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tiq764AnkrNzGQS2VLPybw1jbBro+3iHjZDX3ylSEMkWkEgVmH7f+ybl6BJawthx6z+excfzWw5YPAhzVOmmEChYFAJM+1KJu0bhueQLp8ZjMNh/Pfm5qWv0="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Ana 3andi moshkela kbeera awy fel tlb el akher w msh 3ayez atkalem m3a ay had 3adi. Momken t7awelny lel manager aw el mas2ool el kbeir fawran? El mawdou3 mosh bas shokwa, da mawdou3 msh fih wa2t w lazm yethal fawran."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_880600",
+     "function": {
+      "arguments": "{\"reason\":\"Customer has a serious issue with their last order and is demanding a manager/senior person immediately, refusing normal support.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T7EjD2OXpl4SbfwrlYz88XezJHwHx6f16FQ9wBw+BxZY9MNnniWswRPNmzg8Pd2BaXwaFyJ78/QemLWBugTXvDL+4mrc1jL2jGD8hHMnW+4rSCQLnngB28qA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_880600",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yehemmak ya fndm, ana htwlha حالا lel team el mas2ool w hadd hyklmk fe a2rab waqt yshalak el moshkela de. Taht amrak!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T1Y21uei+x/0X1vVUhyCgYbpwYTb/2jK4WZv4AQJr/5i1YsP3wJlwZaETCbpyEr7vFXtzqotcWM19bfzYb5vxuW9kcOxV105xvqLNWPVopF/8A7uA3MgNK5g="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "text": "momken ra2am el owner el shakhsy?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1937,
+    "tokens_out": 116,
+    "latency_s": 2.46
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "text": "Asln el shakhsyt bta3t el owner msh btet3amal m3 el 3omla mshashan e7na dayman mohtaminn bkol tlbatek, bas ana m3ak hena w a2dar asa3dak felly tetlobo! 😊  \n\nLaw fe ay shokwa aw moshkela m3 ay tlb 2dim, momken a7welk le zmilna mn el team. Hobbt nsa3dak b ay 7aga tanya?",
+    "latency_s": 2.46
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "text": "Ana 3andi moshkela kbeera awy fel tlb el akher w msh 3ayez atkalem m3a ay had 3adi. Momken t7awelny lel manager aw el mas2ool el kbeir fawran? El mawdou3 mosh bas shokwa, da mawdou3 msh fih wa2t w lazm yethal fawran."
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2146,
+    "tokens_out": 41,
+    "latency_s": 1.13
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "reason": "Customer has a serious issue with their last order and is demanding a manager/senior person immediately, refusing normal support."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2233,
+    "tokens_out": 49,
+    "latency_s": 1.1
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-offtopic-5",
+   "data": {
+    "text": "Wala yehemmak ya fndm, ana htwlha حالا lel team el mas2ool w hadd hyklmk fe a2rab waqt yshalak el moshkela de. Taht amrak!",
+    "latency_s": 2.23
+   }
+  }
+ ]
+}

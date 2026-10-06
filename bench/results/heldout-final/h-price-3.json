@@ -1,0 +1,235 @@
+{
+ "card_id": "h-price-3",
+ "category": "price_shopper",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+  },
+  {
+   "role": "agent",
+   "text": "أهلاً بيك يا فندم. هودي قطن تقيل سعره 890 جنيه.\nالشحن للأقصر بـ 85 جنيه وبيوصل خلال 3 لـ 5 أيام عمل.\nتحب أساعدك في اختيار المقاس المناسب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، السعر مناسب جداً. أنا محتاج مقاس L، بس ياريت أتأكد من جدول المقاسات عشان أضمن إنه مظبوط، ممكن تبعتهولي؟ \n\nولو تمام، أقدر أأكد الطلب النهاردة عشان يوصل في الميعاد؟"
+  },
+  {
+   "role": "agent",
+   "text": "تحت أمرك يا فندم، مقاس L مناسب للطول من 172 لـ 182 سم وللوزن من 70 لـ 85 كجم.\nولو حابب نتأكد أكتر، قولي طولك ووزنك كام؟ \nوعشان تكمل طلبك، محتاج أعرف: اللون المفضل (أسود، رمادي، كحلي)، اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_249282",
+     "function": {
+      "arguments": "{\"query\":\"Heavy cotton hoodie\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TOdIjAkmsDwRxkwWiHkFnPs/UssrntENN1YQK0lNNPeZBug4VbPwnCbf0M+/oTH8PqZT7kB/4kNAhsxOf4GeB6VZMEgMs56bdw5BzeYV0bwL+5+CY0Dl14fk="
+      }
+     }
+    },
+    {
+     "id": "call_249283",
+     "function": {
+      "arguments": "{\"area\":\"الأقصر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_249282",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"stock_by_size\": {\"ONE\": 40}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"stock_by_size\": {\"ONE\": 25}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_249283",
+   "content": "{\"ok\": true, \"zone\": \"الصعيد\", \"fee\": 85, \"days_min\": 3, \"days_max\": 5}"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً بيك يا فندم. هودي قطن تقيل سعره 890 جنيه.\nالشحن للأقصر بـ 85 جنيه وبيوصل خلال 3 لـ 5 أيام عمل.\nتحب أساعدك في اختيار المقاس المناسب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TD0KKuV+qVwJBOYHZRMnGAXoPvklpYRC8G/fHBGLWoIbszBmd3EkxVkDXOXZYVc1t19Yzfzgp68HMk7jghYCEOEwTByBLhHfTDW7Ld7oeBXVv7FCfn2uyjNc="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، السعر مناسب جداً. أنا محتاج مقاس L، بس ياريت أتأكد من جدول المقاسات عشان أضمن إنه مظبوط، ممكن تبعتهولي؟ \n\nولو تمام، أقدر أأكد الطلب النهاردة عشان يوصل في الميعاد؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_171391",
+     "function": {
+      "arguments": "{\"product_id\":\"T06\"}",
+      "name": "get_product"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TWJzYcOjCaMVnIRsEQfy/qB7jFweZcI606SQy3Rja3hPzq9EhVHaf48/IFWQ9bwqPxNw0u+0I3NNLKqsIdD/WZpctnc3B6yzi2noSUKSbbfHSec8+8StuKnE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_171391",
+   "content": "{\"ok\": true, \"product\": {\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"size_chart\": {\"S\": {\"h\": [155.0, 168.0], \"w\": [48.0, 60.0]}, \"M\": {\"h\": [165.0, 175.0], \"w\": [58.0, 72.0]}, \"L\": {\"h\": [172.0, 182.0], \"w\": [70.0, 85.0]}, \"XL\": {\"h\": [178.0, 190.0], \"w\": [83.0, 100.0]}, \"XXL\": {\"h\": [182.0, 198.0], \"w\": [98.0, 120.0]}}, \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تحت أمرك يا فندم، مقاس L مناسب للطول من 172 لـ 182 سم وللوزن من 70 لـ 85 كجم.\nولو حابب نتأكد أكتر، قولي طولك ووزنك كام؟ \nوعشان تكمل طلبك، محتاج أعرف: اللون المفضل (أسود، رمادي، كحلي)، اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة).",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tbg0gtpAvDHbzqfHFUbZyRNV5fZ8nxhUpsT5XOZCygnBDhIVtZM0HpzQmDkl6/Ozgwzz0kHEMY4RFAkKyR8WiP97YqS4g/65oFvl9or5mCMYWegR7UmWFgW0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 1895,
+    "tokens_out": 36,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2799,
+    "tokens_out": 61,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "أهلاً بيك يا فندم. هودي قطن تقيل سعره 890 جنيه.\nالشحن للأقصر بـ 85 جنيه وبيوصل خلال 3 لـ 5 أيام عمل.\nتحب أساعدك في اختيار المقاس المناسب؟",
+    "latency_s": 0.01
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "تمام، السعر مناسب جداً. أنا محتاج مقاس L، بس ياريت أتأكد من جدول المقاسات عشان أضمن إنه مظبوط، ممكن تبعتهولي؟ \n\nولو تمام، أقدر أأكد الطلب النهاردة عشان يوصل في الميعاد؟"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 2924,
+    "tokens_out": 20,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "get_product",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "cache",
+    "tokens_in": 3313,
+    "tokens_out": 126,
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "تحت أمرك يا فندم، مقاس L مناسب للطول من 172 لـ 182 سم وللوزن من 70 لـ 85 كجم.\nولو حابب نتأكد أكتر، قولي طولك ووزنك كام؟ \nوعشان تكمل طلبك، محتاج أعرف: اللون المفضل (أسود، رمادي، كحلي)، اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة).",
+    "latency_s": 0.0
+   }
+  }
+ ]
+}

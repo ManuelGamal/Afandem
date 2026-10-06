@@ -1,0 +1,336 @@
+{
+ "card_id": "change-2",
+ "category": "change_at_confirmation",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا كريم! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "ahlan, momken te3mely update lel maqas? kont 3ayez L badal M nafs el lon. el ba2y tamam."
+  },
+  {
+   "role": "agent",
+   "text": "3ayneya w ta7t amrak ya Fandm! 3adalt el maqas le L. Dah el mol5as el gded:\n\nطلب رقم 1:\n- 1× بولو شير特 بيكيه مقاس L لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nNe2dlo keda wla a?</thought>"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، كده الطلب مظبوط جداً. تقدر تأكده، شكراً ليك!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك! تم تأكيد طلبك بنجاح وهيوصلك في خلال من يوم لـ 3 أيام. شكرا لثقتك في وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا كريم! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "ahlan, momken te3mely update lel maqas? kont 3ayez L badal M nafs el lon. el ba2y tamam."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_18361",
+     "function": {
+      "arguments": "{\"query\":\"polo shirt piqué\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T0p44nLOMdnfB2XNPQdzQmWyvrRgiBcVqydMHOhxUXkyxqH2Nup/qD6SisndwQcfk0SwZL5SNud1+SYtXn6YqXyP1aetOCE1V1/0iKpGjaNsperua4S3iiEc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_18361",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T03\", \"name\": \"بولو شيرت بيكيه\", \"name_en\": \"Pique polo\", \"category\": \"tops\", \"price\": 520, \"colors\": [\"كحلي\", \"أبيض\", \"نبيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}]}, {\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"name_en\": \"Oxford shirt\", \"category\": \"tops\", \"price\": 650, \"colors\": [\"سماوي\", \"أبيض\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B02\", \"name\": \"جينز ستريت\", \"price\": 980}, {\"id\": \"O04\", \"name\": \"بليزر كاجوال\", \"price\": 1550}]}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"name_en\": \"Linen shirt\", \"category\": \"tops\", \"price\": 690, \"colors\": [\"أبيض\", \"بيج\", \"سماوي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"price\": 780}, {\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"price\": 740}]}, {\"id\": \"T07\", \"name\": \"سويت شيرت\", \"name_en\": \"Crewneck sweatshirt\", \"category\": \"tops\", \"price\": 750, \"colors\": [\"رمادي\", \"بيج\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_648117",
+     "function": {
+      "arguments": "{\"changes\":{\"address\":\"7 شارع جامعة الدول الدور 2، المهندسين\",\"items\":[{\"color\":\"كحلي\",\"product_id\":\"T03\",\"size\":\"L\",\"qty\":1}],\"area\":\"الجيزة\",\"customer_name\":\"كريم\",\"phone\":\"01000000000\"},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T8BSb3i/9pd8pJYd2Fuc9HMFmAegQP46NC1+15hYLGSHlWEJNB74oos5lkfT5mnxIrK6womZFQPsNPMH5Uwyifkc1jSoaDbJlF2dnGp7uiLWJQvTPMIRUOXM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_648117",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 580, \"summary_ar\": \"طلب رقم 1:\\n- 1× بولو شيرت بيكيه مقاس L لون كحلي = 520 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين، الجيزة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "3ayneya w ta7t amrak ya Fandm! 3adalt el maqas le L. Dah el mol5as el gded:\n\nطلب رقم 1:\n- 1× بولو شير特 بيكيه مقاس L لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nNe2dlo keda wla a?</thought>",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TUlZgoJX1DQ6o5hhi3xzvg7t6bUleTH+MVxUMzTwc1XA7HC54GMR7nH7gqX790FA3SLXaoHFPl6FutGIAoXHkXq4hVcIzoulDCN5PoJIevlTdc3dudhNUaGM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، كده الطلب مظبوط جداً. تقدر تأكده، شكراً ليك!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_70288",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TjCHIDm0l/b3yrIro9vAymheu2MULJzrHaXd27iYF/ap4BsD7ooB0r8tSOY5c291KOvSnt+ZKQsCR4HJbejZrsDM00Jg/4r12N42Ky6Qayt2LFR2k8j6kZNk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_70288",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك! تم تأكيد طلبك بنجاح وهيوصلك في خلال من يوم لـ 3 أيام. شكرا لثقتك في وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TNnIUx3Obeixa/DXhMCTnKu57/ijMHTV3cRgo9MUKJ4XeuBX/bq0idHaRCeVhB/8cqPXE2Zwqs0Yk3xqP0E5VQqTwaO89iDlL9p1g6sb1eW+Au7rrxM8ZU/Y="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "كريم",
+   "phone": "01000000000",
+   "address": "7 شارع جامعة الدول الدور 2، المهندسين",
+   "area": "الجيزة",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "T03",
+     "name_ar": "بولو شيرت بيكيه",
+     "size": "L",
+     "color": "كحلي",
+     "qty": 1,
+     "unit_price": 520
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 520,
+   "total": 580,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 580,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا كريم! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بولو شيرت بيكيه مقاس M لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ahlan, momken te3mely update lel maqas? kont 3ayez L badal M nafs el lon. el ba2y tamam."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2211,
+    "tokens_out": 19,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2816,
+    "tokens_out": 98,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3082,
+    "tokens_out": 139,
+    "latency_s": 1.3
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "3ayneya w ta7t amrak ya Fandm! 3adalt el maqas le L. Dah el mol5as el gded:\n\nطلب رقم 1:\n- 1× بولو شير特 بيكيه مقاس L لون كحلي = 520 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 580 جنيه (الدفع عند الاستلام)\nالعنوان: 7 شارع جامعة الدول الدور 2، المهندسين، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nNe2dlo keda wla a?</thought>",
+    "latency_s": 3.18
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، كده الطلب مظبوط جداً. تقدر تأكده، شكراً ليك!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3186,
+    "tokens_out": 16,
+    "latency_s": 1.04
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 580,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3261,
+    "tokens_out": 45,
+    "latency_s": 1.1
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك! تم تأكيد طلبك بنجاح وهيوصلك في خلال من يوم لـ 3 أيام. شكرا لثقتك في وصلة وير 🌸",
+    "latency_s": 2.15
+   }
+  }
+ ]
+}

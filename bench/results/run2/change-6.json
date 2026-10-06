@@ -1,0 +1,336 @@
+{
+ "card_id": "change-6",
+ "category": "change_at_confirmation",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "يا ريت بس تعدلي المقاس لـ L بدل M عشان ده هيطلع ضيق شوية، اللون زي ما هو أزرق غامق. تمام كدة؟"
+  },
+  {
+   "role": "agent",
+   "text": "من عيوني يا فندم، عدلت المقاس لـ L زي ما طلبت 🌸\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام جداً، أكد الطلب. Thanks!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 1-3 أيام إن شاء الله 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "يا ريت بس تعدلي المقاس لـ L بدل M عشان ده هيطلع ضيق شوية، اللون زي ما هو أزرق غامق. تمام كدة؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_453193",
+     "function": {
+      "arguments": "{\"query\":\"جاكيت جينز\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tfy3IjFae4/21kjxONAbcfIvtjGJJ2dVxRAd+2Y899AWFHpHWeMW+arN4hltFVo93MwJHv8EYwibX4iTMu031surP1v0Sx25/nxuIeAkeXySEcHNis3uIu3w="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_453193",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"name_en\": \"Denim jacket\", \"category\": \"outerwear\", \"price\": 1250, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"name_en\": \"Denim shorts\", \"category\": \"bottoms\", \"price\": 520, \"colors\": [\"أزرق فاتح\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"price\": 390}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"name_en\": \"Slim jeans\", \"category\": \"bottoms\", \"price\": 950, \"colors\": [\"أزرق غامق\", \"أسود\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B02\", \"name\": \"جينز ستريت\", \"name_en\": \"Straight jeans\", \"category\": \"bottoms\", \"price\": 980, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"30\", \"32\", \"36\", \"38\"], \"sizes_out_of_stock\": [\"34\"], \"pairs_with\": [{\"id\": \"T05\", \"name\": \"قميص أكسفورد\", \"price\": 650}]}, {\"id\": \"B03\", \"name\": \"مام جينز\", \"name_en\": \"Mom jeans\", \"category\": \"bottoms\", \"price\": 990, \"colors\": [\"أزرق فاتح\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_59765",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"address\":\"بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\",\"customer_name\":\"مصطفى\",\"items\":[{\"product_id\":\"O01\",\"size\":\"L\",\"color\":\"أزرق غامق\",\"qty\":1}],\"phone\":\"01000000000\",\"area\":\"الجيزة\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TJKX0N287hEU3nF4sDZw06L6+Jfz+VeU53vrzAHXkmNt0HP8YA2QrTb4LUBxZeBOrIfsbfrKuYwOhSQ+KMdXg+ltCX7j/wx8RghqFJuoZPS7i3nIoyGi3CG0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_59765",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1310, \"summary_ar\": \"طلب رقم 1:\\n- 1× جاكيت جينز مقاس L لون أزرق غامق = 1250 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر، الجيزة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "من عيوني يا فندم، عدلت المقاس لـ L زي ما طلبت 🌸\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T0Ehatutdf7pUZlxVxaA6OL4RT1p5ZL9kP2asTlqvifKTus19bAkg9Ggw/r5YiJpkySyzkIDHNanjrpkzc0JsKy+Fo7XCs6F3AIH82Gsm1ONWt6YimoLa5Rk="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام جداً، أكد الطلب. Thanks!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_211",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TLGd9EJaR62w+cOa4ydthppuJ57xDY2HDGwhbZiWkFj5SleFykLJkbd2Vp131Xfx8diet8HcEfCg115bIWte1QVH6THon8VvBAVJWTGF0GpX5Zu5WjD7bvzs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_211",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 1-3 أيام إن شاء الله 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TmNFPAOMu7gEGJCqViNlR92ywiAE4tFBKAhV5AcwLSM4RC8+PGVlYI2fmEnr7VXa0iCB/pPrpBj8qtmJJnvMlgQUZcXLtWGMwbd9+CX5Ofw4QuKPVGW7kU6o="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "مصطفى",
+   "phone": "01000000000",
+   "address": "بلوك 12 عمارة 4 الدور 6، 6 أكتوبر",
+   "area": "الجيزة",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "O01",
+     "name_ar": "جاكيت جينز",
+     "size": "L",
+     "color": "أزرق غامق",
+     "qty": 1,
+     "unit_price": 1250
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 1250,
+   "total": 1310,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1310,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس M لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "يا ريت بس تعدلي المقاس لـ L بدل M عشان ده هيطلع ضيق شوية، اللون زي ما هو أزرق غامق. تمام كدة؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2175,
+    "tokens_out": 20,
+    "latency_s": 1.71
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2929,
+    "tokens_out": 107,
+    "latency_s": 1.36
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3211,
+    "tokens_out": 125,
+    "latency_s": 1.11
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "من عيوني يا فندم، عدلت المقاس لـ L زي ما طلبت 🌸\n\nطلب رقم 1:\n- 1× جاكيت جينز مقاس L لون أزرق غامق = 1250 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1310 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 4.18
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام جداً، أكد الطلب. Thanks!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3349,
+    "tokens_out": 16,
+    "latency_s": 0.81
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1310,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3424,
+    "tokens_out": 31,
+    "latency_s": 1.04
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد طلبك بنجاح وهيوصلك في خلال 1-3 أيام إن شاء الله 🌸",
+    "latency_s": 1.86
+   }
+  }
+ ]
+}

@@ -1,0 +1,608 @@
+{
+ "card_id": "size-2",
+ "category": "size_unsure",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el Chinos 7elw awy bas msh 3aref a5od size eh"
+  },
+  {
+   "role": "agent",
+   "text": "3yonak ya fndm! 3ashan a2olak 3ala el size el mazbot, momken t2oly tolweak, waznak, w betfdal el labs ykon regular wala loose wala tight?"
+  },
+  {
+   "role": "customer",
+   "text": "toli 179 cm w 79 kg w b7eb el regular fit"
+  },
+  {
+   "role": "agent",
+   "text": "El size el monaseb leek howa مقاس 34 w mota7 b el alwan el tanya el byeg, el kahli, wel zety. Habit eno a2olak eno bynzl m3ah Polo Shirt Pikeh b 520 gneh, teheb adifholk m3 el order?"
+  },
+  {
+   "role": "customer",
+   "text": "Tamam, khaly el chinos el beige size 34. W msh 3ayez el polo, shokran."
+  },
+  {
+   "role": "agent",
+   "text": "Enta fe ay mantika aw medina el yom? (Mesal: el Qahira, el Giza, el Iskandareya, etc.) 3ashan a2olak mesrofat el shohno."
+  },
+  {
+   "role": "customer",
+   "text": "Ana fel Mohandessin. Ismy Karim Adel, 01122223333, 7 shary3 gamet el dowal, el dor 2, el mohandessin."
+  },
+  {
+   "role": "agent",
+   "text": "Tolabak:\nطلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون بيج = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 7 shary3 gamet el dowal, el dor 2, el mohandessin، المهندسين\nالتوصيل: خلال 1-3 أيام\n\nA2aked el talab?"
+  },
+  {
+   "role": "customer",
+   "text": "Tamam, a2aked el talab."
+  },
+  {
+   "role": "agent",
+   "text": "Tamam gedan ya fndm, tolabbak et2akad w hayslakh fe el mew3ad. Shoqran le tektik m3 Wasla Wear!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el Chinos 7elw awy bas msh 3aref a5od size eh"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_7247",
+     "function": {
+      "arguments": "{\"query\":\"Chinos\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TfW12OAythgBArDIfu3I9xsdSkcfkBuQHH/bsc7vnoWp4E6fFFfvfKb10htP1qn8t4V0h9hgpRZDhbWwhZ7EA9+hf8IVKlxvJL/nzcQGOlSa1DqeOM7hI1QE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_7247",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"name_en\": \"Chinos\", \"category\": \"bottoms\", \"price\": 780, \"colors\": [\"بيج\", \"كحلي\", \"زيتي\"], \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T03\", \"name\": \"بولو شيرت بيكيه\", \"price\": 520}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"price\": 690}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "3yonak ya fndm! 3ashan a2olak 3ala el size el mazbot, momken t2oly tolweak, waznak, w betfdal el labs ykon regular wala loose wala tight?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TOa+VzPJbvzqbEOxUf7fygtYwuDBGBZd2Ogshgc5XuUciXVLLqj0jhjB/e8/QnXMJ8nDCK7BSWCCiFR5RFL7DtpEKYu3xOK/u/cRgbZbU1D5Kr0L6qC2SPbo="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "toli 179 cm w 79 kg w b7eb el regular fit"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_593760",
+     "function": {
+      "arguments": "{\"height_cm\":179,\"fit_preference\":\"regular\",\"product_id\":\"B04\",\"weight_kg\":79}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TLLdlVgYfiK0KVmMfIBaIwYy7GuwmBUfngF8b04NTrWVbe0OEV2frbpRKR9nbi0wZBYCN+VdCTIRzcVLfC9npd+wGCYRWoiNwTuNMP6UvK9IbVuFGAvAOLnU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_593760",
+   "content": "{\"ok\": true, \"size\": \"34\", \"between\": null, \"in_stock\": true, \"available\": [\"30\", \"32\", \"34\", \"36\", \"38\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "El size el monaseb leek howa مقاس 34 w mota7 b el alwan el tanya el byeg, el kahli, wel zety. Habit eno a2olak eno bynzl m3ah Polo Shirt Pikeh b 520 gneh, teheb adifholk m3 el order?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T0Be57ugd1CRRD3IerGSSTd36AhOcoDC3xlqnYf1KQgg4014nItvGlOZRdd3OgxBT2PaXoRFLkb2nguxnuvb+rKSXrWZkACiVVfuVU8/ncfyAwYUOfaPPprE="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Tamam, khaly el chinos el beige size 34. W msh 3ayez el polo, shokran."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_25736",
+     "function": {
+      "arguments": "{\"query\":\"القاهرة\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T0B6LpqixZmtwGSu2WM3PTFKt/zPA4FjskWwwNJJqtkuQbHMfOdnS04Ql7VMofhhGlGyGxdtnpAgwjdlQ0BKIn1UtKKJh83snEWP6psyetDRNLtVhbbwDKy0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_25736",
+   "content": "{\"ok\": true, \"products\": []}"
+  },
+  {
+   "role": "assistant",
+   "content": "Enta fe ay mantika aw medina el yom? (Mesal: el Qahira, el Giza, el Iskandareya, etc.) 3ashan a2olak mesrofat el shohno.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TPOhYh4Vv44ifxGKzE1BZjoX8vE+vzEzhUJN5f8lOOVvGaQSlxePMAWg+moV+tFEWIQH7J7JD10tcMBVnUXaexcjLt4pjQiSMXRY7hNrBpo6CA3jI0KympJs="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Ana fel Mohandessin. Ismy Karim Adel, 01122223333, 7 shary3 gamet el dowal, el dor 2, el mohandessin."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_786230",
+     "function": {
+      "arguments": "{\"area\":\"المهندسين\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tva4GCgdAMQbMh/9E1Kqllk373ir7KW8R3Kee8vtG4f48iXi0WygUq8FG7Pspv1jQklRAv4DTaNa4iVIheuHssROqXmGp9Y0L6QdcRDmpv7v0Jp+nxU+YzMc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_786230",
+   "content": "{\"ok\": true, \"zone\": \"الجيزة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_82801",
+     "function": {
+      "arguments": "{\"area\":\"المهندسين\",\"items\":[{\"product_id\":\"B04\",\"color\":\"بيج\",\"qty\":1,\"size\":\"34\"}],\"customer_name\":\"Karim Adel\",\"phone\":\"01122223333\",\"address\":\"7 shary3 gamet el dowal, el dor 2, el mohandessin\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TInvGtzQY04DVBMLDfYVvcCOswkEs2hEFGnsUTptjOmFR7uerjQ/N2X1p8B2xNchWGutQKOu89Eskflv7SPDjlAkfh+SDId/ZyVnVAX06b44X4bUK0ueYfbQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_82801",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 840, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون تشينو مقاس 34 لون بيج = 780 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\\nالعنوان: 7 shary3 gamet el dowal, el dor 2, el mohandessin، المهندسين\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tolabak:\nطلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون بيج = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 7 shary3 gamet el dowal, el dor 2, el mohandessin، المهندسين\nالتوصيل: خلال 1-3 أيام\n\nA2aked el talab?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TYSoSuc+YyiGZL1mrJ4SEAI/o67JPFn2S1DRcggPpVRyLjt/ukXpfZ78KSFrbRb/qSFsLV779zK6Bfk7PcP+6/4mSDY5I0fZk8Y9752eDAgyhhQecWPH950Y="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Tamam, a2aked el talab."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_19221",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T4vr/cbO0u877P5i3AUGszQacn4N9O05kZAvSJUA2WOEf3r5EJelfz5pKM6x0SAPJHr+66EaMfggRyYzzd/9UvJCyBkpYVLnEvKSB2BaLxtekLW3Im0IL08M="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_19221",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam gedan ya fndm, tolabbak et2akad w hayslakh fe el mew3ad. Shoqran le tektik m3 Wasla Wear!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tv9FTp0kS3wldusxzbduwnAI8adc6D/T37YhEey8uKsr3h8xWmzewigUpXYCICW3ED88dchlRIIZU038M6OyhJ41kmcz2rfW0SwOI9hfdrc0Fbo+XdKDRdLM="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-size-2",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "Karim Adel",
+   "phone": "01122223333",
+   "address": "7 shary3 gamet el dowal, el dor 2, el mohandessin",
+   "area": "المهندسين",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "B04",
+     "name_ar": "بنطلون تشينو",
+     "size": "34",
+     "color": "بيج",
+     "qty": 1,
+     "unit_price": 780
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 780,
+   "total": 840,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "el Chinos 7elw awy bas msh 3aref a5od size eh"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1946,
+    "tokens_out": 17,
+    "latency_s": 0.86
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2141,
+    "tokens_out": 53,
+    "latency_s": 1.13
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "3yonak ya fndm! 3ashan a2olak 3ala el size el mazbot, momken t2oly tolweak, waznak, w betfdal el labs ykon regular wala loose wala tight?",
+    "latency_s": 1.99
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "toli 179 cm w 79 kg w b7eb el regular fit"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2212,
+    "tokens_out": 43,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2315,
+    "tokens_out": 74,
+    "latency_s": 1.3
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "El size el monaseb leek howa مقاس 34 w mota7 b el alwan el tanya el byeg, el kahli, wel zety. Habit eno a2olak eno bynzl m3ah Polo Shirt Pikeh b 520 gneh, teheb adifholk m3 el order?",
+    "latency_s": 2.31
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "Tamam, khaly el chinos el beige size 34. W msh 3ayez el polo, shokran."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2419,
+    "tokens_out": 17,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2459,
+    "tokens_out": 49,
+    "latency_s": 1.1
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "Enta fe ay mantika aw medina el yom? (Mesal: el Qahira, el Giza, el Iskandareya, etc.) 3ashan a2olak mesrofat el shohno.",
+    "latency_s": 2.04
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "Ana fel Mohandessin. Ismy Karim Adel, 01122223333, 7 shary3 gamet el dowal, el dor 2, el mohandessin."
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2557,
+    "tokens_out": 19,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2624,
+    "tokens_out": 101,
+    "latency_s": 1.26
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 840,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2899,
+    "tokens_out": 110,
+    "latency_s": 1.1
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "Tolabak:\nطلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون بيج = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 7 shary3 gamet el dowal, el dor 2, el mohandessin، المهندسين\nالتوصيل: خلال 1-3 أيام\n\nA2aked el talab?",
+    "latency_s": 3.31
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "Tamam, a2aked el talab."
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3021,
+    "tokens_out": 16,
+    "latency_s": 0.96
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 840,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3096,
+    "tokens_out": 39,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-size-2",
+   "data": {
+    "text": "Tamam gedan ya fndm, tolabbak et2akad w hayslakh fe el mew3ad. Shoqran le tektik m3 Wasla Wear!",
+    "latency_s": 2.04
+   }
+  }
+ ]
+}

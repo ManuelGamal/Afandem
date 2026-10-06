@@ -1,0 +1,382 @@
+{
+ "card_id": "change-4",
+ "category": "change_at_confirmation",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس M لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أهلاً، معلش ممكن نغير المقاس لـ L؟ نفس اللون الأسود."
+  },
+  {
+   "role": "agent",
+   "text": "عينيا، غيرت المقاس لـ L زي ما طلبت ✨\n\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، أكد الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! هنجهزه ونبعته في خلال 2-4 أيام وشكراً لاختيارك وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس M لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس M لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أهلاً، معلش ممكن نغير المقاس لـ L؟ نفس اللون الأسود."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_127563",
+     "function": {
+      "arguments": "{\"query\":\"هودي قطن تقيل\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TQNbTR592afKfc3RKhOW4P8DiRMDcpF+xUGS96IA9fq4sN7X/25nlwMHeQFVv49P5fskWKuaGZKsJ+EIDYRn72XTFFlSCLqM0xJcF0vLnVDhWCmm91ELcJl8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_127563",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_607798",
+     "function": {
+      "arguments": "{\"changes\":{\"customer_name\":\"عمر\",\"items\":[{\"color\":\"أسود\",\"qty\":1,\"size\":\"L\",\"product_id\":\"T06\"}],\"phone\":\"01000000000\",\"address\":\"9 شارع الجلاء الدور 3، طنطا\",\"area\":\"الدلتا\"},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TrUV0AxcW/+sKxhM06H4/FWIVYUP3HZc5KvPSEAsnAs0Ez6UwvnULdcH5bf9Tq8aqm4e8OeT9Rrc8Zk1QbCPcPnaIpXA0WAw+mZnfDHfH89ctbUdsWK5X6I4="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_607798",
+   "content": "{\"ok\": false, \"error\": \"area_not_served\", \"message\": \"we do not deliver to 'الدلتا'\", \"served\": [\"القاهرة\", \"الجيزة\", \"الإسكندرية\", \"الدلتا\", \"مدن القناة\", \"الصعيد\"]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_69576",
+     "function": {
+      "arguments": "{\"changes\":{\"phone\":\"01000000000\",\"customer_name\":\"عمر\",\"address\":\"9 شارع الجلاء الدور 3، طنطا\",\"area\":\"طنطا\",\"items\":[{\"product_id\":\"T06\",\"color\":\"أسود\",\"size\":\"L\",\"qty\":1}]},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TY75WOR51OYVJRAYswvT7zgzTawrGPFOJYjVPyuhoLR61kGcRUXpakiTVvwDhoJ1W2UOTEfTFIH43l+Kg9xsU2Dy61Pqx3pI7goHld9ww+GkTw7eJy2jOrhA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_69576",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 960, \"summary_ar\": \"طلب رقم 1:\\n- 1× هودي قطن تقيل مقاس L لون أسود = 890 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "عينيا، غيرت المقاس لـ L زي ما طلبت ✨\n\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TlOEOipXjPuAioaI3dp1Kz9yzJJnNjWu2w7a2YF1YAxGy7Wy+5UcS3I79Rg56kv36skoA9brZ+1wFbgHJzPR2aEckGgkhvYnlPYsXVN08w9sOsGPzk2Nv2yI="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، أكد الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_561146",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T6wsUSCGz0pZspBXlGeElbg3ZSASVgYSO5ifSfy6kPfybEwLz5pu2BIac7jDPrhmPt3ocuimUPSrYP/OMVP91jDdZ72M4M3L09C6LH9iTkXRgNPaDgbRD4mM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_561146",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! هنجهزه ونبعته في خلال 2-4 أيام وشكراً لاختيارك وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T8ZCZy5PdfhaQ9tVu/3WvuaoknMTm/FkQoV6MSUvjaRmguhCLNPoT58PsL2bBv4pWgm8HjT1rjO70zCj5MH5fzkmlfDItisjSA7RN1bZpfcQvizqYu5rjd8U="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "عمر",
+   "phone": "01000000000",
+   "address": "9 شارع الجلاء الدور 3، طنطا",
+   "area": "طنطا",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "T06",
+     "name_ar": "هودي قطن تقيل",
+     "size": "L",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 890
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 890,
+   "total": 960,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 960,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس M لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً، معلش ممكن نغير المقاس لـ L؟ نفس اللون الأسود."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2141,
+    "tokens_out": 21,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2834,
+    "tokens_out": 98,
+    "latency_s": 1.38
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": false,
+    "error": "area_not_served"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3006,
+    "tokens_out": 97,
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3266,
+    "tokens_out": 107,
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "عينيا، غيرت المقاس لـ L زي ما طلبت ✨\n\nطلب رقم 1:\n- 1× هودي قطن تقيل مقاس L لون أسود = 890 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 960 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 4.32
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، أكد الطلب."
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3382,
+    "tokens_out": 16,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 960,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3457,
+    "tokens_out": 38,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! هنجهزه ونبعته في خلال 2-4 أيام وشكراً لاختيارك وصلة وير 🌸",
+    "latency_s": 2.05
+   }
+  }
+ ]
+}

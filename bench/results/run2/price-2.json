@@ -1,0 +1,137 @@
+{
+ "card_id": "price-2",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "bekam el Bomber jacket? w el shipping le Tanta kam?"
+  },
+  {
+   "role": "agent",
+   "text": "El Bomber jacket be 1450 geneh, w el shipping le Tanta be 70 geneh w byakhod men 2 le 4 ayam. Taht amrak! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "bekam el Bomber jacket? w el shipping le Tanta kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_617293",
+     "function": {
+      "arguments": "{\"query\":\"Bomber jacket\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TlUOaMM6sCp+kvvzpMjxal7mxOUxcZLm9+fcoptc+yBEBO/iKpXDZ3FOiSgEt/I8BQBuILDuWkSQRLp4pj7vJ0SpI8szM1osImoJ2OW7LiSs5SKGmrqsyvmY="
+      }
+     }
+    },
+    {
+     "id": "call_617294",
+     "function": {
+      "arguments": "{\"area\":\"طنطا\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_617293",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O02\", \"name\": \"جاكيت بومبر\", \"name_en\": \"Bomber jacket\", \"category\": \"outerwear\", \"price\": 1450, \"colors\": [\"أسود\", \"زيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"name_en\": \"Denim jacket\", \"category\": \"outerwear\", \"price\": 1250, \"colors\": [\"أزرق فاتح\", \"أزرق غامق\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"O03\", \"name\": \"جاكيت جلد صناعي\", \"name_en\": \"Faux-leather jacket\", \"category\": \"outerwear\", \"price\": 1650, \"colors\": [\"أسود\", \"بني\"], \"sizes_in_stock\": [\"S\", \"M\", \"XL\"], \"sizes_out_of_stock\": [\"L\", \"XXL\"], \"pairs_with\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_617294",
+   "content": "{\"ok\": true, \"zone\": \"الدلتا\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "El Bomber jacket be 1450 geneh, w el shipping le Tanta be 70 geneh w byakhod men 2 le 4 ayam. Taht amrak! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TPMdYVJChcn3GOcE5U31rlyvSq3dWNCetcpgJCCm4Gfuqs0NB9ZI6T2/2Two72Ct5FvfTiFXjf4huhn+1BnTDQZiTIuO5tH+leFeb/7f//CHvjU5hS+/GOFQ="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-2",
+   "data": {
+    "text": "bekam el Bomber jacket? w el shipping le Tanta kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1939,
+    "tokens_out": 35,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2468,
+    "tokens_out": 43,
+    "latency_s": 0.95
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-2",
+   "data": {
+    "text": "El Bomber jacket be 1450 geneh, w el shipping le Tanta be 70 geneh w byakhod men 2 le 4 ayam. Taht amrak! 😊",
+    "latency_s": 1.87
+   }
+  }
+ ]
+}

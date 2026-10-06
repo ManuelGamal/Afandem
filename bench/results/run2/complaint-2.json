@@ -1,0 +1,122 @@
+{
+ "card_id": "complaint-2",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el order bta3y wesel size 3'alat w el mandoub kan alil el adab, 3ayez a3mel shakwa"
+  },
+  {
+   "role": "agent",
+   "text": "Ana asef gedan 3ala el 7osol da w 3ala tasrof el mandoub! 7awaltk 7alan lel team el mokhtas, w had da2e2a w hadd hytwasal m3ak y7olha lek."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el order bta3y wesel size 3'alat w el mandoub kan alil el adab, 3ayez a3mel shakwa"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_796972",
+     "function": {
+      "arguments": "{\"reason\":\"Complaint about wrong size and rude delivery representative\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TbYiSPXJA6TrBRJ9k/+f7gdpvv3toa9xp3CPuosT+TEx+IdNUCd6kzfqqqCUDvUiMd3vgA2Xylml9TJ1Hv0qJJTTuC+V+IOBfwwTrsxUY5e3hIfA28WbUSvs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_796972",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Ana asef gedan 3ala el 7osol da w 3ala tasrof el mandoub! 7awaltk 7alan lel team el mokhtas, w had da2e2a w hadd hytwasal m3ak y7olha lek.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T9TOEICAHg0Vm3+BQ7/B+r8aQu8OOUGONe1eE6SObf8aUwV7RQFnRQremV6MyFa6+OpqtnN8PDxfd3oYTFh2TKtsP0w9tpx//UICjcDmWJvsCct3I5U6c0k0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-complaint-2",
+   "data": {
+    "text": "el order bta3y wesel size 3'alat w el mandoub kan alil el adab, 3ayez a3mel shakwa"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1958,
+    "tokens_out": 26,
+    "latency_s": 0.72
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-complaint-2",
+   "data": {
+    "reason": "Complaint about wrong size and rude delivery representative"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-complaint-2",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2030,
+    "tokens_out": 62,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-complaint-2",
+   "data": {
+    "text": "Ana asef gedan 3ala el 7osol da w 3ala tasrof el mandoub! 7awaltk 7alan lel team el mokhtas, w had da2e2a w hadd hytwasal m3ak y7olha lek.",
+    "latency_s": 1.81
+   }
+  }
+ ]
+}

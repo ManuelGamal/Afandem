@@ -1,0 +1,67 @@
+{
+ "card_id": "offtopic-6",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تكتبلي essay عن ال AI للجامعة؟"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم أنا مسؤولة مبيعات في وصلة وير للملابس الجاهزة، وأقدر أساعدك في أي منتج أو طلبية تحبها. 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تكتبلي essay عن ال AI للجامعة؟"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم أنا مسؤولة مبيعات في وصلة وير للملابس الجاهزة، وأقدر أساعدك في أي منتج أو طلبية تحبها. 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TLTBkQOCl9u6Q9vh8K6Jq1dO8WIPnclT2s9+cOLKsXjYX2PBKarbAhvXMdd9XgaMrKmPfNRIB8U0fznyKoeW66DXmwBXSDP81/7YrWa4v0nURlLB/yj3k/V0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-offtopic-6",
+   "data": {
+    "text": "ممكن تكتبلي essay عن ال AI للجامعة؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-offtopic-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1884,
+    "tokens_out": 39,
+    "latency_s": 0.95
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-offtopic-6",
+   "data": {
+    "text": "يا فندم أنا مسؤولة مبيعات في وصلة وير للملابس الجاهزة، وأقدر أساعدك في أي منتج أو طلبية تحبها. 😊",
+    "latency_s": 0.95
+   }
+  }
+ ]
+}

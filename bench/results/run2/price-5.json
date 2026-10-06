@@ -1,0 +1,235 @@
+{
+ "card_id": "price-5",
+ "category": "price_shopper",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "bekam el Knit cardigan? w el shipping le Port Said kam?"
+  },
+  {
+   "role": "agent",
+   "text": "el Knit cardigan b 820 geneh, w el shipping le Port Said b 70 geneh w byakhod men 2 le 4 ayam. \nTaht amrak!"
+  },
+  {
+   "role": "customer",
+   "text": "Ghalya awy kda, msh ha2dar. Shokran lek!"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، تشرفنا في أي وقت تاني!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "bekam el Knit cardigan? w el shipping le Port Said kam?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_113488",
+     "function": {
+      "arguments": "{\"query\":\"Knit cardigan\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TqA4b2U16E5rrJsxm6amQE1ZwMZdMHkHMWAzv1bnLBnIh6BXxuEbMq069gixtL2+9Bk70RIhPsUD466uOOolU2DS7fYkf/wh56qlVw12CY7IAMXQnvZJ305c="
+      }
+     }
+    },
+    {
+     "id": "call_113489",
+     "function": {
+      "arguments": "{\"area\":\"Port Said\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_113488",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T10\", \"name\": \"كارديجان تريكو\", \"name_en\": \"Knit cardigan\", \"category\": \"tops\", \"price\": 820, \"colors\": [\"بيج\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_113489",
+   "content": "{\"ok\": true, \"zone\": \"مدن القناة\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "content": "el Knit cardigan b 820 geneh, w el shipping le Port Said b 70 geneh w byakhod men 2 le 4 ayam. \nTaht amrak!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+rfL76ih45JVf6P7qgV25scECTUIsvOdqx7NdMEAxVcPoeEoAdwz21r833YkT6nVE2OTBf0zEJnJKMm/hz3s9YJmukeV5zqCJwctnVKqz/e4z3OLYj/4XjM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Ghalya awy kda, msh ha2dar. Shokran lek!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_780371",
+     "function": {
+      "arguments": "{\"order_id\":0,\"reason\":\"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TRsYuMc1FlLYSDG3crVEfLOMQUM0NPDE5T4I4guIX+0BSK9eqI/GHofaO9j7/50KRrttTcggPbkZhs3lBZFDP9koeGPdf2TmcLV/N5xJyYlSGNGqXd6N76KM="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_780371",
+   "content": "{\"ok\": false, \"error\": \"unknown_order\", \"message\": \"no order 0\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، تشرفنا في أي وقت تاني!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TKnW0soPXyQ0BTFkEsTNgXlWZAwPmQof+jil9atIQ0mzLtZcW24DYTQWp6QeOds6TKY1MWMnRqAGGjvKnd4B27SbI7mARaI2xbt0FmR8Jeck0R/HsFjAhGN0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "text": "bekam el Knit cardigan? w el shipping le Port Said kam?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1939,
+    "tokens_out": 35,
+    "latency_s": 0.85
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2163,
+    "tokens_out": 43,
+    "latency_s": 1.08
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "text": "el Knit cardigan b 820 geneh, w el shipping le Port Said b 70 geneh w byakhod men 2 le 4 ayam. \nTaht amrak!",
+    "latency_s": 1.93
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "text": "Ghalya awy kda, msh ha2dar. Shokran lek!"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2226,
+    "tokens_out": 25,
+    "latency_s": 0.95
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "name": "cancel_order",
+    "ok": false,
+    "error": "unknown_order"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2286,
+    "tokens_out": 17,
+    "latency_s": 0.84
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-5",
+   "data": {
+    "text": "ولا يهمك يا فندم، تشرفنا في أي وقت تاني!",
+    "latency_s": 1.8
+   }
+  }
+ ]
+}

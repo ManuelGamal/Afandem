@@ -1,0 +1,524 @@
+{
+ "card_id": "clear-1",
+ "category": "clear_buyer",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "السلام عليكم، عايزة تيشيرت قطن سادة مقاس M لون أسود، متاح؟"
+  },
+  {
+   "role": "agent",
+   "text": "وعليكم السلام ورحمة الله وبركاته، أيوه يا فندم التيشيرت القطن السادة متوفر باللون الأسود ومقاس M وسعره 350 جنيه. \nتحب أضيفلك جوجر قطن بـ 560 جنيه؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، موافقة عليه. ممكن أعرف إيه الخطوات عشان أتمم الطلب؟"
+  },
+  {
+   "role": "agent",
+   "text": "من عيوني يا فندم! عشان نتمم الطلب محتاجين نعرف: الاسم، ورقم الموبايل، وعنوان الاستلام بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة)، واسم المحافظة أو المنطقة. تحت أمرك!"
+  },
+  {
+   "role": "customer",
+   "text": "الاسم: منى حسن\nالموبايل: 01011112222\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× تيشيرت قطن سادة مقاس M لون أسود = 350 جنيه\n- 1× جوجر قطن مقاس M لون أسود = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 970 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، كدة كله مظبوط. أكد الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! شكرا لاختيارك وصلة وير، وهيوصلك في خلال يوم لـ 3 أيام. تحب أساعدك في حاجة تاني؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "تسلم، شكراً جداً لذوقك. بس كنت حابة أسأل، هل متاح أبدل المقاس لو طلع مش مظبوط لما يوصل؟"
+  },
+  {
+   "role": "agent",
+   "text": "الله يخليكي يا فندم، تسلمي! أيوة طبعاً متاح تبدلي خلال 14 يوم من استلام الطلب، بشرط يكون القطعة بنفس حالتها ومعاها التيكيت. تحت أمرك في أي وقت!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "السلام عليكم، عايزة تيشيرت قطن سادة مقاس M لون أسود، متاح؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_622918",
+     "function": {
+      "arguments": "{\"query\":\"تيشيرت قطن سادة\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TW0Gy2wCO6jAiU7bGIMwWFFCJL5nDecVV/MAxxlHE+xyDpa+D5MIRXqpIvOD+QIdhh0auDfUE6q5Y67pxX9qjYrZMtYDH84oQdytd9ianWO55d1qdlPFlzcw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_622918",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"name_en\": \"Striped tee\", \"category\": \"tops\", \"price\": 390, \"colors\": [\"كحلي وأبيض\", \"أسود وأبيض\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"name_en\": \"Oversized tee\", \"category\": \"tops\", \"price\": 420, \"colors\": [\"أسود\", \"بيج\", \"أخضر زيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XXL\"], \"sizes_out_of_stock\": [\"XL\"], \"pairs_with\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "وعليكم السلام ورحمة الله وبركاته، أيوه يا فندم التيشيرت القطن السادة متوفر باللون الأسود ومقاس M وسعره 350 جنيه. \nتحب أضيفلك جوجر قطن بـ 560 جنيه؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T8+EyFr25x9trBNf5nvLvki60sq3EfJf7ZaAJa/fhDH4Hpz1/pjDNKQTCl7/7eXNqLenWw+ppbFnXXrnlk9AhEVPlKKl9DlzP8Wh5Xsi0lzdPp+sv4jwNVgo="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، موافقة عليه. ممكن أعرف إيه الخطوات عشان أتمم الطلب؟"
+  },
+  {
+   "role": "assistant",
+   "content": "من عيوني يا فندم! عشان نتمم الطلب محتاجين نعرف: الاسم، ورقم الموبايل، وعنوان الاستلام بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة)، واسم المحافظة أو المنطقة. تحت أمرك!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tvv6sxqm7UmcxikUtKjr+9m4oIGpeY+KlxA8krnh56TVbbfb5FrCq6HogXXGV1iJFLZiTYpjPtWIp7REHSC04Ks+Op9DRiNb3HV1gqHa2YkLWvZwGyFJZLcA="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "الاسم: منى حسن\nالموبايل: 01011112222\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_33721",
+     "function": {
+      "arguments": "{\"area\":\"مدينة نصر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TdL2EybGLF0j+NEVg3UukWrzb19pLXo4OwSM76ysTLx74SDWXNk4ahi28HcI3YLnc1KI8ALlSYe/g/QalnAxnMc1oa7XZ8x1aIsEs5OKLOK2pMrQaYB71tSw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_33721",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_25288",
+     "function": {
+      "arguments": "{\"address\":\"14 شارع الطيران، الدور 4، شقة 8، مدينة نصر\",\"phone\":\"01011112222\",\"items\":[{\"qty\":1,\"color\":\"أسود\",\"size\":\"M\",\"product_id\":\"T01\"},{\"color\":\"أسود\",\"size\":\"M\",\"product_id\":\"B05\",\"qty\":1}],\"area\":\"مدينة نصر\",\"customer_name\":\"منى حسن\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T48Kjvrpfg4tT6GvTfX7DU26uuxGzszPVdjf4qjAJQrauotHWt0O1D2QUU32RiIati/LTAOUCMdn81ZY5nq87er9Fsa3oI4Z3AOMkeNdT8Ux8CT24rHKD038="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_25288",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 970, \"summary_ar\": \"طلب رقم 1:\\n- 1× تيشيرت قطن سادة مقاس M لون أسود = 350 جنيه\\n- 1× جوجر قطن مقاس M لون أسود = 560 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 970 جنيه (الدفع عند الاستلام)\\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× تيشيرت قطن سادة مقاس M لون أسود = 350 جنيه\n- 1× جوجر قطن مقاس M لون أسود = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 970 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tvr4Wny7PNnujsS3lEuGaG6zM9xejUqdhvK5I3Xl2Iorq47Hg8bJafnumCdB1UCJYJ+0n/JU3r6OtzCh7ggngDu4ehD5Hzy57f9i0JS0sDQYkGZKUp/X8H7g="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، كدة كله مظبوط. أكد الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_9179",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TZil/lht2j+iYv3JCa+6il7x+kZFCzmtxeZ5ma7vfA/c/A0xLkmiftcPjp60Lopjn9eNjlj57BEbaG8H45FwCqdrVHr4kX1xEl6YvByiPeLMGrvIinGilJmU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_9179",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! شكرا لاختيارك وصلة وير، وهيوصلك في خلال يوم لـ 3 أيام. تحب أساعدك في حاجة تاني؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TjPdALHZrAY8MT/gtcpVcYvHa07VC0SX38ZgPdujU6q22NG7of7738EjHXE5zwEeeNeL9Mvha21EyUDCGrAtO/UY/VjDzOp3gqwNaSzop9S9iFkv5pdVlr3k="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تسلم، شكراً جداً لذوقك. بس كنت حابة أسأل، هل متاح أبدل المقاس لو طلع مش مظبوط لما يوصل؟"
+  },
+  {
+   "role": "assistant",
+   "content": "الله يخليكي يا فندم، تسلمي! أيوة طبعاً متاح تبدلي خلال 14 يوم من استلام الطلب، بشرط يكون القطعة بنفس حالتها ومعاها التيكيت. تحت أمرك في أي وقت!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TfcCwOWlMNtfQQ2+RCbGylpWCSQgO9hzfkGo1an3KwHVaPFCUClViaUc6QCU8RG8peRbwrvgOhffj2YfVYBvFCn4lve0Er2siMalhuvResMrSOMmU2bq7zwc="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-clear-1",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "منى حسن",
+   "phone": "01011112222",
+   "address": "14 شارع الطيران، الدور 4، شقة 8، مدينة نصر",
+   "area": "مدينة نصر",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "T01",
+     "name_ar": "تيشيرت قطن سادة",
+     "size": "M",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 350
+    },
+    {
+     "product_id": "B05",
+     "name_ar": "جوجر قطن",
+     "size": "M",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 560
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 910,
+   "total": 970,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "السلام عليكم، عايزة تيشيرت قطن سادة مقاس M لون أسود، متاح؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1895,
+    "tokens_out": 23,
+    "latency_s": 1.23
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2589,
+    "tokens_out": 62,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "وعليكم السلام ورحمة الله وبركاته، أيوه يا فندم التيشيرت القطن السادة متوفر باللون الأسود ومقاس M وسعره 350 جنيه. \nتحب أضيفلك جوجر قطن بـ 560 جنيه؟ 😊",
+    "latency_s": 2.13
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "تمام، موافقة عليه. ممكن أعرف إيه الخطوات عشان أتمم الطلب؟"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2674,
+    "tokens_out": 66,
+    "latency_s": 1.05
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "من عيوني يا فندم! عشان نتمم الطلب محتاجين نعرف: الاسم، ورقم الموبايل، وعنوان الاستلام بالتفصيل (الشارع، رقم العُمارة، الدور، وعلامة مميزة)، واسم المحافظة أو المنطقة. تحت أمرك!",
+    "latency_s": 1.06
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "الاسم: منى حسن\nالموبايل: 01011112222\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر."
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2790,
+    "tokens_out": 18,
+    "latency_s": 0.99
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2856,
+    "tokens_out": 124,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 970,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3171,
+    "tokens_out": 120,
+    "latency_s": 0.93
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× تيشيرت قطن سادة مقاس M لون أسود = 350 جنيه\n- 1× جوجر قطن مقاس M لون أسود = 560 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 970 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران، الدور 4، شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.9
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "تمام، كدة كله مظبوط. أكد الطلب."
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3306,
+    "tokens_out": 16,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 970,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3381,
+    "tokens_out": 47,
+    "latency_s": 1.14
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! شكرا لاختيارك وصلة وير، وهيوصلك في خلال يوم لـ 3 أيام. تحب أساعدك في حاجة تاني؟ 😊",
+    "latency_s": 2.01
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "تسلم، شكراً جداً لذوقك. بس كنت حابة أسأل، هل متاح أبدل المقاس لو طلع مش مظبوط لما يوصل؟"
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3465,
+    "tokens_out": 57,
+    "latency_s": 1.25
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-1",
+   "data": {
+    "text": "الله يخليكي يا فندم، تسلمي! أيوة طبعاً متاح تبدلي خلال 14 يوم من استلام الطلب، بشرط يكون القطعة بنفس حالتها ومعاها التيكيت. تحت أمرك في أي وقت!",
+    "latency_s": 1.25
+   }
+  }
+ ]
+}

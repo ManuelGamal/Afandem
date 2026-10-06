@@ -107,3 +107,16 @@ def test_report_uses_readable_writing_style_names():
     from moderator.bench.report import SCRIPT_LABELS
     assert SCRIPT_LABELS == {"arabic": "Egyptian Arabic", "arabizi": "Franco (Arabic in English letters)",
                              "mixed": "Mixed Arabic and English"}
+
+
+def test_reply_time_cell_says_how_it_was_measured():
+    from moderator.bench.grader import Grade, summarize
+    from moderator.bench.report import reply_time_cell
+
+    def g(median):
+        return Grade("c", "clear_buyer", "arabic", True, [], [], True, 2, median, 1, 1, 1, 0)
+
+    s = summarize([g(2.0), g(3.0), g(None)])
+    assert s["timed_conversations"] == 2
+    assert reply_time_cell(s) == "2.5 s (2 conversations that called the live model)"
+    assert "cache" in reply_time_cell(summarize([g(None)]))

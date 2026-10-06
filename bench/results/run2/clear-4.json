@@ -1,0 +1,510 @@
+{
+ "card_id": "clear-4",
+ "category": "clear_buyer",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "السلام عليكم، عايز بلوزة شيفون مقاس S لون وردي، متاح؟"
+  },
+  {
+   "role": "agent",
+   "text": "وعليكم السلام ورحمة الله وبركاته، منورة يا فندم! 🌸\nأيوه البلوزة الشيفون اللون الوردي مقاس S متاحة ومتوفرة. تحب أضيفلك معانا جيبة ميدي بـ 690 جنيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "شكراً، لا مش عايز جيبة. ممكن بس البلوزة لو سعرها تحت 600 جنيه؟"
+  },
+  {
+   "role": "agent",
+   "text": "سعرها 580 جنيه يعني تحت الـ 600 زي ما طلبتي بالضبط! ✨\nعشان نكمل الأوردر، ممكن اسمك، رقم الموبايل، وعنوانك بالتفصيل (المنطقة، الشارع، رقم العُمارة، الدور، وعلامة مميزة)؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، أنا عمر شريف، رقمي 01544445555، والعنوان 9 شارع الجلاء الدور 3، طنطا."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× بلوزة شيفون مقاس S لون وردي = 580 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 650 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء، الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أيوة يا فندم، أكد الطلب. شكراً جداً!"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تم تأكيد الأوردر بنجاح وتخرج في طريقها ليك قريباً! تحت أمرك في أي وقت. 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "السلام عليكم، عايز بلوزة شيفون مقاس S لون وردي، متاح؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_598797",
+     "function": {
+      "arguments": "{\"query\":\"بلوزة شيفون\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TEufIUlQF+jtQFVcGNQHs1WgvTQ8xC8LDocq10lrAxhiK9qWqfYwkmA63osBpOBwnQ3IeP3zZOtgYyE27XD/Hz1GQyT5lftCIYec8tIRX9kuwSMjURwJzhnc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_598797",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"name_en\": \"Chiffon blouse\", \"category\": \"tops\", \"price\": 580, \"colors\": [\"أوف وايت\", \"وردي\", \"أسود\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"B08\", \"name\": \"جيبة ميدي\", \"price\": 690}, {\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"price\": 740}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "وعليكم السلام ورحمة الله وبركاته، منورة يا فندم! 🌸\nأيوه البلوزة الشيفون اللون الوردي مقاس S متاحة ومتوفرة. تحب أضيفلك معانا جيبة ميدي بـ 690 جنيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TMfJb7V0WKzYO9MbfZYXGcVLGUNkDs6IZpGMmcRUGnXhNEuJ3YWOOdRzobwDz9kCk7iiYXtF+tUKnAO4GAgfkPVhQftAM8sgsz0dS7WhWQJ1P/55AYJ2Zyyo="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "شكراً، لا مش عايز جيبة. ممكن بس البلوزة لو سعرها تحت 600 جنيه؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_13448",
+     "function": {
+      "arguments": "{\"product_id\":\"T09\"}",
+      "name": "get_product"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TlCX6X1zksSLwscNG6xzxyDb9HwYotLpoayy20fgWmXj5iGP8LI2CoePXL48Cplo8/3JntYfaZenGW4Xz9yLAkaTqcBbeqMi3Al1AL6FY8EpIRbrZZEdPtxg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_13448",
+   "content": "{\"ok\": true, \"product\": {\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"name_en\": \"Chiffon blouse\", \"category\": \"tops\", \"price\": 580, \"colors\": [\"أوف وايت\", \"وردي\", \"أسود\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"size_chart\": {\"S\": {\"h\": [155, 168], \"w\": [48, 60]}, \"M\": {\"h\": [165, 175], \"w\": [58, 72]}, \"L\": {\"h\": [172, 182], \"w\": [70, 85]}, \"XL\": {\"h\": [178, 190], \"w\": [83, 100]}, \"XXL\": {\"h\": [182, 198], \"w\": [98, 120]}}, \"pairs_with\": [{\"id\": \"B08\", \"name\": \"جيبة ميدي\", \"price\": 690}, {\"id\": \"B07\", \"name\": \"بنطلون واسع\", \"price\": 740}]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "سعرها 580 جنيه يعني تحت الـ 600 زي ما طلبتي بالضبط! ✨\nعشان نكمل الأوردر، ممكن اسمك، رقم الموبايل، وعنوانك بالتفصيل (المنطقة، الشارع، رقم العُمارة، الدور، وعلامة مميزة)؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tkf9u+E9O11SMJVcGmgVvWYQsH9AUeVg4hsPM1pt4Mc/d7Oud32RDG4ShM644poaPnBP0eXCHv0VUavyfYzO1mJjqxiiohxdPPCVHAKb3mC8IOHywtS2z8SM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، أنا عمر شريف، رقمي 01544445555، والعنوان 9 شارع الجلاء الدور 3، طنطا."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_338354",
+     "function": {
+      "arguments": "{\"area\":\"طنطا\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TFW2H3uQLS0tXY6RGZinOL4J9JqLurQQPGEjZySgIuMvLpTTX404i5yzBb6hFrvUhlWUfTZaBUOkX05g9Ve3EOHP8e4XoFpaAPQt+5qOFk8plC8RcGUXvc54="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_338354",
+   "content": "{\"ok\": true, \"zone\": \"الدلتا\", \"fee\": 70, \"days_min\": 2, \"days_max\": 4}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_31460",
+     "function": {
+      "arguments": "{\"items\":[{\"color\":\"وردي\",\"product_id\":\"T09\",\"qty\":1,\"size\":\"S\"}],\"area\":\"طنطا\",\"customer_name\":\"عمر شريف\",\"address\":\"9 شارع الجلاء، الدور 3\",\"phone\":\"01544445555\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TOJ9iMf2c+pfcLNZdku/RikOuJBtNAA9J3/VakDz8oK6rBELgIp9HGzcT7nzzgxotlRGXZlHq3wyM4Aia/9GZNfZ4F+mYjscoE8KGOMBSrdGvBjzpgwGWP6c="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_31460",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 650, \"summary_ar\": \"طلب رقم 1:\\n- 1× بلوزة شيفون مقاس S لون وردي = 580 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 650 جنيه (الدفع عند الاستلام)\\nالعنوان: 9 شارع الجلاء، الدور 3، طنطا\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× بلوزة شيفون مقاس S لون وردي = 580 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 650 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء، الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TuTZTOzFeZ9Rv6LFLFyvrm0/bYVj4HZxoMTIr99hyGMVy3mB2YQ9XIwLfUh6oYxCSmbusqB1Sv4SgN2wlGmoDTNPgYriD2u0f2hNOegy9ItwSmEUXtnV0y5A="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أيوة يا فندم، أكد الطلب. شكراً جداً!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_13872",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tp2r6uhRfOaRs5et3KpvQABvbkBaJXBI6TBwNV60Wd6Mq3ahNeuVY7bUlPgIrhRim3bhLrZBJWZqE37KsWsU9xw0qsMnyjObEmAu00sKG3uc0zOwxStrhoH0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_13872",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تم تأكيد الأوردر بنجاح وتخرج في طريقها ليك قريباً! تحت أمرك في أي وقت. 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TRVGWB/MzMCEOhoCUVT9krt7T7tBlTzstOqEcudNa5heSrzo7n6ueGY4Fz25HNxdtCJeM3AlqjQjspYEMBu3dnBmZ0RTgDkrhR7FyJlxczgo4ObTvk8TWpB4="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-clear-4",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "عمر شريف",
+   "phone": "01544445555",
+   "address": "9 شارع الجلاء، الدور 3",
+   "area": "طنطا",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "T09",
+     "name_ar": "بلوزة شيفون",
+     "size": "S",
+     "color": "وردي",
+     "qty": 1,
+     "unit_price": 580
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 580,
+   "total": 650,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "السلام عليكم، عايز بلوزة شيفون مقاس S لون وردي، متاح؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1892,
+    "tokens_out": 21,
+    "latency_s": 0.7
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2084,
+    "tokens_out": 57,
+    "latency_s": 1.09
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "وعليكم السلام ورحمة الله وبركاته، منورة يا فندم! 🌸\nأيوه البلوزة الشيفون اللون الوردي مقاس S متاحة ومتوفرة. تحب أضيفلك معانا جيبة ميدي بـ 690 جنيه؟",
+    "latency_s": 1.8
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "شكراً، لا مش عايز جيبة. ممكن بس البلوزة لو سعرها تحت 600 جنيه؟"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2167,
+    "tokens_out": 20,
+    "latency_s": 2.32
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "name": "get_product",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2502,
+    "tokens_out": 70,
+    "latency_s": 1.06
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "سعرها 580 جنيه يعني تحت الـ 600 زي ما طلبتي بالضبط! ✨\nعشان نكمل الأوردر، ممكن اسمك، رقم الموبايل، وعنوانك بالتفصيل (المنطقة، الشارع، رقم العُمارة، الدور، وعلامة مميزة)؟",
+    "latency_s": 3.38
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "تمام، أنا عمر شريف، رقمي 01544445555، والعنوان 9 شارع الجلاء الدور 3، طنطا."
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2612,
+    "tokens_out": 17,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2678,
+    "tokens_out": 88,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 650,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2928,
+    "tokens_out": 92,
+    "latency_s": 0.98
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× بلوزة شيفون مقاس S لون وردي = 580 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 650 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء، الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.78
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "أيوة يا فندم، أكد الطلب. شكراً جداً!"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3040,
+    "tokens_out": 16,
+    "latency_s": 1.22
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 650,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3115,
+    "tokens_out": 34,
+    "latency_s": 1.47
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-clear-4",
+   "data": {
+    "text": "العفو يا فندم، تم تأكيد الأوردر بنجاح وتخرج في طريقها ليك قريباً! تحت أمرك في أي وقت. 😊",
+    "latency_s": 2.69
+   }
+  }
+ ]
+}

@@ -83,3 +83,19 @@ def test_any_final_status_is_not_checked():
                 goal="g", opening="essay?", expect={"final_status": "any"})
     r = result(["الإجمالي 410 جنيه، أأكد؟"], ["تمام"], [ORDER])
     assert grade(card, r, CAT).success
+
+
+def test_reply_time_counts_only_replies_that_called_the_live_model():
+    """A reply served from the response cache takes ~0 s; timing it would flatter the agent."""
+    def call(provider):
+        return {"kind": "llm_call", "data": {"provider": provider, "tokens_in": 1, "tokens_out": 1}}
+
+    def out(s):
+        return {"kind": "message_out", "data": {"latency_s": s}}
+
+    r = result(["التيشيرت بـ 350 جنيه والشحن 60 جنيه"], ["عايز تيشيرت"], [ORDER],
+               events=[call("cache"), out(0.0), call("cache"), call("gemini"), out(2.5)])
+    assert grade(BUY, r, CAT).median_reply_s == 2.5
+    cached = result(["التيشيرت بـ 350 جنيه والشحن 60 جنيه"], ["عايز تيشيرت"], [ORDER],
+                    events=[call("cache"), out(0.0)])
+    assert grade(BUY, cached, CAT).median_reply_s is None

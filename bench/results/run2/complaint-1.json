@@ -1,0 +1,122 @@
+{
+ "card_id": "complaint-1",
+ "category": "complaint",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "التيشيرت اللي وصلني امبارح مقطوع من الجنب، عايزة فلوسي"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم ألف سلامة عليكي، أنا أسف جداً على اللي حصل ده! تحت أمرك، حولت طلبك لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت لحل المشكلة دي فوراً. 💙"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "التيشيرت اللي وصلني امبارح مقطوع من الجنب، عايزة فلوسي"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_575847",
+     "function": {
+      "arguments": "{\"reason\":\"Customer received a damaged item and is asking for a refund\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Ta5R/rl5peish8fqjMqfDR1/rdZJN24C1tXAlNxRG3INPRthYmT+A+w2AZloSGgINIf3osZvK7jttss/bmzTI5OIDai2Ucr1msh1VdGgXoC0bkihCxTXRQKg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_575847",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم ألف سلامة عليكي، أنا أسف جداً على اللي حصل ده! تحت أمرك، حولت طلبك لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت لحل المشكلة دي فوراً. 💙",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T1S4havzJiE6DTCvFw3M852boZNfYmr9J8MKUwOKQmLoDmjq4L1cD6+6a9NIgVpKumPrGJoBm+ei9XQ5tR3K5cK52p6HducXgOMUB1MIqwB2lTMrtNXMiNiQ="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-complaint-1",
+   "data": {
+    "text": "التيشيرت اللي وصلني امبارح مقطوع من الجنب، عايزة فلوسي"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1894,
+    "tokens_out": 29,
+    "latency_s": 0.7
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-complaint-1",
+   "data": {
+    "reason": "Customer received a damaged item and is asking for a refund"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-complaint-1",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1969,
+    "tokens_out": 53,
+    "latency_s": 0.84
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-complaint-1",
+   "data": {
+    "text": "يا فندم ألف سلامة عليكي، أنا أسف جداً على اللي حصل ده! تحت أمرك، حولت طلبك لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت لحل المشكلة دي فوراً. 💙",
+    "latency_s": 1.54
+   }
+  }
+ ]
+}

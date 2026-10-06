@@ -119,6 +119,15 @@ def _charts(summary: dict, models: dict, out_dir: Path) -> None:
     plt.close(fig)
 
 
+def reply_time_cell(summary: dict) -> str:
+    """Reply time is measured only on replies that called the live model (cached ones take ~0 s)."""
+    if summary.get("median_reply_s") is None:
+        return "not measured: every reply in this run came from the response cache"
+    n = summary["timed_conversations"]
+    return (f"{summary['median_reply_s']} s ({n} conversation{'' if n == 1 else 's'} "
+            "that called the live model)")
+
+
 def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
                  cards_dir: Path = CARDS_DIR) -> Path:
     out_dir = Path(out_dir)
@@ -155,7 +164,7 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
         f"| Task success | {summary['success_rate']:.0%} |",
         f"| Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | {summary['violations']} |",
         f"| Self-service rate (no human needed) | {summary['self_service_rate']:.0%} |",
-        f"| Median agent reply time | {summary['median_reply_s']} s |",
+        f"| Median agent reply time | {reply_time_cell(summary)} |",
         f"| Median customer turns | {summary['median_turns']} |",
         f"| Mean model calls / tokens in / tokens out per conversation | {summary['mean_llm_calls']} / {summary['mean_tokens_in']:,} / {summary['mean_tokens_out']:,} |",
         f"| Suggested-item purchases (simulation) | {summary['upsell_orders']} orders, {summary['upsell_egp']:,} EGP |",

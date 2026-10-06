@@ -1,0 +1,336 @@
+{
+ "card_id": "address-4",
+ "category": "vague_address",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: ورا السوبر ماركت، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أهلاً، الطلب تمام بس العنوان 9 شارع الجلاء الدور 3، طنطا. أكد الطلب يا ريت."
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، الطلب مظبوط. أكد لي الطلب وشكراً ليكوا!"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! شكراً لاختيارك وصلة وير، وهيوصلك في الميعاد المحدد 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: ورا السوبر ماركت، طنطا\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: ورا السوبر ماركت، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أهلاً، الطلب تمام بس العنوان 9 شارع الجلاء الدور 3، طنطا. أكد الطلب يا ريت."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_42172",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"address\":\"9 شارع الجلاء الدور 3، طنطا\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TGAP7kErM+0bYHbKuppCigjuHYqsuhiSRiQI3YV4C0d/COp4GxMMeQG63dZPYm7HPnXRhwshTUHhbIUKFU21n2Xz+BbQ19GzjleO3OYBXD2HsD0GDGDSxspc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_42172",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 810, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_574825",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TjIZS42BqxD2TY6kWaglT4Mnqhdq/FHDRUFOuJyemghLTVLVCatUXaNjvmhHFq4dvhdycI0ixV/FzcOlTPLPK2Dm3oTWEUrQh6OcxL21xuREYBzy8guANBgU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_574825",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tey6TY5qdSgvDZlDciQuX+uOmU/s8UE4HBerH/z7LVVP7eSrgHe3ePEsIjtj3L1MRhIKMALHSiOSjmHYNbl0PNgHZjCWBGc9zLFHDbIaVbpQFab6Yh1ciPqE="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، الطلب مظبوط. أكد لي الطلب وشكراً ليكوا!"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_55033",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TfjWjqD5swiRpJVxYOZaHY1cR9fcbogYj9ZOcuh3159fYsTCWD+5frAaL4PI+zcyY9bAZFvDOlh8MpWY4aCQvfDLscFSGBf4hj7SGdCibI6kk8fYXFnnS0Fw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_55033",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! شكراً لاختيارك وصلة وير، وهيوصلك في الميعاد المحدد 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TP43uss2awu3Oqiy0yCfYJdrT3lgopdFUAtqOWG6XUX3zaHf9uxRqGo6/9lfIEGK15jC3Pm8ZCkWOso3F1nq+rxXhSPH8oMF6Acil0DxKfXRtwmXb2jCtWE4="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "عمر شريف",
+   "phone": "01544445555",
+   "address": "9 شارع الجلاء الدور 3، طنطا",
+   "area": "طنطا",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B07",
+     "name_ar": "بنطلون واسع",
+     "size": "M",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 740
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 740,
+   "total": 810,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 810,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا عمر! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: ورا السوبر ماركت، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً، الطلب تمام بس العنوان 9 شارع الجلاء الدور 3، طنطا. أكد الطلب يا ريت."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2143,
+    "tokens_out": 35,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2340,
+    "tokens_out": 16,
+    "latency_s": 0.84
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2416,
+    "tokens_out": 90,
+    "latency_s": 1.04
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× بنطلون واسع مقاس M لون أسود = 740 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 810 جنيه (الدفع عند الاستلام)\nالعنوان: 9 شارع الجلاء الدور 3، طنطا\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.85
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، الطلب مظبوط. أكد لي الطلب وشكراً ليكوا!"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2526,
+    "tokens_out": 16,
+    "latency_s": 1.62
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 810,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2601,
+    "tokens_out": 34,
+    "latency_s": 1.27
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! شكراً لاختيارك وصلة وير، وهيوصلك في الميعاد المحدد 🌸",
+    "latency_s": 2.89
+   }
+  }
+ ]
+}

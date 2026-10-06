@@ -1,0 +1,336 @@
+{
+ "card_id": "address-3",
+ "category": "vague_address",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا ياسمين! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: قدام المدرسة، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أهلاً، يا ريت تعدل العنوان لـ 22 شارع فوزي معاذ الدور 5، سموحة. تمام كده أكد الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم تعديل العنوان يا فندم! 🌸\nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، شكراً جداً لتعديل العنوان. كده الطلب مظبوط، تقدر تأكده وتجهزه للشحن."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد الطلب يا فندم، وهيوصلك في خلال 2-3 أيام إن شاء الله! تسلمي لطلبك من وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: قدام المدرسة، سموحة\nالتوصيل: خلال 2-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا ياسمين! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: قدام المدرسة، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أهلاً، يا ريت تعدل العنوان لـ 22 شارع فوزي معاذ الدور 5، سموحة. تمام كده أكد الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_44031",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"address\":\"22 شارع فوزي معاذ الدور 5، سموحة\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TlcRB+i5o6wyJ03li4jTbzOS3kgfLlpZjCh5t46JK1xAus631AOGOraocALYxUQtnpmhPCq5hR7ZpGUevuiCo72ylQEtiJ+vpz0L+RGATC7ZT+IUfwWpO9v0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_44031",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 755, \"summary_ar\": \"طلب رقم 1:\\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\\nالشحن (الإسكندرية): 65 جنيه\\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\\nالتوصيل: خلال 2-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_16753",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tml5qhLdZ8tzwUbw9FDGRZqs7iBm+mtU5Ssiw99K2AxLz++WbbEo/TkCkSrGnjpHo2yaTu2Aqx2m9nEIdhL/H8D7n2SMupZG/U9QGqfkjSog1Y2+NooNq6L0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_16753",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تعديل العنوان يا فندم! 🌸\nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TJSqKfdaJGC+a8hEDfhj60t086peKX1qVs8PeZDrKewFq2MRm9wQOcahxtOIJwyCdnqVPVMuPPkCwTqVczcuajrjLswIggl8XF1TnpC/pIADrfKk6NnIGhIM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، شكراً جداً لتعديل العنوان. كده الطلب مظبوط، تقدر تأكده وتجهزه للشحن."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_684961",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TFRhMmLQ11SZX+P7zV9ehNz201SZe3VjXw7STDbUjHmDg7UCvVVUuVpRNkEPg52QReuKrNqbjbT20pDyCRgSl191WoxBWodWGdByYBPw2MMCPjmGmVhCP2hs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_684961",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد الطلب يا فندم، وهيوصلك في خلال 2-3 أيام إن شاء الله! تسلمي لطلبك من وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T/P+4cMR5YsU5K3QCDF/N0ODP7AkFwBlO2q4puCljRyGZMYCltGx2de/2qep9Wc4UaC1HwnPDg39QcXoTXdaXMa0rq20y5jJy4m7DbeFLe3USSpXckIFqgkA="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "ياسمين فؤاد",
+   "phone": "01233334444",
+   "address": "22 شارع فوزي معاذ الدور 5، سموحة",
+   "area": "سموحة",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "T04",
+     "name_ar": "قميص كتان",
+     "size": "L",
+     "color": "أبيض",
+     "qty": 1,
+     "unit_price": 690
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 690,
+   "total": 755,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 755,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا ياسمين! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: قدام المدرسة، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً، يا ريت تعدل العنوان لـ 22 شارع فوزي معاذ الدور 5، سموحة. تمام كده أكد الطلب."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2144,
+    "tokens_out": 38,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2348,
+    "tokens_out": 16,
+    "latency_s": 0.78
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2424,
+    "tokens_out": 112,
+    "latency_s": 1.14
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تعديل العنوان يا فندم! 🌸\nده الملخص الجديد:\n\nطلب رقم 1:\n- 1× قميص كتان مقاس L لون أبيض = 690 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 755 جنيه (الدفع عند الاستلام)\nالعنوان: 22 شارع فوزي معاذ الدور 5، سموحة\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.9
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، شكراً جداً لتعديل العنوان. كده الطلب مظبوط، تقدر تأكده وتجهزه للشحن."
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2565,
+    "tokens_out": 16,
+    "latency_s": 0.75
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 755,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2640,
+    "tokens_out": 37,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد الطلب يا فندم، وهيوصلك في خلال 2-3 أيام إن شاء الله! تسلمي لطلبك من وصلة وير 🌸",
+    "latency_s": 1.62
+   }
+  }
+ ]
+}

@@ -1,0 +1,122 @@
+{
+ "card_id": "complaint-5",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "3ayza akalem el manager law sama7t, mawdoo3 mohem"
+  },
+  {
+   "role": "agent",
+   "text": "El team hayerdoo 3aleky fe a2rab waqt ya famar."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "3ayza akalem el manager law sama7t, mawdoo3 mohem"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_36537",
+     "function": {
+      "arguments": "{\"reason\":\"Customer is asking for the manager regarding an important matter.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T3NIPGr60eDsRAXrleP64agH3Z24kooS+wEP90wxPBL/2jubTnc24B73Far5DVYaXooFJ3bahhyJQQ4KitoRgpNABl+8h8sWm0KtODuY/+QczA10qBOIfyeA="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_36537",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "El team hayerdoo 3aleky fe a2rab waqt ya famar.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TCPFWoZepAA8UZP9lyG4XDzMu98XQe2cnmnbZAxoVH0zmY3bZiHHgJklykxshZU05QTnQVjtWAboqMZFM04QxJn3UPIJnnV3TxYiPnuEsjZsZ/4IwyT9byg4="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-complaint-5",
+   "data": {
+    "text": "3ayza akalem el manager law sama7t, mawdoo3 mohem"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1942,
+    "tokens_out": 29,
+    "latency_s": 0.78
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-complaint-5",
+   "data": {
+    "reason": "Customer is asking for the manager regarding an important matter."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-complaint-5",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-complaint-5",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2017,
+    "tokens_out": 19,
+    "latency_s": 0.86
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-complaint-5",
+   "data": {
+    "text": "El team hayerdoo 3aleky fe a2rab waqt ya famar.",
+    "latency_s": 1.64
+   }
+  }
+ ]
+}

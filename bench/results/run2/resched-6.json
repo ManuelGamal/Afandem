@@ -1,0 +1,314 @@
+{
+ "card_id": "resched-6",
+ "category": "reschedule",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام يا ريت، بس أنا مسافر حالياً وممكن أستلم يوم التلات 13 أكتوبر؟ لو ينفع أكدي الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم ضبط ميعاد التوصيل يوم الثلاثاء 13 أكتوبر يا فندم. \nده الملخص الجديد بعد التعديل:\n\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: يوم 2026-10-13\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام جداً، أكد الطلب."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم 13 أكتوبر إن شاء الله. شكراً لاختيارك وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "تمام يا ريت، بس أنا مسافر حالياً وممكن أستلم يوم التلات 13 أكتوبر؟ لو ينفع أكدي الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_717464",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TjPAKirBviMFulKY5TNMAb2VfVewPauz8y4RKyox15k4VgqD7cE2JKezng/K22MP05aczR8wTDFe7zagISTyj/ylbiGxj1km9IOkD2AzNojFxJKOjtWSJP6Q="
+      }
+     }
+    },
+    {
+     "id": "call_717465",
+     "function": {
+      "arguments": "{\"date\":\"2026-10-13\",\"order_id\":1}",
+      "name": "schedule_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_717464",
+   "content": "{\"ok\": false, \"error\": \"no_explicit_yes\", \"message\": \"The customer has not given a clear, unconditional yes. Apply any change they asked for, send the new summary, and ask again.\"}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_717465",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 380, \"summary_ar\": \"طلب رقم 1:\\n- 1× حزام جلد لون بني = 320 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\\nالتوصيل: يوم 2026-10-13\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم ضبط ميعاد التوصيل يوم الثلاثاء 13 أكتوبر يا فندم. \nده الملخص الجديد بعد التعديل:\n\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: يوم 2026-10-13\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TXrymKfUS6w5EvFsTyqxlI6b9il5f63CRh9NEeuyBERikKrMWPOWLJupkJBdPm30pXAJYuQ03EtWSEEg+sca49Bq84zVNFdks2KgRDgBgDPuxawhyWMRXbGI="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام جداً، أكد الطلب."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_69542",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T7EkaTktFz/dV5mB/UBMy1pEC7GfpyLGiFeTyEcZ/R4+bImnu1e2QTCfYCbfKSr+AKk5WDg/Jqkqu0UE24SLGyEfQqZrIZp0USwzyBhRTor8K0BD0dubjNdY="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_69542",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم 13 أكتوبر إن شاء الله. شكراً لاختيارك وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tl53W0UphsASmvlD6ftw0CJ+4/ntDC6RSN8XN/ed78fe9uuGlhFdZkDPHx1oPbL0XW5Rx1YeoKUJgTfrk1NbwNrmVtpBqOhCyjf9jWGQ/mjaBrbqdTh9D+RA="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "مصطفى نبيل",
+   "phone": "01166667777",
+   "address": "بلوك 12 عمارة 4 الدور 6",
+   "area": "6 أكتوبر",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "A03",
+     "name_ar": "حزام جلد",
+     "size": "ONE",
+     "color": "بني",
+     "qty": 1,
+     "unit_price": 320
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 320,
+   "total": 380,
+   "delivery_date": "2026-10-13",
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 380,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا مصطفى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا ريت، بس أنا مسافر حالياً وممكن أستلم يوم التلات 13 أكتوبر؟ لو ينفع أكدي الطلب."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2146,
+    "tokens_out": 47,
+    "latency_s": 0.85
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": false,
+    "error": "no_explicit_yes"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "schedule_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2417,
+    "tokens_out": 125,
+    "latency_s": 1.41
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم ضبط ميعاد التوصيل يوم الثلاثاء 13 أكتوبر يا فندم. \nده الملخص الجديد بعد التعديل:\n\nطلب رقم 1:\n- 1× حزام جلد لون بني = 320 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 380 جنيه (الدفع عند الاستلام)\nالعنوان: بلوك 12 عمارة 4 الدور 6، 6 أكتوبر\nالتوصيل: يوم 2026-10-13\n\nأأكد الطلب؟",
+    "latency_s": 2.27
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام جداً، أكد الطلب."
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2553,
+    "tokens_out": 16,
+    "latency_s": 0.85
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 380,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2628,
+    "tokens_out": 37,
+    "latency_s": 1.06
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم، وهيوصلك يوم 13 أكتوبر إن شاء الله. شكراً لاختيارك وصلة وير 🌸",
+    "latency_s": 1.91
+   }
+  }
+ ]
+}

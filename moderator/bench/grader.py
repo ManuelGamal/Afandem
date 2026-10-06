@@ -102,8 +102,15 @@ def grade(card: Card, result: dict, catalog: Catalog) -> Grade:
     if card.no_reply and orders and orders[-1]["status"] != "cancelled":
         violations.append(f"no-reply order ended {orders[-1]['status']}, not cancelled")
 
-    latencies = [ev["data"]["latency_s"] for ev in events
-                 if ev["kind"] == "message_out" and ev["data"].get("latency_s") is not None]
+    # Time only replies that called the live model: a reply served from the cache takes ~0 s.
+    latencies, live = [], False
+    for ev in events:
+        if ev["kind"] == "llm_call":
+            live = live or ev["data"].get("provider") != "cache"
+        elif ev["kind"] == "message_out":
+            if live and ev["data"].get("latency_s") is not None:
+                latencies.append(ev["data"]["latency_s"])
+            live = False
     llm = [ev for ev in events if ev["kind"] == "llm_call"]
     upsell = sum(upsell_value(Order(**o), catalog) for o in orders
                  if o["status"] in ("confirmed", "shipped"))
@@ -137,6 +144,7 @@ def summarize(grades: list[Grade], self_service_pool: list[Grade] | None = None)
         "self_service_rate": round(sum(g.self_served for g in pool) / len(pool), 3) if pool else 0.0,
         "median_turns": statistics.median([g.turns for g in grades]) if grades else 0,
         "median_reply_s": round(statistics.median(latencies), 2) if latencies else None,
+        "timed_conversations": len(latencies),
         "mean_tokens_in": round(sum(g.tokens_in for g in grades) / n),
         "mean_tokens_out": round(sum(g.tokens_out for g in grades) / n),
         "mean_llm_calls": round(sum(g.llm_calls for g in grades) / n, 1),

@@ -1,0 +1,251 @@
+{
+ "card_id": "price-6",
+ "category": "price_shopper",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "How much ال Puffer vest؟ وال delivery للجيزة كام؟"
+  },
+  {
+   "role": "agent",
+   "text": "فيست منفوخ بـ 990 جنيه، ومصاريف الشحن للجيزة 60 جنيه وبياخد من يوم لـ 3 أيام. تحب أساعدك في اختيار المقاس؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، السعر مناسب جداً. أنا محتاج مقاس L، هل متاح باللون الأسود؟ ولو تمام ممكن أأكد الطلب معاكم؟"
+  },
+  {
+   "role": "agent",
+   "text": "المقاس L باللون الأسود متاح ومنورنا! تحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟ 🧥\nوعشان أكد طلبك، محتاج بس اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "How much ال Puffer vest؟ وال delivery للجيزة كام؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_709891",
+     "function": {
+      "arguments": "{\"query\":\"Puffer vest\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TgNy8Knb3nUCyIIwrwMzmLI07mJdfUxbBVSx5kOTdb1qudGf7SKGFCm7EtMPtQV4xuUx6S//ya7HDUeWgXxGLpKWzkVVWaIUqvT2xUEakyc+m5J5+6jV2mrI="
+      }
+     }
+    },
+    {
+     "id": "call_709892",
+     "function": {
+      "arguments": "{\"area\":\"الجيزة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_709891",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O05\", \"name\": \"فيست منفوخ\", \"name_en\": \"Puffer vest\", \"category\": \"outerwear\", \"price\": 990, \"colors\": [\"أسود\", \"زيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_709892",
+   "content": "{\"ok\": true, \"zone\": \"الجيزة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "user",
+   "content": "[حدث داخلي] ردك الأخير فيه مبلغ مش طالع من نتايج الأدوات في المحادثة دي. متكتبش أي سعر أو مصاريف شحن أو إجمالي إلا لو رجع من أداة؛ استخدم الأداة المناسبة واكتب الرد تاني."
+  },
+  {
+   "role": "assistant",
+   "content": "فيست منفوخ بـ 990 جنيه، ومصاريف الشحن للجيزة 60 جنيه وبياخد من يوم لـ 3 أيام. تحب أساعدك في اختيار المقاس؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TGL5AD7xurkidq96/jLJbXmO2b+4lGnTHF1PrutmXEeCGi0qEqSq6wH120PTh5hQoPlMNq5ouYacMS0THka1nHTec1a+Hywdm/x54byBW4fyaFOKbzb+Mtbk="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، السعر مناسب جداً. أنا محتاج مقاس L، هل متاح باللون الأسود؟ ولو تمام ممكن أأكد الطلب معاكم؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_63646",
+     "function": {
+      "arguments": "{\"product_id\":\"O05\"}",
+      "name": "get_product"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TLNFLk82s8cf8qs7nWWm2jk/Ha4jFCAdw5XR+XiZtJXmGtRrKnhqWpf6sqpb405hJwRbNFMxL5OrvkpCf8mdFW9IUMnahbmcbBkjdyqls+T4WhaED/kSsIbk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_63646",
+   "content": "{\"ok\": true, \"product\": {\"id\": \"O05\", \"name\": \"فيست منفوخ\", \"name_en\": \"Puffer vest\", \"category\": \"outerwear\", \"price\": 990, \"colors\": [\"أسود\", \"زيتي\"], \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"size_chart\": {\"S\": {\"h\": [155, 168], \"w\": [48, 60]}, \"M\": {\"h\": [165, 175], \"w\": [58, 72]}, \"L\": {\"h\": [172, 182], \"w\": [70, 85]}, \"XL\": {\"h\": [178, 190], \"w\": [83, 100]}, \"XXL\": {\"h\": [182, 198], \"w\": [98, 120]}}, \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "المقاس L باللون الأسود متاح ومنورنا! تحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟ 🧥\nوعشان أكد طلبك، محتاج بس اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة).",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+I08lpfxqImI5xyBx9iCGKy5/6VGESSKpnDuIECZJmYuaePuIenolAX32Wf9LCOXRGTfTN0pCZYFRZZfA7lQu1waB5nlbrlW+lEh25ZLv3Ybt2dYdXH+8xQ="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "text": "How much ال Puffer vest؟ وال delivery للجيزة كام؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 1885,
+    "tokens_out": 35,
+    "latency_s": 1.01
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2108,
+    "tokens_out": 44,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2170,
+    "tokens_out": 46,
+    "latency_s": 2.51
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "text": "فيست منفوخ بـ 990 جنيه، ومصاريف الشحن للجيزة 60 جنيه وبياخد من يوم لـ 3 أيام. تحب أساعدك في اختيار المقاس؟ 😊",
+    "latency_s": 4.49
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "text": "تمام، السعر مناسب جداً. أنا محتاج مقاس L، هل متاح باللون الأسود؟ ولو تمام ممكن أأكد الطلب معاكم؟"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2251,
+    "tokens_out": 20,
+    "latency_s": 0.89
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "name": "get_product",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2556,
+    "tokens_out": 81,
+    "latency_s": 1.12
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-price-6",
+   "data": {
+    "text": "المقاس L باللون الأسود متاح ومنورنا! تحب أضيفلك هودي قطن تقيل بـ 890 جنيه؟ 🧥\nوعشان أكد طلبك، محتاج بس اسمك، رقم الموبايل، وعنوانك بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة).",
+    "latency_s": 2.01
+   }
+  }
+ ]
+}

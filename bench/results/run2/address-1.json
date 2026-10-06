@@ -1,0 +1,290 @@
+{
+ "card_id": "address-1",
+ "category": "vague_address",
+ "script": "arabic",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا منى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: جنب الجامع، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أهلاً، تمام الطلب مظبوط بس العنوان هو: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر. ممكن تأكدوا الطلب؟"
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، أكدوا الطلب شكراً."
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! هنجهزه ويوصلك في خلال 1-3 أيام. شكراً لاختيارك وصلة وير 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: جنب الجامع، مدينة نصر\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا منى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: جنب الجامع، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "أهلاً، تمام الطلب مظبوط بس العنوان هو: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر. ممكن تأكدوا الطلب؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_691048",
+     "function": {
+      "arguments": "{\"changes\":{\"address\":\"14 شارع الطيران الدور 4 شقة 8، مدينة نصر\"},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Ta6/sLb/qvbk5NFo0Ou9u05zBbYlzBxUztyGBE+EQqAbrurIg7egfKICgWx0jMw6DJsu+ePFzf29dNYgRL70hSi6NYyxSGYiwQ2ZZcpXRBQc5RMPeVhkCZnw="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_691048",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 1010, \"summary_ar\": \"طلب رقم 1:\\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\\nالشحن (القاهرة): 60 جنيه\\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T8oEA3xF2gnf8JPuLe6kpJxnTkZkjFKfhmHoCCLgFwwQokVDws7kGY3LjRKEbSUNN1eVT21YX2tjK/WcPSMZ3cOO9aiIdMIMRcKE5MotEouYjFoyARQDkN9o="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، أكدوا الطلب شكراً."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_47365",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TNHoq0KwK5US1kJIgXia+gUMrJc9JmsWiMxezrtmsrHvu5f1wYwMdH/9DXqJzmm0hCy06t1s1AW4ALfyuwyWxNTTIudP7hv2+NGYh3QmtQ9UyTZG7R80MRcg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_47365",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! هنجهزه ويوصلك في خلال 1-3 أيام. شكراً لاختيارك وصلة وير 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T/ADsvsURYr/yq3w7WQreteLFr6s7a8DF/mqE36DSluWns9m/t1zGIu/fz08FH7lmt/L7SjteFKe6Ubvg40Y1VxNL/Ae6P/I/WAi0VDkaGaTYySDgzQ1nM6o="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "منى حسن",
+   "phone": "01011112222",
+   "address": "14 شارع الطيران الدور 4 شقة 8، مدينة نصر",
+   "area": "مدينة نصر",
+   "zone_id": "cairo",
+   "items": [
+    {
+     "product_id": "B01",
+     "name_ar": "جينز سليم",
+     "size": "32",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 950
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 950,
+   "total": 1010,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1010,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا منى! شكراً لطلبك من موقع وصلة وير 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: جنب الجامع، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً، تمام الطلب مظبوط بس العنوان هو: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر. ممكن تأكدوا الطلب؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2150,
+    "tokens_out": 40,
+    "latency_s": 1.57
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2360,
+    "tokens_out": 97,
+    "latency_s": 1.13
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× جينز سليم مقاس 32 لون أسود = 950 جنيه\nالشحن (القاهرة): 60 جنيه\nالإجمالي: 1010 جنيه (الدفع عند الاستلام)\nالعنوان: 14 شارع الطيران الدور 4 شقة 8، مدينة نصر\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.7
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام، أكدوا الطلب شكراً."
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2469,
+    "tokens_out": 16,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1010,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2544,
+    "tokens_out": 39,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! هنجهزه ويوصلك في خلال 1-3 أيام. شكراً لاختيارك وصلة وير 🌸",
+    "latency_s": 1.78
+   }
+  }
+ ]
+}
