@@ -138,7 +138,10 @@ class CachedProvider:
         raw = self.inner.complete(messages, tools)
         with self._lock:
             self._data[key] = raw
-            self.path.parent.mkdir(parents=True, exist_ok=True)
-            with open(self.path, "a", encoding="utf-8", newline="\n") as f:
-                f.write(json.dumps({"key": key, "response": raw}, ensure_ascii=False) + "\n")
+            try:
+                self.path.parent.mkdir(parents=True, exist_ok=True)
+                with open(self.path, "a", encoding="utf-8", newline="\n") as f:
+                    f.write(json.dumps({"key": key, "response": raw}, ensure_ascii=False) + "\n")
+            except OSError:  # a read-only disk costs the cache file, never the reply
+                pass
         return raw

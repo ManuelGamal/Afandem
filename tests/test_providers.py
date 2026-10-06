@@ -153,3 +153,11 @@ def test_timeouts_count_as_temporary_and_spec_sets_timeout(monkeypatch):
         p.complete(MSGS, [])
     q = OpenAICompatProvider(ProviderSpec("q", "m", "http://x", "K", timeout_s=180))
     assert q.client.timeout == 180
+
+
+def test_a_cache_file_that_cannot_be_written_never_costs_the_reply(tmp_path):
+    blocker = tmp_path / "not-a-dir"
+    blocker.write_text("x", encoding="utf-8")  # the cache's parent "directory" is a file
+    cached = CachedProvider(Fake("a", [{"id": "live"}]), blocker / "cache.jsonl")
+    assert cached.complete(MSGS, [])["id"] == "live"
+    assert cached.complete(MSGS, [])["_provider"] == "cache"  # still kept in memory
