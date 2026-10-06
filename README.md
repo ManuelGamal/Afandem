@@ -215,6 +215,18 @@ The **ROI calculator** in the app runs the same model with a shop's own numbers 
 messages/day, moderator salary, refusal rate, average order). All parameters, sources and formulas:
 [`bench/report-heldout/report.md`](bench/report-heldout/report.md).
 
+## Models and spending
+
+- **Agent:** Gemini 3.5 / 3.1 Flash-Lite on Google's free tier (`configs/providers.yaml`), with
+  **GLM-5.3-Flash on Nebius** as a fallback from another vendor, so a rate limit doesn't stop the shop.
+  We chose GLM by running six Nebius models through the same Egyptian Arabic and Franco conversation on
+  the real agent: all six used the right tools and numbers, and GLM wrote the most natural Egyptian Arabic.
+- **Simulated customer (bench):** Qwen3-235B on Nebius (`configs/providers-sim-nebius.yaml`) — a
+  different model family from the agent and its fallback, so no model plays both sides.
+- **Hard spend cap:** every paid call is priced from its token counts and logged to
+  `spend/ledger.jsonl`; once the total reaches $9 of a $10 cap, paid models stop and the chain moves on.
+  A test fails if any paid model is configured without its price. The hosted demo has no paid key.
+
 ## WhatsApp
 
 `moderator/whatsapp.py` connects the same agent to the **WhatsApp Cloud API**: Meta's webhook comes in
