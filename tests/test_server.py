@@ -99,3 +99,35 @@ def test_inventory_read_and_owner_edit():
     assert c.post("/api/inventory", json={"product_id": "T06", "size": "L", "stock": -1}).status_code == 422
     events = c.get("/api/state").json()["events"]
     assert any(e["kind"] == "stock" for e in events)
+
+
+def test_reset_does_not_refill_the_message_cap(monkeypatch):
+    monkeypatch.setenv("MODERATOR_MAX_MESSAGES", "2")
+    provider = ScriptedProvider([text_raw("a"), text_raw("b"), text_raw("c")])
+    c = TestClient(create_app(provider_factory=lambda: provider, mode="live"))
+    for _ in range(2):
+        assert c.post("/api/chat", json={"conversation_id": "c1", "text": "hi"}).status_code == 200
+    c.post("/api/reset")
+    assert c.post("/api/chat", json={"conversation_id": "c1", "text": "hi"}).status_code == 429
+    assert c.get("/api/state").json()["messages_left"] == 0
+
+
+def test_recorded_demo_conversations_do_not_use_the_cap(monkeypatch):
+    monkeypatch.setenv("MODERATOR_MAX_MESSAGES", "1")
+    provider = ScriptedProvider([text_raw("a"), text_raw("b")])
+    c = TestClient(create_app(provider_factory=lambda: provider, mode="live"))
+    assert c.post("/api/chat", json={"conversation_id": "demo-sale", "text": "hi"}).status_code == 200
+    assert c.post("/api/chat", json={"conversation_id": "c1", "text": "hi"}).status_code == 200
+
+
+def test_spent_daily_budget_turns_live_chat_away_but_not_the_demo():
+    from moderator.providers.client import CachedProvider, DailyBudget
+    from tests.test_providers import Fake
+
+    budget = DailyBudget(Fake("live", [text_raw("live")]), limit=0)
+    provider = CachedProvider(budget, "unused-cache.jsonl")
+    provider._data["k"] = text_raw("x")  # stands in for the recorded demo
+    c = TestClient(create_app(provider_factory=lambda: provider, mode="live"))
+    r = c.post("/api/chat", json={"conversation_id": "c1", "text": "hi"})
+    assert r.status_code == 429 and "Play demo" in r.json()["detail"]
+    assert c.post("/api/chat", json={"conversation_id": "demo-sale", "text": "hi"}).status_code == 200

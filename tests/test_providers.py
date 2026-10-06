@@ -92,8 +92,9 @@ def test_moderator_providers_env_overrides_the_config(monkeypatch, tmp_path):
                    "    api_key_env: FAKE_KEY\n", encoding="utf-8")
     monkeypatch.setenv("FAKE_KEY", "k")
     monkeypatch.setenv("MODERATOR_PROVIDERS", str(cfg))
-    chain = build_provider("live", cache_path=tmp_path / "c.jsonl").inner
-    assert [p.name for p in chain.providers] == ["only-one"]
+    budget = build_provider("live", cache_path=tmp_path / "c.jsonl").inner
+    assert budget.limit == 800  # live calls sit behind a daily budget
+    assert [p.name for p in budget.inner.providers] == ["only-one"]
 
 
 def test_chain_waits_for_the_earliest_cooldown_instead_of_failing():
@@ -161,3 +162,19 @@ def test_a_cache_file_that_cannot_be_written_never_costs_the_reply(tmp_path):
     cached = CachedProvider(Fake("a", [{"id": "live"}]), blocker / "cache.jsonl")
     assert cached.complete(MSGS, [])["id"] == "live"
     assert cached.complete(MSGS, [])["_provider"] == "cache"  # still kept in memory
+
+
+def test_daily_budget_counts_live_calls_and_resets_each_day():
+    from datetime import date
+    from moderator.providers.client import DailyBudget
+
+    today = [date(2026, 10, 8)]
+    budget = DailyBudget(Fake("a", [{"id": "1"}, {"id": "2"}, {"id": "3"}]), limit=2,
+                         today=lambda: today[0])
+    budget.complete(MSGS, [])
+    budget.complete(MSGS, [])
+    assert budget.exhausted
+    with pytest.raises(ProviderError, match="budget"):
+        budget.complete(MSGS, [])
+    today[0] = date(2026, 10, 9)
+    assert not budget.exhausted and budget.complete(MSGS, [])["id"] == "3"

@@ -8,7 +8,7 @@ from pathlib import Path
 import yaml
 
 from moderator.providers.client import (
-    CachedProvider, FallbackChain, OpenAICompatProvider, ProviderError, ProviderSpec,
+    CachedProvider, DailyBudget, FallbackChain, OpenAICompatProvider, ProviderError, ProviderSpec,
 )
 
 DEFAULT_CONFIG = Path(__file__).resolve().parents[2] / "configs" / "providers.yaml"
@@ -33,4 +33,5 @@ def build_provider(mode: str, config_path: Path = DEFAULT_CONFIG,
     chain = FallbackChain([OpenAICompatProvider(s) for s in specs], cooldown_s=30, max_wait_s=35)
     if mode == "record":
         return CachedProvider(chain, replay_path)
-    return CachedProvider(chain, cache_path, seed_paths=(replay_path,))
+    budget = DailyBudget(chain, int(os.environ.get("MODERATOR_DAILY_LIVE_CALLS", "800")))
+    return CachedProvider(budget, cache_path, seed_paths=(replay_path,))

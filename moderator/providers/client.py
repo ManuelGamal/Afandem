@@ -9,6 +9,7 @@ import os
 import threading
 import time
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 
 import openai
@@ -104,6 +105,38 @@ def request_key(messages: list[dict], tools: list[dict]) -> str:
     payload = json.dumps({"messages": messages, "tools": tools}, sort_keys=True,
                          ensure_ascii=False, default=str)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+class DailyBudget:
+    """Caps live model calls per day, so one visitor of the hosted demo cannot spend the free
+    tier's daily quota for everyone. Sits behind the cache: recorded answers cost nothing."""
+
+    def __init__(self, inner, limit: int, today=date.today):
+        self.inner = inner
+        self.name = inner.name
+        self.limit = limit
+        self._today = today
+        self._day = today()
+        self.used = 0
+        self._lock = threading.Lock()
+
+    def _roll(self) -> None:
+        if self._today() != self._day:
+            self._day, self.used = self._today(), 0
+
+    @property
+    def exhausted(self) -> bool:
+        with self._lock:
+            self._roll()
+            return self.used >= self.limit
+
+    def complete(self, messages: list[dict], tools: list[dict]) -> dict:
+        with self._lock:
+            self._roll()
+            if self.used >= self.limit:
+                raise ProviderError("the daily live-model budget for this demo is used up")
+            self.used += 1
+        return self.inner.complete(messages, tools)
 
 
 class CachedProvider:

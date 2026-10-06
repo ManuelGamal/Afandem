@@ -127,8 +127,13 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
 
     def spend(s: Session) -> None:
         if s.message_count >= max_messages:
-            raise HTTPException(429, "Message limit for this demo session reached. Press reset.")
+            raise HTTPException(429, "You've used this demo's message limit. Play demo still "
+                                     "works, or run it locally with your own free key (README).")
         s.message_count += 1
+
+    def live_budget_left() -> bool:
+        budget = getattr(provider, "inner", None)
+        return not getattr(budget, "exhausted", False)
 
     @app.get("/")
     def index():
@@ -196,8 +201,13 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
         if not text:
             raise HTTPException(422, "empty message")
         s = session_for(request, response)
+        recorded = body.conversation_id.startswith("demo-")  # Play demo: answered from the recording
+        if not recorded and not live_budget_left():
+            raise HTTPException(429, "Today's free model budget for the hosted demo is used up. "
+                                     "Play demo still works, or run it locally with your own free key (README).")
         with s.lock:
-            spend(s)
+            if not recorded:
+                spend(s)
             return {"replies": s.chat(body.conversation_id, text)}
 
     @app.post("/api/checkout")
@@ -231,7 +241,9 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
         sid = request.cookies.get("sid")
         with registry:
             if sid in sessions:
-                sessions[sid] = Session(provider)
+                fresh = Session(provider)
+                fresh.message_count = sessions[sid].message_count  # a reset is not a refill
+                sessions[sid] = fresh
         return {"ok": True}
 
     @app.get("/api/events")
