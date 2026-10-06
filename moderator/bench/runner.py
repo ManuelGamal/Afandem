@@ -81,6 +81,15 @@ def run_with_retries(card: Card, agent_provider, sim_provider, attempts: int = 3
     raise AssertionError("unreachable")
 
 
+def make_providers(cache_dir: Path, sim_config: Path = SIM_CONFIG):
+    """The agent (MODERATOR_PROVIDERS may replace its config) and the simulated customer (never
+    replaced by it), each with its own response cache in `cache_dir`."""
+    agent = build_provider("live", cache_path=cache_dir / "bench-agent.jsonl")
+    sim = build_provider("live", config_path=sim_config, cache_path=cache_dir / "bench-sim.jsonl",
+                         env_override=False)
+    return agent, sim
+
+
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
@@ -90,12 +99,13 @@ def main() -> None:
     ap.add_argument("--human", action="store_true", help="you play the customer in the terminal")
     ap.add_argument("--ids", help="comma-separated card ids to run")
     ap.add_argument("--cards", default=str(CARDS_DIR), help="card folder (bench/cards-heldout for final numbers)")
+    ap.add_argument("--sim-config", default=str(SIM_CONFIG), help="models for the simulated customer")
+    ap.add_argument("--cache-dir", default="cache",
+                    help="response cache; an empty folder makes every model call live")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    agent_provider = build_provider("live", cache_path=Path("cache/bench-agent.jsonl"))
-    sim_provider = build_provider("live", config_path=SIM_CONFIG,
-                                  cache_path=Path("cache/bench-sim.jsonl"))
+    agent_provider, sim_provider = make_providers(Path(args.cache_dir), Path(args.sim_config))
     ids = set(args.ids.split(",")) if args.ids else None
     cards = [c for c in load_cards(Path(args.cards)) if (not args.category or c.category == args.category)
              and (ids is None or c.id in ids)]

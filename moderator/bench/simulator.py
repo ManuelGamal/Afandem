@@ -58,7 +58,7 @@ class CustomerSim:
     def _ask(self, messages: list[dict]) -> str | None:
         raw = self.provider.complete(messages, [])
         text = _THOUGHT.sub("", raw["choices"][0]["message"].get("content") or "").strip()
-        if not text or "[DONE]" in text:
+        if not text or "[done]" in text.lower():
             return None
         return text
 

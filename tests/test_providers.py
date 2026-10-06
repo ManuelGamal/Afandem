@@ -3,7 +3,7 @@ import json
 import pytest
 
 from moderator.providers.client import (
-    CachedProvider, FallbackChain, ProviderError, RateLimited, request_key,
+    CachedProvider, FallbackChain, ProviderError, ProviderSpec, RateLimited, request_key,
 )
 
 MSGS = [{"role": "user", "content": "بكام؟"}]
@@ -77,9 +77,10 @@ def test_cache_skips_corrupt_lines(tmp_path):
 
 
 def test_build_provider_without_keys_explains(monkeypatch, tmp_path):
-    from moderator.providers.config import build_provider
-    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
-    monkeypatch.delenv("GROQ_API_KEY", raising=False)
+    from moderator.providers.config import build_provider, load_specs
+    monkeypatch.delenv("MODERATOR_PROVIDERS", raising=False)
+    for spec in load_specs():  # every key the config can use, whatever this machine has set
+        monkeypatch.delenv(spec.api_key_env, raising=False)
     with pytest.raises(ProviderError, match="MODERATOR_MODE=replay"):
         build_provider("live", cache_path=tmp_path / "c.jsonl")
     assert build_provider("replay", replay_path=tmp_path / "r.jsonl").inner is None
@@ -92,9 +93,8 @@ def test_moderator_providers_env_overrides_the_config(monkeypatch, tmp_path):
                    "    api_key_env: FAKE_KEY\n", encoding="utf-8")
     monkeypatch.setenv("FAKE_KEY", "k")
     monkeypatch.setenv("MODERATOR_PROVIDERS", str(cfg))
-    budget = build_provider("live", cache_path=tmp_path / "c.jsonl").inner
-    assert budget.limit == 800  # live calls sit behind a daily budget
-    assert [p.name for p in budget.inner.providers] == ["only-one"]
+    chain = build_provider("live", cache_path=tmp_path / "c.jsonl").inner
+    assert [p.name for p in chain.providers] == ["only-one"]
 
 
 def test_chain_waits_for_the_earliest_cooldown_instead_of_failing():
@@ -178,3 +178,81 @@ def test_daily_budget_counts_live_calls_and_resets_each_day():
         budget.complete(MSGS, [])
     today[0] = date(2026, 10, 9)
     assert not budget.exhausted and budget.complete(MSGS, [])["id"] == "3"
+
+
+def _one_provider_config(tmp_path, name, key_env="FAKE_KEY"):
+    cfg = tmp_path / f"{name}.yaml"
+    cfg.write_text(f"providers:\n  - name: {name}\n    model: m\n    base_url: http://x\n"
+                   f"    api_key_env: {key_env}\n", encoding="utf-8")
+    return cfg
+
+
+def test_daily_budget_is_only_applied_when_asked(monkeypatch, tmp_path):
+    from moderator.providers.client import DailyBudget
+    from moderator.providers.config import build_provider
+    monkeypatch.setenv("FAKE_KEY", "k")
+    cfg = _one_provider_config(tmp_path, "a")
+    bench = build_provider("live", config_path=cfg, cache_path=tmp_path / "c.jsonl")
+    assert not isinstance(bench.inner, DailyBudget)  # the bench is not the hosted demo
+    demo = build_provider("live", config_path=cfg, cache_path=tmp_path / "c.jsonl", daily_live_calls=5)
+    assert isinstance(demo.inner, DailyBudget) and demo.inner.limit == 5
+
+
+def test_the_simulator_config_is_not_replaced_by_the_agent_override(monkeypatch, tmp_path):
+    from moderator.bench.runner import make_providers
+    monkeypatch.setenv("FAKE_KEY", "k")
+    monkeypatch.setenv("MODERATOR_PROVIDERS", str(_one_provider_config(tmp_path, "agent-x")))
+    agent, sim = make_providers(tmp_path / "cache", _one_provider_config(tmp_path, "sim-y"))
+    assert [p.name for p in agent.inner.providers] == ["agent-x"]
+    assert [p.name for p in sim.inner.providers] == ["sim-y"]
+    assert agent.path.parent == tmp_path / "cache" and sim.path.parent == tmp_path / "cache"
+
+
+def test_spend_cap_prices_each_call_and_stops_before_the_cap(tmp_path):
+    from moderator.providers.client import SpendCapped, SpendLedger
+    ledger = SpendLedger(tmp_path / "spend.jsonl", cap_usd=10.0, margin_usd=1.0)
+    spec = ProviderSpec(name="paid", model="m", base_url="http://x", api_key_env="K",
+                        usd_per_mtok_in=1.0, usd_per_mtok_out=2.0)
+    reply = {"choices": [{"message": {"content": "ok"}}],
+             "usage": {"prompt_tokens": 1_000_000, "completion_tokens": 1_000_000}}  # $3 a call
+    paid = SpendCapped(Fake("paid", [reply] * 5), spec, ledger)
+    for _ in range(3):
+        paid.complete(MSGS, [])
+    assert ledger.total() == pytest.approx(9.0)
+    with pytest.raises(ProviderError, match="spend cap"):  # $9 spent: stop, a fourth call could pass $10
+        paid.complete(MSGS, [])
+    assert SpendLedger(tmp_path / "spend.jsonl", 10.0, 1.0).total() == pytest.approx(9.0)  # survives restarts
+
+
+def test_a_call_without_usage_is_charged_at_its_worst_case(tmp_path):
+    from moderator.providers.client import SpendCapped, SpendLedger
+    ledger = SpendLedger(tmp_path / "spend.jsonl", cap_usd=10.0, margin_usd=1.0)
+    spec = ProviderSpec(name="paid", model="m", base_url="http://x", api_key_env="K", max_tokens=1000,
+                        usd_per_mtok_in=1.0, usd_per_mtok_out=1000.0)
+    SpendCapped(Fake("paid", [{"choices": [{"message": {"content": "ok"}}]}]), spec, ledger).complete(MSGS, [])
+    assert ledger.total() >= 1.0  # max_tokens x output price, at least
+
+
+def test_priced_providers_are_capped_and_free_ones_are_not(monkeypatch, tmp_path):
+    from moderator.providers.client import SpendCapped
+    from moderator.providers.config import build_provider
+    cfg = tmp_path / "p.yaml"
+    cfg.write_text("providers:\n  - name: free\n    model: m\n    base_url: http://x\n    api_key_env: FAKE_KEY\n"
+                   "  - name: paid\n    model: m\n    base_url: http://x\n    api_key_env: FAKE_KEY\n"
+                   "    usd_per_mtok_in: 0.15\n    usd_per_mtok_out: 0.5\n", encoding="utf-8")
+    monkeypatch.setenv("FAKE_KEY", "k")
+    monkeypatch.setenv("MODERATOR_SPEND_LEDGER", str(tmp_path / "spend.jsonl"))
+    free, paid = build_provider("live", config_path=cfg, cache_path=tmp_path / "c.jsonl").inner.providers
+    assert not isinstance(free, SpendCapped) and isinstance(paid, SpendCapped)
+    assert paid.ledger.cap_usd == 10.0 and paid.name == "paid"
+
+
+def test_every_nebius_model_in_every_config_is_priced():
+    """An unpriced Nebius model would bypass the $10 spend cap."""
+    from pathlib import Path
+
+    from moderator.providers.config import load_specs
+    for cfg in Path("configs").glob("*.yaml"):
+        for spec in load_specs(cfg):
+            if spec.api_key_env == "NEBIUS_API_KEY":
+                assert spec.usd_per_mtok_in and spec.usd_per_mtok_out, f"{cfg.name}: {spec.name}"

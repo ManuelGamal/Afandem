@@ -85,7 +85,8 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
     failed_cost = float(os.environ.get("MODERATOR_FAILED_DELIVERY_COST", "120"))
     notice = None
     try:
-        provider = provider_factory() if provider_factory else build_provider(mode)
+        provider = provider_factory() if provider_factory else build_provider(
+            mode, daily_live_calls=int(os.environ.get("MODERATOR_DAILY_LIVE_CALLS", "800")))
     except ProviderError as e:
         mode, notice = "replay", str(e)
         provider = build_provider("replay")

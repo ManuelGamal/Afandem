@@ -32,6 +32,8 @@ class ProviderSpec:
     max_tokens: int = 800
     temperature: float | None = 0.3
     timeout_s: float = 60.0
+    usd_per_mtok_in: float | None = None  # set for paid models: their calls count against the spend cap
+    usd_per_mtok_out: float | None = None
 
 
 class OpenAICompatProvider:
@@ -105,6 +107,58 @@ def request_key(messages: list[dict], tools: list[dict]) -> str:
     payload = json.dumps({"messages": messages, "tools": tools}, sort_keys=True,
                          ensure_ascii=False, default=str)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+class SpendLedger:
+    """Every paid call's cost, on disk, so a cap holds across runs and restarts. Calls stop once
+    the total reaches cap - margin; the margin covers one in-flight call and billing differences."""
+
+    def __init__(self, path: str | Path, cap_usd: float, margin_usd: float = 1.0):
+        self.path = Path(path)
+        self.cap_usd = cap_usd
+        self.margin_usd = margin_usd
+        self._lock = threading.Lock()
+
+    def total(self) -> float:
+        with self._lock:
+            if not self.path.exists():
+                return 0.0
+            return sum(json.loads(line)["usd"] for line in self.path.read_text(encoding="utf-8").splitlines()
+                       if line.strip())
+
+    def allows_another_call(self) -> bool:
+        return self.total() < self.cap_usd - self.margin_usd
+
+    def record(self, model: str, tokens_in: int, tokens_out: int, usd: float) -> None:
+        with self._lock:
+            self.path.parent.mkdir(parents=True, exist_ok=True)
+            with open(self.path, "a", encoding="utf-8") as f:
+                f.write(json.dumps({"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": model,
+                                    "tokens_in": tokens_in, "tokens_out": tokens_out,
+                                    "usd": round(usd, 6)}) + "\n")
+
+
+class SpendCapped:
+    """A paid provider behind the spend ledger: refuses calls at the cap, prices each call from its
+    usage (or its worst case when usage is missing)."""
+
+    def __init__(self, inner, spec: ProviderSpec, ledger: SpendLedger):
+        self.inner = inner
+        self.spec = spec
+        self.name = inner.name
+        self.ledger = ledger
+
+    def complete(self, messages: list[dict], tools: list[dict]) -> dict:
+        if not self.ledger.allows_another_call():
+            raise ProviderError(f"spend cap reached: ${self.ledger.total():.2f} of "
+                                f"${self.ledger.cap_usd:.2f} (stops ${self.ledger.margin_usd:.2f} early)")
+        raw = self.inner.complete(messages, tools)
+        usage = raw.get("usage") or {}
+        tokens_in = usage.get("prompt_tokens") or len(json.dumps(messages, ensure_ascii=False)) + len(json.dumps(tools))
+        tokens_out = usage.get("completion_tokens") or self.spec.max_tokens
+        usd = (tokens_in * (self.spec.usd_per_mtok_in or 0) + tokens_out * (self.spec.usd_per_mtok_out or 0)) / 1e6
+        self.ledger.record(self.spec.model, tokens_in, tokens_out, usd)
+        return raw
 
 
 class DailyBudget:

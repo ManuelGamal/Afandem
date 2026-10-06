@@ -129,3 +129,16 @@ def test_run_card_accepts_a_given_simulator():
 def test_sim_prompt_keeps_the_customer_on_its_goal():
     from moderator.bench.simulator import PROMPT
     assert "Never start buying" in PROMPT
+
+
+def test_simulator_ends_on_done_in_any_case():
+    """Some models write the end marker as [done] or [Done]; it must end the chat, not be sent."""
+    from moderator.bench.cards import load_cards
+    from pathlib import Path
+
+    from moderator.bench.simulator import CustomerSim
+
+    card = load_cards(Path("bench/cards-heldout"))[0]
+    for marker in ("[done]", "[Done]", "شكراً [done]"):
+        sim = CustomerSim(ScriptedProvider([text_raw(marker)]), card)
+        assert sim.next_message([]) is None, marker

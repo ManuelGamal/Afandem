@@ -14,6 +14,16 @@ providers:
     model: gemini-3.8-flash
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key_env: GEMINI_API_KEY
+  # Nebius Token Factory: a different vendor, so the demo keeps answering when Gemini's free tier
+  # is rate-limited. Chosen by a probe of six Nebius models on the real agent (best Egyptian Arabic).
+  - name: nebius-glm-5.3-flash
+    model: zai-org/GLM-5.3-Flash
+    usd_per_mtok_in: 0.15   # Nebius price, 2026-10-06
+    usd_per_mtok_out: 0.5
+    base_url: https://api.tokenfactory.nebius.com/v1/
+    api_key_env: NEBIUS_API_KEY
+    max_tokens: 1500
+    timeout_s: 90
   - name: groq-qwen
     model: qwen/qwen3.6-27b
     base_url: https://api.groq.com/openai/v1

@@ -1,0 +1,15 @@
+# The agent on Gemini only, for the reported bench runs: no silent switch to another model
+# when Gemini is rate-limited (the run stops and resumes instead).
+providers:
+  - name: gemini-3.5-flash-lite
+    model: gemini-3.5-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+  - name: gemini-3.1-flash-lite
+    model: gemini-3.1-flash-lite
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+  - name: gemini-3.8-flash
+    model: gemini-3.8-flash
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
