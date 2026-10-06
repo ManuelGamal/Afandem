@@ -69,6 +69,7 @@ def wa_client(monkeypatch, provider):
     monkeypatch.setenv("WHATSAPP_PHONE_ID", "123")
     monkeypatch.setenv("WHATSAPP_APP_SECRET", "s3cret")
     monkeypatch.setenv("WHATSAPP_VERIFY_TOKEN", "verify-me")
+    monkeypatch.setenv("WHATSAPP_VIEW_KEY", "owner-key")
     sender = FakeSender()
     app = create_app(provider_factory=lambda: provider, mode="live", whatsapp_sender=sender)
     return TestClient(app), sender
@@ -91,10 +92,28 @@ def test_webhook_rejects_unsigned_and_handles_signed(monkeypatch):
     r = c.post("/webhook/whatsapp", content=body,
                headers={"X-Hub-Signature-256": sign("s3cret", body), "Content-Type": "application/json"})
     assert r.status_code == 200 and sender.sent == [(ME, "أهلاً")]
-    state = c.get("/api/state", params={"view": "whatsapp"}).json()
+    state = c.get("/api/state", params={"view": "whatsapp", "key": "owner-key"}).json()
     assert state["conversations"][0]["id"] == f"wa-{ME}"
 
 
 def test_webhook_disabled_without_credentials():
     c = TestClient(create_app(provider_factory=lambda: ScriptedProvider([]), mode="live"))
     assert c.get("/webhook/whatsapp").status_code == 404
+
+
+def test_whatsapp_view_needs_the_owner_key(monkeypatch):
+    """Real customers' numbers and addresses are never shown to a visitor without the key."""
+    c, _ = wa_client(monkeypatch, ScriptedProvider([]))
+    for params in ({"view": "whatsapp"}, {"view": "whatsapp", "key": "guess"}):
+        assert c.get("/api/state", params=params).status_code == 403
+        assert c.get("/api/inventory", params=params).status_code == 403
+        assert c.get("/api/events", params=params).status_code == 403
+        assert c.post("/api/inventory", params=params,
+                      json={"product_id": "T01", "size": "M", "stock": 0}).status_code == 403
+    assert c.get("/api/state", params={"view": "whatsapp", "key": "owner-key"}).status_code == 200
+
+
+def test_whatsapp_view_is_off_without_a_view_key(monkeypatch):
+    c, _ = wa_client(monkeypatch, ScriptedProvider([]))
+    monkeypatch.delenv("WHATSAPP_VIEW_KEY")
+    assert c.get("/api/state", params={"view": "whatsapp", "key": ""}).status_code == 403

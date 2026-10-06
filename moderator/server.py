@@ -100,10 +100,18 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
                                                    os.environ["WHATSAPP_PHONE_ID"])
         bridge = WhatsAppBridge(Session(provider), sender)
 
+    def whatsapp_view(request: Request) -> Session | None:
+        """The real WhatsApp shop, for its owner only: it holds real customers' numbers and
+        addresses, so it needs ?key=WHATSAPP_VIEW_KEY and is off when that is not set."""
+        if request.query_params.get("view") != "whatsapp" or bridge is None:
+            return None
+        key = os.environ.get("WHATSAPP_VIEW_KEY", "")
+        if not key or not secrets.compare_digest(request.query_params.get("key", ""), key):
+            raise HTTPException(403, "the WhatsApp view needs the owner's key")
+        return bridge.session
+
     def view_session(request: Request, response: Response) -> Session:
-        if request.query_params.get("view") == "whatsapp" and bridge is not None:
-            return bridge.session
-        return session_for(request, response)
+        return whatsapp_view(request) or session_for(request, response)
 
     @app.get("/webhook/whatsapp")
     def whatsapp_verify(request: Request):
@@ -248,8 +256,7 @@ def create_app(provider_factory=None, mode: str | None = None, whatsapp_sender=N
 
     @app.get("/api/events")
     async def events(request: Request):
-        s = (bridge.session if request.query_params.get("view") == "whatsapp" and bridge
-             else sessions.get(request.cookies.get("sid", "")))
+        s = whatsapp_view(request) or sessions.get(request.cookies.get("sid", ""))
         if s is None:
             raise HTTPException(404, "no session; load /api/state first")
 

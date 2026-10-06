@@ -54,9 +54,11 @@ const SUGGESTIONS = [
 let info = null, state = null, current = "chat-1", busy = false, es = null, timer = null;
 let chatCount = 1, openPanelName = null;
 const seen = new Set();  // event seq numbers already in the activity log
-// ?view=whatsapp shows the WhatsApp line's conversations (read-only here; chat from the phone).
-const VIEW = new URLSearchParams(location.search).get("view");
-const VIEW_Q = VIEW ? `?view=${encodeURIComponent(VIEW)}` : "";
+// ?view=whatsapp&key=… shows the WhatsApp line's conversations to the shop owner
+// (read-only here; chat from the phone). The key keeps real customers' details private.
+const PARAMS = new URLSearchParams(location.search);
+const VIEW = PARAMS.get("view");
+const VIEW_Q = VIEW ? `?view=${encodeURIComponent(VIEW)}&key=${encodeURIComponent(PARAMS.get("key") || "")}` : "";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g,
   (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));

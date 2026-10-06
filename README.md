@@ -176,8 +176,10 @@ messages/day, moderator salary, refusal rate, average order). All parameters, so
 `moderator/whatsapp.py` connects the same agent to the **WhatsApp Cloud API**: Meta's webhook comes in
 (signature-checked with the app secret), replies go out through the Graph API, duplicate deliveries are
 ignored, and `/checkout` sent from a phone triggers a website-order confirmation to that number. The
-conversations show live at `/?view=whatsapp`. To connect a number, set `WHATSAPP_TOKEN`,
-`WHATSAPP_PHONE_ID`, `WHATSAPP_APP_SECRET` and `WHATSAPP_VERIFY_TOKEN`, and point the app's webhook to
+conversations show live to the shop owner at `/?view=whatsapp&key=<WHATSAPP_VIEW_KEY>`. The view
+needs that key because it holds real customers' numbers and addresses, and it stays off when the key
+is not set. To connect a number, set `WHATSAPP_TOKEN`, `WHATSAPP_PHONE_ID`, `WHATSAPP_APP_SECRET`,
+`WHATSAPP_VERIFY_TOKEN` and `WHATSAPP_VIEW_KEY`, and point the app's webhook to
 `https://<your-host>/webhook/whatsapp`.
 
 ## How it's built
