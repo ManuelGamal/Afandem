@@ -87,6 +87,9 @@ Hodoom runs on a real **SQLite** database — `products`, `inventory` (stock per
 `size_charts`, `delivery_zones`, `orders` and `stock_movements`. Nothing the agent says about the shop
 comes from memory or from the prompt:
 
+- **You can watch it in the chat.** Above each reply, a thin line shows what it read from the database
+  ("هودي قطن تقيل · 890 EGP · in stock: L 12, XL 7") and what it wrote ("order #1 saved", "stock
+  هودي قطن تقيل XL: 7 → 6") — live, as the agent works, including in Play demo.
 - **Every answer is a query.** Prices, colours, which sizes are in stock and how many, size charts and
   delivery fees are read from the database at the moment the customer asks.
 - **Orders move stock.** Confirming an order reserves its items in the same transaction as the status
@@ -100,32 +103,35 @@ comes from memory or from the prompt:
 Each visitor of the demo gets their own copy of the shop, so nobody drains anyone else's stock, and
 **Start over** restores it. Swapping SQLite for Postgres is a connection change; the queries are plain SQL.
 
-## Use a real store's catalog
+## Connect a real shop's catalog — one command
 
-Hodoom's catalog is made up, but Afandem can run on a real one. Most Egyptian fashion brands that sell
-online use Shopify, and every Shopify store publishes its catalog at `/products.json`. One command
-imports it into the shop database:
+Hodoom's catalog is made up, but Afandem runs on a real shop's products with one command. It works out
+the source by itself:
 
 ```bash
-uv run python -m moderator.store.importer https://your-store.com --out data/my-shop.json
-MODERATOR_SEED=data/my-shop.json uv run uvicorn --factory moderator.server:create_app --port 8000
+uv run python -m moderator.store.importer my-stock.xlsx            # or .csv — the shop's own stock sheet
+uv run python -m moderator.store.importer "https://docs.google.com/spreadsheets/d/…"   # a shared Google Sheet
+uv run python -m moderator.store.importer https://your-store.com   # a Shopify or WooCommerce store
+MODERATOR_SEED=data/imported-shop.json uv run uvicorn --factory moderator.server:create_app --port 8000
 ```
 
-- **What comes from the store:** product names, prices, colours, sizes, and which sizes are sold out
-  (from the store's own availability flags), plus a one-line description of what the shop sells.
-- **What is estimated:** exact stock counts are private, so each size the store shows as available
-  gets an estimated count (`--stock`, default 8) and a sold-out size gets 0. The Inventory panel says
-  where the catalog came from and that the counts are estimates; the owner can correct any number.
-- **What stays Afandem's own:** delivery zones, fees and size charts. A store priced in another
-  currency can be converted with `--egp-per-unit`.
-- **Arabic questions, English product names:** when a search in Arabic or Franco finds nothing, it is
-  retried with the English words (`شوزات رجالي` → men's shoes), matching whole words and listing
-  in-stock items first.
+| Source | What comes in | Stock counts |
+|---|---|---|
+| **Excel / CSV / Google Sheet** — how many small shops track stock | one row per product, colour and size; headers in English or Arabic (`name`/`الاسم`, `price`/`السعر`, `color`/`اللون`, `size`/`المقاس`, `stock`/`الكمية`) | **real**, from the sheet |
+| **Shopify** (`/products.json`) | names, prices, colours, sizes, sold-out sizes | estimated per size (`--stock`, default 8); sold-out sizes are 0 |
+| **WooCommerce** (public Store API) | names, prices, colours, sizes, sold-out products | estimated per product; sold-out products are 0 |
 
-We tested it on a large public Shopify store: 80 products with their real names, prices, colours and
-sizes (703 of those sizes sold out), and the live agent answered from them in Arabic. Use it on your own
-store, or with the owner's permission; imported files go to `data/`, which is not committed. The bench,
-the recorded demo and the hosted demo all use Hodoom's catalog.
+- Estimated counts are labelled as estimates in the Inventory panel, and the owner can correct any number.
+- Delivery zones, fees and size charts stay Afandem's own. A store priced in another currency can be
+  converted with `--egp-per-unit`.
+- **Arabic questions, English product names:** when a search in Arabic or Franco finds nothing, it is
+  retried with the English words (`شوزات رجالي` → men's shoes), matching whole words, in-stock first.
+
+Tested on real feeds: a large public Shopify store (80 products with real names, prices, colours and sizes,
+703 sizes sold out; the live agent answered from them in Arabic) and WooCommerce's own store (80 products,
+prices read correctly). Sheets are covered by tests with Arabic and English headers, in CSV and Excel. Use
+it on your own shop, or with the owner's permission; imported files go to `data/`, which is not committed.
+The bench, the recorded demo and the hosted demo use Hodoom's catalog.
 
 ## What the agent does
 
