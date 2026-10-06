@@ -23,6 +23,9 @@ from moderator.store.catalog import Catalog  # noqa: E402
 SCENARIOS = ("low", "base", "high")
 WEEKS_PER_MONTH = 4.33
 PURCHASE_CATEGORIES = {"clear_buyer", "size_unsure"}
+# Card scripts are stored as arabic / arabizi / mixed; reports show the names people use.
+SCRIPT_LABELS = {"arabic": "Egyptian Arabic", "arabizi": "Franco (Arabic in English letters)",
+                 "mixed": "Mixed Arabic and English"}
 
 
 def load_assumptions(path: Path) -> dict[str, dict]:
@@ -161,7 +164,7 @@ def build_report(results_dir: Path, assumptions_path: Path, out_dir: Path,
         *[f"| {k} | {v:.0%} |" for k, v in summary["by_category"].items()],
         "",
         "| Writing style | Success |", "|---|---|",
-        *[f"| {k} | {v:.0%} |" for k, v in summary["by_script"].items()],
+        *[f"| {SCRIPT_LABELS.get(k, k)} | {v:.0%} |" for k, v in summary["by_script"].items()],
         "",
         "![success by category](success_by_category.png)",
         "",

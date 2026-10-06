@@ -101,3 +101,9 @@ def test_impact_model_running_cost_payback_and_roi():
 def test_real_assumptions_include_hosting():
     a = load_assumptions(__import__("pathlib").Path("bench/assumptions.yaml"))
     assert a["hosting_egp_month"]["low"] >= a["hosting_egp_month"]["high"]
+
+
+def test_report_uses_readable_writing_style_names():
+    from moderator.bench.report import SCRIPT_LABELS
+    assert SCRIPT_LABELS == {"arabic": "Egyptian Arabic", "arabizi": "Franco (Arabic in English letters)",
+                             "mixed": "Mixed Arabic and English"}

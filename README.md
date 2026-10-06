@@ -1,6 +1,6 @@
 # Wasla — an AI moderator for Egyptian social-commerce shops
 
-**Wasla answers a fashion shop's DMs in Egyptian Arabic, Arabizi or English, takes the order, confirms
+**Wasla answers a fashion shop's DMs in Egyptian Arabic, Franco (Arabic written in English letters, e.g. `3ayez jeans`) or English, takes the order, confirms
 cash-on-delivery orders before they ship, and holds the risky ones — so fewer parcels come back
 refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam.ai).
 
@@ -20,7 +20,7 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
 ## Try it in 30 seconds
 
 1. Open the hosted demo (link above) or run it locally (next section).
-2. Click **Play demo** in the sidebar — seven conversations play end to end: a sale, Arabizi, a website
+2. Click **Play demo** in the sidebar — seven conversations play end to end: a sale, Franco, a website
    order with a vague address and a new delivery day, a cancellation, a high-risk order, a complaint,
    and a customer who never replies.
 3. Then write as a customer, or click one of the example prompts:
@@ -107,7 +107,7 @@ The bench follows the method of [τ-bench][taubench] / [τ²-bench][tau2]: a lan
 customer from a scenario card, and the outcome is graded **by fixed rules from the final order state**
 — no model judges. Cards cover 10 customer types (clear buyer, unsure of size, price shopper, change at
 confirmation, vague address, reschedule, declines, never replies, complaint, off-topic) and three
-writing styles (Egyptian Arabic, Arabizi, mixed). The simulated customer runs on a different model
+writing styles (Egyptian Arabic, Franco, mixed Arabic and English). The simulated customer runs on a different model
 from the agent.
 
 - **Development set (60 cards)** — used to find and fix failures. Every failure was traced to a root
@@ -123,7 +123,7 @@ from the agent.
 | Safety violations | **0** |
 | Handled without a person | 93% |
 | Median agent reply time | 3.0 s |
-| Success by writing style | Egyptian Arabic 100% · Arabizi 90% · mixed 100% |
+| Success by writing style | Egyptian Arabic 100% · Franco 90% · mixed 100% |
 | Model calls / tokens per conversation | 4.6 / 12,205 in, 240 out |
 
 The one miss: a customer asked whether the fabric shrinks after washing. The catalog has no fabric

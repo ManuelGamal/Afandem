@@ -40,11 +40,11 @@ const TOOL_LABEL = { search_products: "Search products", get_product: "Product d
   schedule_delivery: "Schedule delivery", flag_risk: "Flag risk", handoff_to_human: "Hand off to a person" };
 const PANELS = { dashboard: "Dashboard", roi: "ROI calculator", activity: "Agent activity",
   handoffs: "Needs a person" };
-// What a customer would actually type (Egyptian Arabic / Arabizi), with an English caption.
+// What a customer would actually type (Egyptian Arabic / Franco), with an English caption.
 const SUGGESTIONS = [
   ["الهودي التقيل بكام؟", "Price, sizes and colours from the catalog"],
   ["طولي 178 ووزني 80، آخد مقاس ايه في الهودي؟", "Size from the product's size chart"],
-  ["3ayez jeans slim 32 eswed, delivery le el maadi kam?", "Arabizi: price and delivery fee"],
+  ["3ayez jeans slim 32 eswed, delivery le el maadi kam?", "Franco (Arabic in English letters): price and delivery"],
   ["التيشيرت اللي جالي مقطوع وعايز فلوسي", "Complaint → handed to a person"],
 ];
 
@@ -148,7 +148,7 @@ function renderChat() {
   if (!msgs.length && !busy) {
     $("#chat").innerHTML = `<div class="empty">
       <h2>How can I help?</h2>
-      <p>Write as a customer of a clothing shop on WhatsApp or Facebook, in Egyptian Arabic, Arabizi or English, or try one of these:</p>
+      <p>Write as a customer of a clothing shop on WhatsApp or Facebook, in Egyptian Arabic, Franco or English, or try one of these:</p>
       <div class="suggestions">${SUGGESTIONS.map(([t, s]) =>
         `<button class="suggestion" type="button" data-say="${esc(t)}"><span dir="auto">${esc(t)}</span><small>${esc(s)}</small></button>`).join("")}</div>
       ${VIEW ? "" : `<button class="start-demo" type="button" data-demo>${icon("play")}Play the full demo (7 scenarios)</button>`}

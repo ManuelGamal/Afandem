@@ -29,9 +29,9 @@ The shop is fictional. **Measured** numbers come from the simulation bench (60 s
 
 | Writing style | Success |
 |---|---|
-| arabic | 100% |
-| arabizi | 100% |
-| mixed | 95% |
+| Egyptian Arabic | 100% |
+| Franco (Arabic in English letters) | 100% |
+| Mixed Arabic and English | 95% |
 
 ![success by category](success_by_category.png)
 
