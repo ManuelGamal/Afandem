@@ -44,7 +44,10 @@ The shop is fictional. **Measured** numbers come from the simulation bench (60 s
 | Refused COD deliveries prevented | 20 | 130 | 486 |
 | Failed-delivery cost saved (EGP) | 1,755 | 15,600 | 82,620 |
 | Model cost (EGP) | 1,135 | 706 | 391 |
-| **Net cost saved (EGP)** | 2,424 | 19,734 | 99,341 |
+| Running cost: model + hosting (EGP) | 1,635 | 956 | 391 |
+| **Net cost saved (EGP)** | 1,924 | 19,484 | 99,341 |
+| **Pays for itself in (days)** | 13.8 | 1.4 | 0.1 |
+| Return on running cost (net saved ÷ running cost) | 1× | 20× | 254× |
 | Extra sales from faster replies (EGP, gross) | 9,004 | 52,525 | 324,675 |
 | Extra sales from suggested items (EGP, gross; simulation rate) | 9,100 | 24,267 | 58,800 |
 | **Extra sales total (EGP, gross)** | 18,104 | 76,792 | 383,475 |
@@ -73,6 +76,7 @@ The shop is fictional. **Measured** numbers come from the simulation bench (60 s
 | llm_usd_per_mtok_in | 0.75 | 0.3 | 0.1 | https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05) |
 | llm_usd_per_mtok_out | 3.75 | 2.5 | 0.4 | https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05) |
 | usd_to_egp | 52 | 50 | 48 | estimate; check the rate on the day you build the slides |
+| hosting_egp_month | 500 | 250 | 0 | estimate: a small VPS is about $5/month (~250 EGP at ~50 EGP/USD); low assumes $10; high is a free hosting tier |
 
 ## Formulas
 
@@ -80,4 +84,5 @@ The shop is fictional. **Measured** numbers come from the simulation bench (60 s
 - Moderator cost saved = hours saved x monthly salary / monthly hours.
 - Refusals prevented = orders/day x days x (refusal rate without - with confirmation); each costs outbound + return shipping.
 - Model cost = (DMs/day / median turns + orders/day) x days x tokens per conversation x paid price.
+- Running cost = model cost + hosting. Pays for itself in = running cost / (gross monthly savings / 30). Return = (gross savings - running cost) / running cost.
 - Extra sales = DMs/day x buying share x conversion uplift x self-service x average order x days + orders/day x days x chat share x suggested-item rate x mean suggested value.

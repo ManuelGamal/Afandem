@@ -44,7 +44,10 @@ The shop is fictional. **Measured** numbers come from the simulation bench (30 s
 | Refused COD deliveries prevented | 20 | 130 | 486 |
 | Failed-delivery cost saved (EGP) | 1,755 | 15,600 | 82,620 |
 | Model cost (EGP) | 1,019 | 637 | 351 |
-| **Net cost saved (EGP)** | 2,472 | 19,622 | 98,741 |
+| Running cost: model + hosting (EGP) | 1,519 | 887 | 351 |
+| **Net cost saved (EGP)** | 1,972 | 19,372 | 98,741 |
+| **Pays for itself in (days)** | 13.1 | 1.3 | 0.1 |
+| Return on running cost (net saved ÷ running cost) | 1× | 22× | 282× |
 | Extra sales from faster replies (EGP, gross) | 8,667 | 50,560 | 312,525 |
 | Extra sales from suggested items (EGP, gross; simulation rate) | 0 | 0 | 0 |
 | **Extra sales total (EGP, gross)** | 8,667 | 50,560 | 312,525 |
@@ -73,6 +76,7 @@ The shop is fictional. **Measured** numbers come from the simulation bench (30 s
 | llm_usd_per_mtok_in | 0.75 | 0.3 | 0.1 | https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05) |
 | llm_usd_per_mtok_out | 3.75 | 2.5 | 0.4 | https://ai.google.dev/gemini-api/docs/pricing (checked 2026-10-05) |
 | usd_to_egp | 52 | 50 | 48 | estimate; check the rate on the day you build the slides |
+| hosting_egp_month | 500 | 250 | 0 | estimate: a small VPS is about $5/month (~250 EGP at ~50 EGP/USD); low assumes $10; high is a free hosting tier |
 
 ## Formulas
 
@@ -80,4 +84,5 @@ The shop is fictional. **Measured** numbers come from the simulation bench (30 s
 - Moderator cost saved = hours saved x monthly salary / monthly hours.
 - Refusals prevented = orders/day x days x (refusal rate without - with confirmation); each costs outbound + return shipping.
 - Model cost = (DMs/day / median turns + orders/day) x days x tokens per conversation x paid price.
+- Running cost = model cost + hosting. Pays for itself in = running cost / (gross monthly savings / 30). Return = (gross savings - running cost) / running cost.
 - Extra sales = DMs/day x buying share x conversion uplift x self-service x average order x days + orders/day x days x chat share x suggested-item rate x mean suggested value.
