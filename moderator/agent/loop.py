@@ -38,7 +38,7 @@ CLAIM_NOTES = {
 # Matched on fold_text(reply).
 _CLAIMS = {
     "confirmed": re.compile(r"تم( \S+){0,2} (ال)?تاكيد|اتاكد|اكدت|اكدنا|الطلب موكد|"
-                            r"confirmed|akadna|a2adna|akkedna|a2kedna|et2aked"),
+                            r"confirmed|akadna|a2adna|akkedna|a2kedna|et2ak+[ae]d"),
     "cancelled": re.compile(r"تم (ال)?الغاء|اتلغ|لغيت|لغينا|cancelled|canceled|lagheena|elghena"),
 }
 _HANDOFF_PROMISE = re.compile(r"هحول|بحول|حولت|هنحول|حولنا|تحويل (الشات|المحادثه|حضرتك|طلبك)|ha7awel|ha7wel|7awelt")
@@ -52,13 +52,16 @@ def _greeting(name: str) -> str:
     return f"أهلاً يا {first}!" if len(first) > 1 else "أهلاً بحضرتك!"
 
 
-def _false_claim(text: str, open_order) -> str | None:
-    """'confirmed'/'cancelled' when the reply claims that about an order still open in the system."""
-    if open_order is None:
+def _false_claim(text: str, order) -> str | None:
+    """'confirmed'/'cancelled' when the reply claims that about the conversation's latest order
+    but the system says otherwise (an open order, or one held for a person)."""
+    if order is None:
         return None
+    actual = {"confirmed": order.status in ("confirmed", "shipped"),
+              "cancelled": order.status == "cancelled"}
     folded = fold_text(text)
     for kind, pattern in _CLAIMS.items():
-        if pattern.search(folded):
+        if not actual[kind] and pattern.search(folded):
             return kind
     return None
 
@@ -213,7 +216,7 @@ class Agent:
                     corrections += 1
                     conv.messages.append({"role": "user", "content": AMOUNT_GUARD_NOTE})
                     continue
-                claim = _false_claim(text, self.book.open_for(conv.id))
+                claim = _false_claim(text, self.book.latest_for(conv.id))
                 if claim:
                     conv.messages.pop()
                     if corrections >= MAX_AMOUNT_CORRECTIONS:

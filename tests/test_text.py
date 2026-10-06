@@ -102,3 +102,17 @@ def test_money_mentions_reads_franco_currency_words():
     assert money_mentions("se3ro 950 gneh, w el shipping 60 genih") == [Decimal("950"), Decimal("60")]
     assert money_mentions("b 1,050 geneih total") == [Decimal("1050")]
     assert money_mentions("maqas 32 w tolak 175 cm") == []
+
+
+def test_explicit_yes_rejects_a_yes_that_carries_a_change():
+    for msg in ["تمام خليه لارج", "تمام عايز اغير المقاس", "ماشي والمقاس XL", "tmam 5aleeh XL",
+                "aywa, el size L", "ok make it L", "اوكي بس بدل اللون"]:
+        assert not is_explicit_yes(msg), msg
+
+
+def test_explicit_yes_accepts_a_clear_yes_followed_by_an_unrelated_question():
+    assert is_explicit_yes("Aywa… akked el talab! El tracking number hayewsalny emta?")
+    assert is_explicit_yes("أيوه أكد الطلب. هيوصل امتى؟")
+    for msg in ["أكد الطلب. ممكن تخليه لارج؟", "aywa akked. momken a8ayar el size?",
+                "تمام. بس ممكن يوصل بكرة؟"]:
+        assert not is_explicit_yes(msg), msg

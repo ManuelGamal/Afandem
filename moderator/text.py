@@ -96,18 +96,36 @@ _YES_STEMS = ("اكد", "تاكد", "ايو", "مظبوط", "مضبوط",
               "aywa", "ayoo", "aiwa", "confirm")
 
 
+# A yes that also asks for a change is not a yes: the change is made and shown again first.
+# Matched inside words (fold_text form), so خليه / تخليه / 5aleeh / a8ayar all count.
+_CHANGE_PARTS = ("خلي", "غير", "عدل", "بدل", "زود", "نقص", "شيل", "ضيف",
+                 "5ali", "5ale", "5aly", "khali", "khale", "ghay", "8ay", "3adel", "badel",
+                 "zawed", "change", "make", "switch", "instead", "edit")
+_SIZE_WORDS = {"s", "m", "l", "xl", "xxl", "لارج", "ميديم", "سمول", "اكس", "اكسترا",
+               "30", "32", "34", "36", "38"}
+_SEGMENT = re.compile(r"[^.!?؟…\n]+[.!?؟…\n]*")
+
+
+def _asks_for_change(words: list[str]) -> bool:
+    return any(w in _SIZE_WORDS or any(part in w for part in _CHANGE_PARTS) for w in words)
+
+
 def is_explicit_yes(message: str) -> bool:
-    """A short, unconditional yes. A change, a negation or a question is not a yes."""
+    """A short, unconditional yes. A change or a negation is not a yes, and neither is a
+    question; a clear yes may be followed by an unrelated question ("confirm it! when does
+    it arrive?")."""
     if message.strip() in _YES_EMOJI:
         return True
-    if "?" in message or "؟" in message:
+    said: list[str] = []
+    asked: list[str] = []
+    for segment in _SEGMENT.findall(message):
+        is_question = "?" in segment or "؟" in segment
+        (asked if is_question else said).extend(fold_text(segment).split())
+    if not said or len(said) > 25:
         return False
-    words = fold_text(message).split()
-    if not words or len(words) > 25:
+    if any(w in _BLOCK for w in said + asked) or _asks_for_change(said + asked):
         return False
-    if any(w in _BLOCK for w in words):
-        return False
-    return any(w in _YES or w.startswith(_YES_STEMS) for w in words)
+    return any(w in _YES or w.startswith(_YES_STEMS) for w in said)
 
 
 _MONEY = re.compile(

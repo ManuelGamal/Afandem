@@ -230,6 +230,12 @@ class OrderBook:
         p = norm_phone(phone) or phone
         return [o for o in self.all() if o.phone == p]
 
+    def latest_for(self, conversation_id: str) -> Order | None:
+        for o in reversed(self.all()):
+            if o.conversation_id == conversation_id:
+                return o
+        return None
+
     def open_for(self, conversation_id: str) -> Order | None:
         for o in reversed(self.all()):
             if o.conversation_id == conversation_id and o.status in OPEN_STATUSES:

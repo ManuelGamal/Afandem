@@ -250,3 +250,20 @@ def test_claim_with_words_in_between_is_still_caught():
                             text_raw("ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟")])
     conv = Conversation("c1")
     assert agent.reply(conv, "عايز 2 تيشيرت") == ["ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟"]
+
+
+def test_claiming_confirmed_on_a_held_order_is_corrected():
+    agent, provider = make([text_raw("كل حاجة تمام، طلبك اتأكد!"),
+                            text_raw("زميلي هيراجع طلبك ويكلمك.")])
+    conv = Conversation("c1")
+    order = agent.book.create("c1", ORDER["customer_name"], ORDER["phone"], ORDER["address"],
+                              ORDER["area"], ORDER["items"])
+    agent.book.set_status(order.id, "needs_human", "high_risk")
+    assert agent.reply(conv, "تمام") == ["زميلي هيراجع طلبك ويكلمك."]
+    assert provider.requests[1][-1]["content"].startswith("[حدث داخلي]")
+
+
+def test_franco_confirmed_claim_with_doubled_k_is_caught():
+    from moderator.agent.loop import _CLAIMS
+    from moderator.text import fold_text
+    assert _CLAIMS["confirmed"].search(fold_text("kol 7aga et2akkadet!"))
