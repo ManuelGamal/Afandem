@@ -19,7 +19,7 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
 
 ## Try it in 30 seconds
 
-1. Open the hosted demo (link above) or run it locally (next section).
+1. Click **Open in GitHub Codespaces** below (runs in the browser, nothing to install), or run it locally with Docker.
 2. Click **Play demo** in the sidebar — seven conversations play end to end: a sale, Franco, a website
    order with a vague address and a new delivery day, a cancellation, a high-risk order, a complaint,
    and a customer who never replies.
