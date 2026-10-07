@@ -39,6 +39,7 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
 
 **Option A — Docker, no key needed.**
 ```bash
+git clone https://github.com/ManuelGamal/Afandem.git && cd Afandem
 docker compose up --build        # then open http://localhost:8000
 ```
 With no API key the app starts in **recorded-demo mode** and **Play demo** replays a real recorded
