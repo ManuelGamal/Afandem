@@ -1,0 +1,15 @@
+{
+  "name": "Afandem",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "pip install --quiet uv && uv sync",
+  "postAttachCommand": "nohup uv run uvicorn --factory moderator.server:create_app --host 0.0.0.0 --port 8000 > /tmp/afandem.log 2>&1 &",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": { "label": "Afandem", "onAutoForward": "openPreview" }
+  },
+  "secrets": {
+    "GEMINI_API_KEY": {
+      "description": "Optional: a free Gemini key (https://aistudio.google.com/apikey) for live chat. Without it the app plays the recorded demo."
+    }
+  }
+}

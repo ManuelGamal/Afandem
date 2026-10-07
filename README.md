@@ -35,13 +35,16 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
    from the sidebar. Try this: in **Inventory**, set the heavy hoodie's size L to 0, then ask the agent
    for it in L — it answers from the database and offers the sizes still in stock.
 
-## Host it free
+## Run it in the browser, nothing to install
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ManuelGamal/Afandem)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ManuelGamal/Afandem?quickstart=1)
 
-`render.yaml` deploys the Docker image as a free Render web service (no card needed). Add `GEMINI_API_KEY`
-in the dashboard for live chat; without it the page serves the recorded demo. A free service sleeps after
-15 minutes without visitors and takes about a minute to wake.
+Click the button, and in about two minutes the full app opens in a preview tab inside a free GitHub
+Codespace (GitHub's free monthly allowance covers it). With no key it plays the recorded demo; to chat live,
+add a free Gemini key as the Codespace secret `GEMINI_API_KEY` when asked.
+
+To host it yourself: [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ManuelGamal/Afandem)
+— `render.yaml` deploys the Docker image as a free Render web service.
 
 ## Run it locally (under 5 minutes)
 
