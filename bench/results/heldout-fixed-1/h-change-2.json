@@ -1,0 +1,339 @@
+{
+ "card_id": "h-change-2",
+ "category": "change_at_confirmation",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "غيري المقاس من M لـ L لون رمادي نفس السعر  \nعاوز اتأكد من التعديل ده قبل التاكيد"
+  },
+  {
+   "role": "agent",
+   "text": "معلش يا فندم، المقاس L مش متوفر للجوجر ده، المتاح حالياً مقاسات (30، 32، 36، 38). تحب نثبت مقاس M ولا نختار مقاس تاني من المتاح؟"
+  },
+  {
+   "role": "customer",
+   "text": "يبقي مفيش فايدة، الغاء الطلب من فضلك  \nمحتاجة L بالظبط"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، تم إلغاء الطلب بناءً على رغبتك. تنورينا في مرات جاية أكيد! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "غيري المقاس من M لـ L لون رمادي نفس السعر  \nعاوز اتأكد من التعديل ده قبل التاكيد"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_418066",
+     "function": {
+      "arguments": "{\"changes\":{\"items\":[{\"size\":\"L\",\"product_id\":\"B02\",\"color\":\"رمادي\",\"qty\":1}]},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TPmL9F27I/Axp/0KZTqyKl7iM8AkiLtt2yuwOznnChCNcwXCSAGnbEudRYpGqlSZMcwSRpwVWFpQTvpRlozsmgEceQKG4iISc+6wtluypzGxY0m5xQ/nNDPE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_418066",
+   "content": "{\"ok\": false, \"error\": \"unknown_size\", \"message\": \"B02 has no size L\", \"available\": [\"30\", \"32\", \"36\", \"38\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "معلش يا فندم، المقاس L مش متوفر للجوجر ده، المتاح حالياً مقاسات (30، 32، 36، 38). تحب نثبت مقاس M ولا نختار مقاس تاني من المتاح؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0ThdE6/4dKYeJs3Avz/J+vYuFu34PkgrxsvdOQ8sXzLjhDvK02qonTgPaZBcM5+OQaDZ0q48pira2/FHC9cB9kzBc17ha7i/lRHsEccJGqNe5g28lGQczdDKk="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "يبقي مفيش فايدة، الغاء الطلب من فضلك  \nمحتاجة L بالظبط"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_272591",
+     "function": {
+      "arguments": "{\"order_order_id\":1,\"reason\":\"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tm1pZVf7Ib6f9e6m4EQb5f5g6mmn8Tr9G+3acGMWksGUQrTMpQqVrqwhQ51x/MNK7GDpI11JL2Bvyt3UhrdSbnpE/pqBKcLa7uqG9OGiZilS/rMDhSbMbgdU="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_272591",
+   "content": "{\"ok\": false, \"error\": \"bad_arguments\", \"message\": \"missing 'order_id'\"}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_340154",
+     "function": {
+      "arguments": "{\"order_id\":1,\"reason\":\"customer_declined\"}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TFq8tDrZpQF405XfqpjhaCk8IFavIiouHc8TZBDeM3orDCCNOza7bOY/PHCc1SyWhx9iay2CKQ76cTaMlLx/UC4DnbHLClF05oPPMJncZuslYNOkxgEmZMQ0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_340154",
+   "content": "{\"ok\": true, \"status\": \"cancelled\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، تم إلغاء الطلب بناءً على رغبتك. تنورينا في مرات جاية أكيد! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+TfN8KkIftjZmGvLfZnbqU03b0UE8itleKpUkpXUG0LEljy9Dy3INTTqQxXqBjHLCSka7VtjXkTI/p77DG0AkrY3oCOWXA+nB4q6bN7mlH0VZgwZ8D7MKYE="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "cancelled",
+   "source": "checkout",
+   "customer_name": "ملك وائل",
+   "phone": "01058901234",
+   "address": "عمارة 6 شارع الثورة الدور 5 شقة 10",
+   "area": "الزقازيق",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B05",
+     "name_ar": "جوجر قطن",
+     "size": "M",
+     "color": "رمادي",
+     "qty": 1,
+     "unit_price": 560
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 560,
+   "total": 630,
+   "delivery_date": null,
+   "cancel_reason": "customer_declined",
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 630,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "غيري المقاس من M لـ L لون رمادي نفس السعر  \nعاوز اتأكد من التعديل ده قبل التاكيد"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2326,
+    "tokens_out": 48,
+    "latency_s": 1.42
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": false,
+    "error": "unknown_size",
+    "db": null
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2431,
+    "tokens_out": 60,
+    "latency_s": 0.9
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "معلش يا فندم، المقاس L مش متوفر للجوجر ده، المتاح حالياً مقاسات (30، 32، 36، 38). تحب نثبت مقاس M ولا نختار مقاس تاني من المتاح؟",
+    "latency_s": 2.32
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "يبقي مفيش فايدة، الغاء الطلب من فضلك  \nمحتاجة L بالظبط"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2517,
+    "tokens_out": 27,
+    "latency_s": 0.74
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "cancel_order",
+    "ok": false,
+    "error": "bad_arguments",
+    "db": null
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2581,
+    "tokens_out": 25,
+    "latency_s": 0.73
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "cancelled",
+    "reason": "customer_declined",
+    "total": 630,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "cancel_order",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2630,
+    "tokens_out": 34,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ولا يهمك يا فندم، تم إلغاء الطلب بناءً على رغبتك. تنورينا في مرات جاية أكيد! 😊",
+    "latency_s": 2.38
+   }
+  }
+ ]
+}

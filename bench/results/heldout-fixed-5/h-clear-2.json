@@ -1,0 +1,423 @@
+{
+ "card_id": "h-clear-2",
+ "category": "clear_buyer",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 4,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "hi, el Chinos size 34 olive available 3ndko?"
+  },
+  {
+   "role": "agent",
+   "text": "Yes, Chinos in olive size 34 is available and its price is 780 EGP. Would you like to add the Pique Polo Shirt for 520 EGP?"
+  },
+  {
+   "role": "customer",
+   "text": "el price m3ali, m3adech 700 gehez. 3andy 7aga f7ad 700."
+  },
+  {
+   "role": "agent",
+   "text": "Wala yhemmak ya fandem. El s3r dah mesh mawgood lel chinos, bas feh ma3ana Cotton joggers b 560 geneh w Denim shorts b 520 geneh. T7eb agarelrak haga menhom?"
+  },
+  {
+   "role": "customer",
+   "text": "la, ana 3andy 7aga lel chinos bs, 7ad 700 geneh. mafeesh wa7ed tani?"
+  },
+  {
+   "role": "agent",
+   "text": "Mafeesh chinos b ta7t 700 geneh ya fandem, el chinos el asasy 3andena b 780 geneh. Ta7t amrak f ay 5edma tanya!"
+  },
+  {
+   "role": "customer",
+   "text": "ya3tik el 3afya, m4 7ad 7aga. bas 3addelni law wardek chinos zeity 34 ta7t 700 geneh."
+  },
+  {
+   "role": "agent",
+   "text": "Alla ye3afik ya fandem, wa la yhemmak. Law 7abbt teftaker w tetgawez el chinos el asasy b 780 geneh ana mawgood t7t amrak. Ay 5edma tanya?"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "hi, el Chinos size 34 olive available 3ndko?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_81947",
+     "function": {
+      "arguments": "{\"query\":\"chinos\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TlSH6aNfiCOvgTIbmr3CcRJubOEm6+E7wD97olwIhi8pv5iPNsxDVn/Id83VtbUUG6jj9EAat5KSY8x8APhsgsTGjhq69mhTRdhQu71wgINOAYmVfYEWyz70="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_81947",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"name_en\": \"Chinos\", \"category\": \"bottoms\", \"price\": 780, \"colors\": [\"بيج\", \"كحلي\", \"زيتي\"], \"stock_by_size\": {\"30\": 5, \"32\": 10, \"34\": 9, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T03\", \"name\": \"بولو شيرت بيكيه\", \"price\": 520}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"price\": 690}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "Yes, Chinos in olive size 34 is available and its price is 780 EGP. Would you like to add the Pique Polo Shirt for 520 EGP?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TPLSrPNpiWUHBe6uYQI8trOoVcJX9A2pprdAzASfmYucTQTgvmzZHjUjph5GTWxvW6vtceN1mUMH2V+eh0G3yRwICxKDs+E+F+vf2UeowaQ8WIsP2IVweFiU="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "el price m3ali, m3adech 700 gehez. 3andy 7aga f7ad 700."
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_289337",
+     "function": {
+      "arguments": "{\"max_price\":700,\"query\":\"chinos\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TQSFahr0mF4qyIQgHVsjBbotSIbqu4GwaKoJQ+cSpZEkssbAZc5s7iPnCIi6Y0B0nNypIbX+OmqCmHBaPosplhJMNrK6YDx4EMCe8g8hgYKKkt+xe0btLCGQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_289337",
+   "content": "{\"ok\": true, \"products\": []}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_340164",
+     "function": {
+      "arguments": "{\"query\":\"bottoms\",\"max_price\":700}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tml5i8JY+311Ns7dlEZ5rCgNULQVTP34f496aplZ06yIa5Taxhb/A5q3vPvAHMdEPie/WO5gsJormRxAmh2Yb+VvEMnyr9jtkWq5S/nFOrK48MrdGSUGYcx8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_340164",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B10\", \"name\": \"شورت رياضي\", \"name_en\": \"Sport shorts\", \"category\": \"bottoms\", \"price\": 380, \"colors\": [\"أسود\", \"رمادي\"], \"stock_by_size\": {\"S\": 5, \"M\": 9, \"L\": 9, \"XL\": 5, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"B09\", \"name\": \"ليجن رياضي\", \"name_en\": \"Sport leggings\", \"category\": \"bottoms\", \"price\": 450, \"colors\": [\"أسود\", \"كحلي\"], \"stock_by_size\": {\"S\": 8, \"M\": 10, \"L\": 7, \"XL\": 3, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"name_en\": \"Denim shorts\", \"category\": \"bottoms\", \"price\": 520, \"colors\": [\"أزرق فاتح\"], \"stock_by_size\": {\"30\": 5, \"32\": 7, \"34\": 6, \"36\": 3, \"38\": 0}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\"], \"sizes_out_of_stock\": [\"38\"], \"pairs_with\": [{\"id\": \"T08\", \"name\": \"تيشيرت مقلم\", \"price\": 390}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"price\": 420}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"B08\", \"name\": \"جيبة ميدي\", \"name_en\": \"Midi skirt\", \"category\": \"bottoms\", \"price\": 690, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 5, \"M\": 7, \"L\": 5, \"XL\": 2, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yhemmak ya fandem. El s3r dah mesh mawgood lel chinos, bas feh ma3ana Cotton joggers b 560 geneh w Denim shorts b 520 geneh. T7eb agarelrak haga menhom?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TKJzh1kFpGNP/33fdV7SgVCnYURpo/cwPC8of3+anGnKu5/XZAZisUfV+F3ascZWgOC/BZlFGOlkCMym09MXToz9Kf1WSBb92V+FBGMdvJUssy+QrQvvaiPY="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "la, ana 3andy 7aga lel chinos bs, 7ad 700 geneh. mafeesh wa7ed tani?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_246352",
+     "function": {
+      "arguments": "{\"max_price\":700,\"query\":\"Chinos\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TvU/fXNT3sFyWI6/aW+zOpn8yqeNr5htJnV1tkgbDlyTX3p70oj2MIWhBw0M9giKhVWlB3VV/rR0akonAVg9WeDByTY9UfI1x0Tm5v3jLJ96ax13NJmzcCOY="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_246352",
+   "content": "{\"ok\": true, \"products\": []}"
+  },
+  {
+   "role": "assistant",
+   "content": "Mafeesh chinos b ta7t 700 geneh ya fandem, el chinos el asasy 3andena b 780 geneh. Ta7t amrak f ay 5edma tanya!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T6YHfwnrGWOeqcuA9cbc9kLoCsRsQURQJ2zv6U1grX7GUcHJ1COhqMlUOjHUWibKw8cTuAQtCMEsKcN/KLzYOhoUg6OMfgOWvxlDA1n+/BJeO2z7xx3BVo64="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ya3tik el 3afya, m4 7ad 7aga. bas 3addelni law wardek chinos zeity 34 ta7t 700 geneh."
+  },
+  {
+   "role": "assistant",
+   "content": "Alla ye3afik ya fandem, wa la yhemmak. Law 7abbt teftaker w tetgawez el chinos el asasy b 780 geneh ana mawgood t7t amrak. Ay 5edma tanya?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Thb0OVMFZu2+CEmjIkbQy1mjr+B4Gy1z8n663kM/D1qvqPqcxzvnD3p9HZjVJZ/woUpAdngSKlxGa46SfyzcQOvzoj1DTFDDXxTFHpC4bq/kqHsuCiJge0cc="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "hi, el Chinos size 34 olive available 3ndko?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2225,
+    "tokens_out": 17,
+    "latency_s": 13.21
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “chinos” → بنطلون تشينو 780 EGP"
+    }
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2463,
+    "tokens_out": 41,
+    "latency_s": 23.97
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Yes, Chinos in olive size 34 is available and its price is 780 EGP. Would you like to add the Pique Polo Shirt for 520 EGP?",
+    "latency_s": 37.18
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "el price m3ali, m3adech 700 gehez. 3andy 7aga f7ad 700."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2537,
+    "tokens_out": 25,
+    "latency_s": 13.39
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “chinos”: nothing found"
+    }
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2585,
+    "tokens_out": 25,
+    "latency_s": 15.19
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “bottoms” → شورت رياضي 380 EGP; ليجن رياضي 450 EGP +3 more"
+    }
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 3486,
+    "tokens_out": 56,
+    "latency_s": 7.09
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Wala yhemmak ya fandem. El s3r dah mesh mawgood lel chinos, bas feh ma3ana Cotton joggers b 560 geneh w Denim shorts b 520 geneh. T7eb agarelrak haga menhom?",
+    "latency_s": 35.67
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "la, ana 3andy 7aga lel chinos bs, 7ad 700 geneh. mafeesh wa7ed tani?"
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 3575,
+    "tokens_out": 25,
+    "latency_s": 19.47
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “Chinos”: nothing found"
+    }
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 3623,
+    "tokens_out": 48,
+    "latency_s": 23.56
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Mafeesh chinos b ta7t 700 geneh ya fandem, el chinos el asasy 3andena b 780 geneh. Ta7t amrak f ay 5edma tanya!",
+    "latency_s": 43.04
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "ya3tik el 3afya, m4 7ad 7aga. bas 3addelni law wardek chinos zeity 34 ta7t 700 geneh."
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 3715,
+    "tokens_out": 56,
+    "latency_s": 12.65
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Alla ye3afik ya fandem, wa la yhemmak. Law 7abbt teftaker w tetgawez el chinos el asasy b 780 geneh ana mawgood t7t amrak. Ay 5edma tanya?",
+    "latency_s": 12.65
+   }
+  }
+ ]
+}

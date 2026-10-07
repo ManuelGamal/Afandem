@@ -1,0 +1,197 @@
+{
+ "card_id": "h-price-3",
+ "category": "price_shopper",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+  },
+  {
+   "role": "agent",
+   "text": "سعر الهودي القطن التقيل 890 جنيه، والشحن للأقصر 85 جنيه وبيوصل خلال 3 لـ 5 أيام. تحب أساعدك في اختيار المقاس؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، شكراً. هفكر فيها شوية وأرجع إن شاء الله."
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، منورة في أي وقت! تحت أمرك لو احتجتي أي حاجة تاني. 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_308979",
+     "function": {
+      "arguments": "{\"query\":\"Heavy cotton hoodie\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Tb+Ctwnkw2S/165yc9olWv8ic/4PjbYjWYevtxjXgNmiLMNEtxHVhqDJywmXJ10SwdjbPhQ8tuvtw3f8XEvZQKNF4gz3NLmws5Ur5B5gCk7vGvFhBcbtZH1c="
+      }
+     }
+    },
+    {
+     "id": "call_308980",
+     "function": {
+      "arguments": "{\"area\":\"الأقصر\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_308979",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"stock_by_size\": {\"ONE\": 40}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"stock_by_size\": {\"ONE\": 25}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_308980",
+   "content": "{\"ok\": true, \"zone\": \"الصعيد\", \"fee\": 85, \"days_min\": 3, \"days_max\": 5}"
+  },
+  {
+   "role": "assistant",
+   "content": "سعر الهودي القطن التقيل 890 جنيه، والشحن للأقصر 85 جنيه وبيوصل خلال 3 لـ 5 أيام. تحب أساعدك في اختيار المقاس؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T7fFliojXK9MZ+6eIaS+Z3jpc/TR4nQlt2XrR70nzG9tkJhonqxEpI74j/yBxz3aLz2js2WplPDnctDtUD8XG/uQc7TbvnNa12pexfm6sp8I+f8EwGJUGH10="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، شكراً. هفكر فيها شوية وأرجع إن شاء الله."
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، منورة في أي وقت! تحت أمرك لو احتجتي أي حاجة تاني. 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TGPkwZZemKUKA2+ewhx4mTWUltHkK+xHuhDAquxn7dw6yiJc/ArIsPpm/eg8cdFKh/w55CIaZLNULkfnwlvrQZk6AlYNNVMoBhiXEj0PyVlYMJpXMJWSAQ1o="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "ممكن ال price بتاع ال Heavy cotton hoodie؟ والشحن للأقصر بكام؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2052,
+    "tokens_out": 36,
+    "latency_s": 3.84
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “Heavy cotton hoodie” → هودي قطن تقيل 890 EGP; شراب قطن 3 قطع 150 EGP +3 more"
+    }
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "delivery to الصعيد: 85 EGP, 3–5 days"
+    }
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2956,
+    "tokens_out": 44,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "سعر الهودي القطن التقيل 890 جنيه، والشحن للأقصر 85 جنيه وبيوصل خلال 3 لـ 5 أيام. تحب أساعدك في اختيار المقاس؟",
+    "latency_s": 4.78
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "تمام، شكراً. هفكر فيها شوية وأرجع إن شاء الله."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3019,
+    "tokens_out": 28,
+    "latency_s": 3.79
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-3",
+   "data": {
+    "text": "ولا يهمك يا فندم، منورة في أي وقت! تحت أمرك لو احتجتي أي حاجة تاني. 😊",
+    "latency_s": 3.79
+   }
+  }
+ ]
+}

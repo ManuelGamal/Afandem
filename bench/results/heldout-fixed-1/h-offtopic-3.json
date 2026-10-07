@@ -1,0 +1,67 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "لا يا فندم، مفيش فرع في دبي، وكل فروعنا ومبيعاتنا جوة مصر بس. وللأسف مش متاح نظام الفرانشايز حالياً. تحت أمرك في أي منتج من عندنا 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "لا يا فندم، مفيش فرع في دبي، وكل فروعنا ومبيعاتنا جوة مصر بس. وللأسف مش متاح نظام الفرانشايز حالياً. تحت أمرك في أي منتج من عندنا 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TezxtqHuQyNb/8ZKpqhMi7/CFXOEmzDuFasyIQXftbkesqw7GyUEyroYfbNnDqZWKXMHB/b8VAz5Ob0BXynqSEnbNT8y0S8zTSvfKPHTiug1GXTwAYrNcFF0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite",
+    "tokens_in": 2045,
+    "tokens_out": 54,
+    "latency_s": 0.95
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "لا يا فندم، مفيش فرع في دبي، وكل فروعنا ومبيعاتنا جوة مصر بس. وللأسف مش متاح نظام الفرانشايز حالياً. تحت أمرك في أي منتج من عندنا 😊",
+    "latency_s": 0.95
+   }
+  }
+ ]
+}

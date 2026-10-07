@@ -1,0 +1,88 @@
+{
+ "card_id": "h-complaint-3",
+ "category": "complaint",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم، أنا آسف جداً للغلط ده! 😔\n\nهنحول طلبك لفريق خدمة العملاء فوراً لمتابعة المرتجع وحل المشكلة في أقرب وقت."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم، أنا آسف جداً للغلط ده! 😔\n\nهنحول طلبك لفريق خدمة العملاء فوراً لمتابعة المرتجع وحل المشكلة في أقرب وقت.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tz3nA0qgfF4Z+3ojDs3h584ikehZ2VSwX844vX6Gz7zae2JFC8FEVkVuA6pCf393Cah6Z68QHiKtSrxByiYxYj0zo56Z7HDq1Egi2ZmHs++xcZoyz0H2id90="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "text": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2055,
+    "tokens_out": 44,
+    "latency_s": 11.91
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "reason": "agent_promised_handoff"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "text": "يا فندم، أنا آسف جداً للغلط ده! 😔\n\nهنحول طلبك لفريق خدمة العملاء فوراً لمتابعة المرتجع وحل المشكلة في أقرب وقت.",
+    "latency_s": 11.91
+   }
+  }
+ ]
+}

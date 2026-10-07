@@ -1,0 +1,643 @@
+{
+ "card_id": "h-size-1",
+ "category": "size_unsure",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عايز أشتري جاكيت بومبر بس محتار في المقاس"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يغمه عليك يا فندم، منورنا! تحت أمرك، ممكن تقولي طولك كام ووزنك كام، وتحب اللبس يكون لوز (واسع)، ريجولار (مظبوط)، ولا تايد (ضيق شوية) عشان أقترح عليك المقاس المضبوط؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "طول 171 ووزني 66، واللبس الريجولار يناسبني"
+  },
+  {
+   "role": "agent",
+   "text": "المقاس المناسب لك هو M ومتاح معانا بـ 1450 جنيه باللونين الأسود والزيتي. تحب أضيفلك تيليشيرت قطن سادة بـ 350 جنيه؟ 😊"
+  },
+  {
+   "role": "customer",
+   "text": "لا ينفع، بس الجاكيت بس. اضيفلي جاكيت بومبر زيتي مقاس M"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، مبروك مقدماً! عشان أكمل الأوردر، محتاج من حضرتك:\n- الاسم بالكامل\n- رقم الموبايل\n- العنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)\n- المدينة أو المنطقة (مثلاً القاهرة)"
+  },
+  {
+   "role": "customer",
+   "text": "طارق سليم  \n01225678901  \n18 شارع السودان، الدور 3، الدقي، الجيزة  \nأقرب علامة مميزة: مترو الدقي"
+  },
+  {
+   "role": "agent",
+   "text": "طلب رقم 1:\n- 1× جاكيت بومبر مقاس M لون زيتي = 1450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1510 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان، الدور 3، الدقي، مترو الدقي، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكّد الطلب، تمام"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك يا فندم بنجاح! شكرا لتسوقك معانا في هدوم، وهيوصلك في الميعاد المحدد. لو احتجت أي حاجة تاني أنا تحت أمرك! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عايز أشتري جاكيت بومبر بس محتار في المقاس"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_279239",
+     "function": {
+      "arguments": "{\"query\":\"بومبر\",\"category\":\"outerwear\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Ts3KnH+Gnsp0GfCvOTSZWrqy6GGlT3V0ZKgDHWDvZVSp9QK0yRYrAmEFOH9/aveQ7V6uf5xptiv2RXX6tDtuMB5zApt2RqVe/oWxZ6zrSLw/fzoS00uBu7H8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_279239",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O02\", \"name\": \"جاكيت بومبر\", \"name_en\": \"Bomber jacket\", \"category\": \"outerwear\", \"price\": 1450, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 2, \"M\": 5, \"L\": 5, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يغمه عليك يا فندم، منورنا! تحت أمرك، ممكن تقولي طولك كام ووزنك كام، وتحب اللبس يكون لوز (واسع)، ريجولار (مظبوط)، ولا تايد (ضيق شوية) عشان أقترح عليك المقاس المضبوط؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T1lMQHkiS+hoU/BmsEb3Lss+DmQ9LYjre0z5JIrMXdKVa2j42G8yuovFe1XXNjMENtr4QEmfPxcOyo2jlppP377x+W6ExWDUE0sNw4HrqibaaAzXNmIAdjtA="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "طول 171 ووزني 66، واللبس الريجولار يناسبني"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_214675",
+     "function": {
+      "arguments": "{\"fit_preference\":\"regular\",\"weight_kg\":66,\"height_cm\":171,\"product_id\":\"O02\"}",
+      "name": "recommend_size"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TUX6HjsK/ImDZ5U2u8q+Fl5o8hyUUC6nqTlzWz96PHnLTT5PK2XFEx2rPmDjwgisfvvf1gxc19F6hWteUDUO+gg+Yecq8AYi4xDu/QBRNz9bbOaJwdaEklSs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_214675",
+   "content": "{\"ok\": true, \"size\": \"M\", \"between\": null, \"in_stock\": true, \"available\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"]}"
+  },
+  {
+   "role": "assistant",
+   "content": "المقاس المناسب لك هو M ومتاح معانا بـ 1450 جنيه باللونين الأسود والزيتي. تحب أضيفلك تيليشيرت قطن سادة بـ 350 جنيه؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TU7MKVFOzyeXLP2pf++ICF7mdlLkAz/rOgMw3u+DVnFLGOa8Zpuxe1Xc8uMZKbpuO1bAk4zki4GizuyFR8/MtAzJGQpcGqpqeuEayGHSKuMbpXahVYinr8mY="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "لا ينفع، بس الجاكيت بس. اضيفلي جاكيت بومبر زيتي مقاس M"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_233313",
+     "function": {
+      "arguments": "{\"area\":\"القاهرة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TlQ1fB80BcQCZ1WKMjo4YosOypX3ftuqygOQUWak9vNGDohvruwXjvbfODLmHt5GYoT7/NFhx9D0V6rJExjXaKOxF2STCAlrAYyBN7FaDTNfTcrVTdlnZiyc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_233313",
+   "content": "{\"ok\": true, \"zone\": \"القاهرة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، مبروك مقدماً! عشان أكمل الأوردر، محتاج من حضرتك:\n- الاسم بالكامل\n- رقم الموبايل\n- العنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)\n- المدينة أو المنطقة (مثلاً القاهرة)",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0ThkQpJh3sGMEZj+ZeGtaI4e209raTTpUMHBOis/NQSr8yx462UJs/APAQCxSXTkmPKC95eM/CZLo3z4DF7/HKoxeJQd9J7lmgODtcQhK+iXJ8bZn/641SZYg="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "طارق سليم  \n01225678901  \n18 شارع السودان، الدور 3، الدقي، الجيزة  \nأقرب علامة مميزة: مترو الدقي"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_377538",
+     "function": {
+      "arguments": "{\"area\":\"الجيزة\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TakgH0kEOmPYhsUeGsPXgn3lBPjhJGExPuIQc0gKzUj027N7RTMBrSxpa42gvQDEYXOr4NeQ0noEaKhkqYBAXQg+VbdhOemHfQolAIQ4kavJe7yM9yLwSxVI="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_377538",
+   "content": "{\"ok\": true, \"zone\": \"الجيزة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_241201",
+     "function": {
+      "arguments": "{\"customer_name\":\"طارق سليم\",\"items\":[{\"product_id\":\"O02\",\"qty\":1,\"color\":\"زيتي\",\"size\":\"M\"}],\"address\":\"18 شارع السودان، الدور 3، الدقي، مترو الدقي\",\"phone\":\"01225678901\",\"area\":\"الجيزة\"}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TW9dY7O3Sz6Lf0KbSY9POecHac3QJIwM2RYofWgMLqT97De9O2NthzQC56iOVf3uiMIL2gIHtZPBBJEm6nx4nYSMJQGydyLGTgaE553k1mfRUoMQcegS04Ww="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_241201",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 1510, \"summary_ar\": \"طلب رقم 1:\\n- 1× جاكيت بومبر مقاس M لون زيتي = 1450 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 1510 جنيه (الدفع عند الاستلام)\\nالعنوان: 18 شارع السودان، الدور 3، الدقي، مترو الدقي، الجيزة\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 2, \"level\": \"medium\", \"reasons\": [\"first order from this phone\", \"high value (1510 EGP)\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "طلب رقم 1:\n- 1× جاكيت بومبر مقاس M لون زيتي = 1450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1510 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان، الدور 3، الدقي، مترو الدقي، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Ts7y4FLuk0mlyNdmbUfOSVPXWiOMMx8F22eCltbpWnD5q+keGNglupko0pXoNNCtmLwAdX0GTkZsQgJ8/Q72CLCQJSz8VL+FHMUSfvpwBL7G0t/4kjUXXf+4="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أكّد الطلب، تمام"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_408537",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TiMwxxCrZnDFKa2Z3Hg5hgC1OMUrN78M6fyqGahOiR5qStarM37pWkAGrBCv5Z6wrNrGPszy2FUYQ+KwlTEXiQ6L2DP+d9WqF2NvkmvZZ2j8uvo2yIu6HBDY="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_408537",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 2, \"level\": \"medium\", \"reasons\": [\"first order from this phone\", \"high value (1510 EGP)\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك يا فندم بنجاح! شكرا لتسوقك معانا في هدوم، وهيوصلك في الميعاد المحدد. لو احتجت أي حاجة تاني أنا تحت أمرك! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TdwmpoURKoJbKKNC2wWyGGugIonrxh1iY1eSNegCSVyvL5hXouf1AsRtfM94O0W/x781vZn568R3AQwOmT/93waTYJIpHpzNDLthHsVnrFJKU9ovCoRebMMY="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-size-1",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "طارق سليم",
+   "phone": "01225678901",
+   "address": "18 شارع السودان، الدور 3، الدقي، مترو الدقي",
+   "area": "الجيزة",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "O02",
+     "name_ar": "جاكيت بومبر",
+     "size": "M",
+     "color": "زيتي",
+     "qty": 1,
+     "unit_price": 1450
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 1450,
+   "total": 1510,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "عايز أشتري جاكيت بومبر بس محتار في المقاس"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2052,
+    "tokens_out": 25,
+    "latency_s": 10.06
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “بومبر” → جاكيت بومبر 1450 EGP"
+    }
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2284,
+    "tokens_out": 68,
+    "latency_s": 1.16
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "ولا يغمه عليك يا فندم، منورنا! تحت أمرك، ممكن تقولي طولك كام ووزنك كام، وتحب اللبس يكون لوز (واسع)، ريجولار (مظبوط)، ولا تايد (ضيق شوية) عشان أقترح عليك المقاس المضبوط؟ 😊",
+    "latency_s": 11.23
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "طول 171 ووزني 66، واللبس الريجولار يناسبني"
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2377,
+    "tokens_out": 43,
+    "latency_s": 1.06
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "name": "recommend_size",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "جاكيت بومبر · size chart → M (in stock)"
+    }
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2475,
+    "tokens_out": 51,
+    "latency_s": 1.07
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "المقاس المناسب لك هو M ومتاح معانا بـ 1450 جنيه باللونين الأسود والزيتي. تحب أضيفلك تيليشيرت قطن سادة بـ 350 جنيه؟ 😊",
+    "latency_s": 2.13
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "لا ينفع، بس الجاكيت بس. اضيفلي جاكيت بومبر زيتي مقاس M"
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2551,
+    "tokens_out": 17,
+    "latency_s": 0.78
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "delivery to القاهرة: 60 EGP, 1–3 days"
+    }
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2616,
+    "tokens_out": 73,
+    "latency_s": 1.07
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "تمام يا فندم، مبروك مقدماً! عشان أكمل الأوردر، محتاج من حضرتك:\n- الاسم بالكامل\n- رقم الموبايل\n- العنوان بالتفصيل (الشارع، رقم العُمارة، الدور، وأقرب علامة مميزة)\n- المدينة أو المنطقة (مثلاً القاهرة)",
+    "latency_s": 1.85
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "طارق سليم  \n01225678901  \n18 شارع السودان، الدور 3، الدقي، الجيزة  \nأقرب علامة مميزة: مترو الدقي"
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2740,
+    "tokens_out": 17,
+    "latency_s": 0.79
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "delivery to الجيزة: 60 EGP, 1–3 days"
+    }
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2805,
+    "tokens_out": 97,
+    "latency_s": 1.57
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 1510,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "write",
+     "text": "order #1 saved · draft · total 1510 EGP"
+    }
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3085,
+    "tokens_out": 100,
+    "latency_s": 2.13
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "طلب رقم 1:\n- 1× جاكيت بومبر مقاس M لون زيتي = 1450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 1510 جنيه (الدفع عند الاستلام)\nالعنوان: 18 شارع السودان، الدور 3، الدقي، مترو الدقي، الجيزة\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 4.5
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "أكّد الطلب، تمام"
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3194,
+    "tokens_out": 16,
+    "latency_s": 4.41
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 1510,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "product_id": "O02",
+    "size": "M",
+    "delta": -1,
+    "stock_after": 4,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 3281,
+    "tokens_out": 48,
+    "latency_s": 1.05
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-size-1",
+   "data": {
+    "text": "تم تأكيد طلبك يا فندم بنجاح! شكرا لتسوقك معانا في هدوم، وهيوصلك في الميعاد المحدد. لو احتجت أي حاجة تاني أنا تحت أمرك! 😊",
+    "latency_s": 5.45
+   }
+  }
+ ]
+}

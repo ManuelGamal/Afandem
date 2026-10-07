@@ -1,0 +1,67 @@
+{
+ "card_id": "h-offtopic-1",
+ "category": "off_topic",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "agent",
+   "text": "أنا تحت أمرك يا فندم، بس شغلنا في هدوم مخصص للبس الكاجوال وتجهيز الطلبات والمقاسات، مش بنعمل تصاميم لوجوهات 😊 \n\nنقدر نساعدك في أي قطعة لبس تحب تطلبها!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "أنا تحت أمرك يا فندم، بس شغلنا في هدوم مخصص للبس الكاجوال وتجهيز الطلبات والمقاسات، مش بنعمل تصاميم لوجوهات 😊 \n\nنقدر نساعدك في أي قطعة لبس تحب تطلبها!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TWLJfm93k5VjUXbjuiL+Fgc5hJfhng4Lf4GIx3JFzFTWzWvccy+6xmzNwJdJ8mLuSSgk0fNjp9/TSB1rXhazEhgSYnjKS63EFq/z8nXTcymtpHvuuxVoHy8c="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2044,
+    "tokens_out": 61,
+    "latency_s": 7.32
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "أنا تحت أمرك يا فندم، بس شغلنا في هدوم مخصص للبس الكاجوال وتجهيز الطلبات والمقاسات، مش بنعمل تصاميم لوجوهات 😊 \n\nنقدر نساعدك في أي قطعة لبس تحب تطلبها!",
+    "latency_s": 7.32
+   }
+  }
+ ]
+}

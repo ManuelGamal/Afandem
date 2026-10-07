@@ -1,0 +1,119 @@
+{
+ "card_id": "h-offtopic-1",
+ "category": "off_topic",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "agent",
+   "text": "أهلاً يا فندم! احنا هنا متخصصين في بيع اللبس الكاجوال وبنساعدك في اختيار القطع والمقاسات. \n\nبالنسبة لتصميم اللوجو، ده مش متاح عندنا في المحل، بس تحت أمرك لو محتاج تختار أي لبس أو تسأل عن المقاسات والأسعار! 😊"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، مش مشكلة. شكراً على الرد."
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، وتحت أمرك في أي وقت! نورتنا 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "ممكن تعملولي تصميم لوجو لمحلي؟"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا فندم! احنا هنا متخصصين في بيع اللبس الكاجوال وبنساعدك في اختيار القطع والمقاسات. \n\nبالنسبة لتصميم اللوجو، ده مش متاح عندنا في المحل، بس تحت أمرك لو محتاج تختار أي لبس أو تسأل عن المقاسات والأسعار! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T5g8TgXEWQS5ZgE6n0AtJHxqyzyqADECyb/ITUkQM4LjQTf0VAUDiB+NPv38/KICuSUkrcay6xmQegFm3PYoG+3dLjoY3pQDyH/wmHAIm7pt3R4EmLMrrav0="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، مش مشكلة. شكراً على الرد."
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، وتحت أمرك في أي وقت! نورتنا 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TmIz7RIt/ygWZJvovapkslRQlfxyamLqzudVtTcu3pPZnnpTwugNxL0XHVOPn33/cr5VaVVHyXZUu1nOWzNCTeZN3BlpBDxPDrSIpY+jsrcHmGcqp1O+J6P0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "ممكن تعملولي تصميم لوجو لمحلي؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2044,
+    "tokens_out": 77,
+    "latency_s": 1.57
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "أهلاً يا فندم! احنا هنا متخصصين في بيع اللبس الكاجوال وبنساعدك في اختيار القطع والمقاسات. \n\nبالنسبة لتصميم اللوجو، ده مش متاح عندنا في المحل، بس تحت أمرك لو محتاج تختار أي لبس أو تسأل عن المقاسات والأسعار! 😊",
+    "latency_s": 1.58
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "تمام، مش مشكلة. شكراً على الرد."
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2135,
+    "tokens_out": 19,
+    "latency_s": 5.76
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-1",
+   "data": {
+    "text": "العفو يا فندم، وتحت أمرك في أي وقت! نورتنا 😊",
+    "latency_s": 5.76
+   }
+  }
+ ]
+}

@@ -1,0 +1,197 @@
+{
+ "card_id": "h-price-1",
+ "category": "price_shopper",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+  },
+  {
+   "role": "agent",
+   "text": "جاكيت الويند بريكر بـ 1100 جنيه، وبيوصل أسوان في خلال 3 لـ 5 أيام بـ 85 جنيه مصاريف الشحن 😊\nتحب تشوف الألوان المتاحة؟"
+  },
+  {
+   "role": "customer",
+   "text": "تمام، هفكر فيها واتواصل معاكم تاني. شكراً 😊"
+  },
+  {
+   "role": "agent",
+   "text": "العفو يا فندم، تحت أمرك في أي وقت ونورتينا! 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_247321",
+     "function": {
+      "arguments": "{\"query\":\"ويند بريكر\",\"category\":\"outerwear\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TSE2fV9wiVOr74kIRsF+UwKfQkuLbZ9Oj4c0eea85AWtwDok0B8E50VMhJjS34df5UqAhM8nuUZvjKlGYZyUPq650jUqkLSoHZyARBwvp2FAmyLFkgYB+Nqc="
+      }
+     }
+    },
+    {
+     "id": "call_247322",
+     "function": {
+      "arguments": "{\"area\":\"أسوان\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_247321",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O06\", \"name\": \"جاكيت ويند بريكر\", \"name_en\": \"Windbreaker\", \"category\": \"outerwear\", \"price\": 1100, \"colors\": [\"أسود\", \"كحلي\"], \"stock_by_size\": {\"S\": 3, \"M\": 6, \"L\": 6, \"XL\": 4, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_247322",
+   "content": "{\"ok\": true, \"zone\": \"الصعيد\", \"fee\": 85, \"days_min\": 3, \"days_max\": 5}"
+  },
+  {
+   "role": "assistant",
+   "content": "جاكيت الويند بريكر بـ 1100 جنيه، وبيوصل أسوان في خلال 3 لـ 5 أيام بـ 85 جنيه مصاريف الشحن 😊\nتحب تشوف الألوان المتاحة؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T0wxaW4Z9gEhY1omOgh0Fctjh68hxzdYObqXVsaDAO4BnWpD0h8AriIFBpS57L2EIjrJwWY1kYNQ3haO4hTkRlG60OtpxBFc5NjNrOxXD8kCu5cmHh4egElk="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "تمام، هفكر فيها واتواصل معاكم تاني. شكراً 😊"
+  },
+  {
+   "role": "assistant",
+   "content": "العفو يا فندم، تحت أمرك في أي وقت ونورتينا! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TB1V0OpyswaotKjrF/lRI5XyyWzEh7VMFW0ApWqnjzveyC8BdyLUqVjqijJ3z1lmBMWI50RuSEbZF4FOBGYf5alMwZuEv7jdfIkqWwcyBvoMohCUWu6YSAOs="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2054,
+    "tokens_out": 44,
+    "latency_s": 3.71
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “ويند بريكر” → جاكيت ويند بريكر 1100 EGP"
+    }
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "delivery to الصعيد: 85 EGP, 3–5 days"
+    }
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2326,
+    "tokens_out": 51,
+    "latency_s": 2.33
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "جاكيت الويند بريكر بـ 1100 جنيه، وبيوصل أسوان في خلال 3 لـ 5 أيام بـ 85 جنيه مصاريف الشحن 😊\nتحب تشوف الألوان المتاحة؟",
+    "latency_s": 6.05
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "تمام، هفكر فيها واتواصل معاكم تاني. شكراً 😊"
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2393,
+    "tokens_out": 18,
+    "latency_s": 0.86
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "العفو يا فندم، تحت أمرك في أي وقت ونورتينا! 😊",
+    "latency_s": 0.86
+   }
+  }
+ ]
+}

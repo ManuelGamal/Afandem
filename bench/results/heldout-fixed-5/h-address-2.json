@@ -1,0 +1,309 @@
+{
+ "card_id": "h-address-2",
+ "category": "vague_address",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا شادي! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: behind the mall، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "اهلا، العنوان صح؟ 27 شارع 26 يوليو الدور 1، الشيخ زايد  \nاكيد عايز اغيره لو مش صح"
+  },
+  {
+   "role": "agent",
+   "text": "تمام يا فندم، عدلت العنوان. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "اكيد، اؤكد الطلب  \nيلا يلا يصلكم"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم وشكراً لاختيارك هدوم! هنجهزه ونبعته في أقرب وقت 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: behind the mall، الشيخ زايد\nالتوصيل: خلال 1-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا شادي! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: behind the mall، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "اهلا، العنوان صح؟ 27 شارع 26 يوليو الدور 1، الشيخ زايد  \nاكيد عايز اغيره لو مش صح"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_328438",
+     "function": {
+      "arguments": "{\"order_id\":1,\"changes\":{\"address\":\"27 شارع 26 يوليو الدور 1، الشيخ زايد\"}}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T1igX5K6iYneKXPfGoFEaqSK7aWGBCfFI8hvBfJxpmPY7+h3jbRS1uNajvBJvkonrUHvg9HLOXCex2mjMc4bhgZzGT+LscfhkPDDkke0pt4tT04G2nZewdXE="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_328438",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 510, \"summary_ar\": \"طلب رقم 1:\\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تمام يا فندم، عدلت العنوان. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TsI+pT/7hdeJa7FXB8x+lIE3BklisHgh5oxRx2aJ3KZNhX0A62I+qo/vAGzs0oON2rV0A1PImqPTE9oAuZA4VCcp3/I92hywoW41Gl3Dd8e2OP7++QOCPorQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "اكيد، اؤكد الطلب  \nيلا يلا يصلكم"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_215623",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TESfSiZPymTWETduSfNUJL6tmKj5cfi3IAoEHCmHL3XzhY9rgzwX8w1j65oBKQt07yuI7+T9qYYwgsefBmbY+Qtz2EDomdvvJ8B/1pIELpx23gpUNzTeh320="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_215623",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم وشكراً لاختيارك هدوم! هنجهزه ونبعته في أقرب وقت 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TSzQA/wbWz6nuZo24yPCfUGcGoS2wNGGcXOtrIZJBhlIz9F8YmkzprKpqakrGpJduTLytecmMikEtuAStXk+48vTXOVBYmfS3qupMbnFbTlIip1/ZMFTqu2E="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "شادي رمزي",
+   "phone": "01269012345",
+   "address": "27 شارع 26 يوليو الدور 1، الشيخ زايد",
+   "area": "الشيخ زايد",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "B09",
+     "name_ar": "ليجن رياضي",
+     "size": "S",
+     "color": "أسود",
+     "qty": 1,
+     "unit_price": 450
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 450,
+   "total": 510,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 510,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا شادي! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: behind the mall، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "اهلا، العنوان صح؟ 27 شارع 26 يوليو الدور 1، الشيخ زايد  \nاكيد عايز اغيره لو مش صح"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2296,
+    "tokens_out": 38,
+    "latency_s": 0.82
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "write",
+     "text": "order #1 saved · pending_confirmation · total 510 EGP"
+    }
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2497,
+    "tokens_out": 107,
+    "latency_s": 1.62
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تمام يا فندم، عدلت العنوان. ده الملخص الجديد:\n\nطلب رقم 1:\n- 1× ليجن رياضي مقاس S لون أسود = 450 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 510 جنيه (الدفع عند الاستلام)\nالعنوان: 27 شارع 26 يوليو الدور 1، الشيخ زايد\nالتوصيل: خلال 1-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.45
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "اكيد، اؤكد الطلب  \nيلا يلا يصلكم"
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2620,
+    "tokens_out": 16,
+    "latency_s": 2.15
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 510,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "B09",
+    "size": "S",
+    "delta": -1,
+    "stock_after": 7,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2695,
+    "tokens_out": 34,
+    "latency_s": 2.04
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم وشكراً لاختيارك هدوم! هنجهزه ونبعته في أقرب وقت 🌸",
+    "latency_s": 4.19
+   }
+  }
+ ]
+}

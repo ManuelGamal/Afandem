@@ -1,0 +1,197 @@
+{
+ "card_id": "h-price-1",
+ "category": "price_shopper",
+ "script": "arabic",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+  },
+  {
+   "role": "agent",
+   "text": "سعر جاكيت الويند بريكر 1100 جنيه، ومتاحة بالألوان الأسود والكحلي. \nوبالتأكيد بنشحن لأسوان، مصاريف الشحن 85 جنيه وبتوصل في خلال 3 لـ 5 أيام. تحب تطلب مقاس إيه؟"
+  },
+  {
+   "role": "customer",
+   "text": "خلي بالك من السعر والشحن، هفكّر فيه وربما أرجع. سلام."
+  },
+  {
+   "role": "agent",
+   "text": "تحت أمرك يا فندم، نورتنا في أي وقت!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_219485",
+     "function": {
+      "arguments": "{\"query\":\"ويند بريكر\",\"category\":\"outerwear\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TaTRmzM/vqiADS++7tu13rK93YihWsvhaowxYYmafp4r2cx4SckIWTI7juX86xUyEKI+IZuf0wVbJSuJYj/vVhQO9B/lYOdSbRPIsOoerVtSumohpDX9UlLE="
+      }
+     }
+    },
+    {
+     "id": "call_219486",
+     "function": {
+      "arguments": "{\"area\":\"أسوان\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function"
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_219485",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"O06\", \"name\": \"جاكيت ويند بريكر\", \"name_en\": \"Windbreaker\", \"category\": \"outerwear\", \"price\": 1100, \"colors\": [\"أسود\", \"كحلي\"], \"stock_by_size\": {\"S\": 3, \"M\": 6, \"L\": 6, \"XL\": 4, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_219486",
+   "content": "{\"ok\": true, \"zone\": \"الصعيد\", \"fee\": 85, \"days_min\": 3, \"days_max\": 5}"
+  },
+  {
+   "role": "assistant",
+   "content": "سعر جاكيت الويند بريكر 1100 جنيه، ومتاحة بالألوان الأسود والكحلي. \nوبالتأكيد بنشحن لأسوان، مصاريف الشحن 85 جنيه وبتوصل في خلال 3 لـ 5 أيام. تحب تطلب مقاس إيه؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TeN1cqOuBx8XhMJwEvEHAyMIZY7O72VQTigZdk95OZn7ntShCdMf3mKLglQut0DRFLp3KehuxxQoKMMIUji3rczroa0Nk9c/JLmhuz9R4ui1s/gp/U456hCQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "خلي بالك من السعر والشحن، هفكّر فيه وربما أرجع. سلام."
+  },
+  {
+   "role": "assistant",
+   "content": "تحت أمرك يا فندم، نورتنا في أي وقت!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TyCLzaQ2C4OenhRsjfNsuWmEKfvNfMpqdtLiBRBklHvMh1hMIbMdzNZXxM3OHyGO8OL8xQQPmXNBILq/XWHf7Xdo1rzOsoY8CM+jnf4LAKj9QJ6vRxxVmVCw="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "سعر جاكيت ويند بريكر كام؟ وبتشحنوا لأسوان؟"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2054,
+    "tokens_out": 44,
+    "latency_s": 0.87
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “ويند بريكر” → جاكيت ويند بريكر 1100 EGP"
+    }
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "delivery to الصعيد: 85 EGP, 3–5 days"
+    }
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2326,
+    "tokens_out": 71,
+    "latency_s": 5.73
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "سعر جاكيت الويند بريكر 1100 جنيه، ومتاحة بالألوان الأسود والكحلي. \nوبالتأكيد بنشحن لأسوان، مصاريف الشحن 85 جنيه وبتوصل في خلال 3 لـ 5 أيام. تحب تطلب مقاس إيه؟",
+    "latency_s": 6.61
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "خلي بالك من السعر والشحن، هفكّر فيه وربما أرجع. سلام."
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2419,
+    "tokens_out": 16,
+    "latency_s": 2.83
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-price-1",
+   "data": {
+    "text": "تحت أمرك يا فندم، نورتنا في أي وقت!",
+    "latency_s": 2.83
+   }
+  }
+ ]
+}

@@ -1,0 +1,543 @@
+{
+ "card_id": "h-clear-2",
+ "category": "clear_buyer",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 5,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "hi, el Chinos size 34 olive available 3ndko?"
+  },
+  {
+   "role": "agent",
+   "text": "Ahlan beek! Yes, the Chinos in olive size 34 is available, and the price is 780 EGP. \n\nWould you like me to add a Polo piqué for 520 EGP to your order?"
+  },
+  {
+   "role": "customer",
+   "text": "780 fady, m7tajsh el polo. 3ayez el chinos bas."
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fandem, wala yhemmak. 3ashan ne3mel el order, momken elesm el kareem, el raqam el mobasher, wel 3enwan bel zebt (el manteqa, el shari3, raqam el mabna, wel dor)?"
+  },
+  {
+   "role": "customer",
+   "text": "Tarek Selim  \n01225678901  \n18 shari3 el Sudan, el dowr 3, el dokki"
+  },
+  {
+   "role": "agent",
+   "text": "Shokran ya fandem. Dah mola5as el talab:\n\nطلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 18 shari3 el Sudan, el dowr 3, el dokki، الدقي\nالتوصيل: خلال 1-3 أيام\n\nA2kdk el talab?"
+  },
+  {
+   "role": "customer",
+   "text": "aywa, el molas sa7i7, 2a2l el order"
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fandem, el order et2akad we hatewselek fe el mew3ed el mo7addad. Shoqran le te2tak fena! Ay 5edma tanya?"
+  },
+  {
+   "role": "customer",
+   "text": "la, kda kda, shokran kteer!"
+  },
+  {
+   "role": "agent",
+   "text": "Afoan ya fandem, ta7t amrak fel waqt elly te7tago. Salam!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "hi, el Chinos size 34 olive available 3ndko?"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_207514",
+     "function": {
+      "arguments": "{\"query\":\"chino olive\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TObailEvOoMtczpgRkWdNHWf4bEy4uuwlS7VfXC/Cw71loI8mMGMOi3nqpEz2BC7XsXsY08eM5kaycATHlO+FRfzLZQe2FkRJqAyGtRgSpgC9dYnMc5/utxY="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_207514",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B04\", \"name\": \"بنطلون تشينو\", \"name_en\": \"Chinos\", \"category\": \"bottoms\", \"price\": 780, \"colors\": [\"بيج\", \"كحلي\", \"زيتي\"], \"stock_by_size\": {\"30\": 5, \"32\": 10, \"34\": 9, \"36\": 5, \"38\": 2}, \"sizes_in_stock\": [\"30\", \"32\", \"34\", \"36\", \"38\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T03\", \"name\": \"بولو شيرت بيكيه\", \"price\": 520}, {\"id\": \"T04\", \"name\": \"قميص كتان\", \"price\": 690}]}, {\"id\": \"T02\", \"name\": \"تيشيرت أوفر سايز\", \"name_en\": \"Oversized tee\", \"category\": \"tops\", \"price\": 420, \"colors\": [\"أسود\", \"بيج\", \"أخضر زيتي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 11, \"XL\": 0, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XXL\"], \"sizes_out_of_stock\": [\"XL\"], \"pairs_with\": [{\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}, {\"id\": \"B06\", \"name\": \"شورت جينز\", \"price\": 520}]}, {\"id\": \"B08\", \"name\": \"جيبة ميدي\", \"name_en\": \"Midi skirt\", \"category\": \"bottoms\", \"price\": 690, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 5, \"M\": 7, \"L\": 5, \"XL\": 2, \"XXL\": 0}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\"], \"sizes_out_of_stock\": [\"XXL\"], \"pairs_with\": [{\"id\": \"T09\", \"name\": \"بلوزة شيفون\", \"price\": 580}]}, {\"id\": \"O05\", \"name\": \"فيست منفوخ\", \"name_en\": \"Puffer vest\", \"category\": \"outerwear\", \"price\": 990, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 3, \"M\": 5, \"L\": 5, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}]}, {\"id\": \"O02\", \"name\": \"جاكيت بومبر\", \"name_en\": \"Bomber jacket\", \"category\": \"outerwear\", \"price\": 1450, \"colors\": [\"أسود\", \"زيتي\"], \"stock_by_size\": {\"S\": 2, \"M\": 5, \"L\": 5, \"XL\": 3, \"XXL\": 1}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}, {\"id\": \"B01\", \"name\": \"جينز سليم\", \"price\": 950}]}]}"
+  },
+  {
+   "role": "assistant",
+   "content": "Ahlan beek! Yes, the Chinos in olive size 34 is available, and the price is 780 EGP. \n\nWould you like me to add a Polo piqué for 520 EGP to your order?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T3bsP/+wfbaMdPbWDAFKQ2fw0Jfdw5q0kQOXYllyVSaa73hgo7Txlb+SLMLjuK7XSutdzENcY0Q268k4Opqeraw0mBdRjAaHahjSYu3OcoFRui85jjDLSuYY="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "780 fady, m7tajsh el polo. 3ayez el chinos bas."
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fandem, wala yhemmak. 3ashan ne3mel el order, momken elesm el kareem, el raqam el mobasher, wel 3enwan bel zebt (el manteqa, el shari3, raqam el mabna, wel dor)?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TcFRGXhtWdsTIrBKJZ85dBjystDC28OUPJx08mC58SlnQ+ovrzcN+GXs9xk/GDMRfSPj5j5UBiEFWnekLVYHI8wknMqbkSb4KYsBe0oFzjwSpY640kgpun9o="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "Tarek Selim  \n01225678901  \n18 shari3 el Sudan, el dowr 3, el dokki"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_220481",
+     "function": {
+      "arguments": "{\"area\":\"الدقي\"}",
+      "name": "quote_delivery"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T4MmWDts29ZcVPe8dzsfed3bFuFgvHekTKqFInYw0+mDB6OwLN5A8yLtn4aQ3b+7bmvXq6lVzPNT7I2icYm6D3dfvobY7dCMs1eDx40sfxiaakZrFEJ+0ke8="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_220481",
+   "content": "{\"ok\": true, \"zone\": \"الجيزة\", \"fee\": 60, \"days_min\": 1, \"days_max\": 3}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_390321",
+     "function": {
+      "arguments": "{\"phone\":\"01225678901\",\"customer_name\":\"Tarek Selim\",\"address\":\"18 shari3 el Sudan, el dowr 3, el dokki\",\"area\":\"الدقي\",\"items\":[{\"qty\":1,\"color\":\"زيتي\",\"size\":\"34\",\"product_id\":\"B04\"}]}",
+      "name": "create_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TFcz36bI+W3OUY/dJ6rmTMhDHotqsv8SgrH4phzXd4CAcaowtBa/dizbzM1rR0NlwlawSR00NeB1IFsVvf+ohQxjihmX59QMwxCAMdy/GCh2tpPFc5mqTjHc="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_390321",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"draft\", \"total\": 840, \"summary_ar\": \"طلب رقم 1:\\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\\nالشحن (الجيزة): 60 جنيه\\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\\nالعنوان: 18 shari3 el Sudan, el dowr 3, el dokki، الدقي\\nالتوصيل: خلال 1-3 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Shokran ya fandem. Dah mola5as el talab:\n\nطلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 18 shari3 el Sudan, el dowr 3, el dokki، الدقي\nالتوصيل: خلال 1-3 أيام\n\nA2kdk el talab?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0ToRnkto6AivKbJreo9QnkN7gv/cb3qGrByKLqXESiGYuo82iQcsGmvHKRGunuwg78enwY+o1HgfUFL6SMGIk8cXtcDx0O5/GK+i4syM/5hcxDd5OFfKbMMlQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "aywa, el molas sa7i7, 2a2l el order"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_286144",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TaykP38oL/FJLE/m/QVuVJfYdam5j9C2rz/yLDXWz7NIAk16c3rZn80ICpocH3nWoldxZrxE93mSQSc/quzdoChUXlYE0E0Nex0o05tP887kCQbAJDBttuSg="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_286144",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fandem, el order et2akad we hatewselek fe el mew3ed el mo7addad. Shoqran le te2tak fena! Ay 5edma tanya?",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tjru/+7KuDW60wzADkrZO1NQwY2HQMrpGjzokr95e70VFv2izaBGVH2+jtkWRqT3mnn66h7fZgQO4Fab0stWQOT0nALoRfBdjD0zEln8QcR2fgIrANVvxXPk="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "la, kda kda, shokran kteer!"
+  },
+  {
+   "role": "assistant",
+   "content": "Afoan ya fandem, ta7t amrak fel waqt elly te7tago. Salam!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TRPONb1JEj4uzVjdyTtbc4x0iKP6aICKHr+WkIDVSQN2YP0BfQXvixRMAKwmCSkcU8rmRDRdFd2t/ZAgXEMaeqUSHjWuGcwdnxjXOh3IFCdZ9FMnExbq1AXE="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "bench-h-clear-2",
+   "status": "confirmed",
+   "source": "chat",
+   "customer_name": "Tarek Selim",
+   "phone": "01225678901",
+   "address": "18 shari3 el Sudan, el dowr 3, el dokki",
+   "area": "الدقي",
+   "zone_id": "giza",
+   "items": [
+    {
+     "product_id": "B04",
+     "name_ar": "بنطلون تشينو",
+     "size": "34",
+     "color": "زيتي",
+     "qty": 1,
+     "unit_price": 780
+    }
+   ],
+   "delivery_fee": 60,
+   "subtotal": 780,
+   "total": 840,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "hi, el Chinos size 34 olive available 3ndko?"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2225,
+    "tokens_out": 17,
+    "latency_s": 12.83
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “chino olive” → بنطلون تشينو 780 EGP; تيشيرت أوفر سايز 420 EGP +3 more"
+    }
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3152,
+    "tokens_out": 53,
+    "latency_s": 17.38
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Ahlan beek! Yes, the Chinos in olive size 34 is available, and the price is 780 EGP. \n\nWould you like me to add a Polo piqué for 520 EGP to your order?",
+    "latency_s": 30.21
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "780 fady, m7tajsh el polo. 3ayez el chinos bas."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3228,
+    "tokens_out": 65,
+    "latency_s": 13.7
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Tamam ya fandem, wala yhemmak. 3ashan ne3mel el order, momken elesm el kareem, el raqam el mobasher, wel 3enwan bel zebt (el manteqa, el shari3, raqam el mabna, wel dor)?",
+    "latency_s": 13.7
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Tarek Selim  \n01225678901  \n18 shari3 el Sudan, el dowr 3, el dokki"
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3331,
+    "tokens_out": 17,
+    "latency_s": 12.43
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "quote_delivery",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "delivery to الجيزة: 60 EGP, 1–3 days"
+    }
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3396,
+    "tokens_out": 97,
+    "latency_s": 7.91
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "order_id": 1,
+    "old": null,
+    "new": "draft",
+    "reason": null,
+    "total": 840,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "create_order",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "write",
+     "text": "order #1 saved · draft · total 840 EGP"
+    }
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 3663,
+    "tokens_out": 119,
+    "latency_s": 14.09
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Shokran ya fandem. Dah mola5as el talab:\n\nطلب رقم 1:\n- 1× بنطلون تشينو مقاس 34 لون زيتي = 780 جنيه\nالشحن (الجيزة): 60 جنيه\nالإجمالي: 840 جنيه (الدفع عند الاستلام)\nالعنوان: 18 shari3 el Sudan, el dowr 3, el dokki، الدقي\nالتوصيل: خلال 1-3 أيام\n\nA2kdk el talab?",
+    "latency_s": 34.43
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "aywa, el molas sa7i7, 2a2l el order"
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 3802,
+    "tokens_out": 16,
+    "latency_s": 18.35
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "confirmed",
+    "reason": null,
+    "total": 840,
+    "source": "chat"
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "product_id": "B04",
+    "size": "34",
+    "delta": -1,
+    "stock_after": 8,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3877,
+    "tokens_out": 44,
+    "latency_s": 12.15
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Tamam ya fandem, el order et2akad we hatewselek fe el mew3ed el mo7addad. Shoqran le te2tak fena! Ay 5edma tanya?",
+    "latency_s": 30.5
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "la, kda kda, shokran kteer!"
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3936,
+    "tokens_out": 24,
+    "latency_s": 1.02
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-clear-2",
+   "data": {
+    "text": "Afoan ya fandem, ta7t amrak fel waqt elly te7tago. Salam!",
+    "latency_s": 1.02
+   }
+  }
+ ]
+}

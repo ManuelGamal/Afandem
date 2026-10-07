@@ -1,0 +1,119 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم إحنا فاتحين في القاهرة والبيع أونلاين بس، ومفيش عندنا فروع في دبي ولا نظام فرانشايز حالياً 😊\nتحب تشوف أي قطعة من تشكيلة الكاجوال بتاعتنا؟"
+  },
+  {
+   "role": "customer",
+   "text": "ماشي، تمام. يلا"
+  },
+  {
+   "role": "agent",
+   "text": "منور يا فندم! تحب تشوف تيشرتات، هوديز، ولا بناطيل كاجوال؟ 😊"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم إحنا فاتحين في القاهرة والبيع أونلاين بس، ومفيش عندنا فروع في دبي ولا نظام فرانشايز حالياً 😊\nتحب تشوف أي قطعة من تشكيلة الكاجوال بتاعتنا؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Te3SmlHkgADCBl8Xx/QlJfPga4uw513h0bcsAWucvmXw062aK8VxGB5M/bUawLVvjwItHMdEFkulQA42eRpqJlxXllSfT8r3FTxbzu3vdQuUkMkzeoJUo2tw="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "ماشي، تمام. يلا"
+  },
+  {
+   "role": "assistant",
+   "content": "منور يا فندم! تحب تشوف تيشرتات، هوديز، ولا بناطيل كاجوال؟ 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T+zMRQQgmBskzZ7IfL/GokCOUTgdsayBj3GJ0iTAaksdGvG1069iAR67IGsmiKtx6I+HwyL2LB1VscgidrTSdD+z2dcxDCodF7r+ztY6vVDlwhx4gdbHR8N8="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2045,
+    "tokens_out": 54,
+    "latency_s": 12.9
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "يا فندم إحنا فاتحين في القاهرة والبيع أونلاين بس، ومفيش عندنا فروع في دبي ولا نظام فرانشايز حالياً 😊\nتحب تشوف أي قطعة من تشكيلة الكاجوال بتاعتنا؟",
+    "latency_s": 12.9
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "ماشي، تمام. يلا"
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2106,
+    "tokens_out": 28,
+    "latency_s": 10.75
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "منور يا فندم! تحب تشوف تيشرتات، هوديز، ولا بناطيل كاجوال؟ 😊",
+    "latency_s": 10.75
+   }
+  }
+ ]
+}

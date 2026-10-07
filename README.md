@@ -195,6 +195,7 @@ Qwen3-235B (on Nebius), a different model family from the agent (Gemini) and its
 | Median agent reply time (live calls) | 2.5 s |
 | Success by writing style | Egyptian Arabic 96% · Franco 92% · mixed 94% |
 | Model calls / tokens per conversation | 4.4 / 11,387 in, 203 out |
+| After fixing the traced issues (same cards, 5 more fresh runs) | 95.3% (runs 93–97%), 0 violations — reported separately because these fixes were informed by the held-out misses: [`bench/report-heldout-fixed/report.md`](bench/report-heldout-fixed/report.md) |
 | Same cards on the fallback model (GLM-5.3-Flash, 1 run) | 87%, 0 violations — [`bench/report-heldout-glm/report.md`](bench/report-heldout-glm/report.md) |
 
 Every one of the 9 misses was traced:

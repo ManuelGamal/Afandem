@@ -1,0 +1,193 @@
+{
+ "card_id": "h-decline-3",
+ "category": "declines",
+ "script": "mixed",
+ "flow": "checkout",
+ "turns": 1,
+ "ended_by": "done",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا رنا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جلد صناعي مقاس M لون بني = 1650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1715 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "لا مش هخليه يا حبيبتي، متغيرش رأيي؟"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، ولاءً لراحتك لغينا الطلب، ومنورانا في أي وقت تاني! 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جاكيت جلد صناعي مقاس M لون بني = 1650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1715 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا رنا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جلد صناعي مقاس M لون بني = 1650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1715 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "لا مش هخليه يا حبيبتي، متغيرش رأيي؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_242613",
+     "function": {
+      "arguments": "{\"reason\":\"customer_declined\",\"order_id\":1}",
+      "name": "cancel_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TAfscTqYLIu4NeQ1BBWr/uFeDpzEEfTlVcsEF8znasMq+WosKUBb4i9nxpwhwQ4Pg6WKVIfOEtq14rrpANC34FsmYnqMn1PzlNmEeNK0sS02RTbxSD8H7iCk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_242613",
+   "content": "{\"ok\": true, \"status\": \"cancelled\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، ولاءً لراحتك لغينا الطلب، ومنورانا في أي وقت تاني! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TmckoxU+vUxb6WMYjGR1cf+lc9w6HfzHC8OxKz/gzh2Mi43zU+RPlAQkGdizJHGdBZ/R1Yx/OjP+IGgyVirnb2kfjlT7x6tI6zUv7teTd902RWTmo4/szMDs="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "cancelled",
+   "source": "checkout",
+   "customer_name": "رنا عاطف",
+   "phone": "01536789012",
+   "address": "45 شارع خالد بن الوليد الدور 2",
+   "area": "سيدي بشر",
+   "zone_id": "alex",
+   "items": [
+    {
+     "product_id": "O03",
+     "name_ar": "جاكيت جلد صناعي",
+     "size": "M",
+     "color": "بني",
+     "qty": 1,
+     "unit_price": 1650
+    }
+   ],
+   "delivery_fee": 65,
+   "subtotal": 1650,
+   "total": 1715,
+   "delivery_date": null,
+   "cancel_reason": "customer_declined",
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 1715,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا رنا! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جاكيت جلد صناعي مقاس M لون بني = 1650 جنيه\nالشحن (الإسكندرية): 65 جنيه\nالإجمالي: 1715 جنيه (الدفع عند الاستلام)\nالعنوان: 45 شارع خالد بن الوليد الدور 2، سيدي بشر\nالتوصيل: خلال 2-3 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "لا مش هخليه يا حبيبتي، متغيرش رأيي؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2305,
+    "tokens_out": 25,
+    "latency_s": 12.14
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "cancelled",
+    "reason": "customer_declined",
+    "total": 1715,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "cancel_order",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2354,
+    "tokens_out": 32,
+    "latency_s": 9.55
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "ولا يهمك يا فندم، ولاءً لراحتك لغينا الطلب، ومنورانا في أي وقت تاني! 🌸",
+    "latency_s": 21.69
+   }
+  }
+ ]
+}

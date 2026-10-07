@@ -1,0 +1,131 @@
+{
+ "bench": {
+  "cards": 150,
+  "success_rate": 0.953,
+  "by_category": {
+   "change_at_confirmation": 0.933,
+   "clear_buyer": 0.867,
+   "complaint": 1.0,
+   "declines": 1.0,
+   "no_reply": 1.0,
+   "off_topic": 1.0,
+   "price_shopper": 0.933,
+   "reschedule": 0.933,
+   "size_unsure": 1.0,
+   "vague_address": 0.867
+  },
+  "by_script": {
+   "arabic": 0.98,
+   "arabizi": 0.92,
+   "mixed": 0.96
+  },
+  "violations": 0,
+  "violation_examples": [],
+  "self_service_rate": 0.97,
+  "median_turns": 2.0,
+  "median_reply_s": 5.31,
+  "timed_conversations": 135,
+  "mean_tokens_in": 13063,
+  "mean_tokens_out": 200,
+  "mean_llm_calls": 4.5,
+  "upsell_orders": 0,
+  "upsell_egp": 0,
+  "runs": [
+   {
+    "run": "heldout-fixed-1",
+    "cards": 30,
+    "success_rate": 0.967
+   },
+   {
+    "run": "heldout-fixed-2",
+    "cards": 30,
+    "success_rate": 0.967
+   },
+   {
+    "run": "heldout-fixed-3",
+    "cards": 30,
+    "success_rate": 0.933
+   },
+   {
+    "run": "heldout-fixed-4",
+    "cards": 30,
+    "success_rate": 0.967
+   },
+   {
+    "run": "heldout-fixed-5",
+    "cards": 30,
+    "success_rate": 0.933
+   }
+  ],
+  "success_mean": 0.953,
+  "success_min": 0.933,
+  "success_max": 0.967
+ },
+ "bench_inputs": {
+  "self_service_rate": 0.97,
+  "median_turns": 2.0,
+  "mean_tokens_in": 13063,
+  "mean_tokens_out": 200,
+  "upsell_share": 0.0,
+  "mean_upsell_egp": 0.0
+ },
+ "impact": {
+  "low": {
+   "dm_hours": 42.03333333333333,
+   "call_hours": 21.016666666666666,
+   "hours_saved_month": 63.05,
+   "hours_saved_week": 14.561200923787528,
+   "moderator_cost_saved": 1818.75,
+   "refusals_prevented": 19.5,
+   "failed_delivery_cost": 90,
+   "delivery_cost_saved": 1755.0,
+   "conversations_month": 1950.0,
+   "llm_cost_egp": 1069.4911499999998,
+   "running_cost_egp": 1569.4911499999998,
+   "net_cost_saved": 2004.2588500000002,
+   "payback_days": 13.17516180482686,
+   "roi_multiple": 1.2770118837560827,
+   "revenue_speed": 9079.199999999999,
+   "revenue_upsell": 0.0,
+   "revenue_total": 9079.199999999999
+  },
+  "base": {
+   "dm_hours": 94.57499999999999,
+   "call_hours": 50.44,
+   "hours_saved_month": 145.015,
+   "hours_saved_week": 33.49076212471131,
+   "moderator_cost_saved": 4880.312499999999,
+   "refusals_prevented": 130.0,
+   "failed_delivery_cost": 120,
+   "delivery_cost_saved": 15600.0,
+   "conversations_month": 2990.0,
+   "llm_cost_egp": 660.62555,
+   "running_cost_egp": 910.62555,
+   "net_cost_saved": 19569.68695,
+   "payback_days": 1.3339037917512244,
+   "roi_multiple": 21.490377631069105,
+   "revenue_speed": 52962.0,
+   "revenue_upsell": 0.0,
+   "revenue_total": 52962.0
+  },
+  "high": {
+   "dm_hours": 303.125,
+   "call_hours": 145.5,
+   "hours_saved_month": 448.625,
+   "hours_saved_week": 103.60854503464203,
+   "moderator_cost_saved": 17254.80769230769,
+   "refusals_prevented": 485.99999999999994,
+   "failed_delivery_cost": 170,
+   "delivery_cost_saved": 82619.99999999999,
+   "conversations_month": 5550.0,
+   "llm_cost_egp": 369.31032000000005,
+   "running_cost_egp": 369.31032000000005,
+   "net_cost_saved": 99505.49737230767,
+   "payback_days": 0.11093197429859308,
+   "roi_multiple": 269.43600539597065,
+   "revenue_speed": 327375.0,
+   "revenue_upsell": 0.0,
+   "revenue_total": 327375.0
+  }
+ }
+}

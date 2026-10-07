@@ -1,0 +1,175 @@
+{
+ "card_id": "h-offtopic-3",
+ "category": "off_topic",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 2,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "agent",
+   "text": "لا يا فندم، مفيش فرع في دبي حالياً 😅 \nوعروض الفرنشايز مش متاحة دلوقتي، بس تحت أمرك في أي هدوم أو ستايلات تعجبك من عندنا هنا في مصر!"
+  },
+  {
+   "role": "customer",
+   "text": "يا عم انا مش عايز اشتري، عايز افتتح فرع في دبي. لو مش متوفر خلاص، يسّه"
+  },
+  {
+   "role": "agent",
+   "text": "ولا يهمك يا فندم، أنا حولت استفسارك للإدارة وهيتواصلوا معاك في أقرب وقت. تحت أمرك في أي وقت!"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "عندكم branch في دبي؟ عايز أعمل franchise"
+  },
+  {
+   "role": "assistant",
+   "content": "لا يا فندم، مفيش فرع في دبي حالياً 😅 \nوعروض الفرنشايز مش متاحة دلوقتي، بس تحت أمرك في أي هدوم أو ستايلات تعجبك من عندنا هنا في مصر!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tbid9rLgKIDoiaWHanp3FKKWS2wMg9LtU1OZX+ibVHU6VvCj1U2mbDpZ6JMavIh/+eNEW79TQZnbPD7ErM+IdoEBYbkwtJwBEBpJqzUU/QSQXh6t6lpgFo0I="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "يا عم انا مش عايز اشتري، عايز افتتح فرع في دبي. لو مش متوفر خلاص، يسّه"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_526278",
+     "function": {
+      "arguments": "{\"reason\":\"Customer is inquiring about franchise opportunities outside Egypt.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TjgRHXqkv8uXvkq6FAtAdXDQ5oZKeoRqfrgMvrHPAfNiPswYIwJbtEqLhV9CHZ/za6CmqcnUJ2agAlHCAPtbZhX7m9iAdnBLME3Ljxib6XuYfaIfDO8RV/xs="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_526278",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "ولا يهمك يا فندم، أنا حولت استفسارك للإدارة وهيتواصلوا معاك في أقرب وقت. تحت أمرك في أي وقت!",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T4twtKGFRfqzkEhhqWHaLks2H/xJj1+/2nV4ovgKIgAKw8rT4HrkdMTf+cSz+GzmlL3BFBu7TMqBy1KA9MqofIZkYDgSKGu1gNz+p7u4Yj0iKKQ1rPlj8UI0="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "عندكم branch في دبي؟ عايز أعمل franchise"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2045,
+    "tokens_out": 52,
+    "latency_s": 7.72
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "لا يا فندم، مفيش فرع في دبي حالياً 😅 \nوعروض الفرنشايز مش متاحة دلوقتي، بس تحت أمرك في أي هدوم أو ستايلات تعجبك من عندنا هنا في مصر!",
+    "latency_s": 7.72
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "يا عم انا مش عايز اشتري، عايز افتتح فرع في دبي. لو مش متوفر خلاص، يسّه"
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2124,
+    "tokens_out": 27,
+    "latency_s": 7.75
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "reason": "Customer is inquiring about franchise opportunities outside Egypt."
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k5",
+    "tokens_in": 2197,
+    "tokens_out": 35,
+    "latency_s": 17.74
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-offtopic-3",
+   "data": {
+    "text": "ولا يهمك يا فندم، أنا حولت استفسارك للإدارة وهيتواصلوا معاك في أقرب وقت. تحت أمرك في أي وقت!",
+    "latency_s": 25.5
+   }
+  }
+ ]
+}

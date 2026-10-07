@@ -1,0 +1,123 @@
+{
+ "card_id": "h-complaint-3",
+ "category": "complaint",
+ "script": "mixed",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+  },
+  {
+   "role": "agent",
+   "text": "يا فندم، أنا حولت مشكلتك لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت علشان نساعدك. تحت أمرك 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_248548",
+     "function": {
+      "arguments": "{\"reason\":\"Customer received wrong size and color, and is asking for a refund.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T0yhBSet05ZRUmdZp0s6wCfAJpjcUpAlNNBsuP1k4dn9bQ5OFo85W0tnI5Jcg47BVgX/UWM8T03tNvVjedbHcFMEI7qYynPIHxfBOPPjLWW6+wO1Xz/jmYBo="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_248548",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "يا فندم، أنا حولت مشكلتك لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت علشان نساعدك. تحت أمرك 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tyz4MeNWIkO/C0YEPKzPRoxZX+I0bidDwlHn7zU8WeYiKFx+Si0+MetWN13o6iUhCijddvZK2fjy1Dqo1m1hN4UOnz89BF2dUew6Ipv7RrcHP8EUbxYtvs7A="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "text": "استلمت الأوردر بس ال size غلط واللون مختلف عن الصور، I want my money back"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2055,
+    "tokens_out": 32,
+    "latency_s": 11.73
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "reason": "Customer received wrong size and color, and is asking for a refund."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 2133,
+    "tokens_out": 36,
+    "latency_s": 10.85
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-3",
+   "data": {
+    "text": "يا فندم، أنا حولت مشكلتك لفريق خدمة العملاء وهيتواصلوا معاكي في أقرب وقت علشان نساعدك. تحت أمرك 🌸",
+    "latency_s": 22.58
+   }
+  }
+ ]
+}

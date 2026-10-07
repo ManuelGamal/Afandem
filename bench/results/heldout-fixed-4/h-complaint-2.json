@@ -1,0 +1,123 @@
+{
+ "card_id": "h-complaint-2",
+ "category": "complaint",
+ "script": "arabizi",
+ "flow": "sales",
+ "turns": 1,
+ "ended_by": "handoff",
+ "transcript": [
+  {
+   "role": "customer",
+   "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "agent",
+   "text": "Wala yhemmak ya fandem, hena handawez el mawdo3 lel team da8ry w hadretak hatetwaselet m3ak gamed qarib."
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_298374",
+     "function": {
+      "arguments": "{\"reason\":\"Customer says the delivery representative came and said the order was cancelled because they weren't present. Needs customer service/past order support.\"}",
+      "name": "handoff_to_human"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TEQHd0UjqTtueCXfgG9CFGUBgqsMCy+Vnm4jgjbyKCmZV1zk+lcmVb/wQnnnMJ6ytiMUZuhghocgh1s+EDKdB8RgALfWA9oZi4/TgEXWwXw2PnIOn4mQr0Q0="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_298374",
+   "content": "{\"ok\": true, \"message\": \"A team member will take over. Tell the customer politely that someone from the team will reply shortly.\"}"
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yhemmak ya fandem, hena handawez el mawdo3 lel team da8ry w hadretak hatetwaselet m3ak gamed qarib.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TKN9YG2H9ClGmb4JxqBkNNjiWcRo0cRHjM3wrn+ZgPRSLp5FdaYdQo3UnbGXJ890Q//l/Icc3zxd1NgfmOzZlAVxmft0NYz1OqlrT8ig0zkKsMrVc31AslLU="
+    }
+   }
+  }
+ ],
+ "orders": [],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "el mandoub tala3 w 2al en el order etlaga 3ashan ana msh mawgood, 3ayez a3raf eh elly 7asal"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2247,
+    "tokens_out": 45,
+    "latency_s": 11.27
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "handoff",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "reason": "Customer says the delivery representative came and said the order was cancelled because they weren't present. Needs customer service/past order support."
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "name": "handoff_to_human",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 2338,
+    "tokens_out": 41,
+    "latency_s": 13.56
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "bench-h-complaint-2",
+   "data": {
+    "text": "Wala yhemmak ya fandem, hena handawez el mawdo3 lel team da8ry w hadretak hatetwaselet m3ak gamed qarib.",
+    "latency_s": 24.82
+   }
+  }
+ ]
+}

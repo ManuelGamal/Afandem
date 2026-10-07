@@ -1,0 +1,791 @@
+{
+ "card_id": "h-change-2",
+ "category": "change_at_confirmation",
+ "script": "arabizi",
+ "flow": "checkout",
+ "turns": 10,
+ "ended_by": "max_turns",
+ "transcript": [
+  {
+   "role": "agent",
+   "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "غيري المقاس من M لـ L نفس اللون  \nباقي التفاصيل زي ما هي؟"
+  },
+  {
+   "role": "agent",
+   "text": "تم التعديل يا فندم، وده الملخص الجديد:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "customer",
+   "text": "أكيد، اؤكد الطلب بالمقاس L  \n[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "تم تأكيد طلبك بنجاح يا فندم! 🌸 هنجهزه ونشحنه في أقرب وقت. شكراً لاختيارك هدوم."
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fandem, et-talab et-akkad we hengehzo lel shahn. Shokran le sektek fe hodoom! 🌸"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Ahlan beek ya fandem, ay 5edma tanya? Ta7t amrak f ay wa2t! 😊"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Shokran le zowrak ya fandem! Neharak sa3eed 😊"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Ta7t amrak f ay wa2t! 🌸"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Wala yhemmak ya fandem, marhaba bik f ay wa2t! 😊"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Tamam ya fandem, shokran le tawasolk ma3ana! 🌸"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Ahlan beek dayman! 😊"
+  },
+  {
+   "role": "customer",
+   "text": "[.Done]"
+  },
+  {
+   "role": "agent",
+   "text": "Shokran giddan ya fandem! 🌸"
+  }
+ ],
+ "raw_messages": [
+  {
+   "role": "user",
+   "content": "[حدث داخلي] طلب جديد من الموقع رقم 1 محتاج تأكيد قبل الشحن. اتبعت للعميل رسالة التأكيد الثابتة بالملخص ده:\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام"
+  },
+  {
+   "role": "assistant",
+   "content": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟"
+  },
+  {
+   "role": "user",
+   "content": "غيري المقاس من M لـ L نفس اللون  \nباقي التفاصيل زي ما هي؟"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_328275",
+     "function": {
+      "arguments": "{\"query\":\"جوجر قطن\"}",
+      "name": "search_products"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0Toz4i+A7wLQ4caiLADw3gtVMMZHlG4n43UXmO52LyMe2UkvbT3oTziJ92QvF0KRh0a9EVjF3KkGnZH5TP0DyNg6Gh1ef1zPrwTC5GsLX95ZSYiVmOG6O5ECk="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_328275",
+   "content": "{\"ok\": true, \"products\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"name_en\": \"Cotton joggers\", \"category\": \"bottoms\", \"price\": 560, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 6, \"M\": 14, \"L\": 12, \"XL\": 6, \"XXL\": 2}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"price\": 890}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"A04\", \"name\": \"شراب قطن 3 قطع\", \"name_en\": \"Cotton socks 3-pack\", \"category\": \"accessories\", \"price\": 150, \"colors\": [\"أبيض\", \"أسود\"], \"stock_by_size\": {\"ONE\": 40}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}, {\"id\": \"A01\", \"name\": \"كاب قطن\", \"name_en\": \"Cotton cap\", \"category\": \"accessories\", \"price\": 220, \"colors\": [\"أسود\", \"بيج\", \"كحلي\"], \"stock_by_size\": {\"ONE\": 25}, \"sizes_in_stock\": [\"ONE\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"price\": 350}]}, {\"id\": \"T01\", \"name\": \"تيشيرت قطن سادة\", \"name_en\": \"Basic cotton tee\", \"category\": \"tops\", \"price\": 350, \"colors\": [\"أبيض\", \"أسود\", \"كحلي\", \"رمادي\"], \"stock_by_size\": {\"S\": 12, \"M\": 20, \"L\": 18, \"XL\": 9, \"XXL\": 4}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}, {\"id\": \"O01\", \"name\": \"جاكيت جينز\", \"price\": 1250}]}, {\"id\": \"T06\", \"name\": \"هودي قطن تقيل\", \"name_en\": \"Heavy cotton hoodie\", \"category\": \"tops\", \"price\": 890, \"colors\": [\"أسود\", \"رمادي\", \"كحلي\"], \"stock_by_size\": {\"S\": 4, \"M\": 12, \"L\": 12, \"XL\": 7, \"XXL\": 3}, \"sizes_in_stock\": [\"S\", \"M\", \"L\", \"XL\", \"XXL\"], \"sizes_out_of_stock\": [], \"pairs_with\": [{\"id\": \"B05\", \"name\": \"جوجر قطن\", \"price\": 560}]}]}"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_209386",
+     "function": {
+      "arguments": "{\"changes\":{\"address\":\"عمارة 6 شارع الثورة الدور 5 شقة 10\",\"customer_name\":\"ملك\",\"items\":[{\"qty\":1,\"color\":\"رمادي\",\"product_id\":\"B05\",\"size\":\"L\"}],\"area\":\"الزقازيق\",\"phone\":\"01000000000\"},\"order_id\":1}",
+      "name": "update_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0TIYpq9buXAhAv5AxrjQ997xKma4u7nTHmDA3PZoCLuZhFrOXio0XxYhXgGIqUONl79Y8DVzdmdUfw42l2uqgSSbIq4tWOeJEEQzqUdQev5+Ii7lBo/zNK82o="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_209386",
+   "content": "{\"ok\": true, \"order_id\": 1, \"status\": \"pending_confirmation\", \"total\": 630, \"summary_ar\": \"طلب رقم 1:\\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\\nالشحن (الدلتا): 70 جنيه\\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\\nالتوصيل: خلال 2-4 أيام\", \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم التعديل يا فندم، وده الملخص الجديد:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TbKDRSDa/6kTHY3E0f05y9j/sNYy+bjJ3CP2Ht/6e92OlDE6X9ydJ9kWGd6ljHnACRNK082r9fSoMmE5JxGBWhdtdODQ7Nligr82/cTT6mlEEJAcdajgixR8="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "أكيد، اؤكد الطلب بالمقاس L  \n[.Done]"
+  },
+  {
+   "role": "assistant",
+   "tool_calls": [
+    {
+     "id": "call_322273",
+     "function": {
+      "arguments": "{\"order_id\":1}",
+      "name": "confirm_order"
+     },
+     "type": "function",
+     "extra_content": {
+      "google": {
+       "thought_signature": "EmAKXgFpFH0T/ceyRt42Z/V3aa3We3/3OicFVn/wHgg4xAgqzPIKwP1FU4roLeruXVKZAJSAJlZr+euILzJ/3wrYKysV0xf0zBPxO/zonxF/1fwNfLcwAafMo5WUhoWpViQ="
+      }
+     }
+    }
+   ]
+  },
+  {
+   "role": "tool",
+   "tool_call_id": "call_322273",
+   "content": "{\"ok\": true, \"status\": \"confirmed\", \"order_id\": 1, \"risk\": {\"score\": 1, \"level\": \"low\", \"reasons\": [\"first order from this phone\"]}}"
+  },
+  {
+   "role": "assistant",
+   "content": "تم تأكيد طلبك بنجاح يا فندم! 🌸 هنجهزه ونشحنه في أقرب وقت. شكراً لاختيارك هدوم.",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TQU5WUSSjW270rwIvcW9v+OqCrLOSUG9diQanhJjzdvnZqA9ZHON6Rogjp2nNwrSf4raY/hK9VCEBNgbx1/UBWbGGA8nBIca7ZzLt3Iyx1VnbnrTjUcP9qnQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "user",
+   "content": "[حدث داخلي] The customer writes in Latin letters. Answer their last message again, in Latin letters only (Franco or English, as they wrote), with the English product names (name_en)."
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fandem, et-talab et-akkad we hengehzo lel shahn. Shokran le sektek fe hodoom! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0T/ypB+egqaXNkt3alEBgyh3QhBmTVw4kmmulPxNuT/IZHbEX1e7mTicfL/H/n0nTyJBjDdG/MkOdD02+bcdUtbrm/2BZAWEM2vqT3ksRgbLIKm1mLiIBa75k="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Ahlan beek ya fandem, ay 5edma tanya? Ta7t amrak f ay wa2t! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TquKo1OzepqOqOUB0PoCsi67hbH8II0347NOESU0vvgasvYyTE0RiFH1z2eSp4neUEbJaJRGfOMLa+XSBRu6DKu0UPr+pSOQBi7BhGKBWcqZlOQiqVmSbo0A="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Shokran le zowrak ya fandem! Neharak sa3eed 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TdtE4o+KU/CAECiuiTZW8gL47WNaRhOwunaWlPIMXfu0hUYQKzwOxm5c/Z44wtdjvPJyzYBfDRyZq0qN98gaDY2BIFxVGvyzAFhsUrsVzYkx57O8SggwoswQ="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Ta7t amrak f ay wa2t! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TPAaTmATr1pHcP3ihDcS4cYED/olqknM3RwJOevgwkrPLhoE7P4kTTVx3y9M29rl/Ae0jKAMWxAYVCqpQVIEafgcBEAJfqY2pYxBNCnMEVdp8JL6eRnKivSM="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Wala yhemmak ya fandem, marhaba bik f ay wa2t! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Tg+m+dAcghm1RycbqE+1Fjer+ZY1T7IrUbA7+FlX6piGFguE2B2kUz+YCrVrwVOLq+HepmJ8E+BPV4RDUY0mgbONGUTHesTmfbuHFfCDaTYIlOYXs38SYwF8="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Tamam ya fandem, shokran le tawasolk ma3ana! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TCq2ICQho6a/XdCb2SAQ1hxH0E9nFgkiNRK6RjTE5ixBqdsM4xbXEMTTcjGfn290UdpMXS4C5k+arr0hV4UFhOGtJ299AW9m3pUEJwUwpciVPShrMSao5bSA="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Ahlan beek dayman! 😊",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0Ti+tu+U0CuG9HJivdpPqtgMq/iydRwCCSoRV5oRP8eVm5dpwYteNxcnrUvZCkxjN92XCR5Xo+JwF/OzLaXFDTBdc3Ant+t9Rhj4x34aUsPi/vRJMLzhXF5Ug="
+    }
+   }
+  },
+  {
+   "role": "user",
+   "content": "[.Done]"
+  },
+  {
+   "role": "assistant",
+   "content": "Shokran giddan ya fandem! 🌸",
+   "extra_content": {
+    "google": {
+     "thought_signature": "EmAKXgFpFH0TJRM/yJ6KvsbUESllvtCSUxaqYLLSbX2MhdeXd4JnG32zi4Ejq3U6ACPu82wOyPNwusCwbVgsBwWdGIvXewt6amyEQL/xSzg+twopIvmJXPjPP/UnrlFgLYg="
+    }
+   }
+  }
+ ],
+ "orders": [
+  {
+   "id": 1,
+   "conversation_id": "checkout-1",
+   "status": "confirmed",
+   "source": "checkout",
+   "customer_name": "ملك",
+   "phone": "01000000000",
+   "address": "عمارة 6 شارع الثورة الدور 5 شقة 10",
+   "area": "الزقازيق",
+   "zone_id": "delta",
+   "items": [
+    {
+     "product_id": "B05",
+     "name_ar": "جوجر قطن",
+     "size": "L",
+     "color": "رمادي",
+     "qty": 1,
+     "unit_price": 560
+    }
+   ],
+   "delivery_fee": 70,
+   "subtotal": 560,
+   "total": 630,
+   "delivery_date": null,
+   "cancel_reason": null,
+   "risk_notes": [],
+   "created_at": "2026-10-08T12:00"
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "draft",
+    "new": "pending_confirmation",
+    "reason": null,
+    "total": 630,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 2,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أهلاً يا ملك! شكراً لطلبك من موقع هدوم 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس M لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 0.0
+   }
+  },
+  {
+   "seq": 3,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "غيري المقاس من M لـ L نفس اللون  \nباقي التفاصيل زي ما هي؟"
+   }
+  },
+  {
+   "seq": 4,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 2317,
+    "tokens_out": 20,
+    "latency_s": 0.76
+   }
+  },
+  {
+   "seq": 5,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "search_products",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "read",
+     "text": "search “جوجر قطن” → جوجر قطن 560 EGP; شراب قطن 3 قطع 150 EGP +3 more"
+    }
+   }
+  },
+  {
+   "seq": 6,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3158,
+    "tokens_out": 104,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 7,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "update_order",
+    "ok": true,
+    "error": null,
+    "db": {
+     "kind": "write",
+     "text": "order #1 saved · pending_confirmation · total 630 EGP"
+    }
+   }
+  },
+  {
+   "seq": 8,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3432,
+    "tokens_out": 113,
+    "latency_s": 0.94
+   }
+  },
+  {
+   "seq": 9,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم التعديل يا فندم، وده الملخص الجديد:\n\nطلب رقم 1:\n- 1× جوجر قطن مقاس L لون رمادي = 560 جنيه\nالشحن (الدلتا): 70 جنيه\nالإجمالي: 630 جنيه (الدفع عند الاستلام)\nالعنوان: عمارة 6 شارع الثورة الدور 5 شقة 10، الزقازيق\nالتوصيل: خلال 2-4 أيام\n\nأأكد الطلب؟",
+    "latency_s": 2.59
+   }
+  },
+  {
+   "seq": 10,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "أكيد، اؤكد الطلب بالمقاس L  \n[.Done]"
+   }
+  },
+  {
+   "seq": 11,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3564,
+    "tokens_out": 16,
+    "latency_s": 0.88
+   }
+  },
+  {
+   "seq": 12,
+   "ts": "2026-10-08T12:00",
+   "kind": "order_status",
+   "conversation_id": "checkout-1",
+   "data": {
+    "order_id": 1,
+    "old": "pending_confirmation",
+    "new": "confirmed",
+    "reason": null,
+    "total": 630,
+    "source": "checkout"
+   }
+  },
+  {
+   "seq": 13,
+   "ts": "2026-10-08T12:00",
+   "kind": "stock",
+   "conversation_id": "checkout-1",
+   "data": {
+    "product_id": "B05",
+    "size": "L",
+    "delta": -1,
+    "stock_after": 11,
+    "reason": "order_confirmed",
+    "order_id": 1
+   }
+  },
+  {
+   "seq": 14,
+   "ts": "2026-10-08T12:00",
+   "kind": "tool_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "name": "confirm_order",
+    "ok": true,
+    "error": null,
+    "db": null
+   }
+  },
+  {
+   "seq": 15,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3639,
+    "tokens_out": 36,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 16,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "تم تأكيد طلبك بنجاح يا فندم! 🌸 هنجهزه ونشحنه في أقرب وقت. شكراً لاختيارك هدوم.",
+    "latency_s": 1.81
+   }
+  },
+  {
+   "seq": 17,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 18,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3855,
+    "tokens_out": 16,
+    "latency_s": 0.8
+   }
+  },
+  {
+   "seq": 19,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3897,
+    "tokens_out": 35,
+    "latency_s": 0.97
+   }
+  },
+  {
+   "seq": 20,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Tamam ya fandem, et-talab et-akkad we hengehzo lel shahn. Shokran le sektek fe hodoom! 🌸",
+    "latency_s": 1.77
+   }
+  },
+  {
+   "seq": 21,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 22,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3937,
+    "tokens_out": 27,
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 23,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Ahlan beek ya fandem, ay 5edma tanya? Ta7t amrak f ay wa2t! 😊",
+    "latency_s": 0.91
+   }
+  },
+  {
+   "seq": 24,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 25,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k3",
+    "tokens_in": 3969,
+    "tokens_out": 18,
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 26,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Shokran le zowrak ya fandem! Neharak sa3eed 😊",
+    "latency_s": 0.92
+   }
+  },
+  {
+   "seq": 27,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 28,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 3992,
+    "tokens_out": 13,
+    "latency_s": 1.8
+   }
+  },
+  {
+   "seq": 29,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Ta7t amrak f ay wa2t! 🌸",
+    "latency_s": 1.8
+   }
+  },
+  {
+   "seq": 30,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 31,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 4010,
+    "tokens_out": 19,
+    "latency_s": 3.8
+   }
+  },
+  {
+   "seq": 32,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Wala yhemmak ya fandem, marhaba bik f ay wa2t! 😊",
+    "latency_s": 3.8
+   }
+  },
+  {
+   "seq": 33,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 34,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 4034,
+    "tokens_out": 19,
+    "latency_s": 1.98
+   }
+  },
+  {
+   "seq": 35,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Tamam ya fandem, shokran le tawasolk ma3ana! 🌸",
+    "latency_s": 1.98
+   }
+  },
+  {
+   "seq": 36,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 37,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k2",
+    "tokens_in": 4058,
+    "tokens_out": 8,
+    "latency_s": 0.82
+   }
+  },
+  {
+   "seq": 38,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Ahlan beek dayman! 😊",
+    "latency_s": 0.82
+   }
+  },
+  {
+   "seq": 39,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_in",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "[.Done]"
+   }
+  },
+  {
+   "seq": 40,
+   "ts": "2026-10-08T12:00",
+   "kind": "llm_call",
+   "conversation_id": "checkout-1",
+   "data": {
+    "provider": "gemini-3.5-flash-lite-k4",
+    "tokens_in": 4071,
+    "tokens_out": 12,
+    "latency_s": 1.07
+   }
+  },
+  {
+   "seq": 41,
+   "ts": "2026-10-08T12:00",
+   "kind": "message_out",
+   "conversation_id": "checkout-1",
+   "data": {
+    "text": "Shokran giddan ya fandem! 🌸",
+    "latency_s": 1.07
+   }
+  }
+ ]
+}
