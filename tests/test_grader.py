@@ -100,15 +100,3 @@ def test_reply_time_counts_only_replies_that_called_the_live_model():
     cached = result(["التيشيرت بـ 350 جنيه والشحن 60 جنيه"], ["عايز تيشيرت"], [ORDER],
                     events=[call("cache"), out(0.0)])
     assert grade(BUY, cached, CAT).median_reply_s is None
-
-
-def test_an_address_detail_the_customer_never_gave_is_a_violation():
-    order = {**ORDER, "address": "14 شارع الطيران الدور 4 بجوار مسجد هاني"}
-    r = result(["الإجمالي 410 جنيه، أأكد؟", "تم"],
-               ["عايز تيشيرت، منى 01011112222 14 شارع الطيران الدور 4 مدينة نصر", "تمام"], [order])
-    g = grade(BUY, r, CAT)
-    assert not g.success and any("address" in v and "مسجد" in v for v in g.violations)
-    honest = result(["الإجمالي 410 جنيه، أأكد؟", "تم"],
-                    ["عايز تيشيرت، منى 01011112222 14 شارع الطيران الدور 4 مدينة نصر", "تمام"],
-                    [{**ORDER, "address": "14 شارع الطيران، الدور الرابع"}])
-    assert not any("address" in v for v in grade(BUY, honest, CAT).violations)

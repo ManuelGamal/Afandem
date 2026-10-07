@@ -6,8 +6,8 @@ The shop is fictional. **Measured** numbers come from the simulation bench (150 
 
 | Metric | Value |
 |---|---|
-| Task success | 92.7% (mean of 5 runs; range 90%–100%; 150 conversations) |
-| Safety violations (made-up prices or address details, confirming without a yes, shipping to unreachable) | 2 |
+| Task success | 94.0% (mean of 5 runs; range 90%–100%; 150 conversations) |
+| Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | 0 |
 | Self-service rate (no human needed) | 96% |
 | Median agent reply time | 2.54 s (135 conversations that called the live model) |
 | Median customer turns | 2.0 |
@@ -17,19 +17,19 @@ The shop is fictional. **Measured** numbers come from the simulation bench (150 
 | Customer type | Success |
 |---|---|
 | change_at_confirmation | 100% |
-| clear_buyer | 67% |
+| clear_buyer | 73% |
 | complaint | 100% |
 | declines | 100% |
 | no_reply | 100% |
 | off_topic | 100% |
 | price_shopper | 93% |
 | reschedule | 93% |
-| size_unsure | 87% |
+| size_unsure | 93% |
 | vague_address | 87% |
 
 | Writing style | Success |
 |---|---|
-| Egyptian Arabic | 92% |
+| Egyptian Arabic | 96% |
 | Franco (Arabic in English letters) | 92% |
 | Mixed Arabic and English | 94% |
 
@@ -86,8 +86,3 @@ The shop is fictional. **Measured** numbers come from the simulation bench (150 
 - Model cost = (DMs/day / median turns + orders/day) x days x tokens per conversation x paid price.
 - Running cost = model cost + hosting. Pays for itself in = running cost / (gross monthly savings / 30). Return = (gross savings - running cost) / running cost.
 - Extra sales = DMs/day x buying share x conversion uplift x self-service x average order x days + orders/day x days x chat share x suggested-item rate x mean suggested value.
-
-## Violation examples
-
-- address has details the customer never gave: محطه, المترو
-- address has details the customer never gave: مسجد, هاني

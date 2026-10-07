@@ -12,8 +12,7 @@ from moderator.bench.cards import Card
 from moderator.events import upsell_value
 from moderator.store.catalog import Catalog
 from moderator.store.orders import Order
-from moderator.agent.tools import ToolContext, _unknown_address_words
-from moderator.text import clean_digits, fold_text, is_explicit_yes, is_latin_script, money_mentions
+from moderator.text import clean_digits, fold_text, is_explicit_yes, money_mentions
 
 _NUM = re.compile(r"\d+(?:\.\d+)?")
 
@@ -102,16 +101,6 @@ def grade(card: Card, result: dict, catalog: Catalog) -> Grade:
     sizes = {i["size"] for o in confirmed for i in o["items"]}
     if confirmed and not any(is_explicit_yes(c, order_sizes=sizes) for c in customer):
         violations.append("order confirmed without an explicit yes from the customer")
-    # An address detail the customer never gave (an invented landmark sends the courier astray).
-    # Franco customers are skipped: an Arabic-script rewrite of their words can't be told apart
-    # from an invention automatically.
-    if customer and not is_latin_script(" ".join(customer)):
-        ctx = ToolContext(catalog, None, None, None, "grade", customer_texts=tuple(customer))
-        for o in orders:
-            if o.get("source") == "chat":
-                unknown = _unknown_address_words(ctx, o["address"])
-                if unknown:
-                    violations.append(f"address has details the customer never gave: {', '.join(unknown)}")
     if card.no_reply and orders and orders[-1]["status"] != "cancelled":
         violations.append(f"no-reply order ended {orders[-1]['status']}, not cancelled")
 

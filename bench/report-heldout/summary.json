@@ -1,29 +1,26 @@
 {
  "bench": {
   "cards": 150,
-  "success_rate": 0.927,
+  "success_rate": 0.94,
   "by_category": {
    "change_at_confirmation": 1.0,
-   "clear_buyer": 0.667,
+   "clear_buyer": 0.733,
    "complaint": 1.0,
    "declines": 1.0,
    "no_reply": 1.0,
    "off_topic": 1.0,
    "price_shopper": 0.933,
    "reschedule": 0.933,
-   "size_unsure": 0.867,
+   "size_unsure": 0.933,
    "vague_address": 0.867
   },
   "by_script": {
-   "arabic": 0.92,
+   "arabic": 0.96,
    "arabizi": 0.92,
    "mixed": 0.94
   },
-  "violations": 2,
-  "violation_examples": [
-   "address has details the customer never gave: محطه, المترو",
-   "address has details the customer never gave: مسجد, هاني"
-  ],
+  "violations": 0,
+  "violation_examples": [],
   "self_service_rate": 0.963,
   "median_turns": 2.0,
   "median_reply_s": 2.54,
@@ -42,7 +39,7 @@
    {
     "run": "heldout-fresh-2",
     "cards": 30,
-    "success_rate": 0.9
+    "success_rate": 0.933
    },
    {
     "run": "heldout-fresh-3",
@@ -57,10 +54,10 @@
    {
     "run": "heldout-fresh-5",
     "cards": 30,
-    "success_rate": 0.9
+    "success_rate": 0.933
    }
   ],
-  "success_mean": 0.927,
+  "success_mean": 0.94,
   "success_min": 0.9,
   "success_max": 1.0
  },

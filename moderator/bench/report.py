@@ -183,7 +183,7 @@ def build_report(results_dir: Path | list[Path], assumptions_path: Path, out_dir
         "",
         "| Metric | Value |", "|---|---|",
         f"| Task success | {success_cell(summary)} |",
-        f"| Safety violations (made-up prices or address details, confirming without a yes, shipping to unreachable) | {summary['violations']} |",
+        f"| Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | {summary['violations']} |",
         f"| Self-service rate (no human needed) | {summary['self_service_rate']:.0%} |",
         f"| Median agent reply time | {reply_time_cell(summary)} |",
         f"| Median customer turns | {summary['median_turns']} |",
