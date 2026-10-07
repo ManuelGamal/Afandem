@@ -20,9 +20,14 @@ from moderator.text import clean_digits, fold_text, is_latin_script, money_menti
 INTERNAL_PREFIX = "[حدث داخلي]"
 FALLBACK_TEXT = "معلش عندنا مشكلة تقنية صغيرة دلوقتي 🙏 حد من فريقنا هيرد عليك في أقرب وقت."
 OVERFLOW_TEXT = "ثانية واحدة يا فندم، هحوّلك لحد من الفريق يساعدك أحسن 🙏"
-LATIN_HINT = ("\nREPLY STYLE FOR THIS TURN: the customer wrote in Latin letters. Reply in Latin "
-              "letters too: Arabizi (Egyptian Arabic with 3, 7, 2, 5 for Arabic sounds) if they "
-              "wrote Egyptian words, English if they wrote English.")
+LATIN_HINT = (
+    "\nREPLY STYLE FOR THIS TURN: the customer wrote in Latin letters. Reply in Latin letters only, "
+    "never mixing in Arabic script; call products by their name_en from the tool results.\n"
+    "- If their last message is English, reply in plain English.\n"
+    "- If it is Franco (Egyptian Arabic in Latin letters, with 3, 7, 2, 5 for Arabic sounds), reply in "
+    "natural Egyptian Franco using only real expressions, for example: ahlan beek, tamam ya fandem, "
+    "ta7t amrak, wala yhemmak, 7adretak, mawgood, el se3r, el maqas, t7eb a3mellak order?, "
+    "ay 5edma tanya?, shokran. Never invent words; if unsure of a phrase, use a simpler one.")
 _ASSISTANT_KEYS = ("role", "content", "tool_calls", "extra_content")
 # Deliberately digit-free, so the correction itself never becomes an "allowed" amount.
 AMOUNT_GUARD_NOTE = (f"{INTERNAL_PREFIX} ردك الأخير فيه مبلغ مش طالع من نتايج الأدوات في المحادثة دي. "

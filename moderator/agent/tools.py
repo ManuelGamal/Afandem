@@ -44,7 +44,8 @@ _ITEM = {"type": "object", "properties": {
     "qty": {"type": "integer"}}, "required": ["product_id", "size", "color", "qty"]}
 
 TOOL_SCHEMAS = [
-    _fn("search_products", "Search the shop catalog. Query may be Arabic, Arabizi or English.",
+    _fn("search_products", "Search the shop catalog. Put the item type and any colour in the query, "
+        "e.g. 'بنطلون أسود', 'black pants' or 'tshirt' (Arabic, Franco or English).",
         {"query": {"type": "string"},
          "category": {"type": "string", "enum": ["tops", "bottoms", "outerwear", "accessories"]},
          "max_price": {"type": "number"}}, ["query"]),

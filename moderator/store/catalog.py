@@ -7,6 +7,7 @@ can edit it. Each `Catalog.load()` is its own shop (one per browser sandbox or b
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 import threading
 from dataclasses import dataclass
@@ -18,28 +19,63 @@ SEED_PATH = Path(__file__).with_name("seed_data.json")
 SIZE_ORDER = ["S", "M", "L", "XL", "XXL", "30", "32", "34", "36", "38", "ONE"]
 LOW_STOCK = 3  # at or below this, the owner's inventory view flags a size
 
-# Arabic and Franco shopping words (fold_text form, matched as prefixes) and their English names,
-# for catalogs written in English, e.g. one imported from a store. Only tried when a search finds
-# nothing, so a search that already matches is unchanged.
-_ENGLISH_WORDS = {
-    ("شوز", "جزم", "حذا", "كوتشي", "shoz", "shooz", "gazma", "kotchy"): ["shoe", "sneaker", "runner", "trainer"],
-    ("هودي", "hody", "hoody"): ["hoodie"],
-    ("سويت", "sweet"): ["sweatshirt", "sweater"],
-    ("تيشيرت", "تيشرت", "tishirt", "tshirt"): ["tee", "t-shirt"],
-    ("قميص", "2amees", "amees"): ["shirt"],
-    ("بنطلون", "bantalon", "bantaloon"): ["pant", "trouser"],
-    ("جينز", "geenz", "jeenz"): ["jean", "denim"],
-    ("شورت",): ["short"],
-    ("جاكيت", "جاكت", "jaket", "jakit"): ["jacket"],
-    ("شنط", "shanta", "shanta"): ["bag", "tote"],
-    ("كاب",): ["cap", "hat"],
-    ("شراب", "sharab"): ["sock"],
-    ("فستان", "fostan"): ["dress"],
-    ("جيب", "jupe"): ["skirt"],
+# Shopping words customers use (Arabic, Franco, English; fold_text form, matched as prefixes) and the
+# words the catalog uses for them, in Arabic and English, so "tshirt", "pantalonat eswed" or "شوزات"
+# find the right products whether a catalog is named in Arabic or in English.
+_ALIAS_WORDS = {
+    ("tshirt", "tishirt", "teshirt", "tshert", "tee", "تيشيرت", "تيشرت"): ["tee", "تيشيرت"],
+    ("pantalon", "bantalon", "bantaloon", "pants", "trouser", "بنطلون"):
+        ["pant", "بنطلون", "jean", "جينز", "jogger", "chino"],
+    ("jeans", "jean", "geenz", "jeenz", "جينز"): ["jean", "جينز", "denim"],
+    ("hoodie", "hoody", "hody", "هودي"): ["hoodie", "هودي"],
+    ("sweatshirt", "sweet", "swet", "سويت"): ["sweatshirt", "سويت"],
+    ("2amees", "amees", "qamees", "قميص"): ["shirt", "قميص"],
+    ("short", "شورت"): ["short", "شورت"],
+    ("jacket", "jaket", "jakit", "جاكيت", "جاكت"): ["jacket", "جاكيت"],
+    ("skirt", "jupe", "جيب"): ["skirt", "جيبة"],
+    ("dress", "fostan", "فستان"): ["dress", "فستان"],
+    ("bag", "tote", "shanta", "شنط"): ["bag", "شنطة"],
+    ("cap", "كاب"): ["cap", "كاب"],
+    ("sock", "sharab", "شراب"): ["sock", "شراب"],
+    ("shoe", "sneaker", "شوز", "جزم", "حذا", "كوتشي", "shoz", "shooz", "gazma", "kotchy"):
+        ["shoe", "sneaker", "runner", "trainer"],
     ("رجالي", "regali", "rgali"): ["men"],
     ("حريمي", "harimi", "7arimi"): ["women"],
+    ("eswed", "iswed", "aswad", "swed", "black"): ["أسود", "black"],
+    ("abyad", "abiad", "white"): ["أبيض", "white"],
+    ("ramady", "ramadi", "grey", "gray"): ["رمادي", "grey", "gray"],
+    ("kohly", "ko7ly", "navy"): ["كحلي", "navy"],
+    ("beige", "bej"): ["بيج", "beige"],
+    ("zeity", "zity", "olive"): ["زيتي", "olive"],
+    ("azra2", "azrak", "blue"): ["أزرق", "blue"],
+    ("ahmar", "a7mar", "red"): ["أحمر", "red"],
+    ("bonni", "brown"): ["بني", "brown"],
+    ("akhdar", "a5dar", "green"): ["أخضر", "green"],
+    ("wardy", "pink"): ["وردي", "pink"],
 }
-_ENGLISH = {fold_text(stem): en for stems, en in _ENGLISH_WORDS.items() for stem in stems}
+_ALIASES = {fold_text(stem): [fold_text(t) for t in terms]
+            for stems, terms in _ALIAS_WORDS.items() for stem in stems}
+_LATIN = re.compile("[a-z]")
+
+
+def _query_groups(query: str) -> list[list[str]]:
+    """One group per query word: the word itself and the words the catalog may use for it."""
+    q = re.sub("t[ -]?shirt", "tshirt", query.lower()).replace("تي شيرت", "تيشيرت")
+    groups = []
+    for w in (w for w in fold_text(q).split() if len(w) > 1):
+        group = [w]
+        if w.startswith("ال") and len(w) > 4:  # the Arabic definite article
+            group.append(w[2:])
+        group += [t for stem, terms in _ALIASES.items() if w.startswith(stem) for t in terms]
+        groups.append(group)
+    return groups
+
+
+def _matches(term: str, hay: str) -> bool:
+    """Latin words match at the start of a word ("tshirt" is not in "sweatshirt"); Arabic words
+    match anywhere, so prefixes such as و or ب don't hide them."""
+    return f" {term}" in hay if _LATIN.search(term) else term in hay
+
 
 SCHEMA = """
 CREATE TABLE shop (key TEXT PRIMARY KEY, value TEXT NOT NULL);
@@ -171,36 +207,27 @@ class Catalog:
 
     def search(self, query: str, category: str | None = None, max_price: int | None = None,
                limit: int = 5) -> list[Product]:
-        words = [w for w in fold_text(query).split() if len(w) > 1]
-        found = self._search([[w] for w in words], category, max_price, limit)
-        if not found and words:  # an English-named catalog asked in Arabic or Franco
-            groups = [[e for stem, en in _ENGLISH.items() if w.startswith(stem) for e in en]
-                      for w in words]
-            groups = [g for g in groups if g]
-            if groups:
-                found = self._search(groups, category, max_price, limit, english=True)
+        """Products ranked by how many query words they match (a word's alternatives count once),
+        then in stock first, then cheapest."""
+        groups = _query_groups(query)
+        found = self._rank(groups, category, max_price, limit)
+        if category and not found:  # the category was a guess that matches nothing: search them all
+            found = self._rank(groups, None, max_price, limit)
         return found
 
-    def _search(self, groups: list[list[str]], category: str | None, max_price: int | None,
-                limit: int, english: bool = False) -> list[Product]:
-        """Score = how many query words match (a group holds one word's alternatives). The English
-        retry matches at word starts ("men" is not in "women") and lists in-stock items first."""
+    def _rank(self, groups: list[list[str]], category: str | None, max_price: int | None,
+              limit: int) -> list[Product]:
         scored = []
         for p in self.products.values():
             if category and p.category != category:
                 continue
             if max_price is not None and p.price > max_price:
                 continue
-            hay = fold_text(f"{p.name_ar} {p.name_en} {p.category} {' '.join(p.colors)}")
-            if english:
-                hay = " " + hay
-            score = sum(1 for g in groups if any((f" {w}" if english else w) in hay for w in g))
+            hay = " " + fold_text(f"{p.name_ar} {p.name_en} {p.category} {' '.join(p.colors)}")
+            score = sum(1 for g in groups if any(_matches(t, hay) for t in g))
             if score or not groups:
                 scored.append((score, p))
-        if english:
-            scored.sort(key=lambda sp: (-sp[0], not sp[1].available_sizes(), sp[1].price))
-        else:
-            scored.sort(key=lambda sp: (-sp[0], sp[1].price))
+        scored.sort(key=lambda sp: (-sp[0], not sp[1].available_sizes(), sp[1].price))
         return [p for _, p in scored[:limit]]
 
     def recommend_size(self, product_id: str, height_cm: float, weight_kg: float,

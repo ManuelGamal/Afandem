@@ -267,3 +267,17 @@ def test_franco_confirmed_claim_with_doubled_k_is_caught():
     from moderator.agent.loop import _CLAIMS
     from moderator.text import fold_text
     assert _CLAIMS["confirmed"].search(fold_text("kol 7aga et2akkadet!"))
+
+
+def test_latin_replies_get_real_franco_phrases_and_english_names():
+    from moderator.agent.loop import LATIN_HINT
+    for phrase in ("wala yhemmak", "ta7t amrak", "name_en", "English"):
+        assert phrase in LATIN_HINT, phrase
+
+
+def test_the_prompt_forbids_popularity_claims_and_off_type_offers():
+    from datetime import datetime
+
+    from moderator.agent.prompt import build_system_prompt
+    prompt = build_system_prompt(Catalog.load(), datetime(2026, 10, 8, 12))
+    assert "best-selling" in prompt and "a sweatshirt is not a t-shirt" in prompt
