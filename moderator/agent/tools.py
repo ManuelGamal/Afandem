@@ -142,7 +142,7 @@ def publish_stock_moves(catalog, bus, conversation_id, order, old) -> None:
 
 
 def _with_summary(ctx: ToolContext, order) -> dict:
-    zone = ctx.catalog.find_zone(order.area)
+    zone = ctx.catalog.zone(order.zone_id) or ctx.catalog.find_zone(order.area)
     return {"ok": True, "order_id": order.id, "status": order.status, "total": order.total,
             "summary_ar": summary_ar(order, zone),
             "risk": score_order(ctx.book, order).to_dict()}

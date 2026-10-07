@@ -15,7 +15,9 @@ from moderator.events import EventBus
 from moderator.providers.client import ProviderError
 from moderator.store.catalog import Catalog
 from moderator.store.orders import OrderBook, order_fingerprint, summary_ar
-from moderator.text import clean_digits, fold_text, is_latin_script, money_mentions
+from moderator.text import (
+    clean_digits, fold_text, has_franco, is_latin_script, looks_english, money_mentions,
+)
 
 INTERNAL_PREFIX = "[حدث داخلي]"
 FALLBACK_TEXT = "معلش عندنا مشكلة تقنية صغيرة دلوقتي 🙏 حد من فريقنا هيرد عليك في أقرب وقت."
@@ -23,11 +25,17 @@ OVERFLOW_TEXT = "ثانية واحدة يا فندم، هحوّلك لحد من 
 LATIN_HINT = (
     "\nREPLY STYLE FOR THIS TURN: the customer wrote in Latin letters. Reply in Latin letters only, "
     "never mixing in Arabic script; call products by their name_en from the tool results.\n"
-    "- If their last message is English, reply in plain English.\n"
+    "- If their last message is English, reply in plain English, even if earlier messages were Franco.\n"
     "- If it is Franco (Egyptian Arabic in Latin letters, with 3, 7, 2, 5 for Arabic sounds), reply in "
     "natural Egyptian Franco using only real expressions, for example: ahlan beek, tamam ya fandem, "
     "ta7t amrak, wala yhemmak, 7adretak, mawgood, el se3r, el maqas, t7eb a3mellak order?, "
     "ay 5edma tanya?, shokran. Never invent words; if unsure of a phrase, use a simpler one.")
+LATIN_STYLE_NOTE = (f"{INTERNAL_PREFIX} The customer writes in Latin letters. Answer their last message "
+                    "again, in Latin letters only (Franco or English, as they wrote), with the English "
+                    "product names (name_en).")
+_ARABIC_LETTERS = re.compile("[ء-ي]")
+ENGLISH_STYLE_NOTE = (f"{INTERNAL_PREFIX} The customer's last message is in English. Answer that "
+                      "message again, in plain English (no Franco), with the English product names.")
 _ASSISTANT_KEYS = ("role", "content", "tool_calls", "extra_content")
 # Deliberately digit-free, so the correction itself never becomes an "allowed" amount.
 AMOUNT_GUARD_NOTE = (f"{INTERNAL_PREFIX} ردك الأخير فيه مبلغ مش طالع من نتايج الأدوات في المحادثة دي. "
@@ -138,7 +146,7 @@ class Agent:
     def start_confirmation(self, conv: Conversation, order_id: int) -> list[str]:
         conv.order_id = order_id
         order = self.book.get(order_id)
-        summary = summary_ar(order, self.catalog.find_zone(order.area))
+        summary = summary_ar(order, self.catalog.zone(order.zone_id) or self.catalog.find_zone(order.area))
         text = (f"{_greeting(order.customer_name)} شكراً لطلبك من موقع "
                 f"{self.catalog.shop['name_ar']} 🌸\nده ملخص الطلب قبل ما نجهزه للشحن:\n\n"
                 f"{summary}\n\nأأكد الطلب؟")
@@ -179,10 +187,13 @@ class Agent:
                           last_agent, customer_message, shown_fingerprint=conv.shown_fingerprint)
         calls = 0
         corrections = 0
+        restyled = False  # a Franco reply that slipped into Arabic script is rewritten once
         while True:
             prompt = build_system_prompt(self.catalog, self.clock.now())
             if is_latin_script(customer_message):
                 prompt += LATIN_HINT
+                if looks_english(customer_message):
+                    prompt += "\nTHIS MESSAGE IS IN ENGLISH: reply in English."
             system = {"role": "system", "content": prompt}
             t0 = time.perf_counter()
             try:
@@ -229,6 +240,17 @@ class Agent:
                                               started)
                     corrections += 1
                     conv.messages.append({"role": "user", "content": CLAIM_NOTES[claim]})
+                    continue
+                note = None
+                if not restyled and is_latin_script(customer_message) and "طلب رقم" not in text:
+                    if _ARABIC_LETTERS.search(text):
+                        note = LATIN_STYLE_NOTE
+                    elif looks_english(customer_message) and has_franco(text):
+                        note = ENGLISH_STYLE_NOTE
+                if note:
+                    conv.messages.pop()
+                    restyled = True
+                    conv.messages.append({"role": "user", "content": note})
                     continue
                 if _HANDOFF_PROMISE.search(fold_text(text)) and not ctx.handed_off:
                     run_tool("handoff_to_human", {"reason": "agent_promised_handoff"}, ctx)

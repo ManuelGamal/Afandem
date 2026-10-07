@@ -147,6 +147,28 @@ _LATIN = re.compile(r"[A-Za-z]")
 _ARABIC = re.compile(r"[\u0621-\u064a]")
 
 
+_ENGLISH_WORDS = {"the", "what", "do", "does", "you", "have", "is", "are", "am", "good", "please",
+                  "how", "much", "which", "can", "with", "and", "for", "it", "my", "this", "that",
+                  "want", "need", "thanks", "thank", "sizes", "deliver", "colors", "colours", "price"}
+_FRANCO_WORDS = {"ana", "enta", "enty", "3ayez", "3ayza", "fe", "fi", "fih", "mesh", "msh", "ezay", "kam",
+                 "bkam", "bekam", "tamam", "aywa", "la2", "eh", "ya", "w", "we", "el", "momken", "keda",
+                 "leh", "feen", "emta", "3andak", "3andena", "3andoko", "da", "di", "ba2a", "le", "lel"}
+_WORD = re.compile("[a-z0-9']+")
+
+
+def has_franco(text: str) -> bool:
+    """Franco markers: Franco words, or digits used as letters (3ayez, 7elw, ta7t)."""
+    return any(w in _FRANCO_WORDS or (any(c.isdigit() for c in w) and any(c.isalpha() for c in w))
+               for w in _WORD.findall(text.lower()))
+
+
+def looks_english(text: str) -> bool:
+    """An English message rather than Franco: English function words and no Franco markers
+    (Franco words, or digits used as letters as in 3ayez / 7elw)."""
+    words = _WORD.findall(text.lower())
+    return not has_franco(text) and sum(w in _ENGLISH_WORDS or w == "i" for w in words) >= 2
+
+
 def is_latin_script(text: str) -> bool:
     """True when a message is written mainly in Latin letters (Arabizi or English)."""
     latin = len(_LATIN.findall(text))

@@ -68,3 +68,19 @@ def test_a_wrong_category_guess_does_not_hide_the_product():
     cat = Catalog.load()
     assert cat.search("هودي تقيل", category="outerwear")[0].id == "T06"
     assert all(p.category == "bottoms" for p in cat.search("أسود", category="bottoms"))  # still narrows when it can
+
+
+def test_franco_spellings_of_areas_find_their_zone():
+    cat = Catalog.load()
+    cases = {"madinet nasr": "cairo", "le el tagamo3 el 5ames": "cairo", "masr el gedida": "cairo",
+             "shobra": "cairo", "mohandseen": "giza", "el agouza": "giza", "6th of october": "giza",
+             "sheikh zayed": "giza", "eskendereya": "alex", "sidi bishr": "alex",
+             "esma3eleya": "canal", "beni suef": "upper", "العجوزة": "giza"}
+    for text, zone in cases.items():
+        found = cat.find_zone(text)
+        assert found is not None and found.id == zone, (text, found and found.id)
+
+
+def test_a_category_guess_never_beats_a_better_match_elsewhere():
+    cat = Catalog.load()
+    assert cat.search("hoodie اسود", category="outerwear")[0].id == "T06"

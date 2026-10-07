@@ -13,7 +13,7 @@ import threading
 from dataclasses import dataclass
 from pathlib import Path
 
-from moderator.text import fold_text
+from moderator.text import clean_digits, fold_text
 
 SEED_PATH = Path(__file__).with_name("seed_data.json")
 SIZE_ORDER = ["S", "M", "L", "XL", "XXL", "30", "32", "34", "36", "38", "ONE"]
@@ -211,12 +211,14 @@ class Catalog:
         then in stock first, then cheapest."""
         groups = _query_groups(query)
         found = self._rank(groups, category, max_price, limit)
-        if category and not found:  # the category was a guess that matches nothing: search them all
-            found = self._rank(groups, None, max_price, limit)
-        return found
+        if category:  # the category is the model's guess: never let it hide a better match elsewhere
+            everywhere = self._rank(groups, None, max_price, limit)
+            if everywhere and (not found or everywhere[0][0] > found[0][0]):
+                found = everywhere
+        return [p for _, p in found]
 
     def _rank(self, groups: list[list[str]], category: str | None, max_price: int | None,
-              limit: int) -> list[Product]:
+              limit: int) -> list[tuple[int, Product]]:
         scored = []
         for p in self.products.values():
             if category and p.category != category:
@@ -228,7 +230,7 @@ class Catalog:
             if score or not groups:
                 scored.append((score, p))
         scored.sort(key=lambda sp: (-sp[0], not sp[1].available_sizes(), sp[1].price))
-        return [p for _, p in scored[:limit]]
+        return scored[:limit]
 
     def recommend_size(self, product_id: str, height_cm: float, weight_kg: float,
                        fit: str | None = None) -> dict:
@@ -275,6 +277,15 @@ class Catalog:
                 return zone
         return None
 
+    def zone(self, zone_id: str) -> Zone | None:
+        return next((z for z in self.zones if z.id == zone_id), None)
+
+    def is_city_name(self, area: str) -> bool:
+        """True for a bare city or region name ("القاهرة", "Cairo"), as opposed to a district."""
+        folded = fold_text(area)
+        cities = {fold_text(z.name_ar) for z in self.zones} | {z.id for z in self.zones}
+        return folded in cities | {"alexandria", "alex", "اسكندريه", "القاهره", "الجيزه"}
+
     def inventory(self) -> list[dict]:
         rows = self.db.conn.execute(
             "SELECT p.id, p.name_ar, p.name_en, i.size, i.stock FROM inventory i "
@@ -315,7 +326,7 @@ class Catalog:
         """The owner sets a size's stock (e.g. after a delivery from the workshop)."""
         if stock < 0:
             raise ValueError("stock cannot be negative")
-        pid, size = str(product_id).strip().upper(), str(size).strip().upper()
+        pid, size = str(product_id).strip().upper(), clean_digits(str(size)).strip().upper()
         with self.db.lock:
             row = self.db.conn.execute("SELECT stock FROM inventory WHERE product_id=? AND size=?",
                                        (pid, size)).fetchone()

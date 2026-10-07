@@ -123,3 +123,13 @@ def test_a_yes_that_repeats_the_orders_own_size_is_still_a_yes():
     assert is_explicit_yes(msg, order_sizes={"L"})
     assert not is_explicit_yes(msg, order_sizes={"M"})  # a different size is a change
     assert not is_explicit_yes("ماشي والمقاس XL", order_sizes={"M"})
+
+
+def test_english_messages_are_told_apart_from_franco():
+    from moderator.text import looks_english
+    for msg in ["ok what sizes do you have in black?", "nah i am good", "how much is the hoodie?",
+                "Do you deliver to Alexandria?"]:
+        assert looks_english(msg), msg
+    for msg in ["3andak jeans slim?", "eh aktr tshirt bytba3 3andoko?", "tamam, a3mel el order",
+                "ana 3ayez el hoodie el eswed", "el shipping le madinet nasr bkam?", "عندك جينز؟"]:
+        assert not looks_english(msg), msg

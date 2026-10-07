@@ -84,3 +84,32 @@ def test_inventory_listing_flags_low_stock():
     assert rows[("T02", "XL")]["stock"] == 0 and rows[("T02", "XL")]["low"] is True
     assert rows[("T01", "M")]["low"] is False
     assert rows[("T01", "M")]["name"] == "تيشيرت قطن سادة"
+
+
+def test_an_address_in_another_zone_than_the_area_gets_the_address_zone():
+    """h-size-1: the customer lives in Dokki (Giza) but the area was given as Cairo."""
+    book = OrderBook(Catalog.load())
+    o = book.create("c1", "طارق", "01225678901", "18 شارع السودان الدور 3، الدقي", "القاهرة",
+                    [TEE_M], now=NOW)
+    assert o.zone_id == "giza"
+
+
+def test_an_order_for_more_than_is_in_stock_is_refused_when_created():
+    cat = Catalog.load()
+    cat.set_stock("T01", "M", 1)
+    with pytest.raises(OrderError) as e:
+        order(OrderBook(cat))  # TEE_M asks for 2
+    assert e.value.code == "out_of_stock" and e.value.details["in_stock"] == 1
+
+
+def test_sizes_written_with_arabic_digits_are_understood():
+    book = OrderBook(Catalog.load())
+    o = order(book, items=[{"product_id": "B01", "size": "٣٢", "color": "أسود", "qty": 1}])
+    assert o.items[0]["size"] == "32"
+
+
+def test_a_street_named_after_a_district_does_not_move_the_order():
+    """'6 October street' in Smouha is in Alexandria, whatever the street is called."""
+    book = OrderBook(Catalog.load())
+    o = book.create("c1", "منى", "01012345678", "12 شارع 6 أكتوبر الدور 2", "سموحة", [TEE_M], now=NOW)
+    assert o.zone_id == "alex"

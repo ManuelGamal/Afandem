@@ -281,3 +281,43 @@ def test_the_prompt_forbids_popularity_claims_and_off_type_offers():
     from moderator.agent.prompt import build_system_prompt
     prompt = build_system_prompt(Catalog.load(), datetime(2026, 10, 8, 12))
     assert "best-selling" in prompt and "a sweatshirt is not a t-shirt" in prompt
+
+
+def test_a_franco_reply_with_arabic_script_is_rewritten_once():
+    agent, provider = make([text_raw("Mawgood el بنطلون el wase3 ya fandem"),
+                            text_raw("Mawgood el Wide-leg pants ya fandem")])
+    out = agent.reply(Conversation("c1"), "3andak pantalon wase3?")
+    assert out == ["Mawgood el Wide-leg pants ya fandem"]
+    assert provider.requests[1][-1]["content"].startswith("[حدث داخلي]")
+
+
+def test_the_arabic_order_summary_is_allowed_in_a_franco_chat():
+    summary = "Tamam ya fandem:\nطلب رقم 1:\n- 1× جوجر قطن\nأأكد الطلب؟"
+    agent, provider = make([text_raw(summary)])
+    assert agent.reply(Conversation("c1"), "tamam, a3mel el order") == [summary]
+    assert len(provider.requests) == 1
+
+
+def test_a_second_mixed_reply_is_sent_rather_than_handed_off():
+    agent, _ = make([text_raw("Mawgood el بنطلون"), text_raw("Mawgood el بنطلون tany")])
+    conv = Conversation("c1")
+    assert agent.reply(conv, "3andak pantalon?") == ["Mawgood el بنطلون tany"]
+    assert not conv.handed_off  # style, not safety
+
+
+def test_photos_are_pointed_to_the_shop_page_and_english_gets_english():
+    from datetime import datetime
+
+    from moderator.agent.loop import LATIN_HINT
+    from moderator.agent.prompt import build_system_prompt
+    prompt = build_system_prompt(Catalog.load(), datetime(2026, 10, 8, 12))
+    assert "photos" in prompt and "Instagram" in prompt
+    assert "even if earlier messages were Franco" in LATIN_HINT
+
+
+def test_a_franco_reply_to_an_english_message_is_rewritten_in_english():
+    agent, provider = make([text_raw("tamam ya fandem, law e7tagt ay haga ana ta7t amrak!"),
+                            text_raw("No problem! Let me know if you need anything.")])
+    out = agent.reply(Conversation("c1"), "nah i am good")
+    assert out == ["No problem! Let me know if you need anything."]
+    assert "English" in provider.requests[1][-1]["content"]

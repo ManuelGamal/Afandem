@@ -44,16 +44,16 @@
   ],
   "zones": [
     {"id": "cairo", "name_ar": "القاهرة", "fee": 60, "days_min": 1, "days_max": 3,
-     "aliases": ["القاهرة", "القاهره", "مدينة نصر", "مصر الجديدة", "المعادي", "التجمع", "التجمع الخامس", "القاهرة الجديدة", "الرحاب", "مدينتي", "شبرا", "وسط البلد", "الزمالك", "حلوان", "المقطم", "عين شمس", "الشروق", "العبور", "cairo", "nasr city", "heliopolis", "maadi", "tagamoa", "new cairo", "zamalek", "rehab", "madinaty"]},
+     "aliases": ["القاهرة", "القاهره", "مدينة نصر", "مصر الجديدة", "المعادي", "التجمع", "التجمع الخامس", "القاهرة الجديدة", "الرحاب", "مدينتي", "شبرا", "وسط البلد", "الزمالك", "حلوان", "المقطم", "عين شمس", "الشروق", "العبور", "cairo", "nasr city", "heliopolis", "maadi", "tagamoa", "new cairo", "zamalek", "rehab", "madinaty", "madinet nasr", "madint nasr", "masr el gedida", "masr elgedida", "tagamo3", "el tagamo3", "5th settlement", "fifth settlement", "shobra", "shubra", "wust el balad", "downtown", "helwan", "mokattam", "ain shams", "3ein shams", "shorouk", "obour"]},
     {"id": "giza", "name_ar": "الجيزة", "fee": 60, "days_min": 1, "days_max": 3,
-     "aliases": ["الجيزة", "الجيزه", "الدقي", "المهندسين", "الهرم", "فيصل", "6 أكتوبر", "اكتوبر", "أكتوبر", "الشيخ زايد", "زايد", "حدائق الأهرام", "giza", "dokki", "mohandessin", "haram", "faisal", "october", "zayed"]},
+     "aliases": ["الجيزة", "الجيزه", "الدقي", "المهندسين", "الهرم", "فيصل", "6 أكتوبر", "اكتوبر", "أكتوبر", "الشيخ زايد", "زايد", "حدائق الأهرام", "giza", "dokki", "mohandessin", "haram", "faisal", "october", "zayed", "mohandseen", "mohandesin", "agouza", "العجوزة", "imbaba", "إمبابة", "امبابة", "6 october", "6th of october", "sheikh zayed", "hadayek el ahram"]},
     {"id": "alex", "name_ar": "الإسكندرية", "fee": 65, "days_min": 2, "days_max": 3,
-     "aliases": ["الإسكندرية", "الاسكندرية", "اسكندرية", "إسكندرية", "سموحة", "العجمي", "المنتزه", "سيدي بشر", "ميامي", "alex", "alexandria", "smouha"]},
+     "aliases": ["الإسكندرية", "الاسكندرية", "اسكندرية", "إسكندرية", "سموحة", "العجمي", "المنتزه", "سيدي بشر", "ميامي", "alex", "alexandria", "smouha", "eskendereya", "eskenderia", "iskandaria", "sidi bishr", "agami", "montaza", "miami"]},
     {"id": "delta", "name_ar": "الدلتا", "fee": 70, "days_min": 2, "days_max": 4,
-     "aliases": ["طنطا", "المنصورة", "الزقازيق", "شبين الكوم", "بنها", "دمنهور", "كفر الشيخ", "دمياط", "المحلة", "tanta", "mansoura", "zagazig", "banha", "mahalla"]},
+     "aliases": ["طنطا", "المنصورة", "الزقازيق", "شبين الكوم", "بنها", "دمنهور", "كفر الشيخ", "دمياط", "المحلة", "tanta", "mansoura", "zagazig", "banha", "mahalla", "shebin el kom", "damanhour", "kafr el sheikh", "damietta", "dumyat"]},
     {"id": "canal", "name_ar": "مدن القناة", "fee": 70, "days_min": 2, "days_max": 4,
-     "aliases": ["بورسعيد", "بور سعيد", "الإسماعيلية", "الاسماعيلية", "السويس", "port said", "ismailia", "suez"]},
+     "aliases": ["بورسعيد", "بور سعيد", "الإسماعيلية", "الاسماعيلية", "السويس", "port said", "ismailia", "suez", "bor said", "esma3eleya", "ismaileya"]},
     {"id": "upper", "name_ar": "الصعيد", "fee": 85, "days_min": 3, "days_max": 5,
-     "aliases": ["أسيوط", "اسيوط", "سوهاج", "المنيا", "قنا", "الأقصر", "الاقصر", "أسوان", "اسوان", "بني سويف", "الفيوم", "assiut", "sohag", "minya", "qena", "luxor", "aswan", "fayoum"]}
+     "aliases": ["أسيوط", "اسيوط", "سوهاج", "المنيا", "قنا", "الأقصر", "الاقصر", "أسوان", "اسوان", "بني سويف", "الفيوم", "assiut", "sohag", "minya", "qena", "luxor", "aswan", "fayoum", "asyut", "el minya", "beni suef", "beni swef", "el fayoum"]}
   ]
 }

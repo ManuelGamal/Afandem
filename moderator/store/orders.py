@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import date, datetime, timedelta
 
 from moderator.store.catalog import Catalog, Zone
-from moderator.text import fold_text, norm_phone
+from moderator.text import clean_digits, fold_text, norm_phone
 
 STATUSES = ["draft", "pending_confirmation", "confirmed", "shipped", "cancelled", "needs_human"]
 TRANSITIONS: dict[str, set[str]] = {
@@ -77,6 +77,16 @@ class OrderBook:
             raise OrderError("area_not_served", f"we do not deliver to '{area}'", served=served)
         return zone
 
+    def _order_zone(self, area: str, address: str) -> Zone:
+        """The area's zone, unless the area is only a city name (or unknown) and the address names a
+        district in another zone: "القاهرة" + "… الدقي" ships to Giza."""
+        by_address = self.catalog.find_zone(address or "")
+        by_area = self.catalog.find_zone(area or "")
+        if by_address and (by_area is None or (by_address.id != by_area.id
+                                                and self.catalog.is_city_name(area))):
+            return by_address
+        return self._zone(area)
+
     def _items(self, items: list[dict]) -> list[dict]:
         if not items:
             raise OrderError("missing_field", "order has no items")
@@ -85,19 +95,19 @@ class OrderBook:
             p = self.catalog.get(it.get("product_id", ""))
             if p is None:
                 raise OrderError("unknown_product", f"no product {it.get('product_id')}")
-            size = str(it.get("size", "")).strip().upper() or ("ONE" if "ONE" in p.stock else "")
+            size = clean_digits(str(it.get("size", ""))).strip().upper() or ("ONE" if "ONE" in p.stock else "")
             if size not in p.stock:
                 raise OrderError("unknown_size", f"{p.id} has no size {size}",
                                  available=p.available_sizes())
-            if p.stock[size] <= 0:
-                raise OrderError("out_of_stock", f"{p.id} size {size} is out of stock",
-                                 available=p.available_sizes())
-            color = str(it.get("color", "")).strip()
-            if color not in p.colors:
-                raise OrderError("unknown_color", f"{p.id} has no colour '{color}'", colors=p.colors)
             qty = it.get("qty", 1)
             if not isinstance(qty, int) or not 1 <= qty <= MAX_QTY:
                 raise OrderError("bad_quantity", f"quantity must be 1..{MAX_QTY}")
+            if p.stock[size] < qty:
+                raise OrderError("out_of_stock", f"{p.id} size {size}: only {p.stock[size]} in stock",
+                                 in_stock=p.stock[size], requested=qty, available=p.available_sizes())
+            color = str(it.get("color", "")).strip()
+            if color not in p.colors:
+                raise OrderError("unknown_color", f"{p.id} has no colour '{color}'", colors=p.colors)
             out.append({"product_id": p.id, "name_ar": p.name_ar, "size": size, "color": color,
                         "qty": qty, "unit_price": p.price})
         return out
@@ -126,7 +136,7 @@ class OrderBook:
                             ("address", address)):
             if not str(value or "").strip():
                 raise OrderError("missing_field", f"{name} is required", field=name)
-        zone = self._zone(area)
+        zone = self._order_zone(area, address)
         parsed = self._items(items)
         with self._lock:
             existing = self.open_for(conversation_id)
@@ -165,7 +175,7 @@ class OrderBook:
                 order.phone = norm_phone(changes["phone"]) or str(changes["phone"])
             if changes.get("area"):
                 order.area = str(changes["area"]).strip()
-            self._price(order, self._zone(order.area))
+            self._price(order, self._order_zone(order.area, order.address))
             return self._save(order)
 
     def set_status(self, order_id: int, status: str, reason: str | None = None) -> tuple[Order, str]:
@@ -201,7 +211,7 @@ class OrderBook:
     def schedule(self, order_id: int, day: date, today: date) -> Order:
         with self._lock:
             order = self.get(order_id)
-            zone = self._zone(order.area)
+            zone = self.catalog.zone(order.zone_id) or self._zone(order.area)
             earliest = today + timedelta(days=zone.days_min)
             latest = today + timedelta(days=zone.days_max + 5)
             if not earliest <= day <= latest:
