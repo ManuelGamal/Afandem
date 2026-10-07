@@ -183,3 +183,40 @@ def test_arabic_names_in_database_lines_are_isolated_for_display():
     text = c.bus.events[-1].data["db"]["text"]
     name = c.catalog.get("T06").name_ar
     assert chr(0x2068) + name + chr(0x2069) in text
+
+
+ADDRESS_ORDER = {"customer_name": "كريم عادل", "phone": "01098765432", "area": "مدينة نصر",
+                 "items": [{"product_id": "T06", "size": "XL", "color": "أسود", "qty": 1}]}
+
+
+def test_an_address_with_words_the_customer_never_wrote_is_refused():
+    """Live run: the agent added 'near Rabaa hospital' to an address the customer gave without one."""
+    c = ctx()
+    c.customer_texts = ("كريم عادل ٠١٠٩٨٧٦٥٤٣٢", "١٤ ش الطيران الدور ٤ شقه ٨ مدينه نصر")
+    bad = run_tool("create_order", {**ADDRESS_ORDER, "address": "14 ش الطيران الدور 4 شقة 8 قرب مستشفى رابعة"}, c)
+    assert bad["ok"] is False and bad["error"] == "address_not_from_customer"
+    assert set(bad["unknown"]) == {"مستشفي", "رابعه"}  # fold_text form
+    good = run_tool("create_order", {**ADDRESS_ORDER, "address": "14 شارع الطيران، الدور 4، شقة 8"}, c)
+    assert good["ok"] is True  # digits either way, ش → شارع, and structural words are fine
+
+
+def test_an_update_may_keep_the_website_orders_address_words():
+    c = ctx()
+    c.customer_texts = ("العنوان الصح الدور 7 شقة 14 جنب الصيدلية",)
+    o = c.book.create("c1", "دينا", "01012345678", "33 شارع الحجاز", "مصر الجديدة",
+                      [{"product_id": "A04", "size": "ONE", "color": "أبيض", "qty": 1}])
+    r = run_tool("update_order", {"order_id": o.id, "changes": {"address": "33 شارع الحجاز الدور 7 شقة 14 جنب الصيدلية"}}, c)
+    assert r["ok"] is True
+
+
+def test_the_address_check_allows_the_article_labels_and_floor_ordinals():
+    c = ctx()
+    c.customer_texts = ("18 شارع السودان، الدور 3، الدقي، أقرب نقطة مميزة محطة مترو الدقي",)
+    ok = run_tool("create_order", {**ADDRESS_ORDER, "area": "الدقي",
+                                   "address": "18 شارع السودان، الدور الثالث، علامة مميزة: بجوار محطة المترو"}, c)
+    assert ok["ok"] is True, ok
+    c2 = ctx()
+    c2.customer_texts = ("33 شارع الحجاز الدور 7 شقة 14، مصر الجديدة",)
+    bad = run_tool("create_order", {**ADDRESS_ORDER, "area": "مصر الجديدة",
+                                    "address": "33 شارع الحجاز، الدور 7، شقة 14، بجوار مسجد هاني"}, c2)
+    assert bad["error"] == "address_not_from_customer" and set(bad["unknown"]) == {"مسجد", "هاني"}

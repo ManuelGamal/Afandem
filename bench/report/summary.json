@@ -29,7 +29,17 @@
   "mean_tokens_out": 243,
   "mean_llm_calls": 5.1,
   "upsell_orders": 1,
-  "upsell_egp": 560
+  "upsell_egp": 560,
+  "runs": [
+   {
+    "run": "run2",
+    "cards": 60,
+    "success_rate": 0.983
+   }
+  ],
+  "success_mean": 0.983,
+  "success_min": 0.983,
+  "success_max": 0.983
  },
  "bench_inputs": {
   "self_service_rate": 0.962,

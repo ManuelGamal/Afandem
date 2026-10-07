@@ -9,8 +9,8 @@ refused.** Built for the *Agents at Work* hackathon (Untap · Wesam.ai · Taalam
 
 | | |
 |---|---|
-| **Held-out task success** | **94%** over 150 live conversations (5 runs of 30 cards the agent was never tuned on; runs ranged 90–100%) |
-| **Safety violations** | **0** in 150 — no made-up price, no confirmation without an explicit yes |
+| **Held-out task success** | **92.7%** over 150 live conversations (5 runs of 30 cards the agent was never tuned on; runs ranged 90–100%) |
+| **Safety violations** | **2** in 150 — both an invented address landmark, found by an audit and now blocked in code (**0** in the 150 conversations after the fix); no made-up price, no confirmation without an explicit yes |
 | **One typical shop, base case** | **33 h/week** saved · **19,609 EGP/month** net · running cost earned back in **1.2 days** |
 
 <!-- HOSTED_URL -->
@@ -154,6 +154,9 @@ The bench, the recorded demo and the hosted demo use Hodoom's catalog.
 - **No made-up numbers.** Every amount the agent writes next to a currency word must appear in a tool
   result or in the customer's own message; otherwise the reply is sent back for correction (twice at
   most, then a person takes over).
+- **No made-up address details.** Every word of an order's address must come from what the customer
+  wrote (structure words like شارع/الدور/شقة, area names and digits written either way are fine);
+  otherwise `create_order`/`update_order` refuse and the agent has to ask.
 - **No confirmation without an explicit yes.** `confirm_order` only works when the customer has seen
   the current order (items, address, total) and replied with an unconditional yes (`تمام`, `أكده`,
   `a2ked`, `ok`…). "تمام بس خليه L" is not a yes; neither is a question.
@@ -189,16 +192,22 @@ Qwen3-235B (on Nebius), a different model family from the agent (Gemini) and its
 
 | Held-out: 5 runs × 30 simulated customers | |
 |---|---|
-| Task success | **94.0%** (141/150; runs: 90–100%) |
-| Safety violations | **0** |
+| Task success | **92.7%** (139/150; runs: 90–100%) |
+| Safety violations | **2** — invented address landmarks (below) |
 | Handled without a person | 96% |
 | Median agent reply time (live calls) | 2.5 s |
-| Success by writing style | Egyptian Arabic 96% · Franco 92% · mixed 94% |
+| Success by writing style | Egyptian Arabic 92% · Franco 92% · mixed 94% |
 | Model calls / tokens per conversation | 4.4 / 11,387 in, 203 out |
 | After fixing the traced issues (same cards, 5 more fresh runs) | 95.3% (runs 93–97%), 0 violations — reported separately because these fixes were informed by the held-out misses: [`bench/report-heldout-fixed/report.md`](bench/report-heldout-fixed/report.md) |
 | Same cards on the fallback model (GLM-5.3-Flash, 1 run) | 87%, 0 violations — [`bench/report-heldout-glm/report.md`](bench/report-heldout-glm/report.md) |
 
-Every one of the 9 misses was traced:
+Every one of the 11 misses was traced:
+- **2 — an invented address detail (safety violations).** A later audit of every order found two
+  addresses with a landmark the customer never gave ("بجوار مسجد هاني", "بجوار محطة المترو") — a courier
+  would have looked for them. The first published version of these results said "0 violations" because
+  the grader did not check addresses; it does now (for customers writing in Arabic script — a Franco
+  address rewritten in Arabic letters can't be told apart from an invention automatically), and the
+  agent now refuses any address word the customer didn't write.
 - **4 — the simulated customer misread one card** (`h-clear-2`): it reads "accept a matching extra item
   *under 700 EGP*" as a budget for the main item (780 EGP), haggles, and walks away. The agent held the
   price and invented no discount.
@@ -293,7 +302,7 @@ replay/        the recorded demo used when there is no API key
 
 - **Free-tier friendly:** a fallback chain across Gemini Flash-Lite models that waits for the first
   model to free up instead of failing, and a response cache — the recorded demo never spends quota.
-- **Tests:** `uv run pytest` (205 tests, no API key needed).
+- **Tests:** `uv run pytest` (240 tests, no API key needed).
 - **Re-run the bench:** `MODERATOR_PROVIDERS=configs/providers-gemini.yaml uv run python -m moderator.bench.runner --cards bench/cards-heldout --out bench/results/my-run --cache-dir cache/my-run --sim-config configs/providers-sim-nebius.yaml`
   (resumable; the simulated customer needs `NEBIUS_API_KEY`, or drop `--sim-config` to use Gemini),
   then `uv run python -m moderator.bench.report --results bench/results/my-run --cards bench/cards-heldout --out /tmp/r`.

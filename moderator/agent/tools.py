@@ -29,6 +29,7 @@ class ToolContext:
     customer_message: str = ""
     handed_off: bool = False
     shown_fingerprint: str | None = None
+    customer_texts: tuple[str, ...] = ()  # everything the customer wrote in this conversation
 
 
 def _fn(name: str, description: str, properties: dict, required: list[str]) -> dict:
@@ -190,7 +191,55 @@ def _quote_delivery(ctx, a):
             "days_min": zone.days_min, "days_max": zone.days_max}
 
 
+# Words an address may contain without the customer having typed them: structure, connectors.
+_ADDRESS_WORDS = {fold_text(w) for w in (
+    "شارع", "ش", "الدور", "دور", "الطابق", "طابق", "شقة", "شقه", "عمارة", "عماره", "العمارة", "رقم",
+    "برج", "مبنى", "مبني", "بلوك", "قرب", "جنب", "أمام", "امام", "بجوار", "عند", "خلف", "ناصية",
+    "street", "st", "floor", "flat", "apt", "apartment", "building", "bldg", "no", "near", "next",
+    "to", "el", "sharea", "share3", "dor", "sha2a", "3emara", "3omara", "gamb", "odam",
+    "landmark", "علامة", "علامه", "مميزة", "مميزه", "قريب", "قريبة", "قريبه", "بالقرب", "من", "قصاد", "ورا",
+    "beside", "opposite", "behind")}
+# Floor ordinals stand for the digit the customer typed ("الدور الثالث" = "الدور 3").
+_ORDINALS = {fold_text(w): str(n) for n, words in enumerate((
+    ("الأول", "الاول", "اول", "awel", "el awel"), ("الثاني", "التاني", "تاني", "tany", "tani", "thani"),
+    ("الثالث", "التالت", "تالت", "talet", "talt", "thaleth"), ("الرابع", "رابع", "rabe3"),
+    ("الخامس", "خامس", "5ames", "khames"), ("السادس", "سادس", "sades"), ("السابع", "سابع", "sabe3"),
+    ("الثامن", "التامن", "tamen"), ("التاسع", "tase3"), ("العاشر", "3asher")), start=1) for w in words}
+
+
+def _address_word(word: str) -> str:
+    """Compare words without the Arabic article, and ordinals as digits."""
+    word = _ORDINALS.get(word, word)
+    return word[2:] if word.startswith("ال") and len(word) > 3 else word
+
+
+def _unknown_address_words(ctx, address: str, known: str = "") -> list[str]:
+    """Address words the customer never wrote (so the model made them up), in fold_text form.
+    Digits count either way; area names and structural words are always fine."""
+    if not ctx.customer_texts:
+        return []
+    allowed = {_address_word(w) for w in _ADDRESS_WORDS}
+    for text in (*ctx.customer_texts, known, *(a for z in ctx.catalog.zones for a in z.aliases)):
+        allowed |= {_address_word(w) for w in fold_text(clean_digits(text)).split()}
+    unknown = []
+    for word in fold_text(clean_digits(address)).split():
+        stems = {_address_word(word), _address_word(word[1:]) if word[:1] in ("و", "ب") else ""}
+        if not stems & allowed and word not in unknown:
+            unknown.append(word)
+    return unknown
+
+
+def _address_refusal(unknown: list[str]) -> dict:
+    return {"ok": False, "error": "address_not_from_customer", "unknown": unknown,
+            "message": "The address has words the customer never wrote: " + ", ".join(unknown)
+                       + ". Use only the customer's own words; if a detail such as a landmark is "
+                         "missing, ask them for it or leave it out."}
+
+
 def _create_order(ctx, a):
+    unknown = _unknown_address_words(ctx, _need(a, "address"))
+    if unknown:
+        return _address_refusal(unknown)
     order = ctx.book.create(ctx.conversation_id, _need(a, "customer_name"), _need(a, "phone"),
                             _need(a, "address"), _need(a, "area"), _items(_need(a, "items")),
                             source="chat", now=ctx.clock.now())
@@ -201,6 +250,10 @@ def _create_order(ctx, a):
 def _update_order(ctx, a):
     order = _order_of(ctx, a)
     changes = dict(_need(a, "changes"))
+    if changes.get("address"):
+        unknown = _unknown_address_words(ctx, str(changes["address"]), known=f"{order.address} {order.area}")
+        if unknown:
+            return _address_refusal(unknown)
     if "items" in changes:
         changes["items"] = _items(changes["items"])
     return _with_summary(ctx, ctx.book.update(order.id, changes))

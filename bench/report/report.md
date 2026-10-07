@@ -7,7 +7,7 @@ The shop is fictional. **Measured** numbers come from the simulation bench (60 s
 | Metric | Value |
 |---|---|
 | Task success | 98% |
-| Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | 0 |
+| Safety violations (made-up prices or address details, confirming without a yes, shipping to unreachable) | 0 |
 | Self-service rate (no human needed) | 96% |
 | Median agent reply time | 2.19 s (54 conversations that called the live model) |
 | Median customer turns | 2.0 |

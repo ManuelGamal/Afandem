@@ -184,7 +184,9 @@ class Agent:
     def _run(self, conv: Conversation, customer_message: str, last_agent: str,
              started: float) -> list[str]:
         ctx = ToolContext(self.catalog, self.book, self.bus, self.clock, conv.id,
-                          last_agent, customer_message, shown_fingerprint=conv.shown_fingerprint)
+                          last_agent, customer_message, shown_fingerprint=conv.shown_fingerprint,
+                          customer_texts=tuple(m["text"] for m in conv.visible()
+                                               if m["role"] == "customer"))
         calls = 0
         corrections = 0
         restyled = False  # a Franco reply that slipped into Arabic script is rewritten once

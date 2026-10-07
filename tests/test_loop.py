@@ -19,6 +19,12 @@ def make(script):
     return Agent(cat, book, bus, clock, provider), provider
 
 
+def with_address(conv):
+    """The customer has already given the address the scripted orders use."""
+    conv.messages.append({"role": "user", "content": "منى 01012345678، 12 شارع مكرم عبيد الدور 3، مدينة نصر"})
+    return conv
+
+
 def test_simple_reply_uses_tool_then_answers():
     agent, provider = make([tool_raw(("search_products", {"query": "هودي"})),
                             text_raw("الهودي التقيل بـ 890 جنيه يا فندم")])
@@ -168,7 +174,7 @@ def test_one_empty_model_reply_is_retried():
 def test_claiming_confirmed_while_the_order_is_not_is_corrected():
     agent, provider = make([tool_raw(("create_order", ORDER)), text_raw("تم تأكيد طلبك يا فندم"),
                             text_raw("ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟")])
-    conv = Conversation("c1")
+    conv = with_address(Conversation("c1"))
     out = agent.reply(conv, "عايز 2 تيشيرت اسود M")
     assert out == ["ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟"]
     assert provider.requests[2][-1]["content"].startswith("[حدث داخلي]")
@@ -179,7 +185,7 @@ def test_claiming_cancelled_while_the_order_is_not_is_corrected():
     agent, provider = make([tool_raw(("create_order", ORDER)), text_raw("تم إلغاء الطلب"),
                             tool_raw(("cancel_order", {"order_id": 1, "reason": "customer_declined"})),
                             text_raw("تم إلغاء الطلب يا فندم")])
-    conv = Conversation("c1")
+    conv = with_address(Conversation("c1"))
     assert agent.reply(conv, "الغي الطلب") == ["تم إلغاء الطلب يا فندم"]
     assert agent.book.get(1).status == "cancelled"
 
@@ -248,7 +254,7 @@ def test_claim_with_words_in_between_is_still_caught():
     agent, provider = make([tool_raw(("create_order", ORDER)),
                             text_raw("تمام يا فندم، تم تسجيل التأكيد والطلب هيوصلك"),
                             text_raw("ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟")])
-    conv = Conversation("c1")
+    conv = with_address(Conversation("c1"))
     assert agent.reply(conv, "عايز 2 تيشيرت") == ["ده ملخص طلبك والإجمالي 760 جنيه. أأكد الطلب؟"]
 
 

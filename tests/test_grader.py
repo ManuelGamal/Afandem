@@ -20,7 +20,8 @@ ORDER = {"id": 1, "conversation_id": "bench-b-1", "status": "confirmed", "source
 
 def result(agent_texts, customer_texts, orders, events=(), tool_payloads=({"total": 410, "price": 350,
                                                                            "fee": 60},)):
-    transcript, raw = [], []
+    # The customer gave the address the fixture orders use (orders are only made from what they wrote).
+    transcript, raw = [{"role": "customer", "text": "منى، 14 شارع الطيران الدور 4، مدينة نصر"}], []
     for i, c in enumerate(customer_texts):
         transcript.append({"role": "customer", "text": c})
         raw.append({"role": "user", "content": c})
@@ -37,7 +38,7 @@ def result(agent_texts, customer_texts, orders, events=(), tool_payloads=({"tota
 
 def test_correct_purchase_passes():
     r = result(["التيشيرت بـ 350 جنيه والشحن 60 جنيه", "الإجمالي 410 جنيه، أأكد؟", "تم"],
-               ["عايز تيشيرت", "منى 01011112222 ...", "تمام"], [ORDER])
+               ["عايز تيشيرت", "منى 01011112222، 14 شارع الطيران الدور 4، مدينة نصر", "تمام"], [ORDER])
     g = grade(BUY, r, CAT)
     assert g.success and g.failures == [] and g.violations == [] and g.self_served
 
@@ -99,3 +100,15 @@ def test_reply_time_counts_only_replies_that_called_the_live_model():
     cached = result(["التيشيرت بـ 350 جنيه والشحن 60 جنيه"], ["عايز تيشيرت"], [ORDER],
                     events=[call("cache"), out(0.0)])
     assert grade(BUY, cached, CAT).median_reply_s is None
+
+
+def test_an_address_detail_the_customer_never_gave_is_a_violation():
+    order = {**ORDER, "address": "14 شارع الطيران الدور 4 بجوار مسجد هاني"}
+    r = result(["الإجمالي 410 جنيه، أأكد؟", "تم"],
+               ["عايز تيشيرت، منى 01011112222 14 شارع الطيران الدور 4 مدينة نصر", "تمام"], [order])
+    g = grade(BUY, r, CAT)
+    assert not g.success and any("address" in v and "مسجد" in v for v in g.violations)
+    honest = result(["الإجمالي 410 جنيه، أأكد؟", "تم"],
+                    ["عايز تيشيرت، منى 01011112222 14 شارع الطيران الدور 4 مدينة نصر", "تمام"],
+                    [{**ORDER, "address": "14 شارع الطيران، الدور الرابع"}])
+    assert not any("address" in v for v in grade(BUY, honest, CAT).violations)

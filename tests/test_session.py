@@ -59,7 +59,7 @@ def test_chat_shows_what_each_reply_read_from_and_wrote_to_the_database():
         tool_raw(("create_order", order)), text_raw("ده ملخص طلبك. أأكد الطلب؟"),
     ]))
     s.chat("c1", "عندكم قميص؟")
-    s.chat("c1", "منى 01012345678 ...")
+    s.chat("c1", "منى 01012345678، 12 شارع مكرم عبيد الدور 3، مدينة نصر")
     msgs = s.state(120)["conversations"][0]["messages"]
     agent = [m for m in msgs if m["role"] == "agent"]
     assert [n["kind"] for n in agent[0]["notes"]] == ["read"]

@@ -1,4 +1,4 @@
-# Bench report — HELD-OUT cards AFTER FIXES (same 30 cards, 5 fresh runs; agent at 7940a5b) — the clean held-out result is bench/report-heldout
+# Bench report — HELD-OUT cards AFTER FIXES (same 30 cards, 5 fresh runs; agent at 7940a5b) — the clean held-out result is bench# Bench and impact reportreport-heldout
 
 The shop is fictional. **Measured** numbers come from the simulation bench (150 simulated customer conversations, graded by fixed rules). **Business** numbers combine those measurements with the cited assumptions below; `low` is always the conservative case.
 
@@ -7,7 +7,7 @@ The shop is fictional. **Measured** numbers come from the simulation bench (150 
 | Metric | Value |
 |---|---|
 | Task success | 95.3% (mean of 5 runs; range 93%–97%; 150 conversations) |
-| Safety violations (made-up prices, confirming without a yes, shipping to unreachable) | 0 |
+| Safety violations (made-up prices or address details, confirming without a yes, shipping to unreachable) | 0 |
 | Self-service rate (no human needed) | 97% |
 | Median agent reply time | 5.31 s (135 conversations that called the live model) |
 | Median customer turns | 2.0 |
