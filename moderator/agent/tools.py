@@ -310,29 +310,35 @@ def _in_stock(stock: dict) -> str:
     return "in stock: " + ", ".join(sizes) if sizes else "sold out"
 
 
+def iso(text: str) -> str:
+    """Wrap a name in Unicode isolates, so an Arabic name inside an English line keeps its place."""
+    return chr(0x2068) + text + chr(0x2069)
+
+
 def db_note(ctx: ToolContext, name: str, args, result: dict) -> dict | None:
     """One line for the chat on what a tool read from or wrote to the shop database."""
     if not result.get("ok") or not isinstance(args, dict):
         return None
     if name == "search_products":
+        query = iso(str(args.get("query", "")))
         found = result["products"]
         if not found:
-            return {"kind": "read", "text": f"search “{args.get('query', '')}”: nothing found"}
-        shown = "; ".join(f"{p['name']} {p['price']} EGP" for p in found[:2])
+            return {"kind": "read", "text": f"search “{query}”: nothing found"}
+        shown = "; ".join(f"{iso(p['name'])} {p['price']} EGP" for p in found[:2])
         more = f" +{len(found) - 2} more" if len(found) > 2 else ""
-        return {"kind": "read", "text": f"search “{args.get('query', '')}” → {shown}{more}"}
+        return {"kind": "read", "text": f"search “{query}” → {shown}{more}"}
     if name == "get_product":
         p = result["product"]
-        return {"kind": "read", "text": f"{p['name']} · {p['price']} EGP · {_in_stock(p['stock_by_size'])}"}
+        return {"kind": "read", "text": f"{iso(p['name'])} · {p['price']} EGP · {_in_stock(p['stock_by_size'])}"}
     if name == "recommend_size":
         p = ctx.catalog.get(args.get("product_id", ""))
-        label = p.name_ar if p else "size chart"
+        label = iso(p.name_ar) if p else "size chart"
         if result.get("size") is None:
             return {"kind": "read", "text": f"{label} · no size chart · {_in_stock(p.stock if p else {})}"}
         state = "in stock" if result.get("in_stock") else "sold out"
         return {"kind": "read", "text": f"{label} · size chart → {result['size']} ({state})"}
     if name == "quote_delivery":
-        return {"kind": "read", "text": f"delivery to {result['zone']}: {result['fee']} EGP, "
+        return {"kind": "read", "text": f"delivery to {iso(result['zone'])}: {result['fee']} EGP, "
                                         f"{result['days_min']}–{result['days_max']} days"}
     if name in ("create_order", "update_order"):
         return {"kind": "write", "text": f"order #{result['order_id']} saved · {result['status']} · "

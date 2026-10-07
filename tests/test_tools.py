@@ -169,7 +169,17 @@ def test_database_reads_and_writes_are_described_on_the_tool_event():
     assert name in notes[0]["text"] and f"{c.catalog.get('T06').price} EGP" in notes[0]["text"]
     assert "L 12" in notes[0]["text"]  # live stock per size
     zone = c.catalog.find_zone("مدينة نصر")
-    assert notes[1] == {"kind": "read", "text": f"delivery to {zone.name_ar}: {zone.fee} EGP, "
+    assert notes[1] == {"kind": "read", "text": f"delivery to {chr(0x2068)}{zone.name_ar}{chr(0x2069)}: {zone.fee} EGP, "
                                                 f"{zone.days_min}–{zone.days_max} days"}
     run_tool("search_products", {"query": "zzzz"}, c)
-    assert c.bus.events[-1].data["db"]["text"] == "search “zzzz”: nothing found"
+    assert c.bus.events[-1].data["db"]["text"] == f"search “{chr(0x2068)}zzzz{chr(0x2069)}”: nothing found"
+
+
+def test_arabic_names_in_database_lines_are_isolated_for_display():
+    """Mixed English/Arabic lines must keep their word order on screen: names are wrapped in
+    Unicode isolates (U+2068 … U+2069)."""
+    c = ctx()
+    run_tool("get_product", {"product_id": "T06"}, c)
+    text = c.bus.events[-1].data["db"]["text"]
+    name = c.catalog.get("T06").name_ar
+    assert chr(0x2068) + name + chr(0x2069) in text

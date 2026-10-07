@@ -159,7 +159,7 @@ function dbNotes(notes) {
   return `<div class="db-notes" role="note" aria-label="Shop database">${notes.map((n) => `
     <div class="db-note ${n.kind === "write" ? "write" : "read"}">${icon("db")}
       <span class="db-label">${n.kind === "write" ? "Database updated" : "Read from database"}</span>
-      <span class="db-text" dir="auto">${esc(n.text)}</span></div>`).join("")}</div>`;
+      <span class="db-text" dir="ltr">${esc(n.text)}</span></div>`).join("")}</div>`;
 }
 
 function renderChat() {

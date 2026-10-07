@@ -8,6 +8,7 @@ from pathlib import Path
 
 from moderator.agent.loop import Agent, Conversation
 from moderator.agent.risk import score_order
+from moderator.agent.tools import iso
 from moderator.clock import Clock
 from moderator.events import EventBus, impact
 from moderator.store.catalog import SEED_PATH, Catalog
@@ -134,7 +135,7 @@ class Session:
             p = self.catalog.get(e.data["product_id"])
             after, delta = e.data["stock_after"], e.data["delta"]
             why = e.data["reason"].replace("_", " ")
-            return {"kind": "write", "text": f"stock {p.name_ar if p else e.data['product_id']} "
+            return {"kind": "write", "text": f"stock {iso(p.name_ar) if p else e.data['product_id']} "
                                              f"{e.data['size']}: {after - delta} → {after} ({why})"}
         if e.kind == "order_status" and e.data.get("old") and e.data["old"] != e.data["new"]:
             old, new = (_STATUS_WORDS.get(x, x) for x in (e.data["old"], e.data["new"]))
