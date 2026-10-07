@@ -1,0 +1,14 @@
+# Render blueprint: a free web service built from the Dockerfile.
+# New → Blueprint → this repo. Set GEMINI_API_KEY in the dashboard for live chat;
+# without it the app serves the recorded demo. Never add NEBIUS_API_KEY here (no spend ledger on Render's disk).
+services:
+  - type: web
+    name: afandem
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/info
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MODERATOR_DAILY_LIVE_CALLS
+        value: "800"
